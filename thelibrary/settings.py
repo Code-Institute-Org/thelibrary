@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
 
     # custom apps
-    'accounts',
     'home',
 ]
 
@@ -64,7 +63,10 @@ ROOT_URLCONF = 'thelibrary.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+            os.path.join(BASE_DIR, 'templates', 'allauth'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
