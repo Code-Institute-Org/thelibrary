@@ -4,31 +4,51 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <!-- bootstrap css -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/css/bootstrap.min.css">
+    {% block meta %}
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% endblock %}
 
-    <!-- Font awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    {% block extra_meta %}
+    {% endblock %}
 
-    <title>The Library</title>
+    {% block corecss %}
+        <!-- bootstrap css -->
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/css/bootstrap.min.css">
+
+        <!-- Font awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    {% endblock %}
+
+    {% block extra_css %}
+    {% endblock %}
+
+    <title>The Library | {% block extra_title %}{% endblock %}</title>
 </head>
 
 <body>
     <nav>Nav content here</nav>
+
+    {% if messages %}
+        <div class="message-container"></div>
+    {% endif %}
 
     {% block content %}
     {% endblock %}
 
     <footer>Footer content here</footer>
 
-    <!-- scripts for bootstrap -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.4/umd/popper.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/js/bootstrap.min.js"></script>
+    {% block corejs %}
+        <!-- scripts for bootstrap -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.4/umd/popper.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/js/bootstrap.min.js"></script>
+    {% endblock %}
+
+    {% block extra_js %}
+    {% endblock %}
 </body>
 
 </html>
