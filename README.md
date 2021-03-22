@@ -37,3 +37,7 @@ python -m pip install Django
 ```
 django-admin startproject thelibrary .
 ```
+8. Install django all-auth
+```
+pip install django-allauth
+```
