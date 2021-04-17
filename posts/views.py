@@ -28,7 +28,6 @@ class CreatePostView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         form.instance.slug = slugify(form.instance.title)
-        print(form.instance.slug)
         return super().form_valid(form)
 
 
