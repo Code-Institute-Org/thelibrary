@@ -1,7 +1,7 @@
 from slugify import slugify
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.db.models import Q
 from .models import Post
 from users.models import User
@@ -48,8 +48,18 @@ class ReviewPostsView(LoginRequiredMixin, ListView):
 
 
 def approve_post(request, pk):
+    """ Changes status of a post to approved """
     post = get_object_or_404(Post, pk=pk)
     post.status = 'Approved'
+    post.save()
+
+    return redirect('review_posts')
+
+
+def deactivate_post(request, pk):
+    """ Changes status of a post to deactivated """
+    post = get_object_or_404(Post, pk=pk)
+    post.status = 'Deactivated'
     post.save()
 
     return redirect('review_posts')

@@ -12,10 +12,12 @@ class Post(models.Model):
     """
     WAITING = 'Waiting'
     APPROVED = 'Approved'
+    REVIEW = 'Review'
     DEACTIVATED = 'Deactivated'
     STATUS_CHOICES = (
         (WAITING, "Awaiting Approval"),
         (APPROVED, "Approved"),
+        (REVIEW, "Review"),
         (DEACTIVATED, "Deactivated")
     )
     title = models.CharField(
@@ -26,11 +28,12 @@ class Post(models.Model):
         })
     slug = models.SlugField(max_length=200, unique=True)
     body = RichTextField()
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author_field')
     created_on = models.DateField(default=datetime.date.today)
     updated_on = models.DateField(null=True, blank=True)
     status = models.CharField(max_length=100, choices=STATUS_CHOICES, default=WAITING)
-
+    mod_message = models.TextField(max_length=300, null=True)
+    moderator = models.ForeignKey(User, on_delete=models.PROTECT, null=True, related_name='mod_field')
     class Meta:
         ordering = ['-created_on']
 

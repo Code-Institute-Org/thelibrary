@@ -46,8 +46,9 @@
         {% elif user.userprofile.is_mod %}
             <!-- buttons for moderator -->
             <a href="{% url 'approve_post' post.pk %}">Approve</a>
-            <button>Request change</button>
-            <button>Deactivate</button>
+            <br>
+            <button id="request-change">Request change</button>
+            <button id="deactivate">Deactivate</button>
 
         {% endif %}
 
