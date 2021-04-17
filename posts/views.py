@@ -1,6 +1,9 @@
+from slugify import slugify
 from django.shortcuts import render
-from django.views.generic import DetailView, ListView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import ListView, DetailView, CreateView
 from .models import Post
+
 # Create your views here.
 
 
@@ -15,3 +18,17 @@ class PostDetailView(DetailView):
     model = Post
     template_name = 'post_detail.html'
     context_object_name = 'post'
+
+
+class CreatePostView(LoginRequiredMixin, CreateView):
+    model = Post
+    template_name = 'create_post.html'
+    fields = ['title', 'body']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        form.instance.slug = slugify(form.instance.title)
+        print(form.instance.slug)
+        return super().form_valid(form)
+
+
