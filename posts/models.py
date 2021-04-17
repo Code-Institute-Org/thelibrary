@@ -33,7 +33,7 @@ class Post(models.Model):
     updated_on = models.DateField(null=True, blank=True)
     status = models.CharField(max_length=100, choices=STATUS_CHOICES, default=WAITING)
     mod_message = models.TextField(max_length=300, null=True)
-    moderator = models.ForeignKey(User, on_delete=models.PROTECT, null=True, related_name='mod_field')
+    moderator = models.ForeignKey(User, on_delete=models.PROTECT, null=True, blank=False, related_name='mod_field')
     class Meta:
         ordering = ['-created_on']
 

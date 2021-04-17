@@ -11,6 +11,9 @@
         <!-- messages for author based on status of post -->
         {% if post.author == user and post.status == 'Waiting' %}
             <p>Thank you for submitting this post! It will be published after approval by a library moderator.</p>
+        {% elif post.status == 'Review' %}
+            <p>This post has been reviewed by {{post.moderator}}. They have requested the following change(s):</p>
+            <p>{{post.mod_message}}</p>
         {% elif post.status == 'Deactivated' %}
             <p>This post has been deactivated by a library moderator</p>
         {% endif %}
