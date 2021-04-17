@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ post.title }}</h1>
+
+<p>{{ post.body }}</p>
+
+<p>Author username: {{ post.author }}</p>
+
+<p>Published: {{ post.created_on|date }}</p>
+
+{% if post.updated_on %}
+<p>Last updated: {{ post.updated_on }}</p>
+{% endif %}
+
+{% endblock %}
