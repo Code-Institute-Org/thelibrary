@@ -1,5 +1,5 @@
 from slugify import slugify
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView, CreateView
 from django.db.models import Q
@@ -45,3 +45,11 @@ class ReviewPostsView(LoginRequiredMixin, ListView):
         if user.userprofile.is_mod == False:
             return redirect('home')
         return super(ReviewPostsView, self).get(*args, **kwargs)
+
+
+def approve_post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    post.status = 'Approved'
+    post.save()
+
+    return redirect('review_posts')
