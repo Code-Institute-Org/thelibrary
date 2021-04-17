@@ -24,5 +24,8 @@ class Post(models.Model):
     updated_on = models.DateField(null=True, blank=True)
     status = models.CharField(max_length=100, choices=STATUS_CHOICES, default=WAITING)
 
+    class Meta:
+        ordering = ['-created_on']
+
     def __str__(self):
         return f"{self.title} | {self.status}"
