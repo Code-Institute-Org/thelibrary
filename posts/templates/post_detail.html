@@ -5,18 +5,18 @@
 <!-- if post is not approved yet -->
 {% if post.status != 'Approved' %}
 
-    <!-- if author is viewing the unapproved post -->
-    {% if post.author == user %}
+    <!-- if author or mod is viewing the unapproved post -->
+    {% if post.author == user or user.userprofile.is_mod %}
 
         <!-- messages for author based on status of post -->
-        {% if post.status == 'Waiting' %}
+        {% if post.author == user and post.status == 'Waiting' %}
             <p>Thank you for submitting this post! It will be published after approval by a library moderator.</p>
         {% elif post.status == 'Deactivated' %}
             <p>This post has been deactivated by a library moderator</p>
         {% endif %}
 
-        <!-- preview of post for author -->
-        <p>Preview of your post:</p>
+        <!-- preview of post for author or mod -->
+        <p>Post Preview:</p>
 
         <h1>{{ post.title }}</h1>
 
@@ -30,9 +30,26 @@
         <p>Last updated: {{ post.updated_on }}</p>
         {% endif %}
 
+
+        {% if post.author == user %}
         <!-- edit and delete buttons for author -->
         <button>Edit post</button>
         <button>Delete post</button>
+
+            <!-- Message if mod is trying to approve own posts -->
+            {% if post.author == user and user.userprofile.is_mod %}
+
+            <p>You cannot approve your own posts</p>
+
+            {% endif %}
+
+        {% elif user.userprofile.is_mod %}
+            <!-- buttons for moderator -->
+            <button>Approve</button>
+            <button>Request change</button>
+            <button>Deactivate</button>
+
+        {% endif %}
 
     <!-- if non-author trying to view post not approved yet -->
     {% else %}

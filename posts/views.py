@@ -1,8 +1,10 @@
 from slugify import slugify
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView, CreateView
+from django.db.models import Q
 from .models import Post
+from users.models import User
 
 # Create your views here.
 
@@ -31,3 +33,15 @@ class CreatePostView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
+class ReviewPostsView(LoginRequiredMixin, ListView):
+    template_name = 'review_posts.html'
+    # ~Q is used to negate a specific status,
+    # results in getting all items that don't have the 'Approved' status
+    queryset = Post.objects.filter(~Q(status='Approved')).order_by('-created_on')
+    context_object_name = 'posts'
+
+    def get(self, *args, **kwargs):
+        user = self.request.user
+        if user.userprofile.is_mod == False:
+            return redirect('home')
+        return super(ReviewPostsView, self).get(*args, **kwargs)
