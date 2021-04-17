@@ -46,6 +46,9 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
 
+    # third party apps
+    'ckeditor',
+
     # custom apps
     'home',
     'users',
