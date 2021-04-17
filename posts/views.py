@@ -7,8 +7,7 @@ from .models import Post
 class AllPostsView(ListView):
     """ Basic view to see all posts """
     template_name = 'all_posts.html'
-    queryset = Post.objects.all()
-    # queryset = Post.objects.filter(status='Approved').order_by('-created_on')
+    queryset = Post.objects.filter(status='Approved').order_by('-created_on')
     context_object_name = 'posts'
 
 class PostDetailView(DetailView):
