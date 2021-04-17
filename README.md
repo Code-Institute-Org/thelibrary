@@ -41,3 +41,9 @@ django-admin startproject thelibrary .
 ```
 pip install django-allauth
 ```
+
+## Technologies Used
+
+### Libraries
+
+- [Bootstrap](https://getbootstrap.com/) to simplify the structure of the website and make the website responsive easily.
