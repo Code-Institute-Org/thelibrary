@@ -1,3 +1,4 @@
+from ckeditor.fields import RichTextField
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
@@ -24,7 +25,7 @@ class Post(models.Model):
             'unique':"This post title already exists, please choose another."
         })
     slug = models.SlugField(max_length=200, unique=True)
-    body = models.TextField()
+    body = RichTextField()
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     created_on = models.DateField(default=datetime.date.today)
     updated_on = models.DateField(null=True, blank=True)
