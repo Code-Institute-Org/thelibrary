@@ -63,3 +63,14 @@ def deactivate_post(request, pk):
     post.save()
 
     return redirect('review_posts')
+
+
+class ReviewPostView(DetailView, UpdateView):
+    model = Post
+    template_name = 'post_detail.html'
+    context_object_name = 'post'
+    fields = ['mod_message']
+
+    def form_valid(self, form):
+        form.instance.moderator = self.request.user
+        return super().form_valid(form)
