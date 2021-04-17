@@ -17,7 +17,12 @@ class Post(models.Model):
         (APPROVED, "Approved"),
         (DEACTIVATED, "Deactivated")
     )
-    title = models.CharField(max_length=200, unique=True)
+    title = models.CharField(
+        max_length=200,
+        unique=True,
+        error_messages={
+            'unique':"This post title already exists, please choose another."
+        })
     slug = models.SlugField(max_length=200, unique=True)
     body = models.TextField()
     author = models.ForeignKey(User, on_delete=models.CASCADE)
