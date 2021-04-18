@@ -34,13 +34,24 @@ class PostDetailView(DetailView):
 class CreatePostView(LoginRequiredMixin, CreateView):
     model = Post
     template_name = 'create_post.html'
-    fields = ['title', 'category', 'body']
+    fields = ['title', 'summary', 'body', 'category']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
         form.instance.slug = slugify(form.instance.title)
         return super().form_valid(form)
 
+
+class EditPostView(UpdateView):
+    model = Post
+    template_name = 'edit_post.html'
+    context_object_name = 'post'
+    fields = ['title', 'summary', 'body', 'category']
+
+    def form_valid(self, form):
+        if form.instance.status == 'Review':
+            form.instance.status = 'Waiting'
+        return super().form_valid(form)
 
 class ReviewPostsView(LoginRequiredMixin, ListView):
     template_name = 'review_posts.html'
@@ -90,18 +101,6 @@ class ReviewPostView(DetailView, UpdateView):
     def form_valid(self, form):
         form.instance.moderator = self.request.user
         form.instance.status = 'Review'
-        return super().form_valid(form)
-
-
-class EditPostView(UpdateView):
-    model = Post
-    template_name = 'edit_post.html'
-    context_object_name = 'post'
-    fields = ['title', 'category', 'body']
-
-    def form_valid(self, form):
-        if form.instance.status == 'Review':
-            form.instance.status = 'Waiting'
         return super().form_valid(form)
 
 

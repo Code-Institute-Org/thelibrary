@@ -9,6 +9,7 @@
     <a href="{% url 'review_post' post.pk post.slug  %}">
         <h2>{{ post.title }}</h2>
     </a>
+    <p>{{ post.summary }}</p>
     <p>Created by {{post.author}} on {{ post.created_on }}</p>
 
 {% empty %}
