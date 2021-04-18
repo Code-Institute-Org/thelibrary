@@ -75,3 +75,15 @@ class ReviewPostView(DetailView, UpdateView):
         form.instance.moderator = self.request.user
         form.instance.status = 'Review'
         return super().form_valid(form)
+
+
+class EditPostView(UpdateView):
+    model = Post
+    template_name = 'edit_post.html'
+    context_object_name = 'post'
+    fields = ['title', 'body']
+
+    def form_valid(self, form):
+        if form.instance.status == 'Review':
+            form.instance.status = 'Waiting'
+        return super().form_valid(form)

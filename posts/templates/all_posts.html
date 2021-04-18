@@ -6,7 +6,7 @@
 
 {% for post in posts %}
 
-    <a href="{% url 'post_detail' post.slug  %}">
+    <a href="{% url 'post_detail' post.pk post.slug  %}">
         <h2>{{ post.title }}</h2>
     </a>
 

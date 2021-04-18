@@ -36,7 +36,7 @@
 
         {% if post.author == user %}
         <!-- edit and delete buttons for author -->
-        <button>Edit post</button>
+        <a href="{% url 'edit_post' post.pk post.slug %}">Edit post</a>
         <button>Delete post</button>
 
             <!-- Message if mod is trying to approve own posts -->
@@ -48,7 +48,7 @@
 
         {% elif user.userprofile.is_mod %}
             <!-- buttons for moderator -->
-            <a href="{% url 'approve_post' post.pk %}">Approve</a>
+            <a href="{% url 'approve_post' post.pk post.slug %}">Approve</a>
             <br>
             <button id="request-change">Request change</button>
             <button id="deactivate">Deactivate</button>
@@ -78,12 +78,12 @@
 
     {% if post.updated_on %}
         <p>Last updated: {{ post.updated_on }}</p>
+    {% endif %}
 
-        <!-- Show edit/delete buttons for author -->
-        {% if post.author == user %}
-            <button>Edit post</button>
-            <button>Delete post</button>
-        {% endif %}
+    <!-- Show edit/delete buttons for author -->
+    {% if post.author == user %}
+        <a href="{% url 'edit_post' post.pk post.slug %}">Edit post</a>
+        <button>Delete post</button>
     {% endif %}
 {% endif %}
 
