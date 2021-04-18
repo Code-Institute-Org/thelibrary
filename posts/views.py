@@ -67,13 +67,18 @@ class ReviewPostsView(LoginRequiredMixin, ListView):
         return super(ReviewPostsView, self).get(*args, **kwargs)
 
 
-def approve_post(request, pk):
-    """ Changes status of a post to approved """
+def approve_post(request, pk, slug):
+    """
+    Changes status of a post to approved if the user accessing the url
+    is a moderator. Of not, user is redirected to home page
+    """
     post = get_object_or_404(Post, pk=pk)
-    post.status = 'Approved'
-    post.save()
-
-    return redirect('review_posts')
+    if post.author != request.user and request.user.is_mod:
+        post.status = 'Approved'
+        post.save()
+        return redirect('review_posts')
+    else:
+        return redirect('home')
 
 
 def delete_post(request, pk):
