@@ -30,3 +30,14 @@ class UserSettingsView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     def get_success_url(self):
         pk = self.request.user.pk
         return reverse_lazy('settings', kwargs={'pk': pk})
+
+
+def user_bookmarks_view(request, pk):
+    user_profile = get_object_or_404(UserProfile, pk=pk)
+    bookmarks = user_profile.bookmarks.all()
+
+    context = {
+        'bookmarks': bookmarks,
+    }
+
+    return render(request, 'bookmarks.html', context)
