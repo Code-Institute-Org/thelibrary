@@ -32,8 +32,9 @@ class Post(models.Model):
     status = models.CharField(max_length=100, choices=STATUS_CHOICES, default=WAITING)
     mod_message = models.TextField(max_length=300, null=True)
     moderator = models.ForeignKey(User, on_delete=models.PROTECT, null=True, blank=False, related_name='mod_field')
+    likes = models.ManyToManyField(User, related_name='blog_post_likes')
     class Meta:
-        ordering = ['-created_on']
+        ordering = ['created_on']
 
     def __str__(self):
         return f"{self.title}"

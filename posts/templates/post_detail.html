@@ -77,6 +77,11 @@
         <p>Last updated: {{ post.updated_on }}</p>
     {% endif %}
 
+    <form action="{% url 'like_post' post.pk %}" method="POST">
+        {% csrf_token %}
+        <button type="submit">Like</button>
+    </form>
+
     <!-- Show edit/delete buttons for author -->
     {% if post.author == user %}
         <a href="{% url 'edit_post' post.pk post.slug %}">Edit post</a>

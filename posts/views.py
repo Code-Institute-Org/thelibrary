@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.db.models import Q
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from .models import Post
 from users.models import User
 
@@ -94,3 +96,11 @@ class EditPostView(UpdateView):
         if form.instance.status == 'Review':
             form.instance.status = 'Waiting'
         return super().form_valid(form)
+
+
+def like_post(request, pk):
+    """ Adds like to post, tied to specific user """
+    post = get_object_or_404(Post, pk=pk)
+    post.likes.add(request.user)
+    return HttpResponseRedirect(reverse('post_detail', args=[pk, post.slug]))
+
