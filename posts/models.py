@@ -2,6 +2,7 @@ from ckeditor.fields import RichTextField
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.utils import timezone
 import datetime
 
 # Create your models here.
@@ -48,8 +49,8 @@ class Post(models.Model):
     slug = models.SlugField(max_length=200, unique=True)
     body = RichTextField()
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author_field')
-    created_on = models.DateField(default=datetime.date.today)
-    updated_on = models.DateField(null=True, blank=True)
+    created_on = models.DateTimeField(default=timezone.now)
+    updated_on = models.DateTimeField(null=True, blank=True)
     status = models.CharField(max_length=100, choices=STATUS_CHOICES, default=WAITING)
     mod_message = models.TextField(max_length=300, null=True)
     moderator = models.ForeignKey(User, on_delete=models.PROTECT, null=True, blank=False, related_name='mod_field')
