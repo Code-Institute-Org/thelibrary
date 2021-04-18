@@ -74,7 +74,7 @@ def approve_post(request, pk, slug):
     is a moderator. Of not, user is redirected to home page.
     """
     post = get_object_or_404(Post, pk=pk)
-    if post.author != request.user and request.user.is_mod:
+    if post.author != request.user and request.user.userprofile.is_mod:
         post.status = 'Approved'
         post.save()
         return redirect('review_posts')
