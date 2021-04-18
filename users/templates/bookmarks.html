@@ -4,6 +4,8 @@
 {% block content %}
 <h1>User bookmarks page</h1>
 
+<p>You have {{ total_bookmarks }} bookmark{% if total_bookmarks > 1 %}s{% endif %}</p>
+
 {% for post in bookmarks %}
     <a href="{% url 'post_detail' post.pk post.slug  %}">
         <h2>{{ post.title }}</h2>

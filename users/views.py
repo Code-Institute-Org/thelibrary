@@ -35,9 +35,11 @@ class UserSettingsView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
 def user_bookmarks_view(request, pk):
     user_profile = get_object_or_404(UserProfile, pk=pk)
     bookmarks = user_profile.bookmarks.all()
+    total_bookmarks = bookmarks.count()
 
     context = {
         'bookmarks': bookmarks,
+        'total_bookmarks': total_bookmarks
     }
 
     return render(request, 'bookmarks.html', context)
