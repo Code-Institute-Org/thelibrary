@@ -23,9 +23,9 @@
 
         {{ post.body|safe }}
 
-        <p>Author username: {{ post.author }}</p>
+        <p>Author username: {{ post.author }} | Published: {{ post.created_on|date }}</p>
 
-        <p>Published: {{ post.created_on|date }}</p>
+        <p>Category: {{ post.category }}</p>
 
         {% if post.updated_on %}
         <p>Last updated: {{ post.updated_on }}</p>
@@ -69,9 +69,9 @@
 
     {{ post.body|safe }}
 
-    <p>Author username: {{ post.author }}</p>
+    <p>Author username: {{ post.author }} | Published: {{ post.created_on|date }}</p>
 
-    <p>Published: {{ post.created_on|date }}</p>
+    <p>Category = {{ post.category }}</p>
 
     {% if post.updated_on %}
         <p>Last updated: {{ post.updated_on }}</p>

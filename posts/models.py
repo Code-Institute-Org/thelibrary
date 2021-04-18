@@ -2,10 +2,20 @@ from ckeditor.fields import RichTextField
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
-
 import datetime
 
 # Create your models here.
+
+class PostCategory(models.Model):
+    name = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('home')
+
+
 class Post(models.Model):
     """
     Create instance of Post
@@ -32,11 +42,12 @@ class Post(models.Model):
     status = models.CharField(max_length=100, choices=STATUS_CHOICES, default=WAITING)
     mod_message = models.TextField(max_length=300, null=True)
     moderator = models.ForeignKey(User, on_delete=models.PROTECT, null=True, blank=False, related_name='mod_field')
-    likes = models.ManyToManyField(User, related_name='blog_post_likes')
+    likes = models.ManyToManyField(User, related_name='blog_post_likes', null=True, blank=True)
+    category = models.ForeignKey(PostCategory, on_delete=models.PROTECT, related_name="post_category")
 
     def total_likes(self):
         return self.likes.count()
-        
+
     class Meta:
         ordering = ['created_on']
 

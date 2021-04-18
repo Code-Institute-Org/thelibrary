@@ -11,6 +11,10 @@
     </a>
     <p>Created by {{post.author}} on {{ post.created_on }}</p>
 
+{% empty %}
+
+<p>No posts waiting for review</p>
+
 {% endfor %}
 
 
