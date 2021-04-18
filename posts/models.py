@@ -33,6 +33,10 @@ class Post(models.Model):
     mod_message = models.TextField(max_length=300, null=True)
     moderator = models.ForeignKey(User, on_delete=models.PROTECT, null=True, blank=False, related_name='mod_field')
     likes = models.ManyToManyField(User, related_name='blog_post_likes')
+
+    def total_likes(self):
+        return self.likes.count()
+        
     class Meta:
         ordering = ['created_on']
 

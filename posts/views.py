@@ -23,6 +23,12 @@ class PostDetailView(DetailView):
     template_name = 'post_detail.html'
     context_object_name = 'post'
 
+    def get_context_data(self, *args, **kwargs):
+        context = super(PostDetailView, self).get_context_data(**kwargs)
+        post = get_object_or_404(Post, id=self.kwargs['pk'])
+        context['total_likes'] = post.total_likes()
+        return context
+
 
 class CreatePostView(LoginRequiredMixin, CreateView):
     model = Post
