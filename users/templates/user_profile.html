@@ -4,16 +4,23 @@
 {% block content %}
 <h1>User profile page</h1>
 
-<h2>Username: {{ user.username }}</h2>
+<!-- display users names if provided -->
+{% if user.first_name and user.last_name %}
+<h2>{{ user.first_name }} {{ user.last_name }}</h2>
+{% elif user.first_name %}
+<h2>{{ user.first_name }}</h2>
+{% endif %}
+
+<h3>Username: {{ user.username }}</h3>
 
 {% if user.userprofile.is_mod %}
     <p>* Moderator</p>
 {% endif %}
+
 <p>Member since: {{ user.userprofile.date_joined }}</p>
 
 {% if user == request.user %}
-    <!-- Edit profile button if profile is of logged in user -->
-    <a href="#">Edit profile</a>
+    <p>To update your profile, please visit your <a href="{% url 'settings' user.pk %}">settings</a></p>
 {% endif %}
 
 <h3>Posts by {{ user.username }}</h3>

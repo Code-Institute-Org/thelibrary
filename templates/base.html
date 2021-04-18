@@ -33,7 +33,11 @@
     {% include 'components/navbar.html' %}
 
     {% if messages %}
-        <div class="message-container"></div>
+        <div class="message-container">
+            {% for message in messages %}
+            <p>{{ message }}</p>
+            {% endfor %}
+        </div>
     {% endif %}
 
     {% block content %}

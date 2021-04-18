@@ -27,9 +27,10 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="{% url 'user_profile' user.pk %}">My profile</a></li>
                         <li><a class="dropdown-item" href="{% url 'create_post' %}">Create new post</a></li>
-                        
+                        <li><a class="dropdown-item" href="{% url 'user_profile' user.pk %}">My profile</a></li>
+                        <li><a class="dropdown-item" href="{% url 'settings' user.pk %}">Settings</a></li>
+
                         {% else %}
                         <!-- menu options for users not logged in -->
                         <li><a class="dropdown-item" href="{% url 'account_signup' %}">Sign up</a></li>

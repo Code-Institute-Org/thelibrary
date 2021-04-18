@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<h1>Profile settings page</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button>Update</button>
+</form>
+
+<a href="{% url 'account_change_password' %}">Change password</a>
+<br>
+<a href="{% url 'user_profile' user.pk %}">Back to profile</a>
+
+{% endblock %}
