@@ -50,11 +50,10 @@
             <!-- buttons for moderator -->
             <a href="{% url 'approve_post' post.pk post.slug %}">Approve</a>
             <br>
-            <button id="request-change">Request change</button>
             <form method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <input type="submit" value="Send">
+                <input type="submit" value="Request Change">
             </form>
 
         {% endif %}
