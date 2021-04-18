@@ -6,14 +6,18 @@ import datetime
 
 # Create your models here.
 
+class PostTag(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+
 class PostCategory(models.Model):
     name = models.CharField(max_length=200)
 
     def __str__(self):
         return self.name
-
-    def get_absolute_url(self):
-        return reverse('home')
 
 
 class Post(models.Model):
@@ -49,8 +53,9 @@ class Post(models.Model):
     status = models.CharField(max_length=100, choices=STATUS_CHOICES, default=WAITING)
     mod_message = models.TextField(max_length=300, null=True)
     moderator = models.ForeignKey(User, on_delete=models.PROTECT, null=True, blank=False, related_name='mod_field')
-    likes = models.ManyToManyField(User, related_name='blog_post_likes', null=True, blank=True)
+    likes = models.ManyToManyField(User, related_name='post_likes', null=True, blank=True)
     category = models.ForeignKey(PostCategory, on_delete=models.PROTECT, related_name="post_category")
+    tags = models.ManyToManyField(PostTag, related_name='post_tags', null=True)
 
     def total_likes(self):
         return self.likes.count()

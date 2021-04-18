@@ -8,7 +8,7 @@
     {% csrf_token %}
     {{ form.media }}
     {{ form.as_p }}
-    
+    <!-- REMINDER: adjust tags field so tags options in a checklist -->
     <button>Post</button>
     {% if form.instance.status == 'Approved' %}
         <small>Edits to approved posts are published immediately</small>

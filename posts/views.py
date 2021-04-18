@@ -34,7 +34,7 @@ class PostDetailView(DetailView):
 class CreatePostView(LoginRequiredMixin, CreateView):
     model = Post
     template_name = 'create_post.html'
-    fields = ['title', 'summary', 'body', 'category']
+    fields = ['title', 'summary', 'body', 'category', 'tags']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -46,7 +46,7 @@ class EditPostView(UpdateView):
     model = Post
     template_name = 'edit_post.html'
     context_object_name = 'post'
-    fields = ['title', 'summary', 'body', 'category']
+    fields = ['title', 'summary', 'body', 'category', 'tags']
 
     def form_valid(self, form):
         if form.instance.status == 'Review':
