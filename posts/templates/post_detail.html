@@ -14,8 +14,6 @@
         {% elif post.status == 'Review' %}
             <p>This post has been reviewed by {{post.moderator}}. They have requested the following change(s):</p>
             <p>{{post.mod_message}}</p>
-        {% elif post.status == 'Deactivated' %}
-            <p>This post has been deactivated by a library moderator</p>
         {% endif %}
 
         <!-- preview of post for author or mod -->
@@ -51,7 +49,6 @@
             <a href="{% url 'approve_post' post.pk post.slug %}">Approve</a>
             <br>
             <button id="request-change">Request change</button>
-            <button id="deactivate">Deactivate</button>
             <form method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
@@ -90,5 +87,5 @@
 {% endblock %}
 
 {% block extra_js %}
-    <script src="{% static 'js/delete-btn.js' %}"></script>
+    <script src="{% static 'js/postBtns.js' %}"></script>
 {% endblock %}

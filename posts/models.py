@@ -13,12 +13,10 @@ class Post(models.Model):
     WAITING = 'Waiting'
     APPROVED = 'Approved'
     REVIEW = 'Review'
-    DEACTIVATED = 'Deactivated'
     STATUS_CHOICES = (
         (WAITING, "Awaiting Approval"),
         (APPROVED, "Approved"),
         (REVIEW, "Review"),
-        (DEACTIVATED, "Deactivated")
     )
     title = models.CharField(
         max_length=200,

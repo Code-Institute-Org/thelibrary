@@ -56,15 +56,6 @@ def approve_post(request, pk):
     return redirect('review_posts')
 
 
-def deactivate_post(request, pk):
-    """ Changes status of a post to deactivated """
-    post = get_object_or_404(Post, pk=pk)
-    post.status = 'Deactivated'
-    post.save()
-
-    return redirect('review_posts')
-
-
 def delete_post(request, pk):
     """ Deletes post """
     post = get_object_or_404(Post, pk=pk)
