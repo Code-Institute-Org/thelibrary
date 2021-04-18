@@ -56,9 +56,7 @@ class EditPostView(UpdateView):
 
 class ReviewPostsView(LoginRequiredMixin, ListView):
     template_name = 'review_posts.html'
-    # ~Q is used to negate a specific status,
-    # results in getting all items that don't have the 'Approved' status
-    queryset = Post.objects.filter(~Q(status='Approved')).order_by('-created_on')
+    queryset = Post.objects.filter(status='Waiting').order_by('-created_on')
     context_object_name = 'posts'
 
     def get(self, *args, **kwargs):

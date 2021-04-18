@@ -23,37 +23,38 @@
     <p>To update your profile, please visit your <a href="{% url 'settings' user.pk %}">settings</a></p>
 
     <h3>Posts in Review</h3>
-    {% if reviewed_posts %}
-        {% for post in reviewed_posts %}
-            <a href="{% url 'post_detail' post.pk post.slug  %}">
-                <h2>{{ post.title }}</h2>
-            </a>
-            <p>Post reviewed by {{ post.moderator }}</p>
-            <p>{{ post.mod_message }}</p>
-        {% empty %}
-    {% endfor %}
-        <p>No posts in review</p>
-    {% endif %}
 
-    <h3>Posts awaiting approval</h3>
-    {% if waiting_posts %}
-        {% for post in waiting_posts %}
-            <a href="{% url 'post_detail' post.pk post.slug  %}">
-                <h2>{{ post.title }}</h2>
-            </a>
-        {% empty %}
+    {% for post in reviewed_posts %}
+        <a href="{% url 'post_detail' post.pk post.slug  %}">
+            <h2>{{ post.title }}</h2>
+        </a>
+        <p>Post reviewed by {{ post.moderator }}</p>
+        <p>{{ post.mod_message }}</p>
+    {% empty %}
+    <p>No posts in review</p>
     {% endfor %}
-        <p>No posts waiting for approval</p>
-    {% endif %}
+        
+    <h3>Posts awaiting approval</h3>
+
+    {% for post in waiting_posts %}
+        <a href="{% url 'post_detail' post.pk post.slug  %}">
+            <h2>{{ post.title }}</h2>
+        </a>
+    {% empty %}
+    <p>No posts waiting for approval</p>
+    {% endfor %}
+
 {% endif %}
 
     <h3>Published posts by {{ user.username }}</h3>
 
-    {% for post in posts %}
+    {% for post in approved_posts %}
         <a href="{% url 'post_detail' post.pk post.slug  %}">
             <h2>{{ post.title }}</h2>
         </a>
         <p>{{ post.summary }}</p>
+    {% empty %}
+        <p>No published posts (yet!)</p>
     {% endfor %}
 
 {% endblock %}
