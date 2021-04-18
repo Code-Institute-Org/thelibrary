@@ -44,6 +44,10 @@ pip install django-allauth
 
 ## Technologies Used
 
+
+### Tools
+
+- [Pillow](https://pillow.readthedocs.io/en/stable/) as python imaging library to aid in processing image files to store in the database.
 ### Libraries
 
 - [Bootstrap](https://getbootstrap.com/) to simplify the structure of the website and make the website responsive easily.
