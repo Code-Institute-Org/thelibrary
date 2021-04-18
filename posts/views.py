@@ -70,7 +70,7 @@ class ReviewPostsView(LoginRequiredMixin, ListView):
 def approve_post(request, pk, slug):
     """
     Changes status of a post to approved if the user accessing the url
-    is a moderator. Of not, user is redirected to home page
+    is a moderator. Of not, user is redirected to home page.
     """
     post = get_object_or_404(Post, pk=pk)
     if post.author != request.user and request.user.is_mod:
