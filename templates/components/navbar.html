@@ -21,14 +21,20 @@
                         User info
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="{% url 'account_signup' %}">Sign up</a></li>
-                        <li><a class="dropdown-item" href="{% url 'account_login' %}">Log in</a></li>
+                        {% if user.is_authenticated %}
+                        <!-- options for logged in users -->
                         <li><a class="dropdown-item" href="{% url 'account_logout' %}">Log out</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><a class="dropdown-item" href="{% url 'user_profile' user.pk %}">My profile</a></li>
                         <li><a class="dropdown-item" href="{% url 'create_post' %}">Create new post</a></li>
+                        
+                        {% else %}
+                        <!-- menu options for users not logged in -->
+                        <li><a class="dropdown-item" href="{% url 'account_signup' %}">Sign up</a></li>
+                        <li><a class="dropdown-item" href="{% url 'account_login' %}">Log in</a></li>
+                        {% endif %}
                     </ul>
                 </li>
                 {% if user.userprofile.is_mod %}

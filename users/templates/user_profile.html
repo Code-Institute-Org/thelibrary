@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<h1>User profile page</h1>
+
+<h2>Username: {{ user.username }}</h2>
+
+{% if user.userprofile.is_mod %}
+    <p>* Moderator</p>
+{% endif %}
+<p>Member since: {{ user.userprofile.date_joined }}</p>
+
+{% if user.username == user %}
+    <!-- Edit profile button if profile is of logged in user -->
+    <a href="#">Edit profile</a>
+{% endif %}
+
+<h3>Posts by {{ user.username }}</h3>
+
+{% for post in posts %}
+    <a href="{% url 'post_detail' post.pk post.slug  %}">
+        <h2>{{ post.title }}</h2>
+    </a>
+    <p>{{ post.summary }}</p>
+{% endfor %}
+
+{% endblock %}
