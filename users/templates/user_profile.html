@@ -11,7 +11,7 @@
 {% endif %}
 <p>Member since: {{ user.userprofile.date_joined }}</p>
 
-{% if user.username == user %}
+{% if user == request.user %}
     <!-- Edit profile button if profile is of logged in user -->
     <a href="#">Edit profile</a>
 {% endif %}
