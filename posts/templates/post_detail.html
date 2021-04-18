@@ -37,7 +37,7 @@
         {% if post.author == user %}
         <!-- edit and delete buttons for author -->
         <a href="{% url 'edit_post' post.pk post.slug %}">Edit post</a>
-        <button>Delete post</button>
+        <button class="deleteBtn" data-post-pk="{{ post.pk }}">Delete post</button>
 
             <!-- Message if mod is trying to approve own posts -->
             {% if post.author == user and user.userprofile.is_mod %}
@@ -83,10 +83,26 @@
     <!-- Show edit/delete buttons for author -->
     {% if post.author == user %}
         <a href="{% url 'edit_post' post.pk post.slug %}">Edit post</a>
-        <button>Delete post</button>
+        <button class="deleteBtn" data-post-pk="{{ post.pk }}">Delete post</button>
     {% endif %}
 {% endif %}
 
+{% endblock %}
 
+{% block extra_js %}
+    <script>
+        let deleteBtns = document.getElementsByClassName('deleteBtn');
+        let postID = deleteBtns[0].getAttribute('data-post-pk');
 
+        for (let i = 0; i < deleteBtns.length; i++) {
+            deleteBtns[i].addEventListener('click', function() {
+                let ask = confirm("This will permanently delete your post, are you sure?");
+                let currentURL = window.location.href;
+                let splitStr = currentURL.split('posts/');
+                let url = splitStr[0] + 'posts/delete/' + postID;
+                window.location.href = url;
+            });
+        }
+        
+    </script>
 {% endblock %}

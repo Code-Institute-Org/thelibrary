@@ -65,6 +65,22 @@ def deactivate_post(request, pk):
     return redirect('review_posts')
 
 
+def delete_post(request, pk):
+    """ Deletes post """
+    post = get_object_or_404(Post, pk=pk)
+    if post.author == request.user:
+        post.delete()
+
+        # Change this to redirect to where user was 
+        # looking before the post they deleted?
+        return redirect('home')
+    
+    # redirect users who are not the author away from
+    # delete url without deleting post
+    else:
+        return redirect('home')
+
+
 class ReviewPostView(DetailView, UpdateView):
     model = Post
     template_name = 'post_detail.html'

@@ -6,6 +6,7 @@ from .views import (
     CreatePostView,
     ReviewPostsView,
     approve_post,
+    delete_post,
     ReviewPostView,
     EditPostView
 )
@@ -17,6 +18,6 @@ urlpatterns = [
     path('review_posts/', ReviewPostsView.as_view(), name='review_posts'),
     path('review_post/<int:pk>/<slug:slug>/', ReviewPostView.as_view(), name='review_post'),
     path('approve/<int:pk>/<slug:slug>/', approve_post, name='approve_post'),
-    path('deactivate/<int:pk>/<slug:slug>/', approve_post, name='deactivate_post'),
+    path('delete/<int:pk>/', delete_post, name='delete_post'),
     path('edit/<int:pk>/<slug:slug>/', EditPostView.as_view(), name='edit_post'),
 ]
