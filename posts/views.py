@@ -27,6 +27,7 @@ class PostDetailView(DetailView):
         context = super(PostDetailView, self).get_context_data(**kwargs)
         post = get_object_or_404(Post, id=self.kwargs['pk'])
         context['total_likes'] = post.total_likes()
+        context['liked'] = post.likes.filter(id=self.request.user.id).exists()
         return context
 
 
@@ -107,6 +108,11 @@ class EditPostView(UpdateView):
 def like_post(request, pk):
     """ Adds like to post, tied to specific user """
     post = get_object_or_404(Post, pk=pk)
-    post.likes.add(request.user)
+
+    if post.likes.filter(id=request.user.id).exists():
+        post.likes.remove(request.user)
+    else:
+        post.likes.add(request.user)
+
     return HttpResponseRedirect(reverse('post_detail', args=[pk, post.slug]))
 

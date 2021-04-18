@@ -79,7 +79,7 @@
 
     <form action="{% url 'like_post' post.pk %}" method="POST">
         {% csrf_token %}
-        <button type="submit">Like</button> - {{ total_likes }} likes
+        <button class="btn btn-sm {% if liked %} btn-primary {% else %} btn-secondary {% endif %}" type="submit">Like</button> - {{ total_likes }} likes
     </form>
 
     <!-- Show edit/delete buttons for author -->
