@@ -5,31 +5,55 @@
 <h1>User profile page</h1>
 
 <!-- display users names if provided -->
-{% if user.first_name and user.last_name %}
-<h2>{{ user.first_name }} {{ user.last_name }}</h2>
-{% elif user.first_name %}
-<h2>{{ user.first_name }}</h2>
-{% endif %}
+    {% if user.first_name and user.last_name %}
+        <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+    {% elif user.first_name %}
+        <h2>{{ user.first_name }}</h2>
+    {% endif %}
 
-<h3>Username: {{ user.username }}</h3>
+    <h3>Username: {{ user.username }}</h3>
 
 {% if user.userprofile.is_mod %}
-    <p>* Moderator</p>
+<p>* Moderator</p>
 {% endif %}
 
 <p>Member since: {{ user.userprofile.date_joined }}</p>
 
 {% if user == request.user %}
     <p>To update your profile, please visit your <a href="{% url 'settings' user.pk %}">settings</a></p>
+
+    <h3>Posts in Review</h3>
+    {% if reviewed_posts %}
+        {% for post in reviewed_posts %}
+            <a href="{% url 'post_detail' post.pk post.slug  %}">
+                <h2>{{ post.title }}</h2>
+            </a>
+            <p>Post reviewed by {{ post.moderator }}</p>
+            <p>{{ post.mod_message }}</p>
+        {% empty %}
+    {% endfor %}
+        <p>No posts in review</p>
+    {% endif %}
+
+    <h3>Posts awaiting approval</h3>
+    {% if waiting_posts %}
+        {% for post in waiting_posts %}
+            <a href="{% url 'post_detail' post.pk post.slug  %}">
+                <h2>{{ post.title }}</h2>
+            </a>
+        {% empty %}
+    {% endfor %}
+        <p>No posts waiting for approval</p>
+    {% endif %}
 {% endif %}
 
-<h3>Posts by {{ user.username }}</h3>
+    <h3>Published posts by {{ user.username }}</h3>
 
-{% for post in posts %}
-    <a href="{% url 'post_detail' post.pk post.slug  %}">
-        <h2>{{ post.title }}</h2>
-    </a>
-    <p>{{ post.summary }}</p>
-{% endfor %}
+    {% for post in posts %}
+        <a href="{% url 'post_detail' post.pk post.slug  %}">
+            <h2>{{ post.title }}</h2>
+        </a>
+        <p>{{ post.summary }}</p>
+    {% endfor %}
 
 {% endblock %}

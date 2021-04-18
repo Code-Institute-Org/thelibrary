@@ -12,11 +12,15 @@ from .models import UserProfile, User
 
 def user_profile_view(request, pk):
     user = get_object_or_404(User, pk=pk)
-    posts = Post.objects.filter(author=user.pk)
+    approved_posts = Post.objects.filter(author=user.pk, status='Approved')
+    waiting_posts = Post.objects.filter(author=user.pk, status='Waiting')
+    reviewed_posts = Post.objects.filter(author=user.pk, status='Review')
 
     context = {
         'user': user,
-        'posts': posts
+        'approved_posts': approved_posts,
+        'waiting_posts': waiting_posts,
+        'reviewed_posts': reviewed_posts,
     }
 
     return render(request, 'user_profile.html', context)
