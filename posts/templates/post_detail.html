@@ -77,10 +77,17 @@
         <p>Last updated: {{ post.updated_on }}</p>
     {% endif %}
 
+    <!-- only logged in users can like/unlike posts -->
+    {% if user.is_authenticated %}
     <form action="{% url 'like_post' post.pk %}" method="POST">
         {% csrf_token %}
         <button class="btn btn-sm {% if liked %} btn-primary {% else %} btn-secondary {% endif %}" type="submit">Like</button> - {{ total_likes }} likes
     </form>
+    {% else %}
+        <button class="btn btn-sm btn-disabled" disabled>Like</button> - {{ total_likes }} likes
+        <br>
+        <small>Please log in to like this post</small>
+    {% endif %}
 
     <!-- Show edit/delete buttons for author -->
     {% if post.author == user %}
