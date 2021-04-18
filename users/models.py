@@ -15,6 +15,9 @@ class UserProfile(models.Model):
     on creation of a new User account.
     """
     user = models.OneToOneField(User, unique=True, on_delete=models.CASCADE)
+    profile_pic = models.ImageField(null=True, blank=True, upload_to="images/profiles/")
+    linkedin = models.URLField(null=True, blank=True)
+    github = models.URLField(null=True, blank=True)
     is_admin = models.BooleanField(default=False)
     is_mod = models.BooleanField(default=False)
     date_joined = models.DateField(default=datetime.date.today)

@@ -13,9 +13,23 @@
 
     <h3>Username: {{ user.username }}</h3>
 
-{% if user.userprofile.is_mod %}
-<p>* Moderator</p>
-{% endif %}
+    {% if user.userprofile.profile_pic %}
+        <img src="{{ user.userprofile.profile_pic.url }}" alt="Profile picture for {{user.username}}" width="200">
+    {% else %}
+        <img src="/media/images/profiles/default-profile-pic.png" alt="default profile pic" width="200">
+    {% endif %}
+
+    {% if user.userprofile.linkedin %}
+        <a href="{{ user.userprofile.linkedin }}" target="_blank" rel="noopener" aria-label="Visit my LinkedIn Profile (Opens in a new tab)">LinkedIn</a>
+    {% endif %}
+
+    {% if user.userprofile.github %}
+        <a href="{{ user.userprofile.github }}" target="_blank" rel="noopener" aria-label="Visit my GitHub Profile (Opens in a new tab)">GitHub</a>
+    {% endif %}
+
+    {% if user.userprofile.is_mod %}
+        <p>* Moderator</p>
+    {% endif %}
 
 <p>Member since: {{ user.userprofile.date_joined }}</p>
 
