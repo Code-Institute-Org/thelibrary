@@ -6,7 +6,8 @@ from posts.models import Post, PostCategory
 # Create your views here.
 def home_view(request):
     """
-    Render home page
+    Render home page with 5 most recent posts, 5 most popular posts,
+    and one post from each category.
     """
     recent_posts = Post.objects.filter(
         status="Approved").order_by('-created_on')[:5]
@@ -23,6 +24,6 @@ def home_view(request):
         'recent_posts': recent_posts,
         'favourite_posts': favourite_posts,
         'items_by_category': items_by_category
-
     }
+
     return render(request, 'home/index.html', context)
