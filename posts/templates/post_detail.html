@@ -73,7 +73,9 @@
 
     <p>Author username: {{ post.author }} | Published: {{ post.created_on|date }}</p>
 
-    <p>Category = {{ post.category }}</p>
+    <p>Category: {{ post.category }}</p>
+
+    <p>Tags: {% for tag in post.tags.all %}{{ tag }} {% endfor %}</p>
 
     {% if post.updated_on %}
         <p>Last updated: {{ post.updated_on }}</p>
