@@ -3,6 +3,39 @@
 
 {% block content %}
 
-<h1>Home page content</h1>
+<h1>Home</h1>
+
+<h2>Recent posts</h2>
+{% for post in recent_posts %}
+    <a href="{% url 'post_detail' post.pk post.slug  %}">
+        <h3>{{ post.title }}</h3>
+    </a>
+    <p>{{ post.summary }}</p>
+    <a href="{% url 'category' post.category.id post.category|slugify %}">{{ post.category }}</a>
+    <p>Created by <a href="{% url 'user_profile' post.author.pk %}">{{post.author}}</a> on {{ post.created_on }}</p>
+    <p>{{ post.likes.count }} likes</p>
+{% endfor %}
+
+<h2>Popular posts</h2>
+{% for post in favourite_posts %}
+    <a href="{% url 'post_detail' post.pk post.slug  %}">
+        <h3>{{ post.title }}</h3>
+    </a>
+    <p>{{ post.summary }}</p>
+    <a href="{% url 'category' post.category.id post.category|slugify %}">{{ post.category }}</a>
+    <p>Created by <a href="{% url 'user_profile' post.author.pk %}">{{post.author}}</a> on {{ post.created_on }}</p>
+    <p>{{ post.likes.count }} likes</p>
+{% endfor %}
+
+<h2>Search by Category</h2>
+{% for post in items_by_category %}
+    <h2><a href="{% url 'category' post.category.id post.category|slugify %}">{{ post.category }}</a></h2>
+    <a href="{% url 'post_detail' post.pk post.slug  %}">
+        <h3>{{ post.title }}</h3>
+    </a>
+    <p>{{ post.summary }}</p>
+    <p>Created by <a href="{% url 'user_profile' post.author.pk %}">{{post.author}}</a> on {{ post.created_on }}</p>
+    <p>{{ post.likes.count }} likes</p>
+{% endfor %}
 
 {% endblock %}
