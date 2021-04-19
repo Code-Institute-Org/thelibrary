@@ -9,5 +9,8 @@
     {{ form.as_p }}
     <button>Update</button>
 </form>
-<a href="{% url 'user_profile' user.pk %}">Back to profile page</a>
+
+<a href="{% url 'user_profile' user.pk %}">View Profile</a>
+
+<p>To edit your personal information please visit the <a href="{% url 'settings' user.pk %}">settings</a></p>
 {% endblock %}

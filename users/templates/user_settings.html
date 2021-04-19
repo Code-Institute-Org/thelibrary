@@ -2,7 +2,7 @@
 
 
 {% block content %}
-<h1>Profile settings page</h1>
+<h1>User Settings Page</h1>
 
 <form method="POST">
     {% csrf_token %}
@@ -10,8 +10,10 @@
     <button>Update</button>
 </form>
 
+<a href="{% url 'account_email' %}">Manage your email addresses</a>
+<br>
 <a href="{% url 'account_change_password' %}">Change password</a>
 <br>
-<a href="{% url 'user_profile' user.pk %}">Back to profile</a>
+<a href="{% url 'user_profile' user.pk %}">View Profile</a>
 
 {% endblock %}

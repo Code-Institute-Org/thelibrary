@@ -27,8 +27,8 @@ def user_profile_view(request, pk):
 
 class UserSettingsView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = User
-    template_name = 'profile_settings.html'
-    fields = ['username', 'first_name', 'last_name', 'email']
+    template_name = 'user_settings.html'
+    fields = ['username', 'first_name', 'last_name']
     success_message = "Update successful!"
 
     def get_success_url(self):
