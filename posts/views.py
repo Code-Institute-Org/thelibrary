@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.utils import timezone
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
-from .models import Post
+from .models import Post, PostCategory
 from users.models import User, UserProfile
 
 # Create your views here.
@@ -55,6 +55,7 @@ class EditPostView(UpdateView):
             form.instance.status = 'Waiting'
         form.instance.updated_on = timezone.now()
         return super().form_valid(form)
+
 
 class ReviewPostsView(LoginRequiredMixin, ListView):
     template_name = 'review_posts.html'
@@ -134,3 +135,13 @@ def bookmark_post(request, pk):
         user_profile.bookmarks.add(post)
 
     return HttpResponseRedirect(reverse('post_detail', args=[pk, post.slug]))
+
+
+def category_view(request, pk, category):
+
+    posts = Post.objects.filter(category=pk).order_by('-created_on')
+    context = {
+        'posts': posts,
+        'category': category
+    }
+    return render(request, 'category.html', context)

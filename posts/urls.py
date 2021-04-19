@@ -11,6 +11,7 @@ from .views import (
     EditPostView,
     like_post,
     bookmark_post,
+    category_view,
 )
 
 urlpatterns = [
@@ -22,6 +23,7 @@ urlpatterns = [
     path('approve/<int:pk>/<slug:slug>/', approve_post, name='approve_post'),
     path('delete/<int:pk>/', delete_post, name='delete_post'),
     path('edit/<int:pk>/<slug:slug>/', EditPostView.as_view(), name='edit_post'),
-    path('like/<int:pk>', like_post, name="like_post"),
-    path('bookmark/<int:pk>', bookmark_post, name="bookmark_post"),
+    path('like/<int:pk>/', like_post, name="like_post"),
+    path('bookmark/<int:pk>/', bookmark_post, name="bookmark_post"),
+    path('category/<int:pk>/<str:category>/', category_view, name="category"),
 ]
