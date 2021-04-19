@@ -56,7 +56,7 @@ class Post(models.Model):
     moderator = models.ForeignKey(User, on_delete=models.PROTECT, null=True, blank=False, related_name='mod_field')
     likes = models.ManyToManyField(User, related_name='post_likes', null=True, blank=True)
     category = models.ForeignKey(PostCategory, on_delete=models.PROTECT, related_name="post_category")
-    tags = models.ManyToManyField(PostTag, related_name='post_tags', null=True)
+    tags = models.ManyToManyField(PostTag, related_name='post_tags', null=True, blank=True)
 
     def total_likes(self):
         return self.likes.count()

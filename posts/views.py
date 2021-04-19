@@ -1,10 +1,11 @@
 from slugify import slugify
-from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.db.models import Q
 from django.http import HttpResponseRedirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
+from django.utils import timezone
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from .models import Post
 from users.models import User, UserProfile
 
@@ -52,6 +53,7 @@ class EditPostView(UpdateView):
     def form_valid(self, form):
         if form.instance.status == 'Review':
             form.instance.status = 'Waiting'
+        form.instance.updated_on = timezone.now()
         return super().form_valid(form)
 
 class ReviewPostsView(LoginRequiredMixin, ListView):
