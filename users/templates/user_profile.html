@@ -19,6 +19,10 @@
         <div class="profile-pic" title="default profile pic" style="background-image: url('/media/images/profiles/default-profile-pic.png');"></div>
     {% endif %}
 
+    {% if user.userprofile.bio %}
+    <p>{{ user.userprofile.bio }}</p>
+    {% endif %}
+
     {% if user.userprofile.linkedin %}
         <a
             href="{{ user.userprofile.linkedin }}"
@@ -43,7 +47,7 @@
 <p>Member since: {{ user.userprofile.date_joined }}</p>
 
 {% if user == request.user %}
-    <p>To update your profile, please visit your <a href="{% url 'settings' user.pk %}">settings</a></p>
+    <a href="{% url 'update_profile' user.pk %}">Update Profile</a>
 
     <h3>Posts in Review</h3>
 

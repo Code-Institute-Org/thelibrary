@@ -1,5 +1,5 @@
-from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render, get_object_or_404
 from django.views.generic.edit import UpdateView
 from django.urls import reverse, reverse_lazy
@@ -47,3 +47,13 @@ def user_bookmarks_view(request, pk):
     }
 
     return render(request, 'bookmarks.html', context)
+
+class UpdateProfileView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    model = UserProfile
+    fields = ['bio', 'profile_pic', 'linkedin', 'github']
+    template_name = 'update_profile.html'
+    success_message = "Your profile has been successfully updated!"
+
+    def get_success_url(self):
+        pk = self.request.user.pk
+        return reverse_lazy('update_profile', kwargs={'pk': pk})
