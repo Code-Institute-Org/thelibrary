@@ -98,7 +98,7 @@ def delete_post(request, pk):
 
 class ReviewPostView(DetailView, UpdateView):
     model = Post
-    template_name = 'post_detail.html'
+    template_name = 'post_review.html'
     context_object_name = 'post'
     fields = ['mod_message']
 

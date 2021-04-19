@@ -2,71 +2,6 @@
 
 {% block content %}
 
-<!-- if post is not approved yet -->
-{% if post.status != 'Approved' %}
-
-    <!-- if author or mod is viewing the unapproved post -->
-    {% if post.author == user or user.userprofile.is_mod %}
-
-        <!-- messages for author based on status of post -->
-        {% if post.author == user and post.status == 'Waiting' %}
-            <p>Thank you for submitting this post! It will be published after approval by a library moderator.</p>
-        {% elif post.status == 'Review' %}
-            <p>This post has been reviewed by {{post.moderator}}. They have requested the following change(s):</p>
-            <p>{{post.mod_message}}</p>
-        {% endif %}
-
-        <!-- preview of post for author or mod -->
-        <p>Post Preview:</p>
-
-        <h1>{{ post.title }}</h1>
-
-        <p>{{ post.summary }}</p>
-
-        {{ post.body|safe }}
-
-        <p>Author username: <a href="{% url 'user_profile' post.author.pk %}">{{post.author}}</a> | Published: {{ post.created_on|date }}</p>
-
-        <p>Category: {{ post.category }}</p>
-
-        {% if post.updated_on %}
-        <p>Last updated: {{ post.updated_on }}</p>
-        {% endif %}
-
-
-        {% if post.author == user %}
-        <!-- edit and delete buttons for author -->
-        <a href="{% url 'edit_post' post.pk post.slug %}">Edit post</a>
-        <button class="deleteBtn" data-post-pk="{{ post.pk }}">Delete post</button>
-
-            <!-- Message if mod is trying to approve own posts -->
-            {% if post.author == user and user.userprofile.is_mod %}
-
-            <p>You cannot approve your own posts</p>
-
-            {% endif %}
-
-        {% elif user.userprofile.is_mod %}
-            <!-- buttons for moderator -->
-            <a href="{% url 'approve_post' post.pk post.slug %}">Approve</a>
-            <br>
-            <form method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <input type="submit" value="Request Change">
-            </form>
-            <a href="{% url 'review_posts' %}">Back to reviews page</a>
-
-        {% endif %}
-
-    <!-- if non-author trying to view post not approved yet -->
-    {% else %}
-        <p>Post not found! This post may be awaiting approval from a library moderator.</p>
-        <a href="{% url 'home' %}">Go back to home page</a>
-    {% endif %}
-
-<!-- If post has been approved -->
-{% else %}
     <h1>{{ post.title }}</h1>
 
     {{ post.body|safe }}
@@ -97,7 +32,7 @@
         <br>
         <button class="btn btn-sm btn-disabled" disabled>Bookmark</button>
         <br>
-        <small>Please log in to like or bookmark this post</small>
+        <small>Please <a href="{% url 'account_login' %}">sign in</a> to like or bookmark this post</small>
     {% endif %}
 
     <!-- Show edit/delete buttons for author -->
@@ -105,7 +40,6 @@
         <a href="{% url 'edit_post' post.pk post.slug %}">Edit post</a>
         <button class="deleteBtn" data-post-pk="{{ post.pk }}">Delete post</button>
     {% endif %}
-{% endif %}
 
 {% endblock %}
 

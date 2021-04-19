@@ -1,0 +1,56 @@
+{% extends 'base.html' %}{% load static %}
+
+{% block content %}
+
+    {% if post.status == 'Waiting' %}
+        <p>Thank you for submitting this post! It will be published after approval by a library moderator.</p>
+    {% elif post.status == 'Review' %}
+        <p>This post has been reviewed by {{post.moderator}}. They have requested the following change(s):</p>
+        <p>{{post.mod_message}}</p>
+    {% endif %}
+
+    <h1>{{ post.title }}</h1>
+
+    <p>{{ post.summary }}</p>
+
+    {{ post.body|safe }}
+
+    <p>Author username: <a href="{% url 'user_profile' post.author.pk %}">{{post.author}}</a> | Published: {{ post.created_on|date }}</p>
+
+    <p>Category: {{ post.category }}</p>
+
+    {% if post.updated_on %}
+    <p>Last updated: {{ post.updated_on }}</p>
+    {% endif %}
+
+    {% if post.author == user %}
+    <!-- edit and delete buttons for author -->
+    <a href="{% url 'edit_post' post.pk post.slug %}">Edit post</a>
+    <button class="deleteBtn" data-post-pk="{{ post.pk }}">Delete post</button>
+
+        <!-- Message if mod is trying to approve own posts -->
+        {% if post.author == user and user.userprofile.is_mod %}
+
+        <p>You cannot approve your own posts</p>
+
+        {% endif %}
+
+    {% else %}
+        <!-- buttons for moderator -->
+        <a href="{% url 'approve_post' post.pk post.slug %}">Approve</a>
+        <br>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Request Change">
+        </form>
+        <a href="{% url 'review_posts' %}">Back to reviews page</a>
+
+    {% endif %}
+
+
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'js/postBtns.js' %}"></script>
+{% endblock %}
