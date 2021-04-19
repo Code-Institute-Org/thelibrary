@@ -16,11 +16,22 @@
                     <a class="nav-link active" aria-current="page" href="{% url 'all_posts' %}">All Posts</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                    <a class="nav-link dropdown-toggle" href="#" id="categoriesDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Categories
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
+                        {% for category in categories_nav %}
+                        <li><a class="dropdown-item" href="{% url 'category' category.id category|slugify %}">{{ category }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="userInfoDropdown" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         User info
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <ul class="dropdown-menu" aria-labelledby="userInfoDropdown">
                         {% if user.is_authenticated %}
                         <!-- options for logged in users -->
                         <li><a class="dropdown-item" href="{% url 'account_logout' %}">Log out</a></li>
