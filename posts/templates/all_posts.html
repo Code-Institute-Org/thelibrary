@@ -10,7 +10,7 @@
         <h2>{{ post.title }}</h2>
     </a>
     <p>{{ post.summary }}</p>
-    <a href="{% url 'category' post.category.id post.category.name %}">{{ post.category }}</a>
+    <a href="{% url 'category' post.category.id post.category|slugify %}">{{ post.category }}</a>
     <p>Created by <a href="{% url 'user_profile' post.author.pk %}">{{post.author}}</a> on {{ post.created_on }}</p>
     <p>{{ post.likes.count }} likes</p>
 {% endfor %}
