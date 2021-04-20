@@ -6,6 +6,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.utils import timezone
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic.detail import SingleObjectMixin
 from .models import Post, PostCategory
 from users.models import User, UserProfile
 
@@ -114,6 +115,34 @@ class ReviewPostView(DetailView, UpdateView):
         return super().form_valid(form)
 
 
+# def category_view(request, pk, category):
+
+#     posts = Post.objects.filter(category=pk).order_by('-created_on')
+#     category = get_object_or_404(PostCategory, pk=pk)
+#     context = {
+#         'posts': posts,
+#         'category': category
+#     }
+#     return render(request, 'category.html', context)
+
+
+class CategoryView(SingleObjectMixin, ListView):
+    paginate_by = 4
+    template_name = 'category.html'
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object(queryset=PostCategory.objects.all())
+        return super().get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category'] = self.object
+        return context
+
+    def get_queryset(self):
+        return self.object.post_category.all()
+    
+
 def like_post(request, pk):
     """ Adds like to post, tied to specific user """
     post = get_object_or_404(Post, pk=pk)
@@ -139,13 +168,3 @@ def bookmark_post(request, pk):
 
     return HttpResponseRedirect(reverse('post_detail', args=[pk, post.slug]))
 
-
-def category_view(request, pk, category):
-
-    posts = Post.objects.filter(category=pk).order_by('-created_on')
-    category = get_object_or_404(PostCategory, pk=pk)
-    context = {
-        'posts': posts,
-        'category': category
-    }
-    return render(request, 'category.html', context)
