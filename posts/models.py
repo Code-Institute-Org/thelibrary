@@ -40,12 +40,7 @@ class Post(models.Model):
             'unique':"This post title already exists, please choose another."
         }
     )
-    summary = models.CharField(
-        max_length=200,
-        error_messages={
-            'max_length': "Summary text is too long, please shorten to 200 characters or less."
-        }
-    )
+    summary = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, unique=True)
     body = RichTextField()
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author_field')

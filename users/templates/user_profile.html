@@ -2,7 +2,7 @@
 
 
 {% block content %}
-<h1>User profile page</h1>
+<h1>{{ user.username }}'s profile page</h1>
 
 <!-- display users names if provided -->
     {% if user.first_name and user.last_name %}
@@ -10,8 +10,6 @@
     {% elif user.first_name %}
         <h2>{{ user.first_name }}</h2>
     {% endif %}
-
-    <h3>Username: {{ user.username }}</h3>
 
     {% if user.userprofile.profile_pic %}
         <div class="profile-pic" title="Profile picture for {{user.username}}" style="background-image: url('{{ user.userprofile.profile_pic.url }}');"></div>
@@ -73,12 +71,12 @@
 
 {% endif %}
 
-    <h3>Published posts by {{ user.username }}</h3>
+    <h3>Latest posts by {{ user.username }}</h3>
 
     {% for post in approved_posts %}
-        <a href="{% url 'post_detail' post.pk post.slug  %}">
+        < href="{% url 'post_detail' post.pk post.slug  %}">
             <h2>{{ post.title }}</h2>
-        </a>
+        </>
         <p>{{ post.summary }}</p>
     {% empty %}
         <p>No published posts (yet!)</p>

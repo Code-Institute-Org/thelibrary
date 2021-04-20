@@ -1,6 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render, get_object_or_404
+from django.views.generic import ListView
 from django.views.generic.edit import UpdateView
 from django.urls import reverse, reverse_lazy
 
@@ -12,7 +13,7 @@ from .models import UserProfile, User
 
 def user_profile_view(request, pk):
     user = get_object_or_404(User, pk=pk)
-    approved_posts = Post.objects.filter(author=user.pk, status='Approved')
+    approved_posts = Post.objects.filter(author=user.pk, status='Approved')[:5]
     waiting_posts = Post.objects.filter(author=user.pk, status='Waiting')
     reviewed_posts = Post.objects.filter(author=user.pk, status='Review')
 
@@ -57,3 +58,16 @@ class UpdateProfileView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     def get_success_url(self):
         pk = self.request.user.pk
         return reverse_lazy('update_profile', kwargs={'pk': pk})
+
+
+class PostsByAuthorView(ListView):
+    paginate_by = 4
+    template_name = 'posts_by_author.html'
+    queryset = Post.objects.filter(status='Approved').order_by('-created_on')
+    context_object_name = 'posts'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        userprofile = get_object_or_404(UserProfile, id=self.kwargs['pk'])
+        context['author'] = userprofile.user.username
+        return context

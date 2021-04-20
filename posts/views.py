@@ -113,7 +113,7 @@ class ReviewPostView(DetailView, UpdateView):
         form.instance.moderator = self.request.user
         form.instance.status = 'Review'
         return super().form_valid(form)
-        
+
 
 class CategoryView(SingleObjectMixin, ListView):
     paginate_by = 4
