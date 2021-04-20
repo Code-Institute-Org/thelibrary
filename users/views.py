@@ -3,6 +3,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView
 from django.views.generic.edit import UpdateView
+from django.views.generic.detail import SingleObjectMixin
 from django.urls import reverse, reverse_lazy
 
 from posts.models import Post
@@ -37,17 +38,21 @@ class UserSettingsView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
         return reverse_lazy('settings', kwargs={'pk': pk})
 
 
-def user_bookmarks_view(request, pk):
-    user_profile = get_object_or_404(UserProfile, pk=pk)
-    bookmarks = user_profile.bookmarks.all()
-    total_bookmarks = bookmarks.count()
+class UserBookmarksView(SingleObjectMixin, ListView):
+    paginate_by = 4
+    template_name = 'bookmarks.html'
 
-    context = {
-        'bookmarks': bookmarks,
-        'total_bookmarks': total_bookmarks
-    }
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object(queryset=User.objects.all())
+        return super().get(request, *args, **kwargs)
 
-    return render(request, 'bookmarks.html', context)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['post'] = self.object
+        return context
+
+    def get_queryset(self):
+        return self.object.post_bookmarks.all()
 
 class UpdateProfileView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = UserProfile

@@ -32,7 +32,7 @@ class PostDetailView(DetailView):
         post = get_object_or_404(Post, id=self.kwargs['pk'])
         context['total_likes'] = post.total_likes()
         context['liked'] = post.likes.filter(id=self.request.user.id).exists()
-        context['bookmarked'] = self.request.user.userprofile.bookmarks.filter(id=post.id).exists()
+        context['bookmarked'] = post.bookmarks.filter(id=self.request.user.id).exists()
         return context
 
 
@@ -164,13 +164,11 @@ def like_post(request, pk):
 def bookmark_post(request, pk):
     """ Adds post to users bookmarks """
     post = get_object_or_404(Post, pk=pk)
-    user_profile = get_object_or_404(UserProfile, pk=request.user.id)
-    bookmarks = user_profile.bookmarks.all()
 
-    if post in bookmarks:
-        user_profile.bookmarks.remove(post)
+    if post.bookmarks.filter(id=request.user.id).exists():
+        post.bookmarks.remove(request.user)
     else:
-        user_profile.bookmarks.add(post)
+        post.bookmarks.add(request.user)
 
     return HttpResponseRedirect(reverse('post_detail', args=[pk, post.slug]))
 

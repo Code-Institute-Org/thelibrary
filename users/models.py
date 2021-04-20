@@ -22,10 +22,6 @@ class UserProfile(models.Model):
     is_admin = models.BooleanField(default=False)
     is_mod = models.BooleanField(default=False)
     date_joined = models.DateField(default=datetime.date.today)
-    bookmarks = models.ManyToManyField(Post, related_name='user_bookmarks', null=True, blank=True)
-
-    def total_bookmarks(self):
-        return self.bookmarks.count()
 
     def __str__(self):
         """
