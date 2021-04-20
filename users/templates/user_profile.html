@@ -73,10 +73,14 @@
 
     <h3>Latest posts by {{ user.username }}</h3>
 
+    {% if approved_posts.count != 0 %}
+    <a href="{% url 'posts_by_author' user.pk %}">See all of {{  user.username }}'s posts</a>
+    {% endif %}
+
     {% for post in approved_posts %}
-        < href="{% url 'post_detail' post.pk post.slug  %}">
+        <a href="{% url 'post_detail' post.pk post.slug  %}">
             <h2>{{ post.title }}</h2>
-        </>
+        </a>
         <p>{{ post.summary }}</p>
     {% empty %}
         <p>No published posts (yet!)</p>

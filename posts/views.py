@@ -130,6 +130,23 @@ class CategoryView(SingleObjectMixin, ListView):
 
     def get_queryset(self):
         return self.object.post_category.all()
+
+
+class AuthorPostsView(SingleObjectMixin, ListView):
+    paginate_by = 4
+    template_name = 'post_by_author.html'
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object(queryset=User.objects.all())
+        return super().get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['author'] = self.object
+        return context
+
+    def get_queryset(self):
+        return self.object.author_field.all()
     
 
 def like_post(request, pk):

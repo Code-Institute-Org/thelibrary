@@ -4,18 +4,19 @@
 {% block content %}
 <h1>All posts by {{ author }}</h1>
 
-{% for post in posts %}
+{% if page_obj.object_list.count != 0 %}
+
+<a href="{% url 'user_profile' author.pk %}">View {{ author }}'s profile</a>
+
+{% endif %}
+
+{% for post in page_obj %}
 
     <a href="{% url 'post_detail' post.pk post.slug  %}">
         <h2>{{ post.title }}</h2>
     </a>
     <p>{{ post.summary }}</p>
-    <p>Created: {{ post.created_on }}</p>
-
-    {% if post.updated_on %}
-        <p>Last updated: {{ post.updated_on }} </p>
-    {% endif %}
-
+    <p>Created by <a href="{% url 'user_profile' post.author.pk %}">{{post.author}}</a> on {{ post.created_on }}</p>
     <p>{{ post.likes.count }} likes</p>
 
 {% endfor %}

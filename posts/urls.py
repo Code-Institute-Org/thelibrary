@@ -12,6 +12,7 @@ from .views import (
     like_post,
     bookmark_post,
     CategoryView,
+    AuthorPostsView,
 )
 
 urlpatterns = [
@@ -26,4 +27,5 @@ urlpatterns = [
     path('like/<int:pk>/', like_post, name="like_post"),
     path('bookmark/<int:pk>/', bookmark_post, name="bookmark_post"),
     path('category/<int:pk>/<str:category>/', CategoryView.as_view(), name="category"),
+    path('author/<int:pk>/', AuthorPostsView.as_view(), name="posts_by_author"),
 ]

@@ -58,16 +58,3 @@ class UpdateProfileView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     def get_success_url(self):
         pk = self.request.user.pk
         return reverse_lazy('update_profile', kwargs={'pk': pk})
-
-
-class PostsByAuthorView(ListView):
-    paginate_by = 4
-    template_name = 'posts_by_author.html'
-    queryset = Post.objects.filter(status='Approved').order_by('-created_on')
-    context_object_name = 'posts'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        userprofile = get_object_or_404(UserProfile, id=self.kwargs['pk'])
-        context['author'] = userprofile.user.username
-        return context
