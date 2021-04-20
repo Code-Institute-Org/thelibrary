@@ -113,18 +113,7 @@ class ReviewPostView(DetailView, UpdateView):
         form.instance.moderator = self.request.user
         form.instance.status = 'Review'
         return super().form_valid(form)
-
-
-# def category_view(request, pk, category):
-
-#     posts = Post.objects.filter(category=pk).order_by('-created_on')
-#     category = get_object_or_404(PostCategory, pk=pk)
-#     context = {
-#         'posts': posts,
-#         'category': category
-#     }
-#     return render(request, 'category.html', context)
-
+        
 
 class CategoryView(SingleObjectMixin, ListView):
     paginate_by = 4
