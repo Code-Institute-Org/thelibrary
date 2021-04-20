@@ -61,6 +61,7 @@ class EditPostView(UpdateView):
 
 class ReviewPostsView(LoginRequiredMixin, ListView):
     template_name = 'review_posts.html'
+    paginate_by = 4
     queryset = Post.objects.filter(status='Waiting').order_by('-created_on')
     context_object_name = 'posts'
 
