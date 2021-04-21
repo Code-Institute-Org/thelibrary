@@ -39,25 +39,54 @@ class PostDetailView(DetailView):
 class CreatePostView(LoginRequiredMixin, CreateView):
     model = Post
     template_name = 'create_post.html'
-    fields = ['title', 'summary', 'body', 'category', 'tags']
+    fields = [
+        'title',
+        'summary',
+        'image_1',
+        'image_2',
+        'image_3',
+        'image_4',
+        'body',
+        'category',
+        'tags'
+    ]
 
     def form_valid(self, form):
         form.instance.author = self.request.user
         form.instance.slug = slugify(form.instance.title)
         return super().form_valid(form)
+    
+    def get_success_url(self):
+        return reverse('review_post', kwargs={'pk': self.object.pk})
 
 
 class EditPostView(UpdateView):
     model = Post
     template_name = 'edit_post.html'
     context_object_name = 'post'
-    fields = ['title', 'summary', 'body', 'category', 'tags']
+    fields = [
+        'title',
+        'summary',
+        'image_1',
+        'image_2',
+        'image_3',
+        'image_4',
+        'body',
+        'category',
+        'tags'
+    ]
 
     def form_valid(self, form):
         if form.instance.status == 'Review':
             form.instance.status = 'Waiting'
         form.instance.updated_on = timezone.now()
         return super().form_valid(form)
+
+    def get_success_url(self):
+        if self.object.status == 'Waiting':
+            return reverse('review_post', kwargs={'pk': self.object.pk, 'slug': self.object.slug })
+        else:
+            return reverse('post_detail', kwargs={'pk': self.object.pk, 'slug': self.object.slug})
 
 
 class ReviewPostsView(LoginRequiredMixin, ListView):
@@ -108,6 +137,12 @@ class ReviewPostView(DetailView, UpdateView):
     template_name = 'post_review.html'
     context_object_name = 'post'
     fields = ['mod_message']
+
+    def get(self, *args, **kwargs):
+        user = self.request.user
+        if user.userprofile.is_mod == False:
+            return redirect('home')
+        return super(ReviewPostView, self).get(*args, **kwargs)
 
     def form_valid(self, form):
         form.instance.moderator = self.request.user

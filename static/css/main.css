@@ -1,7 +1,14 @@
+/* draft css to get main functionality working,
+will be adjusted for proper layout later */
 
 .profile-pic {
     width: 100px;
     height: 100px;
     background-size: cover;
     border-radius: 50%;
+}
+
+.post-image {
+    width: 400px;
+    margin: 15px;
 }

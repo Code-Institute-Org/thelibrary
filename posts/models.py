@@ -19,7 +19,7 @@ class PostCategory(models.Model):
 
     def __str__(self):
         return self.name
-
+    
 
 class Post(models.Model):
     """
@@ -53,6 +53,10 @@ class Post(models.Model):
     tags = models.ManyToManyField(PostTag, related_name='post_tags', null=True, blank=True)
     likes = models.ManyToManyField(User, related_name='post_likes', null=True, blank=True)
     bookmarks = models.ManyToManyField(User, related_name='post_bookmarks', null=True, blank=True)
+    image_1 = models.ImageField(null=True, blank=True, upload_to="images/posts/")
+    image_2 = models.ImageField(null=True, blank=True, upload_to="images/posts/")
+    image_3 = models.ImageField(null=True, blank=True, upload_to="images/posts/")
+    image_4 = models.ImageField(null=True, blank=True, upload_to="images/posts/")
 
     def total_likes(self):
         return self.likes.count()

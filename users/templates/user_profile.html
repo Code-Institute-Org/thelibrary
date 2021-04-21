@@ -50,7 +50,7 @@
     <h3>Posts in Review</h3>
 
     {% for post in reviewed_posts %}
-        <a href="{% url 'post_detail' post.pk post.slug  %}">
+        <a href="{% url 'review_post' post.pk post.slug  %}">
             <h2>{{ post.title }}</h2>
         </a>
         <p>Post reviewed by {{ post.moderator }}</p>

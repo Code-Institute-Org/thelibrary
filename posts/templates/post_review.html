@@ -10,20 +10,22 @@
     {% endif %}
 
     <h1>{{ post.title }}</h1>
-
-    <p>{{ post.summary }}</p>
-
-    {{ post.body|safe }}
-
-    <p>Author username: <a href="{% url 'user_profile' post.author.pk %}">{{post.author}}</a> | Published: {{ post.created_on|date }}</p>
+    
+    <p>Author username: {{ post.author }} | Published: {{ post.created_on|date }}</p>   
+    {% if post.updated_on %}
+        <p>Last updated: {{ post.updated_on }}</p>
+    {% endif %} 
 
     <p>Category: <a href="{% url 'category' post.category.id post.category|slugify %}">{{ post.category }}</a></p>
 
     <p>Tags: {% for tag in post.tags.all %}{{ tag }} {% endfor %}</p>
 
-    {% if post.updated_on %}
-    <p>Last updated: {{ post.updated_on }}</p>
-    {% endif %}
+    {{ post.body|safe }}
+
+    {% if post.image_1 %}<img class="post-image" src="{{ post.image_1.url }}">{% endif %}
+    {% if post.image_2 %}<img class="post-image" src="{{ post.image_2.url }}">{% endif %}
+    {% if post.image_3 %}<img class="post-image" src="{{ post.image_3.url }}">{% endif %}
+    {% if post.image_4 %}<img class="post-image" src="{{ post.image_4.url }}">{% endif %}
 
     {% if post.author == user %}
     <!-- edit and delete buttons for author -->
