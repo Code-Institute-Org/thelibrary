@@ -21,6 +21,7 @@ class UserProfile(models.Model):
     github = models.URLField(null=True, blank=True)
     is_admin = models.BooleanField(default=False)
     is_mod = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
     date_joined = models.DateField(default=datetime.date.today)
 
     def __str__(self):

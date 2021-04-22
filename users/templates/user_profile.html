@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %}{% load static %}
 
 
 {% block content %}
@@ -15,6 +15,10 @@
         <div class="profile-pic" title="Profile picture for {{user.username}}" style="background-image: url('{{ user.userprofile.profile_pic.url }}');"></div>
     {% else %}
         <div class="profile-pic" title="default profile pic" style="background-image: url('/media/images/profiles/default-profile-pic.png');"></div>
+    {% endif %}
+
+    {% if user.userprofile.is_staff %}
+    <img src="{% static 'img/ci-logo-sm.png' %}" alt="ci-logo">
     {% endif %}
 
     {% if user.userprofile.bio %}
