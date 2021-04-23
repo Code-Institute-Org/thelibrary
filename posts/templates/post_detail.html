@@ -33,7 +33,7 @@
     </form>
 
     <p>Is the content of this post inappropriate or outdated? Please let us know!</p>
-
+    <!-- Hide this form and have it pop out as a modal if user clicks a "flag" button -->
     <form action="{% url 'post_detail' post.pk post.slug %}" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
