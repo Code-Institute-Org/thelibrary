@@ -34,6 +34,9 @@ class UserProfile(models.Model):
 
         return f'{self.user.username} {status} | {self.date_joined}'
 
+    def total_posts(self):
+        return self.author_field.count() #'UserProfile' object has no attribute 'author_field'
+
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:

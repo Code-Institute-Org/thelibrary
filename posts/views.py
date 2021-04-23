@@ -40,6 +40,7 @@ class PostDetailView(DetailView, SuccessMessageMixin):
             id=self.request.user.id).exists()
         context['bookmarked'] = post.bookmarks.filter(
             id=self.request.user.id).exists()
+        context['total_posts'] = post.author.userprofile.total_posts()
         context['form'] = FlagForm()
 
         return context
