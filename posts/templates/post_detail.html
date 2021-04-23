@@ -2,6 +2,10 @@
 
 {% block content %}
     
+    {% if post.editors_note %}
+    <strong>{{ post.editors_note }}</strong>
+    {% endif %}
+
     <h1>{{ post.title }}</h1>
     
     <p>Author username: {{ post.author }} | Published: {{ post.created_on|date }}</p>   

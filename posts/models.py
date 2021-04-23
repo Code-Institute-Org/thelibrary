@@ -108,6 +108,7 @@ class Post(models.Model):
         blank=False,
         related_name='flags'
     )
+    editors_note = models.TextField(max_length=400, null=True)
 
     def total_likes(self):
         return self.likes.count()
