@@ -1,5 +1,7 @@
 from slugify import slugify
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
@@ -7,10 +9,10 @@ from django.urls import reverse
 from django.utils import timezone
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.views.generic.detail import SingleObjectMixin
-from .models import Post, PostCategory
+from django.urls import reverse_lazy
 from users.models import User, UserProfile
-
-# Create your views here.
+from .forms import FlagForm
+from .models import Post, PostCategory, PostFlag
 
 
 class AllPostsView(ListView):
@@ -21,20 +23,61 @@ class AllPostsView(ListView):
     context_object_name = 'posts'
 
 
-class PostDetailView(DetailView):
+class PostDetailView(DetailView, SuccessMessageMixin):
     """ Create view for full post """
     model = Post
     template_name = 'post_detail.html'
     context_object_name = 'post'
+    success_message = "Thank you for flagging this post, an admin will review it shortly"
 
     def get_context_data(self, *args, **kwargs):
-        context = super(PostDetailView, self).get_context_data(**kwargs)
+
+        context = super(
+            PostDetailView, self).get_context_data(**kwargs)
         post = get_object_or_404(Post, id=self.kwargs['pk'])
         context['total_likes'] = post.total_likes()
-        context['liked'] = post.likes.filter(id=self.request.user.id).exists()
-        context['bookmarked'] = post.bookmarks.filter(id=self.request.user.id).exists()
+        context['liked'] = post.likes.filter(
+            id=self.request.user.id).exists()
+        context['bookmarked'] = post.bookmarks.filter(
+            id=self.request.user.id).exists()
+        context['form'] = FlagForm()
+
         return context
 
+    def post(self, request, *args, **kwargs):
+        form = FlagForm(request.POST)
+        if form.is_valid():
+            # Add flagger details to PostFlag instance
+            form.instance.flagger = get_object_or_404(
+                User, pk=self.request.user.pk
+            ) 
+            form.save()
+
+            # Attach PostFlag instance to relevant Post
+            post = get_object_or_404(Post, id=self.kwargs['pk'])
+            post.flag = get_object_or_404(PostFlag, pk=form.instance.pk)
+            post.save()
+
+            # Create context and render
+            self.object = self.get_object()
+            context = super(PostDetailView, self).get_context_data(**kwargs)
+            context['form'] = FlagForm
+            messages.success(self.request, self.success_message)
+            return self.render_to_response(context=context)
+
+        else:
+            self.object = self.get_object()
+            context = super(PostDetailView, self).get_context_data(**kwargs)
+            context['form'] = form
+            return self.render_to_response(context=context)
+
+    def get_success_url(self):
+        return reverse(
+        'detail_view',
+        kwargs={
+            'pk': self.object.pk,
+            'slug': self.object.slug 
+        })
 
 class CreatePostView(LoginRequiredMixin, CreateView):
     model = Post
@@ -206,4 +249,5 @@ def bookmark_post(request, pk):
         post.bookmarks.add(request.user)
 
     return HttpResponseRedirect(reverse('post_detail', args=[pk, post.slug]))
+
 

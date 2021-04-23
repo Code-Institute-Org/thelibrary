@@ -31,12 +31,21 @@
         {% csrf_token %}
         <button class="btn btn-sm {% if bookmarked %} btn-primary {% else %} btn-secondary {% endif %}" type="submit">Bookmark</button>
     </form>
+
+    <p>Is the content of this post inappropriate or outdated? Please let us know!</p>
+
+    <form action="{% url 'post_detail' post.pk post.slug %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Send</button>
+    </form>
     {% else %}
         <button class="btn btn-sm btn-disabled" disabled>Like</button> - {{ total_likes }} likes
         <br>
         <button class="btn btn-sm btn-disabled" disabled>Bookmark</button>
         <br>
-        <small>Please <a href="{% url 'account_login' %}">sign in</a> to like or bookmark this post</small>
+        <button class="btn btn-sm btn-disabled" disabled>Flag this post</button>
+        <small>Please <a href="{% url 'account_login' %}">sign in</a> to like, bookmark or flag this post</small>
     {% endif %}
 
     <!-- Show edit/delete buttons for author -->
