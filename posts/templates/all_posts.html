@@ -12,6 +12,9 @@
     <p>{{ post.summary }}</p>
     <a href="{% url 'category' post.category.id post.category|slugify %}">{{ post.category }}</a>
     <p>Created by <a href="{% url 'user_profile' post.author.pk %}">{{post.author}}</a> on {{ post.created_on }}</p>
+    {% if post.author.is_staff %}
+        This post was created by a CI staff member (Add icon to final version instead of text)
+    {% endif %}
     <p>{{ post.likes.count }} likes</p>
 {% endfor %}
 
