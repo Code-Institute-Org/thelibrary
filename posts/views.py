@@ -58,7 +58,7 @@ class PostDetailView(DetailView, SuccessMessageMixin):
             post.flag = get_object_or_404(PostFlag, pk=form.instance.pk)
             post.save()
 
-            # Create context and render
+            # Create context, set success message and render
             self.object = self.get_object()
             context = super(PostDetailView, self).get_context_data(**kwargs)
             context['form'] = FlagForm
