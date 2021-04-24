@@ -46,6 +46,13 @@ class UserProfile(models.Model):
         else:
             return 'no-kudos-badge'
 
+    def get_author_name(self):
+
+        if self.user.first_name and self.user.last_name:
+            return f"{self.user.first_name} {self.user.last_name}"
+        else:
+            return self.user.username
+
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):

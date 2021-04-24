@@ -41,10 +41,8 @@ class PostDetailView(LoginRequiredMixin, DetailView, SuccessMessageMixin):
             id=self.request.user.id).exists()
         context['bookmarked'] = post.bookmarks.filter(
             id=self.request.user.id).exists()
-        # instead of sending total_posts, instead create a method of UserProfile
-        # that returns the badge type based on the number of posts
-        # this can then be used to control the kudos badge
         context['kudos_badge'] = post.author.kudos_badge()
+        context['author_name'] = post.author.get_author_name()
         context['form'] = FlagForm()
 
         return context
