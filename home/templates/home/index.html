@@ -12,7 +12,7 @@
     </a>
     <p>{{ post.summary }}</p>
     <a href="{% url 'category' post.category.id post.category|slugify %}">{{ post.category }}</a>
-    <p>Created by <a href="{% url 'user_profile' post.author.pk %}">{{post.author}}</a> on {{ post.created_on }}</p>
+    <p>Created by <a href="{% url 'user_profile' post.author.pk %}">{{ post.author.user.username }}</a> on {{ post.created_on }}</p>
     <p>{{ post.likes.count }} likes</p>
 {% endfor %}
 
@@ -23,7 +23,7 @@
     </a>
     <p>{{ post.summary }}</p>
     <a href="{% url 'category' post.category.id post.category|slugify %}">{{ post.category }}</a>
-    <p>Created by <a href="{% url 'user_profile' post.author.pk %}">{{post.author}}</a> on {{ post.created_on }}</p>
+    <p>Created by <a href="{% url 'user_profile' post.author.pk %}">{{ post.author.user.username }}</a> on {{ post.created_on }}</p>
     <p>{{ post.likes.count }} likes</p>
 {% endfor %}
 
@@ -34,7 +34,7 @@
         <h3>{{ post.title }}</h3>
     </a>
     <p>{{ post.summary }}</p>
-    <p>Created by <a href="{% url 'user_profile' post.author.pk %}">{{post.author}}</a> on {{ post.created_on }}</p>
+    <p>Created by <a href="{% url 'user_profile' post.author.pk %}">{{ post.author.user.username }}</a> on {{ post.created_on }}</p>
     <p>{{ post.likes.count }} likes</p>
 {% endfor %}
 

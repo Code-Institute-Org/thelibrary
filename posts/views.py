@@ -40,7 +40,7 @@ class PostDetailView(DetailView, SuccessMessageMixin):
             id=self.request.user.id).exists()
         context['bookmarked'] = post.bookmarks.filter(
             id=self.request.user.id).exists()
-        context['total_posts'] = post.author.userprofile.total_posts()
+        context['total_posts'] = post.author.total_posts()
         context['form'] = FlagForm()
 
         return context
@@ -225,7 +225,7 @@ class AuthorPostsView(SingleObjectMixin, ListView):
         return context
 
     def get_queryset(self):
-        return self.object.author_field.all()
+        return self.object.userprofile.posts.all()
     
 
 def like_post(request, pk):
