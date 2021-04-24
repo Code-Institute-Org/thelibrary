@@ -11,7 +11,7 @@
 
     <h1>{{ post.title }}</h1>
     
-    <p>Author username: {{ post.author }} | Published: {{ post.created_on|date }}</p>   
+    <p>Author username: <a href="{% url 'user_profile' post.author.pk %}">{{ post.author.user.username }}</a> | Published: {{ post.created_on|date }}</p>   
     {% if post.updated_on %}
         <p>Last updated: {{ post.updated_on }}</p>
     {% endif %} 
