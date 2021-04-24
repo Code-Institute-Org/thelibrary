@@ -3,8 +3,6 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-from posts.models import Post
-
 import datetime
 
 # Create your models here.
@@ -35,7 +33,7 @@ class UserProfile(models.Model):
         return f'{self.user.username} {status} | {self.date_joined}'
 
     def total_posts(self):
-        return self.author_field.count() #'UserProfile' object has no attribute 'author_field'
+        return self.posts.all().count()
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):

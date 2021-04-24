@@ -5,6 +5,8 @@ from django.urls import reverse
 from django.utils import timezone
 import datetime
 
+from users.models import UserProfile
+
 # Create your models here.
 
 class PostTag(models.Model):
@@ -66,7 +68,7 @@ class Post(models.Model):
     slug = models.SlugField(max_length=200, unique=True)
     body = RichTextField()
     author = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name='author_field'
+        UserProfile, on_delete=models.CASCADE, related_name='posts'
     )
     created_on = models.DateTimeField(default=timezone.now)
     updated_on = models.DateTimeField(null=True, blank=True)
@@ -89,13 +91,13 @@ class Post(models.Model):
         related_name="post_category"
     )
     tags = models.ManyToManyField(
-        PostTag, related_name='post_tags', null=True, blank=True
+        PostTag, related_name='post_tags', blank=True
     )
     likes = models.ManyToManyField(
-        User, related_name='post_likes', null=True, blank=True
+        User, related_name='post_likes', blank=True
     )
     bookmarks = models.ManyToManyField(
-        User, related_name='post_bookmarks', null=True, blank=True
+        User, related_name='post_bookmarks', blank=True
     )
     image_1 = models.ImageField(null=True, blank=True, upload_to="images/posts/")
     image_2 = models.ImageField(null=True, blank=True, upload_to="images/posts/")
