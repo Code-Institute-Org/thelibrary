@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render, get_object_or_404
@@ -12,6 +13,7 @@ from .models import UserProfile, User
 
 # Create your views here.
 
+@login_required
 def user_profile_view(request, pk):
     user = get_object_or_404(User, pk=pk)
     approved_posts = Post.objects.filter(author=user.pk, status='Approved')[:5]
@@ -38,7 +40,7 @@ class UserSettingsView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
         return reverse_lazy('settings', kwargs={'pk': pk})
 
 
-class UserBookmarksView(SingleObjectMixin, ListView):
+class UserBookmarksView(LoginRequiredMixin, SingleObjectMixin, ListView):
     paginate_by = 4
     template_name = 'bookmarks.html'
 
