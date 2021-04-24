@@ -53,8 +53,6 @@
         </a>
     {% endif %}
 
-    <!-- only logged in users can like/unlike posts -->
-    {% if user.is_authenticated %}
     <form action="{% url 'like_post' post.pk %}" method="POST">
         {% csrf_token %}
         <button class="btn btn-sm {% if liked %} btn-primary {% else %} btn-secondary {% endif %}" type="submit">Like</button> - {{ total_likes }} likes
@@ -72,14 +70,6 @@
         {{ form.as_p }}
         <button type="submit">Send</button>
     </form>
-    {% else %}
-        <button class="btn btn-sm btn-disabled" disabled>Like</button> - {{ total_likes }} likes
-        <br>
-        <button class="btn btn-sm btn-disabled" disabled>Bookmark</button>
-        <br>
-        <button class="btn btn-sm btn-disabled" disabled>Flag this post</button>
-        <small>Please <a href="{% url 'account_login' %}">sign in</a> to like, bookmark or flag this post</small>
-    {% endif %}
 
     <!-- Show edit/delete buttons for author -->
     {% if post.author == user %}

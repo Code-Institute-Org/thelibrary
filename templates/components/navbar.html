@@ -32,22 +32,13 @@
                         User info
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="userInfoDropdown">
-                        {% if user.is_authenticated %}
-                        <!-- options for logged in users -->
                         <li><a class="dropdown-item" href="{% url 'account_logout' %}">Log out</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="{% url 'create_post' %}">Create new post</a></li>
                         <li><a class="dropdown-item" href="{% url 'bookmarks' user.pk %}">My Bookmarks</a></li>
                         <li><a class="dropdown-item" href="{% url 'user_profile' user.pk %}">My profile</a></li>
                         <li><a class="dropdown-item" href="{% url 'settings' user.pk %}">Settings</a></li>
-
-                        {% else %}
-                        <!-- menu options for users not logged in -->
-                        <li><a class="dropdown-item" href="{% url 'account_signup' %}">Sign up</a></li>
-                        <li><a class="dropdown-item" href="{% url 'account_login' %}">Log in</a></li>
-                        {% endif %}
                     </ul>
                 </li>
                 {% if user.userprofile.is_mod %}
@@ -55,6 +46,9 @@
                     <a class="nav-link active" aria-current="page" href="{% url 'review_posts' %}">Review posts</a>
                 </li>
                 {% endif %}
+                <li class="nav-item">
+                    <li><a class="nav-link" href="{% url 'create_post' %}">Create new post</a></li>
+                </li>
             </ul>
             <form class="d-flex" method="GET" action="{% url 'search' %}">
                 <input class="form-control me-2" type="search" placeholder="Search" 
