@@ -4,8 +4,7 @@ from .models import Post, PostCategory, PostTag, PostFlag
 
 
 class PostAdmin(admin.ModelAdmin):
-    # list_display = ('title', 'slug', 'author', 'status', 'created_on')
-    list_display = ('title', 'slug', 'status', 'created_on')
+    list_display = ('title', 'slug', 'author', 'status', 'created_on')
     list_filter = ("status",)
     search_fields = ['title', 'body']
     prepopulated_fields = {'slug': ('title',)}
