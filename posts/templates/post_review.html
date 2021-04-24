@@ -1,5 +1,10 @@
 {% extends 'base.html' %}{% load static %}
 
+{% block extra_css %}
+    <!-- css for fancybox -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+{% endblock %}
+
 {% block content %}
 
     {% if post.status == 'Waiting' %}
@@ -23,10 +28,29 @@
 
     {{ post.body|safe }}
 
-    {% if post.image_1 %}<img class="post-image" src="{{ post.image_1.url }}">{% endif %}
-    {% if post.image_2 %}<img class="post-image" src="{{ post.image_2.url }}">{% endif %}
-    {% if post.image_3 %}<img class="post-image" src="{{ post.image_3.url }}">{% endif %}
-    {% if post.image_4 %}<img class="post-image" src="{{ post.image_4.url }}">{% endif %}
+    {% if post.image_1 %}
+        <a data-fancybox="gallery" href="{{ post.image_1.url }}">
+            <img class="post-image" src="{{ post.image_1.url }}" alt="Image to accompany post">
+        </a>
+    {% endif %}
+
+    {% if post.image_2 %}
+    <a data-fancybox="gallery" href="{{ post.image_2.url }}">
+        <img class="post-image" src="{{ post.image_2.url }}" alt="Image to accompany post">
+    </a>
+    {% endif %}
+
+    {% if post.image_3 %}
+        <a data-fancybox="gallery" href="{{ post.image_3.url }}">
+            <img class="post-image" src="{{ post.image_3.url }}" alt="Image to accompany post">
+        </a>
+    {% endif %}
+
+    {% if post.image_4 %}
+        <a data-fancybox="gallery" href="{{ post.image_4.url }}">
+            <img class="post-image" src="{{ post.image_4.url }}" alt="Image to accompany post">
+        </a>
+    {% endif %}    
 
     {% if post.author == user %}
     <!-- edit and delete buttons for author -->
@@ -57,5 +81,12 @@
 {% endblock %}
 
 {% block extra_js %}
+    <!-- jQuery for fancybox -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+    
+    <!-- fancybox to create lightbox for images -->
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+    <!-- custom script for delete button check -->
     <script src="{% static 'js/postBtns.js' %}"></script>
 {% endblock %}
