@@ -1,6 +1,7 @@
 from slugify import slugify
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import Q
 from django.http import HttpResponseRedirect
@@ -15,7 +16,7 @@ from .forms import FlagForm
 from .models import Post, PostCategory, PostFlag
 
 
-class AllPostsView(ListView):
+class AllPostsView(LoginRequiredMixin, ListView):
     """ Basic view to see all posts """
     template_name = 'all_posts.html'
     paginate_by = 4
@@ -23,7 +24,7 @@ class AllPostsView(ListView):
     context_object_name = 'posts'
 
 
-class PostDetailView(DetailView, SuccessMessageMixin):
+class PostDetailView(LoginRequiredMixin, DetailView, SuccessMessageMixin):
     """ Create view for full post """
     model = Post
     template_name = 'post_detail.html'
@@ -107,7 +108,7 @@ class CreatePostView(LoginRequiredMixin, CreateView):
         return reverse('review_post', kwargs={'pk': self.object.pk})
 
 
-class EditPostView(UpdateView):
+class EditPostView(LoginRequiredMixin, UpdateView):
     model = Post
     template_name = 'edit_post.html'
     context_object_name = 'post'
@@ -149,6 +150,7 @@ class ReviewPostsView(LoginRequiredMixin, ListView):
         return super(ReviewPostsView, self).get(*args, **kwargs)
 
 
+@login_required
 def approve_post(request, pk, slug):
     """
     Changes status of a post to approved if the user accessing the url
@@ -163,6 +165,7 @@ def approve_post(request, pk, slug):
         return redirect('home')
 
 
+@login_required
 def delete_post(request, pk):
     """ Deletes post """
     post = get_object_or_404(Post, pk=pk)
@@ -179,7 +182,7 @@ def delete_post(request, pk):
         return redirect('home')
 
 
-class ReviewPostView(DetailView, UpdateView):
+class ReviewPostView(LoginRequiredMixin, DetailView, UpdateView):
     model = Post
     template_name = 'post_review.html'
     context_object_name = 'post'
@@ -197,7 +200,7 @@ class ReviewPostView(DetailView, UpdateView):
         return super().form_valid(form)
 
 
-class CategoryView(SingleObjectMixin, ListView):
+class CategoryView(LoginRequiredMixin, SingleObjectMixin, ListView):
     paginate_by = 4
     template_name = 'category.html'
 
@@ -214,7 +217,7 @@ class CategoryView(SingleObjectMixin, ListView):
         return self.object.post_category.all()
 
 
-class AuthorPostsView(SingleObjectMixin, ListView):
+class AuthorPostsView(LoginRequiredMixin, SingleObjectMixin, ListView):
     paginate_by = 4
     template_name = 'post_by_author.html'
 
@@ -231,6 +234,7 @@ class AuthorPostsView(SingleObjectMixin, ListView):
         return self.object.userprofile.posts.all()
     
 
+@login_required
 def like_post(request, pk):
     """ Adds like to post, tied to specific user """
     post = get_object_or_404(Post, pk=pk)
@@ -243,6 +247,7 @@ def like_post(request, pk):
     return HttpResponseRedirect(reverse('post_detail', args=[pk, post.slug]))
 
 
+@login_required
 def bookmark_post(request, pk):
     """ Adds post to users bookmarks """
     post = get_object_or_404(Post, pk=pk)

@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.shortcuts import render
 from django.views.generic import ListView
@@ -5,7 +6,7 @@ from django.views.generic import ListView
 from posts.models import Post
 
 # Create your views here.
-class SearchResultsView(ListView):
+class SearchResultsView(LoginRequiredMixin, ListView):
     """ View to render search results with pagination """
     template_name = "search/search_results.html"
     paginate_by = 4
