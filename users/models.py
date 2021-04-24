@@ -32,8 +32,20 @@ class UserProfile(models.Model):
 
         return f'{self.user.username} {status} | {self.date_joined}'
 
-    def total_posts(self):
-        return self.posts.all().count()
+    def kudos_badge(self):
+        total_posts = self.posts.filter(status="Approved").count()
+        
+        if total_posts >= 15:
+            return 'kudos-badge-gold'
+        elif total_posts >= 10:
+            return 'kudos-badge-silver'
+        elif total_posts >= 5:
+            return 'kudos-badge-bronze'
+        elif total_posts >= 1:
+            return 'kudos-badge-yellow'
+        else:
+            return 'no-kudos-badge'
+
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):

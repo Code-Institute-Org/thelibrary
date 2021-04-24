@@ -107,10 +107,10 @@ class Post(models.Model):
         PostFlag,
         on_delete=models.CASCADE,
         null=True,
-        blank=False,
+        blank=True,
         related_name='flags'
     )
-    editors_note = models.TextField(max_length=400, null=True)
+    editors_note = models.TextField(max_length=400, null=True, blank=True)
 
     def total_likes(self):
         return self.likes.count()

@@ -43,7 +43,7 @@ class PostDetailView(DetailView, SuccessMessageMixin):
         # instead of sending total_posts, instead create a method of UserProfile
         # that returns the badge type based on the number of posts
         # this can then be used to control the kudos badge
-        context['total_posts'] = post.author.total_posts()
+        context['kudos_badge'] = post.author.kudos_badge()
         context['form'] = FlagForm()
 
         return context

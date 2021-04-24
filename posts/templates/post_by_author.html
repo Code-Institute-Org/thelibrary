@@ -18,6 +18,7 @@
     <p>{{ post.summary }}</p>
     <p>Created by <a href="{% url 'user_profile' post.author.pk %}">{{ author }}<a> on {{ post.created_on }}</p>
     <p>{{ post.likes.count }} likes</p>
+    <p>Author kudos badge: {{ post.author.kudos_badge }}</p>
 
 {% endfor %}
 
