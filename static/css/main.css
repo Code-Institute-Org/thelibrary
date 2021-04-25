@@ -82,8 +82,8 @@ nav {
     transition: all ease-in-out .4s;
 }
 
-.dropdown-item:hover,
-.dropdown-item:hover > i {
+a.dropdown-item:hover,
+a.dropdown-item:hover > i {
     color: var(--orange);
 }
 
