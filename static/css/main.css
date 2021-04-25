@@ -29,6 +29,7 @@ Code Institute brand
 body {
     font-family: 'Montserrat', sans-serif;
     background-color: var(--bg-grey);
+    color: var(--darkgrey);
 }
 
 /* site-wide icons */
@@ -76,6 +77,16 @@ nav {
     color: var(--darkgrey);
 }
 
+.dropdown-item,
+.dropdown-item > i {
+    transition: all ease-in-out .4s;
+}
+
+.dropdown-item:hover,
+.dropdown-item:hover > i {
+    color: var(--orange);
+}
+
 /* Navbar icons */
 .navbar-icon {
     font-size: 1.5rem;
@@ -96,6 +107,14 @@ nav {
 
 #navbar .fa-plus.navbar-icon {
     color: var(--orange);
+}
+
+.dropdown-icon {
+    font-size: 1.5rem;
+    vertical-align: sub;
+    color: var(--darkgrey);
+    width: 50px;
+    text-align: center;
 }
 
 /* Buttons */

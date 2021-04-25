@@ -96,13 +96,28 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="{% url 'user_profile' user.pk %}">My profile</a></li>
-                            <li><a class="dropdown-item" href="{% url 'bookmarks' user.pk %}">My Bookmarks</a></li>
-                            <li><a class="dropdown-item" href="{% url 'settings' user.pk %}">Settings</a></li>
+                            <li>
+                                <a class="dropdown-item ps-1" href="{% url 'user_profile' user.pk %}">
+                                    <i class="fas fa-user dropdown-icon"></i> My profile
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item ps-1" href="{% url 'bookmarks' user.pk %}">
+                                    <i class="fas fa-bookmark dropdown-icon"></i> My Bookmarks</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item ps-1" href="{% url 'settings' user.pk %}">
+                                    <i class="fas fa-cog dropdown-icon"></i> Settings
+                                </a>
+                            </li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="{% url 'account_logout' %}">Log out</a></li>
+                            <li>
+                                <a class="dropdown-item ps-1" href="{% url 'account_logout' %}">
+                                    <i class="fas fa-sign-out-alt dropdown-icon"></i> Log out
+                                </a>
+                            </li>
                         </ul>
                     </li>
                 </ul>
