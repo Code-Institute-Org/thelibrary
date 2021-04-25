@@ -83,6 +83,9 @@
                                         style="background-image: url('/media/images/profiles/default-profile-pic.png');"></div>
                                 {% endif %}
                                 <div class="ps-3">
+                                    {% if user.userprofile.is_staff %}
+                                    <div class="ci-username-logo"></div>
+                                    {% endif %}
                                     {{ user.username }}
                                     <br>
                                     {% if user.first_name %}{{ user.first_name }}{% endif %}
