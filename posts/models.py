@@ -7,7 +7,6 @@ import datetime
 
 from users.models import UserProfile
 
-# Create your models here.
 
 class PostTag(models.Model):
     name = models.CharField(max_length=50)

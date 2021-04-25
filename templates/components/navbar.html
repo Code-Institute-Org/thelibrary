@@ -50,27 +50,68 @@
 
                     <!-- Bell icon when clicked shows dropdown menu for notifications -->
                     <li class="nav-item dropdown dropdown-menu-end">
-                        <a class="nav-link" href="#" id="userNotificationsDropdown" role="button"
+                        <a id="notifications" class="nav-link position-relative" href="#" id="userNotificationsDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-bell navbar-icon"></i>
+
+                            {% if total_notifications > 0 %}
+                            <!--
+                                Show notification circle only if there are notifications to see.
+                                If there are more than 9 notifications, show "9+" instead of the
+                                total. This allows for large numbers that would break out of
+                                the notification circle.
+                            -->
+                                <div class="notification-num">
+                                    {% if total_notifications < 10 %}
+                                        {{ total_notifications }}
+                                    {% else %}
+                                        9+
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                            
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userNotificationsDropdown">
                             <li class="dropdown-item ps-1">
-                                <i class="fas fa-bell dropdown-icon"></i> Notifications
+                                <i class="fas fa-bell dropdown-icon"></i>Notifications
                             </li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
                             {% if user.userprofile.is_mod %}
                             <li>
-                                <a class="dropdown-item ps-1" href="{% url 'review_posts' %}">
-                                    <i class="fas fa-clock dropdown-icon"></i> Posts waiting for review
+                                <a class="dropdown-item ps-1 position-relative" href="{% url 'review_posts' %}">
+                                    <i class="fas fa-clock dropdown-icon"></i>
+                                    
+                                    {% if num_posts_to_review > 0 %}
+                                        <!-- see notes for notification circle above -->
+                                        <div class="notification-num"></div>
+                                            {% if num_posts_to_review < 10 %}
+                                                {{ num_posts_to_review }}
+                                            {% else %}
+                                                9+
+                                            {% endif %}
+                                        </div>
+                                    {% endif %}
+                                    Posts waiting for review
                                 </a>
                             </li>
                             {% endif %}
                             <li>
-                                <a class="dropdown-item ps-1" href="{% url 'user_profile' user.pk %}">
-                                    <i class="fas fa-pen-square dropdown-icon"></i> Posts in review
+                                <a class="dropdown-item ps-1 position-relative" href="{% url 'user_profile' user.pk %}">
+                                    <i class="fas fa-pen-square dropdown-icon"></i>
+                                    
+                                    {% if num_author_posts_in_review > 0 %}
+                                        <!-- see notes for notification circle above -->
+                                        <div class="notification-num">
+                                            {% if num_author_posts_in_review < 10 %}
+                                                {{ num_author_posts_in_review }}
+                                            {% else %}
+                                                9+
+                                            {% endif %}
+                                        </div>
+                                    {% endif %}
+                                    Posts in review
                                 </a>
                             </li>
                         </ul>
