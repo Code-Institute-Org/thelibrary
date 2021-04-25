@@ -52,22 +52,14 @@
                     <li class="nav-item dropdown dropdown-menu-end">
                         <a id="notifications" class="nav-link position-relative" href="#" id="userNotificationsDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-bell navbar-icon"></i>
 
-                            {% if total_notifications > 0 %}
+                            {% if total_notifications > 0 and user.userprofile.is_mod %}
                             <!--
-                                Show notification circle only if there are notifications to see.
-                                If there are more than 9 notifications, show "9+" instead of the
-                                total. This allows for large numbers that would break out of
-                                the notification circle.
+                                Show bell icon as blue, and animate ringing if there are notifications
                             -->
-                                <div class="notification-num">
-                                    {% if total_notifications < 10 %}
-                                        {{ total_notifications }}
-                                    {% else %}
-                                        9+
-                                    {% endif %}
-                                </div>
+                                <i id="ringing-bell" class="fas fa-bell navbar-icon"></i>
+                            {% else %}
+                                <i class="fas fa-bell navbar-icon"></i>
                             {% endif %}
                             
                         </a>
@@ -84,8 +76,13 @@
                                     <i class="fas fa-clock dropdown-icon"></i>
                                     
                                     {% if num_posts_to_review > 0 %}
-                                        <!-- see notes for notification circle above -->
-                                        <div class="notification-num"></div>
+                                        <!--
+                                            Show notification circle only if there are notifications to see.
+                                            If there are more than 9 notifications, show "9+" instead of the
+                                            total. This allows for large numbers that would break out of
+                                            the notification circle.
+                                        -->
+                                        <div class="notification-num">
                                             {% if num_posts_to_review < 10 %}
                                                 {{ num_posts_to_review }}
                                             {% else %}
@@ -124,7 +121,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link p-0" href="#" id="userInfoDropdown" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            {% if user.userprofile.profile_pic.url %}
+                            {% if user.userprofile.profile_pic %}
                             <div class="navbar-avatar" title="Your account"
                                 style="background-image: url('{{ user.userprofile.profile_pic.url }}');"></div>
                             {% else %}
@@ -135,7 +132,7 @@
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userInfoDropdown">
                             <!-- Header of dropdown shows users avatar, and their name (if provided )-->
                             <div class="dropdown-header d-flex">
-                                {% if user.userprofile.profile_pic.url %}
+                                {% if user.userprofile.profile_pic %}
                                 <div class="navbar-avatar m-0 mt-1"
                                     style="background-image: url('{{ user.userprofile.profile_pic.url }}');"></div>
                                 {% else %}

@@ -51,3 +51,7 @@ pip install django-allauth
 ### Libraries
 
 - [Bootstrap](https://getbootstrap.com/) to simplify the structure of the website and make the website responsive easily.
+
+## Credits
+
+- Code to animate notification bell in the navbar by [Fazlur Rahman](https://codepen.io/fazlurr/pen/xeXpqx)
