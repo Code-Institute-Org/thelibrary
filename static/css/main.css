@@ -1,3 +1,119 @@
+/*
+As this site is for student and staff created content to complement
+the CI course, the colors and fonts are taken from the 
+Code Institute brand
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime&family=Montserrat:wght@300;400;500&display=swap');
+
+:root {
+    --white: #ffffff;
+    --orange: #e84610;
+    --blue: #009fe3;
+    --navy: #445261;
+    --yellow: #efb920;
+    --pink: #ff5a60;
+    --teal: #23bbbb;
+    --lightgrey: #fafafa;
+    --grey: #aaaaaa;
+    --darkgrey: #4a4a4f;
+    --bg-grey: #F5F5F5;
+    --cta-teal: #008584;
+    --cta-orange: #ea2d00;
+    --cta-blue: #0074cc;
+    --cta-grey: #445261;
+    --cta-hover: #e6ecf0;
+    --font-family-monospace: 'Courier Prime', monospace;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--bg-grey);
+}
+
+/* Navbar */
+
+nav {
+    box-shadow: 0 2px 9px 0 rgb(0 0 0 / 20%);
+}
+
+.navbar {
+    background-color: var(--white);
+    padding: .2rem;
+}
+
+#navbar {
+    z-index: 1;
+}
+
+.dropdown-menu {
+    max-height: 400px;
+    overflow-x: hidden;
+}
+
+.mobile-search-bar {
+    border-top: 1px solid var(--grey);
+    background-color: var(--grey);
+}
+
+.right-nav {
+    margin-top: 0.3rem;
+}
+
+.dropdown-header {
+    font-size: 1rem;
+    color: var(--darkgrey);
+}
+
+/* Navbar icons */
+.navbar-icon {
+    font-size: 1.5rem;
+}
+
+.create-btn-icon {
+    font-size: 1.5rem;
+    vertical-align: bottom;
+}
+
+.navbar-avatar {
+    width: 38px;
+    height: 38px;
+    background-size: cover;
+    border-radius: 50%;
+    margin-left: 1rem;
+}
+
+#navbar .fa-plus.navbar-icon {
+    color: var(--orange);
+}
+
+/* Buttons */
+.btn-outline-orange {
+    background-color: var(--white);
+    color: var(--orange);
+    border: 1px solid var(--orange);
+    transition: all ease-in-out .4s;
+}
+
+.btn-outline-orange:hover {
+    background-color: var(--orange);
+    color: var(--white);
+}
+
+.btn-outline-blue {
+    background-color: var(--white);
+    color: var(--blue);
+    border: 1px solid var(--blue);
+    transition: all ease-in-out .4s;
+}
+
+#navbar .btn-outline-blue:hover {
+    background-color: var(--blue);
+    color: var(--white);
+}
+
+
+
 /* draft css to get main functionality working,
 will be adjusted for proper layout later */
 
