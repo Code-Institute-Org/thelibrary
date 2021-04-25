@@ -1,7 +1,7 @@
 {% load static %}
 
 <nav>
-    <div id="navbar" class="navbar navbar-expand-sm navbar-light">
+    <div id="navbar" class="navbar navbar-expand navbar-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'home' %}">The Library</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -11,8 +11,11 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-                <!-- wider screen searchbar -->
-                <form class="d-none d-sm-flex mx-auto" method="GET" action="{% url 'search' %}">
+                <!--
+                    wider screen searchbar for desktop view.
+                    mobile search bar appears under main nav on small screens.
+                -->
+                <form class="d-none d-md-flex ms-2 ms-md-5 responsive-search-bar" method="GET" action="{% url 'search' %}">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="q"
                         value="{{ request.GET.q }}">
                     <button class="btn btn-outline-blue" type="submit" aria-label="Submit search query">
@@ -20,12 +23,12 @@
                     </button>
                 </form>
 
-                <ul class="navbar-nav right-nav">
+                <ul class="navbar-nav right-nav ms-auto">
 
-                    <li class="nav-item dropdown">
+                    <!-- Post icon when clicked shows dropdown menu for posts by category -->
+                    <li class="nav-item dropdown ps-4">
                         <a class="nav-link" href="#" id="categoriesDropdown" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            <!-- Post icon when clicked shows dropdown menu -->
                             <i class="fas fa-th-list navbar-icon" aria-label="View all posts or choose a category"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="categoriesDropdown">
@@ -45,6 +48,7 @@
                                 class="fas fa-plus navbar-icon nav-link"></i></a>
                     </li>
 
+                    <!-- Bell icon when clicked shows dropdown menu for notifications -->
                     <li class="nav-item dropdown dropdown-menu-end">
                         <a class="nav-link" href="#" id="userNotificationsDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
@@ -72,7 +76,10 @@
                         </ul>
                     </li>
 
-
+                    <!--
+                        Avatar circle displays users profile_pic. 
+                        When clicked, it shows dropdown menu user account options.
+                    -->
                     <li class="nav-item dropdown">
                         <a class="nav-link p-0" href="#" id="userInfoDropdown" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
@@ -137,9 +144,11 @@
             </div>
         </div>
     </div>
-    <div class="navbar navbar-light d-sm-none mobile-search-bar">
+
+    <!-- search bar for smaller devices when it doesn't fit on the same line as the nav icons -->
+    <div id="mobile-search" class="navbar navbar-light d-md-none mobile-search-bar">
         <div class="container-fluid">
-            <form class="mx-auto d-flex w-100 d-inline" method="GET" action="{% url 'search' %}">
+            <form class="mx-auto d-flex responsive-search-bar" method="GET" action="{% url 'search' %}">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="q"
                     value="{{ request.GET.q }}">
                 <button class="btn btn-outline-blue" type="submit" aria-label="Submit search query">

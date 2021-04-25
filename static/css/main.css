@@ -1,8 +1,8 @@
-/*
+/* ---------------------
 As this site is for student and staff created content to complement
 the CI course, the colors and fonts are taken from the 
 Code Institute brand
-*/
+--------------------- */
 
 @import url('https://fonts.googleapis.com/css2?family=Courier+Prime&family=Montserrat:wght@300;400;500&display=swap');
 
@@ -32,7 +32,9 @@ body {
     color: var(--darkgrey);
 }
 
-/* site-wide icons */
+/* --------------------- 
+    site-wide icons
+--------------------- */
 
 .ci-username-logo {
     height: 18px;
@@ -43,7 +45,9 @@ body {
     vertical-align: text-top;
 }
 
-/* Navbar */
+/* ---------------------
+    Navbar
+--------------------- */
 
 nav {
     box-shadow: 0 2px 9px 0 rgb(0 0 0 / 20%);
@@ -66,6 +70,18 @@ nav {
 .mobile-search-bar {
     border-top: 1px solid var(--grey);
     background-color: var(--grey);
+    padding-top: .3rem;
+    padding-bottom: .3rem;
+}
+
+/* 
+ids necessary in selectors to override 
+bootstrap width on search bar
+*/
+#navbar .responsive-search-bar,
+#mobile-search .responsive-search-bar {
+    width: 100%;
+    max-width: 500px;
 }
 
 .right-nav {
@@ -87,7 +103,9 @@ a.dropdown-item:hover > i {
     color: var(--orange);
 }
 
-/* Navbar icons */
+/* --------------------- 
+    Navbar icons
+--------------------- */
 .navbar-icon {
     font-size: 1.5rem;
 }
@@ -107,6 +125,11 @@ a.dropdown-item:hover > i {
 
 #navbar .fa-plus.navbar-icon {
     color: var(--orange);
+    transition: all ease-in-out .4s;
+}
+
+#navbar .fa-plus.navbar-icon:hover {
+    color: var(--blue);
 }
 
 .dropdown-icon {
@@ -117,7 +140,9 @@ a.dropdown-item:hover > i {
     text-align: center;
 }
 
-/* Buttons */
+/* ---------------------
+    Buttons
+--------------------- */
 .btn-outline-orange {
     background-color: var(--white);
     color: var(--orange);
@@ -137,7 +162,8 @@ a.dropdown-item:hover > i {
     transition: all ease-in-out .4s;
 }
 
-#navbar .btn-outline-blue:hover {
+#navbar .btn-outline-blue:hover,
+#mobile-search .btn-outline-blue:hover {
     background-color: var(--blue);
     color: var(--white);
 }
