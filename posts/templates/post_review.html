@@ -64,6 +64,8 @@
 
         {% endif %}
 
+    <a href="{% url 'user_profile' user.pk %}">Your profile</a>
+
     {% else %}
         <!-- buttons for moderator -->
         <a href="{% url 'approve_post' post.pk post.slug %}">Approve</a>
