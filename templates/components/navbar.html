@@ -17,7 +17,7 @@
                 -->
                 <form class="d-none d-md-flex ms-2 ms-md-5 responsive-search-bar" method="GET" action="{% url 'search' %}">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="q"
-                        value="{{ request.GET.q }}">
+                        value="{{ request.GET.q }}" required>
                     <button class="btn btn-outline-blue" type="submit" aria-label="Submit search query">
                         <i class="fas fa-search"></i>
                     </button>
@@ -150,7 +150,7 @@
         <div class="container-fluid">
             <form class="mx-auto d-flex responsive-search-bar" method="GET" action="{% url 'search' %}">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="q"
-                    value="{{ request.GET.q }}">
+                    value="{{ request.GET.q }}" required>
                 <button class="btn btn-outline-blue" type="submit" aria-label="Submit search query">
                     <i class="fas fa-search"></i>
                 </button>
