@@ -52,13 +52,13 @@
         </a>
     {% endif %}    
 
-    {% if post.author == user %}
+    {% if post.author == user.userprofile %}
     <!-- edit and delete buttons for author -->
     <a href="{% url 'edit_post' post.pk post.slug %}">Edit post</a>
     <button class="deleteBtn" data-post-pk="{{ post.pk }}">Delete post</button>
 
         <!-- Message if mod is trying to approve own posts -->
-        {% if post.author == user and user.userprofile.is_mod %}
+        {% if post.author == user.userprofile.author and user.userprofile.is_mod %}
 
         <p>You cannot approve your own posts</p>
 
