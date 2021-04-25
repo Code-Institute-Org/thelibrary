@@ -126,6 +126,7 @@ class EditPostView(LoginRequiredMixin, UpdateView):
         if form.instance.status == 'Review':
             form.instance.status = 'Waiting'
         form.instance.updated_on = timezone.now()
+        form.mod_message = ''
         return super().form_valid(form)
 
     def get_success_url(self):

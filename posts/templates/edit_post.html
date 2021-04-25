@@ -4,13 +4,17 @@
 
 <h1>Edit post page</h1>
 
+{% if post.mod_message %}
+<p>{{ post.mod_message }}</p>
+{% endif %}
+
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.media }}
     {{ form.as_p }}
     <!-- REMINDER: adjust tags field so tags options in a checklist 
     Also look into how to give user ability to add new tags -->
-    <button>Post</button>
+    <button>Submit</button>
     {% if form.instance.status == 'Approved' %}
         <small>Edits to approved posts are published immediately</small>
     {% endif %}
