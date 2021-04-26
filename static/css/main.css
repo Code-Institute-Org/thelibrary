@@ -390,6 +390,18 @@ See media queries for other screen sizes.
     color: var(--white);
 }
 
+.btn-orange {
+    background-color: var(--white);
+    color: var(--cta-orange);
+    border: 3px solid var(--cta-orange);
+    transition: all ease-in-out .4s;
+}
+
+.btn-orange:hover {
+    background-color: var(--cta-orange);
+    color: var(--white);
+}
+
 /* ---------------------
     Home page
 --------------------- */
