@@ -33,20 +33,23 @@
 </head>
 
 <body>
-    {% include 'components/navbar.html' %}
+    <div id="footer-push-down">
 
-    {% if messages %}
-        <div class="message-container">
-            {% for message in messages %}
-            <p>{{ message }}</p>
-            {% endfor %}
-        </div>
-    {% endif %}
+        {% include 'components/navbar.html' %}
 
-    {% block content %}
-    {% endblock %}
+        {% if messages %}
+            <div class="message-container">
+                {% for message in messages %}
+                <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
 
-    <footer>Footer content here</footer>
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    {% include 'components/footer.html' %}
 
     {% block corejs %}
         <!-- scripts for bootstrap -->

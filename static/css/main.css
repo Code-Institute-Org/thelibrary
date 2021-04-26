@@ -46,12 +46,16 @@ body {
 }
 
 /* ---------------------
-    Navbar
+    Box-shadows
 --------------------- */
 
-nav {
+.box-shadow {
     box-shadow: 0 2px 9px 0 rgb(0 0 0 / 20%);
 }
+
+/* ---------------------
+    Navbar
+--------------------- */
 
 .navbar {
     background-color: var(--white);
@@ -159,6 +163,14 @@ a.dropdown-item:hover > i {
 }
 
 /*
+Positioning of notification in navbar slightly
+different to in dropdown menu
+*/
+#notifications .notification-num {
+    left: 20px;
+}
+
+/*
 Code for ringing bell animation by Fazlur Rahman
 https://codepen.io/fazlurr/pen/xeXpqx
 */
@@ -254,13 +266,74 @@ https://codepen.io/fazlurr/pen/xeXpqx
 }
 /* end code by Fazlur Rahman */
 
+/* ---------------------
+    Footer
+--------------------- */
+
+#footer {
+    background: var(--navy);
+    color: var(--white);
+    padding: 1rem;
+}
+
+#footer ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#footer > nav {
+    padding: 1rem;
+    font-size: 1.2rem;
+}
+
+#footer > nav > ul {
+    text-align: center;
+}
+
+#footer > nav li {
+    display: inline-block;
+}
+
+#footer a {
+    text-decoration: none;
+    color: var(--white);
+    transition: all ease-in-out .4s;
+}
+
+#footer a:hover {
+    text-decoration: none;
+    color: var(--teal);
+}
+
+#footer h1 {
+    font-size: 1.4rem;
+}
+
+#footer .social-icons {
+    text-align: center;
+}
+
+#footer .social-icons > li {
+    font-size: 2rem;
+    display: inline-block;
+    margin: .6rem;
+}
+
+#footer .social-icons i {
+    transition: all ease-in-out .4s;
+}
+
+#footer .social-icons i:hover {
+    color: var(--teal);
+    transform: scale(1.2);
+}
 
 /*
-Positioning of notification in navbar slightly
-different to in dropdown menu
+Calculation to push footer down on small and medium screens.
+See media queries for other screen sizes.
 */
-#notifications .notification-num {
-    left: 20px;
+#footer-push-down {
+    min-height: calc(100vh - 386.4px);
 }
 
 /* ---------------------
@@ -306,4 +379,43 @@ will be adjusted for proper layout later */
 .post-image {
     width: 400px;
     margin: 15px;
+}
+
+
+/* ---------------------
+    Media Queries - using Bootstrap 5 breakpoints
+--------------------- */
+
+
+/* Small devices (landscape phones, 576px and up) */
+/* @media (min-width: 576px) {
+
+} */
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    #footer-push-down {
+        min-height: calc(100vh - 385.19px);
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+    #footer-push-down {
+        min-height: calc(100vh - 361.19px);
+    }
+}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { 
+    #footer-push-down {
+        min-height: calc(100vh - 337.19px);
+    }
+}
+
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {
+    #footer-push-down {
+        min-height: calc(100vh - 337.19px);
+    }
 }
