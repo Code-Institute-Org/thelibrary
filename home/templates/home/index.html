@@ -3,35 +3,37 @@
 
 {% block content %}
 
+<header id="home-header" class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="display-1">The Library</h1>
+            <p class="display-4">A repository of supporting resources<br class="d-none d-xl-block">
+                for Code Institute students. </p>
+            <p class="display-6">Created for the community,<br>
+                by the community.</p>
+            <p class="lead">(And a few enthusiastic staff members)</p>
+        </div>
+    </div>
+</header>
+
 <h1>Home</h1>
 
 <h2>Recent posts</h2>
+
 {% for post in recent_posts %}
-    <a href="{% url 'post_detail' post.pk post.slug  %}">
-        <h3>{{ post.title }}</h3>
-    </a>
-    <p>{{ post.summary }}</p>
-    <a href="{% url 'category' post.category.id post.category|slugify %}">{{ post.category }}</a>
-    <p>Created by <a href="{% url 'user_profile' post.author.pk %}">{{ post.author.user.username }}</a> on {{ post.created_on }}</p>
-    <p>{{ post.likes.count }} likes</p>
+    {% include 'components/post-card-full.html' %}
 {% endfor %}
 
 <h2>Popular posts</h2>
 {% for post in favourite_posts %}
-    <a href="{% url 'post_detail' post.pk post.slug  %}">
-        <h3>{{ post.title }}</h3>
-    </a>
-    <p>{{ post.summary }}</p>
-    <a href="{% url 'category' post.category.id post.category|slugify %}">{{ post.category }}</a>
-    <p>Created by <a href="{% url 'user_profile' post.author.pk %}">{{ post.author.user.username }}</a> on {{ post.created_on }}</p>
-    <p>{{ post.likes.count }} likes</p>
+    {% include 'components/post-card-full.html' %}
 {% endfor %}
 
 <h2>Search by Category</h2>
 <!-- categories_nav object passed to template from posts.context_processors.py -->
 {% for category in categories_nav %}
     {% if category.posts_to_category.count > 0 %}
-    <a class="btn btn-secondary" href="{% url 'category' category.id category.name %}">{{ category }}</a>
+    <a class="btn btn-secondary m-2" href="{% url 'category' category.id category.name %}">{{ category }}</a>
     {% endif %}
 {% endfor %}
 

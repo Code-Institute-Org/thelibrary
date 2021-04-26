@@ -364,6 +364,16 @@ See media queries for other screen sizes.
     color: var(--white);
 }
 
+/* ---------------------
+    Home page
+--------------------- */
+/*
+Header height 100% vh minus height of the navbar.
+*/
+#home-header {
+    min-height: calc(100vh - 591.2px);
+}
+
 
 
 /* draft css to get main functionality working,
@@ -398,6 +408,10 @@ will be adjusted for proper layout later */
     #footer-push-down {
         min-height: calc(100vh - 385.19px);
     }
+    #home-header {
+        min-height: calc(100vh - 54.4px);
+    }
+    
 }
 
 /* Large devices (desktops, 992px and up) */
