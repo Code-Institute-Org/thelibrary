@@ -429,9 +429,13 @@ Header height 100% vh minus height of the navbar.
 
 .post-card {
     background-color: var(--white);
-    margin-top: 1rem;
     padding: .7rem;
+    margin-top: 3rem;
 
+}
+
+.post-card-header {
+    margin-top: 2rem;
 }
 
 .post-card-link {
@@ -464,6 +468,15 @@ Header height 100% vh minus height of the navbar.
 .card-likes-icon {
     color: var(--cta-blue);
     font-size: 1.3rem;
+}
+
+.card-avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-size: cover;
+    margin: -45px auto 0 auto;
+    z-index: 2;
 }
 
 /* ----------------------------------------------- */

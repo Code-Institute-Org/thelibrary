@@ -3,12 +3,25 @@
 <div class="post-card box-shadow-sharp">
     <div class="post-card-circles">
         <div class="mod-circle"></div>
-        <div class="card-avatar"></div>
+        <a href="{% url 'user_profile' post.author.user.pk %}">
+            {% if post.author.profile_pic %}
+                <div class="card-avatar" title="Your account"
+                    style="background-image: url('{{ post.author.profile_pic.url }}');"></div>
+                </a>
+            {% else %}
+                <div class="card-avatar" title="Your account"
+                    style="background-image: url('/media/images/profiles/default-profile-pic.png');"></div>
+            {% endif %}
+        </a>
         <div class="kudos-circle"></div>
     </div>
-    <div class="post-card-header">
-        <div class="ci-username-logo"></div>
-        <span>{{ post.author.user.username }}</span>
+    <div class="post-card-header text-center">
+        <p>
+            {% if post.author.user.is_staff %}
+            <span class="ci-username-logo"></span>
+            {% endif %}
+            {{ post.author.user.username }}
+        </p>
     </div>
     <div class="post-card-body">
         <div class="post-card-title d-flex align-items-center text-center justify-content-center">
