@@ -429,7 +429,6 @@ Header height 100% vh minus height of the navbar.
 
 .post-card {
     background-color: var(--white);
-    max-width: 410px;
     margin: 3rem auto 1.6rem auto;
     padding: .7rem;
     transition: all ease-in-out .4s;
