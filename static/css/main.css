@@ -138,7 +138,7 @@ a.dropdown-item:hover > i {
     height: 38px;
     background-size: cover;
     border-radius: 50%;
-    margin-left: 1rem;
+    margin-left: .2rem;
 }
 
 #navbar .fa-plus.navbar-icon {
@@ -429,8 +429,8 @@ Header height 100% vh minus height of the navbar.
 
 .post-card {
     background-color: var(--white);
-    margin-top: 3rem;
-    margin-bottom: 1.6rem;
+    max-width: 350px;
+    margin: 3rem auto 1.6rem auto;
     padding: .7rem;
     transition: all ease-in-out .4s;
 }
@@ -533,7 +533,7 @@ Header height 100% vh minus height of the navbar.
 
 .post-card-category {
     display: inline-block;
-    background-color: var(--cta-teal);
+    background-color: var(--pink);
     padding: 7px 15px;
     transition: all ease-in-out .4s;
 }
@@ -544,7 +544,7 @@ Header height 100% vh minus height of the navbar.
 }
 
 .category-wrapper > a:hover .post-card-category {
-    background-color: var(--pink);
+    background-color: var(--cta-teal);
 }
 
 .category-wrapper {
@@ -575,9 +575,15 @@ will be adjusted for proper layout later */
 --------------------- */
 
 
+@media (min-width: 380px) {
+    .navbar-avatar {
+        margin-left: 1rem;
+    }
+}
+
 /* Small devices (landscape phones, 576px and up) */
 /* @media (min-width: 576px) {
-
+    
 } */
 
 /* Medium devices (tablets, 768px and up) */
