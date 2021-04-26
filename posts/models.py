@@ -57,13 +57,13 @@ class Post(models.Model):
         (REVIEW, "Review"),
     )
     title = models.CharField(
-        max_length=100,
+        max_length=70,
         unique=True,
         error_messages={
             'unique':"This post title already exists, please choose another."
         }
     )
-    summary = models.CharField(max_length=200)
+    summary = models.CharField(max_length=150)
     slug = models.SlugField(max_length=200, unique=True)
     body = RichTextField()
     author = models.ForeignKey(

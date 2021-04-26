@@ -1,10 +1,40 @@
 {% load static %}
-
-<a href="{% url 'post_detail' post.pk post.slug  %}">
-    <h3>{{ post.title }}</h3>
-</a>
-<p>{{ post.summary }}</p>
-<a href="{% url 'category' post.category.id post.category|slugify %}">{{ post.category }}</a>
-<p>Created by <a href="{% url 'user_profile' post.author.pk %}">{{ post.author.user.username }}</a> on {{ post.created_on }}</p>
-<p>{{ post.likes.count }} likes</p>
-
+<!-- "post-" extension used on classes to avoid calling bootstrap card classes -->
+<div class="post-card box-shadow-sharp">
+    <div class="post-card-circles">
+        <div class="mod-circle"></div>
+        <div class="card-avatar"></div>
+        <div class="kudos-circle"></div>
+    </div>
+    <div class="post-card-header">
+        <div class="ci-username-logo"></div>
+        <span>{{ post.author.user.username }}</span>
+    </div>
+    <div class="post-card-body">
+        <div class="post-card-title d-flex align-items-center text-center justify-content-center">
+            <h3>
+                <a class="post-card-link" href="{% url 'post_detail' post.pk post.slug  %}">
+                {{ post.title }}
+                </a>
+            </h3>
+        </div>
+        
+        <div class="summary-and-likes d-flex flex-column justify-content-between">
+            <p class="post-card-summary">{{ post.summary }}</p>
+            <p>
+                {% if post.likes.count > 0 %}
+                    <i class="far fa-thumbs-up card-likes-icon"></i>
+                    {% if post.likes.count > 99 %}
+                        <span class="likes-count">99+</span>
+                    {% else %}
+                        {{ post.likes.count }}
+                    {% endif %}
+                {% endif %}
+            </p>
+        </div>
+        
+        <div class="post-card-category">
+            <a href="{% url 'category' post.category.pk post.category.name %}">{{ post.category }}</a>
+        </div>
+    </div>
+</div>

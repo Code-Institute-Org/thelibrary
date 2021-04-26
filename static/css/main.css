@@ -427,7 +427,44 @@ Header height 100% vh minus height of the navbar.
     Post cards
 --------------------- */
 
+.post-card {
+    background-color: var(--white);
+    margin-top: 1rem;
+    padding: .7rem;
 
+}
+
+.post-card-link {
+    text-decoration: none;
+    color: var(--cta-teal);
+    transition: all ease-in-out .4s;
+}
+
+.post-card-link:hover {
+    color: var(--teal);
+}
+
+.post-card-body h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.post-card-summary {
+    font-size: .9rem;
+}
+
+.summary-and-likes {
+    height: 130px;
+}
+
+.post-card-title {
+    height: 70px;
+}
+
+.card-likes-icon {
+    color: var(--cta-blue);
+    font-size: 1.3rem;
+}
 
 /* ----------------------------------------------- */
 
