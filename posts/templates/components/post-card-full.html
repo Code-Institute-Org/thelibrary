@@ -38,7 +38,7 @@
         
         <div class="summary-and-likes d-flex flex-column justify-content-between">
             <p class="post-card-summary">{{ post.summary }}</p>
-            <p>
+            <p class="m-0">
                 {% if post.likes.count > 0 %}
                     <i class="far fa-thumbs-up card-likes-icon"></i>
                     {% if post.likes.count > 99 %}
@@ -48,10 +48,11 @@
                     {% endif %}
                 {% endif %}
             </p>
-        </div>
-        
-        <div class="post-card-category">
-            <a href="{% url 'category' post.category.pk post.category.name %}">{{ post.category }}</a>
-        </div>
+        </div>        
+    </div>
+    <div class="category-wrapper text-center">
+        <a href="{% url 'category' post.category.pk post.category.name %}">
+            <span class="post-card-category">{{ post.category }}</span>
+        </a>
     </div>
 </div>

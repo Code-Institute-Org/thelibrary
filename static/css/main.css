@@ -429,16 +429,19 @@ Header height 100% vh minus height of the navbar.
 
 .post-card {
     background-color: var(--white);
-    padding: .7rem;
     margin-top: 3rem;
+    margin-bottom: 1.6rem;
+    padding: .7rem;
     transition: all ease-in-out .4s;
 }
 
 .post-card:hover,
-.post-card:hover .card-avatar  {
+.post-card:hover .card-avatar,
+.post-card:hover .post-card-category  {
     box-shadow: 0 5px 14px 0 rgb(0 0 0 / 40%);
     -webkit-box-shadow: 0 5px 14px 0 rgb(0 0 0 / 40%);
 }
+
 
 .post-card-header {
     margin-top: 5rem;
@@ -451,12 +454,11 @@ Header height 100% vh minus height of the navbar.
 }
 
 .post-card-link:hover {
-    color: var(--teal);
+    color: var(--orange);
 }
 
 .post-card-body h3 {
     font-size: 1.2rem;
-    font-weight: bold;
 }
 
 .post-card-summary {
@@ -529,6 +531,25 @@ Header height 100% vh minus height of the navbar.
 
 .kudos-badge-bronze {background-color: #b08d57;}
 
+.post-card-category {
+    display: inline-block;
+    background-color: var(--cta-teal);
+    padding: 7px 15px;
+    transition: all ease-in-out .4s;
+}
+
+.category-wrapper > a {
+    color: white;
+    text-decoration: none;
+}
+
+.category-wrapper > a:hover .post-card-category {
+    background-color: var(--pink);
+}
+
+.category-wrapper {
+    margin-bottom: -31px;
+}
 
 /* ----------------------------------------------- */
 
