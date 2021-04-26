@@ -30,9 +30,15 @@
             
         </header>
         {% for post in recent_posts %}
-        <div class="col-12 col-md-6 col-lg-4">
+            {% if forloop.counter != recent_posts|length %}
+            <div class="col-12 col-md-6 col-lg-4">
                 {% include 'components/post-card-full.html' %}
             </div>
+            {% else %}
+            <div class="col-12 col-md-6 col-lg-4 d-lg-none">
+                {% include 'components/post-card-full.html' %}
+            </div>
+            {% endif %}
         {% endfor %}
     </section>
 
@@ -45,9 +51,15 @@
             
         </header>
         {% for post in favourite_posts %}
-        <div class="col-12 col-md-6 col-lg-4">
+            {% if forloop.counter != favourite_posts|length %}
+            <div class="col-12 col-md-6 col-lg-4">
                 {% include 'components/post-card-full.html' %}
             </div>
+            {% else %}
+            <div class="col-12 col-md-6 col-lg-4 d-lg-none">
+                {% include 'components/post-card-full.html' %}
+            </div>
+            {% endif %}
         {% endfor %}
     </section>
 
