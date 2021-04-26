@@ -36,9 +36,14 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
+                            
                             {% for category in categories_nav %}
-                            <li><a class="dropdown-item"
-                                    href="{% url 'category' category.id category|slugify %}">{{ category }}</a></li>
+                                {% if category.posts_to_category.count > 0 %}
+                                <li>
+                                    <a class="dropdown-item"
+                                        href="{% url 'category' category.id category|slugify %}">{{ category }}</a>
+                                </li>
+                                {% endif %}
                             {% endfor %}
                         </ul>
                     </li>

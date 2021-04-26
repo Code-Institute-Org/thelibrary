@@ -17,15 +17,9 @@ def home_view(request):
         status="Approved"
     ).annotate(like_count=Count('likes')).order_by('-like_count')[:5]
     
-    categories = PostCategory.objects.all()
-    items_by_category = []
-    for cat in categories:
-        items_by_category += Post.objects.filter(status="Approved", category=cat).order_by('?')[:1]
-    
     context = {
         'recent_posts': recent_posts,
-        'favourite_posts': favourite_posts,
-        'items_by_category': items_by_category
+        'favourite_posts': favourite_posts
     }
 
     return render(request, 'home/index.html', context)

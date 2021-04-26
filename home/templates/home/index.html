@@ -28,14 +28,11 @@
 {% endfor %}
 
 <h2>Search by Category</h2>
-{% for post in items_by_category %}
-    <h2><a href="{% url 'category' post.category.id post.category|slugify %}">{{ post.category }}</a></h2>
-    <a href="{% url 'post_detail' post.pk post.slug  %}">
-        <h3>{{ post.title }}</h3>
-    </a>
-    <p>{{ post.summary }}</p>
-    <p>Created by <a href="{% url 'user_profile' post.author.pk %}">{{ post.author.user.username }}</a> on {{ post.created_on }}</p>
-    <p>{{ post.likes.count }} likes</p>
+<!-- categories_nav object passed to template from posts.context_processors.py -->
+{% for category in categories_nav %}
+    {% if category.posts_to_category.count > 0 %}
+    <a class="btn btn-secondary" href="{% url 'category' category.id category.name %}">{{ category }}</a>
+    {% endif %}
 {% endfor %}
 
 {% endblock %}

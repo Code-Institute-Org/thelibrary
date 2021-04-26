@@ -87,7 +87,7 @@ class Post(models.Model):
     category = models.ForeignKey(
         PostCategory,
         on_delete=models.PROTECT,
-        related_name="post_category"
+        related_name="posts_to_category"
     )
     tags = models.ManyToManyField(
         PostTag, related_name='post_tags', blank=True
