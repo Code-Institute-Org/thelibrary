@@ -57,8 +57,14 @@ body {
     Box-shadows
 --------------------- */
 
-.box-shadow {
+.box-shadow-sharp {
     box-shadow: 0 2px 9px 0 rgb(0 0 0 / 20%);
+    -webkit-box-shadow: 0 2px 9px 0 rgb(0 0 0 / 20%);
+}
+
+.box-shadow-light-spread {
+    box-shadow: 0 0 20px 0 rgb(216 216 216 / 50%);
+    -webkit-box-shadow: 0 0 20px 0 rgb(216 216 216 / 50%);
 }
 
 /* ---------------------
@@ -372,6 +378,18 @@ See media queries for other screen sizes.
     color: var(--white);
 }
 
+.btn-teal {
+    background-color: var(--white);
+    color: var(--cta-teal);
+    border: 3px solid var(--cta-teal);
+    transition: all ease-in-out .4s;
+}
+
+.btn-teal:hover {
+    background-color: var(--cta-teal);
+    color: var(--white);
+}
+
 /* ---------------------
     Home page
 --------------------- */
@@ -393,6 +411,25 @@ Header height 100% vh minus height of the navbar.
 .hero-light-overlay {
     background-color: rgba(245, 245, 245, 0.9);
 }
+
+.list-view-header {
+    background-color: var(--white);
+    padding: 20px 30px;
+    border-radius: 10px;
+}
+
+.home-listview-heading {
+    font-size: 2rem;
+    font-weight: 300;
+}
+
+/* ---------------------
+    Post cards
+--------------------- */
+
+
+
+/* ----------------------------------------------- */
 
 /* draft css to get main functionality working,
 will be adjusted for proper layout later */

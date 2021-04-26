@@ -22,28 +22,50 @@
 
 <main class="container">
     <section class="row">
-        <header class="col-12">
-            <h2>Recent posts</h2>
+        <header class="list-view-header box-shadow-light-spread mt-2 col-12 d-flex justify-content-between">
+            <h2 class="m-0 home-listview-heading">Recent posts</h2>
+            <div class="d-inline-block">
+                <a href="{% url 'all_posts' %}" class="btn btn-teal">See all</a>
+            </div>
+            
         </header>
+        {% for post in recent_posts %}
         <div class="col-12 col-md-6 col-lg-4 col-xl-3">
-            {% for post in recent_posts %}
                 {% include 'components/post-card-full.html' %}
+            </div>
+        {% endfor %}
+    </section>
+
+    <section class="row">
+        <header class="list-view-header box-shadow-light-spread mt-2 col-12 d-flex justify-content-between">
+            <h2 class="m-0 home-listview-heading">Popular posts</h2>
+            <div class="d-inline-block">
+                <a href="#" class="btn btn-teal">See all</a>
+            </div>
+            
+        </header>
+        {% for post in favourite_posts %}
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                {% include 'components/post-card-full.html' %}
+            </div>
+        {% endfor %}
+    </section>
+
+    <section class="row list-view-header box-shadow-light-spread mt-2">
+        <header class="col-12 mb-4">
+            <h2 class="m-0 home-listview-heading">Search by Category</h2>
+        </header>
+        <div class="col-12">
+            <!-- categories_nav object passed to template from posts.context_processors.py -->
+            {% for category in categories_nav %}
+                {% if category.posts_to_category.count > 0 %}
+                <a class="btn btn-teal m-4 ms-0" href="{% url 'category' category.id category.name %}">{{ category }}</a>
+                {% endif %}
             {% endfor %}
         </div>
     </section>
 </main>
 
-<h2>Popular posts</h2>
-{% for post in favourite_posts %}
-    {% include 'components/post-card-full.html' %}
-{% endfor %}
 
-<h2>Search by Category</h2>
-<!-- categories_nav object passed to template from posts.context_processors.py -->
-{% for category in categories_nav %}
-    {% if category.posts_to_category.count > 0 %}
-    <a class="btn btn-secondary m-2" href="{% url 'category' category.id category.name %}">{{ category }}</a>
-    {% endif %}
-{% endfor %}
 
 {% endblock %}
