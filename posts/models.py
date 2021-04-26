@@ -16,7 +16,7 @@ class PostTag(models.Model):
 
 
 class PostCategory(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=20)
 
     def __str__(self):
         return self.name
