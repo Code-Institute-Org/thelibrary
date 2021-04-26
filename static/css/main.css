@@ -429,10 +429,17 @@ Header height 100% vh minus height of the navbar.
 
 .post-card {
     background-color: var(--white);
-    max-width: 350px;
+    max-width: 410px;
     margin: 3rem auto 1.6rem auto;
     padding: .7rem;
     transition: all ease-in-out .4s;
+    position: relative;
+}
+
+.likes {
+    position: absolute;
+    top: 15px;
+    left: 15px;
 }
 
 .post-card:hover,
@@ -463,10 +470,6 @@ Header height 100% vh minus height of the navbar.
 
 .post-card-summary {
     font-size: .9rem;
-}
-
-.summary-and-likes {
-    height: 130px;
 }
 
 .post-card-title {
@@ -575,7 +578,7 @@ will be adjusted for proper layout later */
 --------------------- */
 
 
-@media (min-width: 380px) {
+@media (min-width: 370px) {
     .navbar-avatar {
         margin-left: 1rem;
     }
@@ -595,13 +598,21 @@ will be adjusted for proper layout later */
     #home-header > .row {
         min-height: calc(100vh - 54.4px);
     }
-    
+    .post-card {
+        max-width: 100%;
+    }
+    .summary-and-likes {
+        height: 120px;
+    }
 }
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) { 
     #footer-push-down {
         min-height: calc(100vh - 361.19px);
+    }
+    .summary-and-likes {
+        height: 140px;
     }
 }
 
@@ -610,11 +621,17 @@ will be adjusted for proper layout later */
     #footer-push-down {
         min-height: calc(100vh - 337.19px);
     }
+    .summary-and-likes {
+        height: 120px;
+    }
 }
 
 /* XX-Large devices (larger desktops, 1400px and up) */
 @media (min-width: 1400px) {
     #footer-push-down {
         min-height: calc(100vh - 337.19px);
+    }
+    .summary-and-likes {
+        height: 100px;
     }
 }
