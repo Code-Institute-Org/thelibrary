@@ -3,26 +3,35 @@
 
 {% block content %}
 
-<header id="home-header" class="container">
-    <div class="row">
-        <div class="col-12">
-            <h1 class="display-1">The Library</h1>
-            <p class="display-4">A repository of supporting resources<br class="d-none d-xl-block">
-                for Code Institute students. </p>
-            <p class="display-6">Created for the community,<br>
-                by the community.</p>
-            <p class="lead">(And a few enthusiastic staff members)</p>
-        </div>
+<div id="home-hero">
+    <div class="hero-light-overlay">
+        <header id="home-header" class="container">
+            <div class="row d-flex align-items-center">
+                <div class="col-12">
+                    <h1 class="display-1 mb-4">The Library</h1>
+                    <h2 class="display-4 mb-4">A repository of supporting resources<br class="d-none d-xl-block">
+                        for Code Institute students. </h2>
+                    <p class="display-6">Created for the community,<br>
+                        by the community.</p>
+                    <p class="p-larger">(And a few enthusiastic staff members)</p>
+                </div>
+            </div>
+        </header>
     </div>
-</header>
+</div>
 
-<h1>Home</h1>
-
-<h2>Recent posts</h2>
-
-{% for post in recent_posts %}
-    {% include 'components/post-card-full.html' %}
-{% endfor %}
+<main class="container">
+    <section class="row">
+        <header class="col-12">
+            <h2>Recent posts</h2>
+        </header>
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+            {% for post in recent_posts %}
+                {% include 'components/post-card-full.html' %}
+            {% endfor %}
+        </div>
+    </section>
+</main>
 
 <h2>Popular posts</h2>
 {% for post in favourite_posts %}

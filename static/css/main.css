@@ -46,6 +46,14 @@ body {
 }
 
 /* ---------------------
+    Fonts and text
+--------------------- */
+
+.p-larger {
+    font-size: 1.7rem;
+}
+
+/* ---------------------
     Box-shadows
 --------------------- */
 
@@ -370,11 +378,21 @@ See media queries for other screen sizes.
 /*
 Header height 100% vh minus height of the navbar.
 */
-#home-header {
-    min-height: calc(100vh - 591.2px);
+#home-header,
+#home-header > .row {
+    min-height: calc(100vh - 103px);
 }
 
+/* image by mentatdgt https://www.pexels.com/photo/library-photo-1319854/ */
+#home-hero {
+    background-image: url('../img/bg-library.png');
+    height: 100%;
+    background-size: cover;
+}
 
+.hero-light-overlay {
+    background-color: rgba(245, 245, 245, 0.9);
+}
 
 /* draft css to get main functionality working,
 will be adjusted for proper layout later */
@@ -408,7 +426,8 @@ will be adjusted for proper layout later */
     #footer-push-down {
         min-height: calc(100vh - 385.19px);
     }
-    #home-header {
+    #home-header,
+    #home-header > .row {
         min-height: calc(100vh - 54.4px);
     }
     

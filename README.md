@@ -54,4 +54,8 @@ pip install django-allauth
 
 ## Credits
 
+### code
 - Code to animate notification bell in the navbar by [Fazlur Rahman](https://codepen.io/fazlurr/pen/xeXpqx)
+
+### images
+- Library background image by [mentatdgt on Pexels.com](https://www.pexels.com/photo/library-photo-1319854/)
