@@ -1,26 +1,30 @@
 {% load static %}
 <!-- "post-" extension used on classes to avoid calling bootstrap card classes -->
 <div class="post-card box-shadow-sharp">
-    <div class="post-card-circles">
-        <div class="mod-circle"></div>
-        <a href="{% url 'user_profile' post.author.user.pk %}">
+    <div class="post-card-circles-wrapper">
+        <div class="post-card-circles">
             {% if post.author.profile_pic %}
-                <div class="card-avatar" title="Your account"
+                <div class="card-avatar box-shadow-sharp"
                     style="background-image: url('{{ post.author.profile_pic.url }}');"></div>
                 </a>
             {% else %}
-                <div class="card-avatar" title="Your account"
+                <div class="card-avatar box-shadow-sharp" title="Your account"
                     style="background-image: url('/media/images/profiles/default-profile-pic.png');"></div>
             {% endif %}
-        </a>
-        <div class="kudos-circle"></div>
+            <!-- kudos badge class returned from kudos_badge method of UserProfile model-->
+            <div class="card-kudos-circle card-mini-circle {{ post.author.kudos_badge }} box-shadow-sharp"
+                title="{{ post.author.kudos_badge }}">
+                <i class="far fa-star"></i>
+            </div>
+        </div>
     </div>
+    
     <div class="post-card-header text-center">
         <p>
             {% if post.author.user.is_staff %}
             <span class="ci-username-logo"></span>
             {% endif %}
-            {{ post.author.user.username }}
+            <a href="{% url 'user_profile' post.author.user.pk %}">{{ post.author.user.username }}</a>
         </p>
     </div>
     <div class="post-card-body">
