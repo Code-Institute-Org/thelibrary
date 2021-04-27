@@ -213,7 +213,7 @@ class CategoryView(LoginRequiredMixin, SingleObjectMixin, ListView):
         return context
 
     def get_queryset(self):
-        return self.object.post_category.all()
+        return self.object.posts_to_category.all()
 
 
 class AuthorPostsView(LoginRequiredMixin, SingleObjectMixin, ListView):
