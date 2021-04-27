@@ -749,12 +749,16 @@ Header height 100% vh minus height of the navbar.
     -webkit-box-shadow: 0 5px 14px 0 rgb(0 0 0 / 40%);
 }
 
+/*
+Background color #eeeeee matches inline style added
+by Rich Text Editor for creating posts.
+*/
 #post-body pre,
 #post-body code {
     font-family: 'Courier Prime', monospace;
     font-size: 1.1rem;
     color: var(--cta-orange);
-    background-color: var(--bg-grey);
+    background-color: #eeeeee;
     padding: 3px;
 }
 
