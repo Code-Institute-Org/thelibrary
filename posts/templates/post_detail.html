@@ -191,14 +191,6 @@
 
 <p>Tags: {% for tag in post.tags.all %}{{ tag }} {% endfor %}</p>
 
-<p>Is the content of this post inappropriate or outdated? Please let us know!</p>
-<!-- Hide this form and have it pop out as a modal if user clicks a "flag" button -->
-<form action="{% url 'post_detail' post.pk post.slug %}" method="POST">
-    {% csrf_token %}
-    {{ form }}
-    <button type="submit">Send</button>
-</form>
-
 <!-- Show edit/delete buttons for author -->
 {% if post.author.user == user %}
 <a href="{% url 'edit_post' post.pk post.slug %}">Edit post</a>
