@@ -670,7 +670,7 @@ Header height 100% vh minus height of the navbar.
     font-size: 1.1rem;
     color: var(--cta-orange);
     background-color: var(--bg-grey);
-    padding: 8px;
+    padding: 3px;
 }
 
 #post-body h1,
