@@ -75,6 +75,10 @@ body {
     margin-left: auto;
 }
 
+.mt--1 {
+    margin-top: -10px;
+}
+
 /* ---------------------
     Navbar
 --------------------- */
@@ -479,7 +483,7 @@ Header height 100% vh minus height of the navbar.
 
 .post-card:hover,
 .post-card:hover .card-avatar,
-.post-card:hover .category  {
+.post-card:hover .category {
     box-shadow: 0 5px 14px 0 rgb(0 0 0 / 40%);
     -webkit-box-shadow: 0 5px 14px 0 rgb(0 0 0 / 40%);
 }
@@ -756,6 +760,53 @@ figure figcaption {
     margin-top: .75rem;
 }
 
+.profile-link-wrapper {
+    padding: 1rem;
+    position: relative;
+    margin-bottom: -47px;
+}
+
+.profile-link-wrapper > a > .category {
+    color: white;
+}
+
+.profile-link-wrapper > a > .category:hover {
+    background-color: var(--cta-teal);
+}
+
+#post-author-info .author-social-icons i {
+    font-size: 26px;
+    color: var(--navy);
+    transition: all ease-in-out .4s;
+    margin: 0 .5rem;
+}
+
+#post-author-info .author-social-icons i:hover {
+    color: var(--orange);
+}
+
+/*
+clip-path allows us to remove a box-shadow from
+a single side of the box. This has been used to allow
+us to put two boxes together for the author info box
+on the post_detail page.
+*/
+#author-side-bio {
+    margin-top: 3rem;
+    margin-bottom: 1.6rem;
+    z-index: 3;
+    border-left: 2px dashed var(--grey);
+    clip-path: inset(-25px -25px -25px 0px);
+    padding: 1rem;
+    position: relative;
+}
+
+#author-side-bio .profile-link-wrapper {
+    position: absolute;
+    bottom: 0;
+    right: 20px;
+}
+
 /* ----------------------------------------------- */
 
 /* draft css to get main functionality working,
@@ -800,6 +851,17 @@ will be adjusted for proper layout later */
     }
     .summary-and-likes {
         height: 120px;
+    }
+    #post-author-info {
+        clip-path: inset(-40px 0px -40px -40px);
+    }
+    /*
+    Overrides hover that was only affecting one side of the
+    author info card for med screens and higher. After many
+    */
+    #post-author-info:hover {
+        box-shadow: 0 2px 9px 0 rgb(0 0 0 / 20%);
+        -webkit-box-shadow: 0 2px 9px 0 rgb(0 0 0 / 20%);
     }
 }
 

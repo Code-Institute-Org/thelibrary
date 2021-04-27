@@ -126,15 +126,91 @@
                 <figcaption>Click on a thumbnail to enlarge</figcaption>
             </figure>
         {% endif %}
-        <div class="text-end">
+        <div class="text-end col-12">
             <!-- Show edit/delete buttons for author -->
             {% if post.author.user == user %}
                 <a href="{% url 'edit_post' post.pk post.slug %}"
                     class="btn btn-orange btn-thin-border">Edit post</a>
                 <button class="deleteBtn btn btn-orange btn-thin-border" data-post-pk="{{ post.pk }}">Delete post</button>
             {% endif %}
-            <div class="dotted-line col-12 my-4"></div>
         </div>
+
+        <footer class="col-12">
+            <!-- 
+                "post-" extension used on classes to avoid calling bootstrap card classes
+            -->
+            <div class="row">
+                <div class="container-fluid" id="author-card">
+                    <div class="row">
+                        <div class="col-12 col-md-4 p-md-0">
+                            <address id="post-author-info" class="post-card box-shadow-sharp">
+                                <div class="post-card-circles-wrapper">
+                                    <div class="post-card-circles">
+                                        {% if post.author.profile_pic %}
+                                            <div class="card-avatar box-shadow-sharp"
+                                                style="background-image: url('{{ post.author.profile_pic.url }}');"></div>
+                                            </a>
+                                        {% else %}
+                                            <div class="card-avatar box-shadow-sharp" title="Your account"
+                                                style="background-image: url('/media/images/profiles/default-profile-pic.png');"></div>
+                                        {% endif %}
+                                        <!-- kudos badge class returned from kudos_badge method of UserProfile model-->
+                                        <div class="card-kudos-circle card-mini-circle {{ post.author.kudos_badge }} box-shadow-sharp"
+                                            title="{{ post.author.kudos_badge }}">
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="post-card-header text-center">
+                                    <p>
+                                        {% if post.author.user.is_staff %}
+                                        <span class="ci-username-logo"></span>
+                                        {% endif %}
+                                        <a href="{% url 'user_profile' post.author.user.pk %}">{{ post.author.user.username }}</a>
+                                    </p>
+                                </div>
+                                <div class="post-card-body">
+                                    <div class="text-center">
+                                        {% if post.author.user.first_name and post.author.user.last_name %}
+                                            <h3 class="mt--1">{{ post.author.user.first_name }} {{ post.author.user.last_name }}</h3>
+                                        {% endif %}
+                                        <p class="post-card-summary d-md-none">{{ post.author.bio }}</p>
+                                        <div class="author-social-icons">
+                                            {% if post.author.linkedin %}
+                                                <a href="{{ post.author.linkedin }}" 
+                                                    aria-label="Visit {{ post.author.user.username }}'s linkedin profile (opens in a new tab)"
+                                                    target="_blank" rel="noopener">
+                                                    <i class="fab fa-linkedin"></i></a>
+                                            {% endif %}
+
+                                            {% if post.author.linkedin %}
+                                                <a href="{{ post.author.github }}" 
+                                                    aria-label="Visit {{ post.author.user.username }}'s github profile (opens in a new tab)"
+                                                    target="_blank" rel="noopener">
+                                                    <i class="fab fa-github-square"></i></a>
+                                            {% endif %}
+                                        </div>
+                                    </div>        
+                                </div>
+                                <div class="profile-link-wrapper text-center">
+                                    <a href="{% url 'user_profile' post.author.pk %}">
+                                        <span class="category">Visit Profile</span>
+                                    </a>
+                                </div>
+                            </address>
+                        </div>
+                        <div id="author-side-bio" 
+                            class="d-none col-md-8 box-shadow-sharp d-md-flex align-items-center text-center">
+                            <p class="post-card-summary">{{ post.author.bio }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="dotted-line col-12 my-5"></div>
+        </footer>
+
         <div id="bottom-post-btns" class="col-12">
             <form action="{% url 'like_post' post.pk %}" method="POST">
                 {% csrf_token %}
