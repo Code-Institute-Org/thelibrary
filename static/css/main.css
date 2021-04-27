@@ -14,6 +14,7 @@ Code Institute brand
     --yellow: #efb920;
     --pink: #ff5a60;
     --teal: #23bbbb;
+    --t-teal: rgba(35, 187, 187, 0.4);
     --lightgrey: #fafafa;
     --grey: #aaaaaa;
     --darkgrey: #4a4a4f;
@@ -572,6 +573,7 @@ Header height 100% vh minus height of the navbar.
 #post-detail {
     background-color: var(--white);
     padding: 2rem;
+    border-radius: 8px;
 }
 
 #post-detail-header {
@@ -636,6 +638,55 @@ Header height 100% vh minus height of the navbar.
     margin-top: -15px;
 }
 
+#editors-note {
+    padding: 1rem;
+    background-color: var(--t-teal);
+    color: var(--navy);
+}
+
+#editors-note > h2 {
+    font-size: 1.3rem;
+}
+
+#editors-note > p {
+    font-size: .9rem;
+    margin: 0;
+}
+
+.post-image {
+    width: 100%;
+    margin-top: 1.5rem;
+    transition: all ease-in-out .4s;
+}
+
+.post-image:hover {
+    box-shadow: 0 5px 14px 0 rgb(0 0 0 / 40%);
+    -webkit-box-shadow: 0 5px 14px 0 rgb(0 0 0 / 40%);
+}
+
+#post-body pre,
+#post-body code {
+    font-family: 'Courier Prime', monospace;
+    font-size: 1.1rem;
+    color: var(--cta-orange);
+    background-color: var(--bg-grey);
+    padding: 8px;
+}
+
+#post-body h1,
+#post-body h2,
+#post-body h3,
+#post-body h4,
+#post-body h5,
+#post-body h6 {
+    color: var(--cta-teal)
+}
+
+figure figcaption {
+    text-align: center;
+    margin-top: 2rem;
+}
+
 /* ----------------------------------------------- */
 
 /* draft css to get main functionality working,
@@ -646,11 +697,6 @@ will be adjusted for proper layout later */
     height: 100px;
     background-size: cover;
     border-radius: 50%;
-}
-
-.post-image {
-    width: 400px;
-    margin: 15px;
 }
 
 
