@@ -704,6 +704,39 @@ figure figcaption {
     margin-top: 2rem;
 }
 
+#flagModal label {
+    margin-bottom: .5rem;
+}
+
+#flagModal form {
+    position: relative;
+    height: 150px;
+}
+
+#flagModal form button {
+    display: block;
+    padding: .4rem .8rem;
+    border: 1px solid var(--cta-orange);
+    border-radius: 4px;
+    margin-bottom: .5rem;
+    color: var(--cta-orange);
+    background-color: var(--white);
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    transition: all ease-in-out .4s;
+}
+
+#flagModal form button:hover {
+    color: var(--white);
+    background-color: var(--cta-orange);
+}
+
+.modal-line {
+    border-top: 1px solid #dee2e6;
+    margin-top: .75rem;
+}
+
 /* ----------------------------------------------- */
 
 /* draft css to get main functionality working,

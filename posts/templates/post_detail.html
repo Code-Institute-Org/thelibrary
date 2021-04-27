@@ -160,6 +160,31 @@
                 </button>
             </form>
 
+            <button id="flag" type="button" data-bs-toggle="modal" data-bs-target="#flagModal"
+                class="post-icon btn blue-btn-outline me-2 mb-2 mb-sm-auto"
+                title="Flag this post">
+                <i class="far fa-flag"></i>
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" id="flagModal" tabindex="-1" aria-labelledby="flagModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="flagModalLabel">Modal title</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{% url 'post_detail' post.pk post.slug %}" method="POST" class="form">
+                                {% csrf_token %}
+                                {{ form }}
+                                <div class="modal-line"></div>
+                                <button type="submit">Send</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </article>
@@ -170,7 +195,7 @@
 <!-- Hide this form and have it pop out as a modal if user clicks a "flag" button -->
 <form action="{% url 'post_detail' post.pk post.slug %}" method="POST">
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ form }}
     <button type="submit">Send</button>
 </form>
 
