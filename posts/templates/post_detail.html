@@ -129,7 +129,7 @@
         <div id="bottom-post-btns" class="col-12">
             <form action="{% url 'like_post' post.pk %}" method="POST">
                 {% csrf_token %}
-                <button class="post-icon btn blue-btn-outline me-2 mb-2 mb-sm-auto"
+                <button class="post-icon btn blue-btn-outline me-2 mb-2"
                     type="submit">
                     {% if liked %}
                         <i class="fas fa-thumbs-up"></i>
@@ -149,7 +149,7 @@
             
             <form action="{% url 'bookmark_post' post.pk %}" method="POST">
                 {% csrf_token %}
-                <button class="post-icon btn blue-btn-outline me-2 mb-2 mb-sm-auto"
+                <button class="post-icon btn blue-btn-outline me-2 mb-2"
                     type="submit">
                     {% if bookmarked %}
                         <i class="fas fa-bookmark"></i>
@@ -161,7 +161,7 @@
             </form>
 
             <button id="flag" type="button" data-bs-toggle="modal" data-bs-target="#flagModal"
-                class="post-icon btn blue-btn-outline me-2 mb-2 mb-sm-auto"
+                class="post-icon btn blue-btn-outline me-2 mb-2"
                 title="Flag this post">
                 <i class="far fa-flag"></i>
             </button>
@@ -184,7 +184,16 @@
                     </div>
                 </div>
             </div>
-
+        </div>
+        <div class="col-12">
+            <!-- 
+                JS on this button sends user back to the
+                previous entry in their browser history
+            -->
+            <button id="back-btn" type="button" class="btn btn-outline-teal me-2 mb-2">
+                <i class="fas fa-chevron-left"></i>
+                <span>Back</span>
+            </button>
         </div>
     </div>
 </article>

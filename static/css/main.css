@@ -391,6 +391,13 @@ See media queries for other screen sizes.
     color: var(--white);
 }
 
+.btn-outline-teal {
+    background-color: var(--white);
+    color: var(--cta-teal);
+    border: 3px solid var(--cta-teal);
+    transition: all ease-in-out .4s;
+}
+
 .btn-orange {
     background-color: var(--white);
     color: var(--cta-orange);

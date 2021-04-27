@@ -1,11 +1,3 @@
-let deleteBtns = document.getElementsByClassName('deleteBtn');
-let postID = deleteBtns[0].getAttribute('data-post-pk');
-
-for (let i = 0; i < deleteBtns.length; i++) {
-    deleteBtns[i].addEventListener('click', function () {
-        checkDelete(postID);
-    });
-}
 
 /**
  * 
@@ -28,3 +20,21 @@ function checkDelete(postID) {
         return false
     }
 };
+
+function goBack() {
+    window.history.back();
+}
+
+let backBtn = document.getElementById('back-btn');
+let deleteBtns = document.getElementsByClassName('deleteBtn');
+let postID = deleteBtns[0].getAttribute('data-post-pk');
+
+for (let i = 0; i < deleteBtns.length; i++) {
+    deleteBtns[i].addEventListener('click', function () {
+        checkDelete(postID);
+    });
+}
+
+backBtn.addEventListener('click', function() {
+    goBack();
+})
