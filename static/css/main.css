@@ -422,6 +422,10 @@ See media queries for other screen sizes.
     color: var(--white);
 }
 
+.btn-thin-border {
+    border-width: 1px!important;
+}
+
 /* ---------------------
     Home page
 --------------------- */
