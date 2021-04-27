@@ -594,20 +594,38 @@ Header height 100% vh minus height of the navbar.
 }
 
 .post-icon {
-    color: var(--cta-blue);
     border: none;
     background-color: transparent;
+}
+
+.post-icon i {
+    color: var(--cta-blue);
     font-size: 1.5rem;
+    transition: all ease-in-out .4s;
 }
 
 .bookmark-btn {
     margin-right: 5px;
 }
 
-.post-icon:focus {
-    border: none;
+.blue-btn-outline {
+    border: 3px solid var(--cta-blue);
+    margin-right: 1rem;
+    color: var(--cta-blue);
 }
 
+.blue-btn-outline > span {
+    vertical-align: text-bottom;
+    padding-left: 7px;
+}
+
+.blue-btn-outline:hover,
+.blue-btn-outline:hover i {
+    background-color: var(--cta-blue);
+    color: white;
+}
+
+#bottom-post-btns > form,
 #post-icons > form {
     display: inline-block;
 }

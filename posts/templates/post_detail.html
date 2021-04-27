@@ -126,22 +126,43 @@
                 <figcaption>Click on a thumbnail to enlarge</figcaption>
             </figure>
         {% endif %}
+        <div id="bottom-post-btns" class="col-12">
+            <form action="{% url 'like_post' post.pk %}" method="POST">
+                {% csrf_token %}
+                <button class="post-icon btn blue-btn-outline"
+                    type="submit">
+                    {% if liked %}
+                        <i class="fas fa-thumbs-up"></i>
+                    {% else %}
+                        <i class="far fa-thumbs-up"></i>
+                    {% endif %}
+                    <span>
+                        {% if total_likes > 99 %}
+                            99+
+                        {% else %}
+                            {{ total_likes }}
+                        {% endif %}
+                    </span>
+                    <span>Like{% if liked %}d{% endif %}</span>
+                </button>
+            </form>
+            
+            <form action="{% url 'bookmark_post' post.pk %}" method="POST">
+                {% csrf_token %}
+                <button class="post-icon btn blue-btn-outline"
+                    type="submit">
+                    {% if bookmarked %}
+                        <i class="fas fa-bookmark"></i>
+                    {% else %}
+                        <i class="far fa-bookmark"></i>
+                    {% endif %}
+                    <span>Bookmark{% if bookmarked %}ed{% endif %}</span>
+                </button>
+            </form>
+
+        </div>
     </div>
 </article>
-
-
-
-<form action="{% url 'like_post' post.pk %}" method="POST">
-    {% csrf_token %}
-    <button class="btn btn-sm {% if liked %} btn-primary {% else %} btn-secondary {% endif %}"
-        type="submit">Like</button> - {{ total_likes }} likes
-</form>
-
-<form action="{% url 'bookmark_post' post.pk %}" method="POST">
-    {% csrf_token %}
-    <button class="btn btn-sm {% if bookmarked %} btn-primary {% else %} btn-secondary {% endif %}"
-        type="submit">Bookmark</button>
-</form>
 
 <p>Tags: {% for tag in post.tags.all %}{{ tag }} {% endfor %}</p>
 
