@@ -455,7 +455,7 @@ Header height 100% vh minus height of the navbar.
 
 .post-card:hover,
 .post-card:hover .card-avatar,
-.post-card:hover .post-card-category  {
+.post-card:hover .category  {
     box-shadow: 0 5px 14px 0 rgb(0 0 0 / 40%);
     -webkit-box-shadow: 0 5px 14px 0 rgb(0 0 0 / 40%);
 }
@@ -545,7 +545,7 @@ Header height 100% vh minus height of the navbar.
 
 .kudos-badge-bronze {background-color: #b08d57;}
 
-.post-card-category {
+.category {
     display: inline-block;
     background-color: var(--pink);
     padding: 7px 15px;
@@ -557,7 +557,7 @@ Header height 100% vh minus height of the navbar.
     text-decoration: none;
 }
 
-.category-wrapper > a:hover .post-card-category {
+.category-wrapper > a:hover .category {
     background-color: var(--cta-teal);
 }
 
@@ -614,6 +614,26 @@ Header height 100% vh minus height of the navbar.
     position: absolute;
     right: 1rem;
     bottom: 1rem;
+}
+
+#post-detail .category-wrapper {
+    margin: 1rem 0 0 0;
+    padding: 1rem;
+    text-align: center;
+    position: relative;
+}
+
+.category-line {
+    border-bottom: 2px dashed var(--grey);
+    margin-bottom: -13px;
+    max-width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#post-detail .category {
+    display: inline-block;
+    margin-top: -15px;
 }
 
 /* ----------------------------------------------- */

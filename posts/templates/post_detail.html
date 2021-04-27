@@ -39,8 +39,8 @@
                     Updated: <time>{{ post.updated_on|date }}</time>
                 {% endif %}
             </div>
-            <div id="post-icons">
 
+            <div id="post-icons">
                 <!-- bookmark icon shows solid if the logged in user has bookmarked the post -->
                 <form action="{% url 'bookmark_post' post.pk %}" method="POST">
                     {% csrf_token %}
@@ -63,10 +63,21 @@
                         {% else %}
                             <i class="far fa-thumbs-up"></i>
                         {% endif %}
-                    </button> {{ total_likes }}
+                    </button> 
+                    {% if total_likes > 99 %}
+                        99+
+                    {% else %}
+                        {{ total_likes }}
+                    {% endif %}
                 </form>
             </div>
         </header>
+        <div class="category-wrapper">
+            <div class="category-line"></div>
+            <a href="{% url 'category' post.category.pk post.category.name %}">
+                <span class="category">{{ post.category }}</span>
+            </a>
+        </div>
         <aside class="col-12">
             {% if post.editors_note %}
             <div id="editors-note" class="col-12">
