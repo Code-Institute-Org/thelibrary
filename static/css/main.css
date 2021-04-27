@@ -774,6 +774,10 @@ figure figcaption {
     background-color: var(--cta-teal);
 }
 
+#author-card {
+    max-width: 700px;
+}
+
 #post-author-info .author-social-icons i {
     font-size: 26px;
     color: var(--navy);
