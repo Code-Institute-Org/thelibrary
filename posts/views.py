@@ -13,7 +13,7 @@ from django.views.generic.detail import SingleObjectMixin
 from django.urls import reverse_lazy
 from users.models import User, UserProfile
 from .forms import FlagForm
-from .models import Post, PostCategory, PostFlag
+from .models import Post, PostCategory, PostFlag, PostTag
 
 
 class AllPostsView(LoginRequiredMixin, ListView):
@@ -231,6 +231,23 @@ class AuthorPostsView(LoginRequiredMixin, SingleObjectMixin, ListView):
 
     def get_queryset(self):
         return self.object.userprofile.posts.all()
+
+
+class TagPostsView(LoginRequiredMixin, SingleObjectMixin, ListView):
+    paginate_by = 4
+    template_name = 'post_by_tag.html'
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object(queryset=PostTag.objects.all())
+        return super().get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['tag'] = self.object
+        return context
+
+    def get_queryset(self):
+        return self.object.post_tags.all()
     
 
 @login_required
