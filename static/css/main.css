@@ -651,6 +651,16 @@ Header height 100% vh minus height of the navbar.
     margin: 0;
 }
 
+.author > a {
+    color: var(--cta-teal);
+    text-decoration: none;
+    transition: all ease-in-out .4s;
+}
+
+.author > a:hover {
+    color: var(--cta-orange);
+}
+
 .post-info-separator {
     padding: 0 10px;
 }
