@@ -182,7 +182,13 @@
                                         {% if post.author.user.first_name and post.author.user.last_name %}
                                             <h3 class="mt--1">{{ post.author.user.first_name }} {{ post.author.user.last_name }}</h3>
                                         {% endif %}
-                                        <p class="post-card-summary d-md-none">{{ post.author.bio }}</p>
+                                        <p class="post-card-summary d-md-none">
+                                            {% if post.author.bio %}
+                                                {{ post.author.bio }}
+                                            {% else %}
+                                                This author hasn't written a bio yet
+                                            {% endif %}
+                                        </p>
                                         <div class="author-social-icons">
                                             {% if post.author.linkedin %}
                                                 <a href="{{ post.author.linkedin }}" 
@@ -209,7 +215,13 @@
                         </div>
                         <div id="author-side-bio" 
                             class="d-none col-md-8 box-shadow-sharp d-md-flex align-items-center text-center">
-                            <p class="post-card-summary">{{ post.author.bio }}</p>
+                            <p class="post-card-summary mx-auto">
+                                {% if post.author.bio %}
+                                    {{ post.author.bio }}
+                                {% else %}
+                                    This author hasn't written a bio yet
+                                {% endif %}
+                            </p>
                         </div>
                     </div>
                 </div>
