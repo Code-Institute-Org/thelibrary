@@ -13,12 +13,72 @@
 {% endblock %}
 
 {% block content %}
-    
-    {% if post.editors_note %}
-    <strong>{{ post.editors_note }}</strong>
-    {% endif %}
 
-    <h1>{{ post.title }}</h1>
+<article id="post-detail" class="container mt-2">
+    <div class="row">
+        <header id="post-detail-header" class="col-12">
+            <h1>{{ post.title }}</h1>
+            <div class="byline">
+                <address class="author d-inline-block">Written by 
+                    {% if post.author.user.is_staff %}
+                        <span class="ci-username-logo"></span>
+                    {% endif %}
+                    <a rel="author" href="{% url 'user_profile' post.author.pk %}">
+                        {{ post.author.user.username }}
+                    </a>
+                </address> 
+                <!-- 
+                    on small screens show author, published and updated dates
+                    on their own lines. On larger screens show them all on one
+                    line separated by a | 
+                -->
+                <span class="d-none d-lg-inline post-info-separator">|</span><br class="d-lg-none">
+                Published: <time>{{ post.created_on|date }}</time> 
+                {% if post.updated_on %}
+                    <span class="d-none d-lg-inline post-info-separator">|</span><br class="d-lg-none">
+                    Updated: <time>{{ post.updated_on|date }}</time>
+                {% endif %}
+            </div>
+            <div id="post-icons">
+
+                <!-- bookmark icon shows solid if the logged in user has bookmarked the post -->
+                <form action="{% url 'bookmark_post' post.pk %}" method="POST">
+                    {% csrf_token %}
+                    <button class="bookmark-btn post-icon" type="submit" 
+                        title="{% if bookmarked %}Remove this post from bookmarks{% else %}Bookmark this post{% endif %}">
+                        {% if bookmarked %}
+                            <i class="fas fa-bookmark"></i>
+                        {% else %}
+                            <i class="far fa-bookmark"></i>
+                        {% endif %}
+                    </button>
+                </form>
+
+                <!-- Like icon also shows hollow or solid depending on status -->
+                <form action="{% url 'like_post' post.pk %}" method="POST">
+                    {% csrf_token %}
+                    <button class="like-btn post-icon" type="submit" title="{% if liked %}Unlike this post{% else %}Like this post{% endif %}">
+                        {% if liked %}
+                            <i class="fas fa-thumbs-up"></i>
+                        {% else %}
+                            <i class="far fa-thumbs-up"></i>
+                        {% endif %}
+                    </button> {{ total_likes }}
+                </form>
+            </div>
+        </header>
+        <aside class="col-12">
+            {% if post.editors_note %}
+            <div id="editors-note" class="col-12">
+                <strong>Editors note: {{ post.editors_note }}</strong>
+            </div>
+        {% endif %}
+        </aside>
+    </div>
+</article>
+
+Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, est odio minus repudiandae numquam vel placeat. Officia quisquam quos amet natus culpa nihil veritatis quibusdam laborum repudiandae adipisci, nisi voluptate.
+    
     
     <p>Author username: <a href="{% url 'user_profile' post.author.pk %}">{{ post.author.user.username }}</a> | Published: {{ post.created_on|date }}</p>   
     {% if post.updated_on %}
@@ -80,7 +140,7 @@
     </form>
 
     <!-- Show edit/delete buttons for author -->
-    {% if post.author == user %}
+    {% if post.author.user == user %}
         <a href="{% url 'edit_post' post.pk post.slug %}">Edit post</a>
         <button class="deleteBtn" data-post-pk="{{ post.pk }}">Delete post</button>
     {% endif %}

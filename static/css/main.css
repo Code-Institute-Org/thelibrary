@@ -565,6 +565,57 @@ Header height 100% vh minus height of the navbar.
     margin-bottom: -31px;
 }
 
+/* ---------------------
+    Post detail
+--------------------- */
+
+#post-detail {
+    background-color: var(--white);
+    padding: 2rem;
+}
+
+#post-detail-header {
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+#post-detail-header > h1 {
+    margin-bottom: 1rem;
+}
+
+.author {
+    margin: 0;
+}
+
+.post-info-separator {
+    padding: 0 10px;
+}
+
+.post-icon {
+    color: var(--cta-blue);
+    border: none;
+    background-color: transparent;
+    font-size: 1.5rem;
+}
+
+.bookmark-btn {
+    margin-right: 5px;
+}
+
+.post-icon:focus {
+    border: none;
+}
+
+#post-icons > form {
+    display: inline-block;
+}
+
+#post-icons {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+}
+
 /* ----------------------------------------------- */
 
 /* draft css to get main functionality working,
