@@ -54,6 +54,10 @@ body {
     font-size: 1.7rem;
 }
 
+.thin-text {
+    font-weight: 300;
+}
+
 /* ---------------------
     Design elements
 --------------------- */
@@ -430,6 +434,16 @@ See media queries for other screen sizes.
     border-width: 1px!important;
 }
 
+.btn-secondary {
+    background-color: var(--navy);
+    border-color: var(--navy);
+}
+
+.btn-secondary:hover {
+    background-color: var(--cta-teal);
+    border-color: var(--cta-teal);
+}
+
 /* ---------------------
     Home page
 --------------------- */
@@ -610,6 +624,27 @@ Header height 100% vh minus height of the navbar.
 
 #post-detail-header > h1 {
     margin-bottom: 1rem;
+}
+
+#author-crud-btns {
+    position: absolute;
+    top: -16px;
+    right: -7px;
+}
+
+#author-crud-btns button {
+    background-color: var(--white);
+    border: none;
+}
+
+#author-crud-btns i {
+    color: var(--grey);
+    font-size: 1.4rem;
+    transition: all ease-in-out .4s;
+}
+
+#author-crud-btns i:hover {
+    color: var(--orange);
 }
 
 .author {
