@@ -129,7 +129,7 @@
         <div id="bottom-post-btns" class="col-12">
             <form action="{% url 'like_post' post.pk %}" method="POST">
                 {% csrf_token %}
-                <button class="post-icon btn blue-btn-outline"
+                <button class="post-icon btn blue-btn-outline me-2 mb-2 mb-sm-auto"
                     type="submit">
                     {% if liked %}
                         <i class="fas fa-thumbs-up"></i>
@@ -149,7 +149,7 @@
             
             <form action="{% url 'bookmark_post' post.pk %}" method="POST">
                 {% csrf_token %}
-                <button class="post-icon btn blue-btn-outline"
+                <button class="post-icon btn blue-btn-outline me-2 mb-2 mb-sm-auto"
                     type="submit">
                     {% if bookmarked %}
                         <i class="fas fa-bookmark"></i>

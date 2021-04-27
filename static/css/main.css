@@ -610,7 +610,6 @@ Header height 100% vh minus height of the navbar.
 
 .blue-btn-outline {
     border: 3px solid var(--cta-blue);
-    margin-right: 1rem;
     color: var(--cta-blue);
 }
 
