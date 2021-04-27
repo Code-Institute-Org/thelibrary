@@ -55,7 +55,7 @@ body {
 }
 
 /* ---------------------
-    Box-shadows
+    Design elements
 --------------------- */
 
 .box-shadow-sharp {
@@ -66,6 +66,13 @@ body {
 .box-shadow-light-spread {
     box-shadow: 0 0 20px 0 rgb(216 216 216 / 50%);
     -webkit-box-shadow: 0 0 20px 0 rgb(216 216 216 / 50%);
+}
+
+.dotted-line {
+    border-bottom: 2px dashed var(--grey);
+    max-width: 90%;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 /* ---------------------
@@ -398,6 +405,11 @@ See media queries for other screen sizes.
     transition: all ease-in-out .4s;
 }
 
+.btn-outline-teal:hover {
+    background-color: var(--cta-teal);
+    color: var(--white);
+}
+
 .btn-orange {
     background-color: var(--white);
     color: var(--cta-orange);
@@ -649,12 +661,8 @@ Header height 100% vh minus height of the navbar.
     position: relative;
 }
 
-.category-line {
-    border-bottom: 2px dashed var(--grey);
+.category-wrapper .dotted-line {
     margin-bottom: -13px;
-    max-width: 90%;
-    margin-right: auto;
-    margin-left: auto;
 }
 
 #post-detail .category {

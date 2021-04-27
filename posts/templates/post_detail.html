@@ -74,7 +74,7 @@
             </div>
         </header>
         <div class="category-wrapper">
-            <div class="category-line"></div>
+            <div class="dotted-line"></div>
             <a href="{% url 'category' post.category.pk post.category.name %}">
                 <span class="category">{{ post.category }}</span>
             </a>
@@ -126,6 +126,9 @@
                 <figcaption>Click on a thumbnail to enlarge</figcaption>
             </figure>
         {% endif %}
+        <div class="col-12 mb-4">
+            <div class="dotted-line"></div>
+        </div>
         <div id="bottom-post-btns" class="col-12">
             <form action="{% url 'like_post' post.pk %}" method="POST">
                 {% csrf_token %}
@@ -194,6 +197,9 @@
                 <i class="fas fa-chevron-left"></i>
                 <span>Back</span>
             </button>
+            <a href="{% url 'category' post.category.pk post.category.name %}" class="btn btn-outline-teal me-2 mb-2">
+                More posts on {{ post.category }}
+            </a>
         </div>
     </div>
 </article>
