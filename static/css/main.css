@@ -919,7 +919,7 @@ on the post_detail page.
 }
 
 #author-pic-wrapper {
-    width: 155px;
+    width: 173px;
     margin: 0 auto;
     position: relative;
 }
@@ -929,7 +929,7 @@ on the post_detail page.
 }
 
 .moderator-icon {
-    background: var(--cta-blue);
+    background: var(--blue);
     left: 0;
 }
 
