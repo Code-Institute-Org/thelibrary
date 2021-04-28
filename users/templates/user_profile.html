@@ -1,25 +1,67 @@
 {% extends 'base.html' %}{% load static %}
 
+{% block extra_title %}{{ user.username }}'s profile page{% endblock %}
 
 {% block content %}
-<h1>{{ user.username }}'s profile page</h1>
 
-<!-- display users names if provided -->
-    {% if user.first_name and user.last_name %}
-        <h2>{{ user.first_name }} {{ user.last_name }}</h2>
-    {% elif user.first_name %}
-        <h2>{{ user.first_name }}</h2>
-    {% endif %}
+<div id="profile-pg" class="container white-box box-shadow-light-spread my-2">
+    <div class="row">
+        <div class="dotted-line"></div>
+        <div class="col-12">
+            <div id="author-pic-wrapper">
+                {% if user.userprofile.profile_pic %}
+                    <div class="profile-pic box-shadow-sharp"
+                        style="background-image: url('{{ user.userprofile.profile_pic.url }}');"
+                        title="{{ user.username }}'s profile picture"></div>
+                    </a>
+                {% else %}
+                    <div class="profile-pic box-shadow-sharp" title="Your account"
+                        style="background-image: url('/media/images/profiles/default-profile-pic.png');"
+                        title="No profile picture provided"></div>
+                {% endif %}
+                <!-- kudos badge class returned from kudos_badge method of UserProfile model-->
+                <div class="author-kudos-badge {{ user.userprofile.kudos_badge }} box-shadow-sharp"
+                    title="{{ user.userprofile.kudos_badge }}">
+                    <i class="far fa-star"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 text-center pt-4">
+            {% if user.first_name and user.last_name %}
+            <h1 class="display-6">{{user.first_name}} {{user.last_name}}</h1>
+            {% elif user.first_name %}
+            <h1 class="display-6">{{user.first_name}}</h1>
+            {% endif %}
+            <h2 class="thin-text">
+                {% if user.userprofile.is_staff %}
+                <span class="ci-username-logo-md" title="This user is a Code Institute staff member"></span>
+                {% endif %}
+                {{ user.username }}
+            </h2>
+            <p class="lead">Member since {{ user.userprofile.date_joined }}</p>
+            
+            {% if user.userprofile.bio %}
+            <p>{{ user.userprofile.bio }}</p>
+            {% endif %}
 
-    {% if user.userprofile.profile_pic %}
-        <div class="profile-pic" title="Profile picture for {{user.username}}" style="background-image: url('{{ user.userprofile.profile_pic.url }}');"></div>
-    {% else %}
-        <div class="profile-pic" title="default profile pic" style="background-image: url('/media/images/profiles/default-profile-pic.png');"></div>
-    {% endif %}
+            <div class="author-social-icons">
+                {% if user.userprofile.linkedin %}
+                    <a href="{{ user.userprofile.linkedin }}" 
+                        aria-label="Visit {{ user.userprofile.user.username }}'s linkedin profile (opens in a new tab)"
+                        target="_blank" rel="noopener">
+                        <i class="fab fa-linkedin"></i></a>
+                {% endif %}
 
-    {% if user.userprofile.is_staff %}
-    <img src="{% static 'img/ci-logo-sm.png' %}" alt="ci-logo">
-    {% endif %}
+                {% if user.userprofile.linkedin %}
+                    <a href="{{ user.userprofile.github }}" 
+                        aria-label="Visit {{ user.userprofile.user.username }}'s github profile (opens in a new tab)"
+                        target="_blank" rel="noopener">
+                        <i class="fab fa-github-square"></i></a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
 
     {% if user.userprofile.bio %}
     <p>{{ user.userprofile.bio }}</p>

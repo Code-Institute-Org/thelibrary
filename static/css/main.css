@@ -46,6 +46,14 @@ body {
     vertical-align: text-top;
 }
 
+.ci-username-logo-md {
+    height: 25px;
+    width: 25px;
+    border: 6px solid var(--orange);
+    border-radius: 50%;
+    display: inline-block;
+}
+
 /* ---------------------
     Fonts and text
 --------------------- */
@@ -61,6 +69,12 @@ body {
 /* ---------------------
     Design elements
 --------------------- */
+
+.white-box {
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: 8px;
+}
 
 .box-shadow-sharp {
     box-shadow: 0 2px 9px 0 rgb(0 0 0 / 20%);
@@ -633,12 +647,6 @@ Header height 100% vh minus height of the navbar.
     Post detail
 --------------------- */
 
-#post-detail {
-    background-color: var(--white);
-    padding: 2rem;
-    border-radius: 8px;
-}
-
 #post-detail-header {
     position: relative;
     padding-bottom: 1rem;
@@ -849,14 +857,16 @@ figure figcaption {
     max-width: 700px;
 }
 
-#post-author-info .author-social-icons i {
+#post-author-info .author-social-icons i,
+#profile-pg .author-social-icons i {
     font-size: 26px;
     color: var(--navy);
     transition: all ease-in-out .4s;
     margin: 0 .5rem;
 }
 
-#post-author-info .author-social-icons i:hover {
+#post-author-info .author-social-icons i:hover,
+#profile-pg .author-social-icons i:hover {
     color: var(--orange);
 }
 
@@ -898,16 +908,39 @@ on the post_detail page.
     display: block;
     margin-left: auto;
 }
-/* ----------------------------------------------- */
 
-/* draft css to get main functionality working,
-will be adjusted for proper layout later */
+/* ---------------------
+    Profile page
+--------------------- */
 
 .profile-pic {
     width: 100px;
     height: 100px;
     background-size: cover;
     border-radius: 50%;
+    margin: 0 auto;
+}
+
+#profile-pg .dotted-line {
+    margin-bottom: -50px;
+}
+
+#author-pic-wrapper {
+    width: 130px;
+    margin: 0 auto;
+    position: relative;
+}
+
+#author-pic-wrapper .author-kudos-badge {
+    width: 37px;
+    height: 37px;
+    border-radius: 50%;
+    text-align: center;
+    color: var(--white);
+    font-size: 24px;
+    position: absolute;
+    bottom: 8px;
+    right: 0;
 }
 
 
