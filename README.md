@@ -59,3 +59,10 @@ pip install django-allauth
 
 ### images
 - Library background image by [mentatdgt on Pexels.com](https://www.pexels.com/photo/library-photo-1319854/)
+
+## Testing
+
+### solved bugs
+1. z-index was not working on absolute positioned elements, causing user avatars on list view cards to overlap the menu dropdown options. 
+- Issue was solved by adding position: relative; to the navbar and then adding a z-index of 99.
+- Solution found in this post on [Stack Overflow](https://stackoverflow.com/questions/16315125/position-absolute-has-greater-z-index-than-position-fixed)

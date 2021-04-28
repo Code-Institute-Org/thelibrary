@@ -92,8 +92,15 @@ body {
     padding: .2rem;
 }
 
+/*
+z-index and position properties fix issue with
+absolute positioned elements layering over navbar
+dropdown menu.
+https://stackoverflow.com/questions/16315125/position-absolute-has-greater-z-index-than-position-fixed
+*/
 #navbar {
-    z-index: 1;
+    z-index: 99;
+    position: relative;
 }
 
 .dropdown-menu {
