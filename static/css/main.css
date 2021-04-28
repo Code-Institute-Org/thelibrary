@@ -604,13 +604,6 @@ Header height 100% vh minus height of the navbar.
     position: absolute;
 }
 
-.card-mod-circle {
-    background-color: var(--blue);
-    top: 42px;
-    right: 21px;
-    z-index: 2;
-}
-
 .card-kudos-circle {
     top: 40px;
     right: 18px;
@@ -926,12 +919,21 @@ on the post_detail page.
 }
 
 #author-pic-wrapper {
-    width: 130px;
+    width: 155px;
     margin: 0 auto;
     position: relative;
 }
 
 #author-pic-wrapper .author-kudos-badge {
+    right: 0;
+}
+
+.moderator-icon {
+    background: var(--cta-blue);
+    left: 0;
+}
+
+.author-badge {
     width: 37px;
     height: 37px;
     border-radius: 50%;
@@ -939,8 +941,7 @@ on the post_detail page.
     color: var(--white);
     font-size: 24px;
     position: absolute;
-    bottom: 8px;
-    right: 0;
+    bottom: 32px;
 }
 
 

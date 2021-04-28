@@ -19,8 +19,13 @@
                         style="background-image: url('/media/images/profiles/default-profile-pic.png');"
                         title="No profile picture provided"></div>
                 {% endif %}
+                {% if user.userprofile.is_mod %}
+                <div class="moderator-icon author-badge" title="This user is a library moderator">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                {% endif %}
                 <!-- kudos badge class returned from kudos_badge method of UserProfile model-->
-                <div class="author-kudos-badge {{ user.userprofile.kudos_badge }} box-shadow-sharp"
+                <div class="author-kudos-badge author-badge {{ user.userprofile.kudos_badge }} box-shadow-sharp"
                     title="{{ user.userprofile.kudos_badge }}">
                     <i class="far fa-star"></i>
                 </div>
@@ -62,31 +67,6 @@
         </div>
     </div>
 </div>
-
-    {% if user.userprofile.bio %}
-    <p>{{ user.userprofile.bio }}</p>
-    {% endif %}
-
-    {% if user.userprofile.linkedin %}
-        <a
-            href="{{ user.userprofile.linkedin }}"
-            target="_blank"
-            rel="noopener"
-            aria-label="Visit my LinkedIn Profile (Opens in a new tab)"
-        >LinkedIn</a>
-    {% endif %}
-
-    {% if user.userprofile.github %}
-        <a 
-            href="{{ user.userprofile.github }}"
-            target="_blank" rel="noopener"
-            aria-label="Visit my GitHub Profile (Opens in a new tab)"
-        >GitHub</a>
-    {% endif %}
-
-    {% if user.userprofile.is_mod %}
-        <p>* Moderator</p>
-    {% endif %}
 
 <p>Member since: {{ user.userprofile.date_joined }}</p>
 
