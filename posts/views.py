@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.messages.views import SuccessMessageMixin
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
@@ -21,7 +22,6 @@ class AllPostsView(LoginRequiredMixin, ListView):
     template_name = 'posts_listview.html'
     paginate_by = 12
     queryset = Post.objects.filter(status='Approved').order_by('-created_on')
-    context_object_name = 'posts'
 
     def get_context_data(self, *args, **kwargs):
 
@@ -30,6 +30,33 @@ class AllPostsView(LoginRequiredMixin, ListView):
         context['pg_title'] = 'All Posts'
 
         return context
+
+
+def filtered_posts_view(request, *args, **kwargs):
+    form = request.POST
+
+    if form['sort_method'] == 'likes':
+        # code to get likes here
+        pass
+    elif form['category'] is not 'Category':
+        sorted_posts = Post.objects.filter(
+            category=form['category']).order_by(form['sort_method'])
+
+    # Code for pagination with function based views from
+    # https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html
+    page = request.GET.get('page', 1)
+    paginator = Paginator(sorted_posts, 12)
+    try:
+        page_obj = paginator.page(page)
+    except PageNotAnInteger:
+        page_obj = paginator.page(1)
+    except EmptyPage:
+        page_obj = paginator.page(paginator.num_pages)
+
+    context = {
+        'page_obj': page_obj
+    }
+    return render(request, 'posts_listview.html', context)
 
 
 class PostDetailView(LoginRequiredMixin, DetailView, SuccessMessageMixin):
@@ -41,7 +68,6 @@ class PostDetailView(LoginRequiredMixin, DetailView, SuccessMessageMixin):
         an admin will review it shortly"
 
     def get_context_data(self, *args, **kwargs):
-
         context = super(
             PostDetailView, self).get_context_data(**kwargs)
         post = get_object_or_404(Post, id=self.kwargs['pk'])
@@ -226,7 +252,7 @@ class CategoryView(LoginRequiredMixin, SingleObjectMixin, ListView):
         return context
 
     def get_queryset(self):
-        return self.object.posts_to_category.all()
+        return self.object.posts_to_category.all().order_by('-created_on')
 
 
 class AuthorPostsView(LoginRequiredMixin, SingleObjectMixin, ListView):

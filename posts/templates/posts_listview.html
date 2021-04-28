@@ -7,11 +7,36 @@
 <main class="container">
     <div class="row">
         <header class="list-view-header box-shadow-light-spread mt-2 col-12">
-            <h1 class="home-listview-heading">{{ pg_title }}</h1>
-            <p class="m-0">
-                Showing {{ page_obj.start_index }}-{{ page_obj.end_index }} of {{ page_obj.paginator.count }} result{% if page_obj.paginator.count > 1 %}s{% endif %}</p>
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <h1 class="home-listview-heading">{{ pg_title }}</h1>
+                    <p class="m-0">
+                        {{ page_obj.paginator.count }} result{% if page_obj.paginator.count > 1 %}s{% endif %}
+                    </p>
+                </div>
+                <div class="col-12 col-md-6">
+                    <form action="{% url 'filtered_posts' %}" method="POST">
+                        {% csrf_token %}
+                        <select name="category" class="form-select" aria-label="Select a category">
+                            <option selected>Category</option>
+                            {% for category in categories_nav %}
+                                {% if category.posts_to_category.count > 0 %}
+                                    <option value="{{ category.pk }}">{{ category }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                        <select name="sort_method" class="form-select" aria-label="Select a category">
+                            <option value="-created_on" selected>Newest</option>
+                            <option value="created_on">Oldest</option>
+                            <option value="likes">Popular</option>
+                        </select>
+                        <button type="submit">Apply</button>
+                    </form>
+                </div>
+            </div>            
         </header>
-        {% for post in posts %}
+
+        {% for post in page_obj %}
             <div class="col-12 col-md-6 col-lg-4">
                 {% include 'components/post-card-full.html' %}
             </div>
