@@ -56,6 +56,7 @@ pip install django-allauth
 
 ### code
 - Code to animate notification bell in the navbar by [Fazlur Rahman](https://codepen.io/fazlurr/pen/xeXpqx)
+- Code to handle pagination in function based views from [simpleisbetterthancomplex.com](https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html)    
 
 ### images
 - Library background image by [mentatdgt on Pexels.com](https://www.pexels.com/photo/library-photo-1319854/)

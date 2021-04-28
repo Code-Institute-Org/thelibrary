@@ -15,8 +15,7 @@
                     </p>
                 </div>
                 <div class="col-12 col-md-6">
-                    <form action="{% url 'filtered_posts' %}" method="POST">
-                        {% csrf_token %}
+                    <form action="{% url 'filtered_posts' %}" method="GET">
                         <select name="category" class="form-select" aria-label="Select a category">
                             <option selected>Category</option>
                             {% for category in categories_nav %}
@@ -53,11 +52,11 @@
                     Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
                 </p>
                 {% if page_obj.has_previous %}
-                <a href="?page=1" class="post-icon btn blue-btn-outline btn-thin-border m-1">
+                <a href="?page=1&category={{category_pk}}&sort_method={{sort_method}}" class="post-icon btn blue-btn-outline btn-thin-border m-1">
                     <i class="fas fa-chevron-left"></i><i class="fas fa-chevron-left"></i>
                     <span>first</span>
                 </a>
-                <a href="?page={{ page_obj.previous_page_number }}"
+                <a href="?page={{ page_obj.previous_page_number }}&category={{category_pk}}&sort_method={{sort_method}}"
                     class="post-icon btn blue-btn-outline btn-thin-border m-1">
                     <i class="fas fa-chevron-left"></i>
                     <span>prev</span>
@@ -65,12 +64,12 @@
                 {% endif %}
 
                 {% if page_obj.has_next %}
-                    <a href="?page={{ page_obj.next_page_number }}"
+                    <a href="?page={{ page_obj.next_page_number }}&category={{category_pk}}&sort_method={{sort_method}}"
                         class="post-icon btn blue-btn-outline btn-thin-border m-1">
                         <span>next</span>
                         <i class="fas fa-chevron-right"></i>
                     </a>
-                    <a href="?page={{ page_obj.paginator.num_pages }}"
+                    <a href="?page={{ page_obj.paginator.num_pages }}&category={{category_pk}}&sort_method={{sort_method}}"
                         class="post-icon btn blue-btn-outline btn-thin-border m-1">
                         <span>last</span>
                         <i class="fas fa-chevron-right"></i><i class="fas fa-chevron-right"></i>

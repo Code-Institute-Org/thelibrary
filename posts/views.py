@@ -33,30 +33,34 @@ class AllPostsView(LoginRequiredMixin, ListView):
 
 
 def filtered_posts_view(request, *args, **kwargs):
-    form = request.POST
+    if request.GET:
+        category_pk = request.GET.get('category')
+        sort_method = request.GET.get('sort_method')
 
-    if form['sort_method'] == 'likes':
-        # code to get likes here
-        pass
-    elif form['category'] is not 'Category':
-        sorted_posts = Post.objects.filter(
-            category=form['category']).order_by(form['sort_method'])
+        if sort_method == 'likes':
+            # code to get likes here
+            pass
+        elif category_pk is not 'Category':
+            sorted_posts = Post.objects.filter(
+                category=category_pk).order_by(sort_method)
 
-    # Code for pagination with function based views from
-    # https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html
-    page = request.GET.get('page', 1)
-    paginator = Paginator(sorted_posts, 12)
-    try:
-        page_obj = paginator.page(page)
-    except PageNotAnInteger:
-        page_obj = paginator.page(1)
-    except EmptyPage:
-        page_obj = paginator.page(paginator.num_pages)
+        # Code for pagination with function based views from
+        # https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html
+        page = request.GET.get('page', 1)
+        paginator = Paginator(sorted_posts, 1)
+        try:
+            page_obj = paginator.page(page)
+        except PageNotAnInteger:
+            page_obj = paginator.page(1)
+        except EmptyPage:
+            page_obj = paginator.page(paginator.num_pages)
 
-    context = {
-        'page_obj': page_obj
-    }
-    return render(request, 'posts_listview.html', context)
+        context = {
+            'page_obj': page_obj,
+            'category_pk': category_pk,
+            'sort_method': sort_method
+        }
+        return render(request, 'posts_listview.html', context)
 
 
 class PostDetailView(LoginRequiredMixin, DetailView, SuccessMessageMixin):
