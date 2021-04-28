@@ -17,7 +17,7 @@
                 <div class="col-12 col-md-6">
                     <form action="{% url 'filtered_posts' %}" method="GET">
                         <select name="category" class="form-select" aria-label="Select a category">
-                            <option>Category</option>
+                            <option value="all">All</option>
                             {% for category in categories_nav %}
                                 {% if category.posts_to_category.count > 0 %}
                                     <option 

@@ -40,7 +40,9 @@ def filtered_posts_view(request, *args, **kwargs):
         if sort_method == 'likes':
             # code to get likes here
             pass
-        elif category_pk is not 'Category':
+        elif category_pk == 'all':
+            sorted_posts = Post.objects.all().order_by(sort_method)
+        elif category_pk is not 'all':
             sorted_posts = Post.objects.filter(
                 category=category_pk).order_by(sort_method)
 
