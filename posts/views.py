@@ -18,10 +18,18 @@ from .models import Post, PostCategory, PostFlag, PostTag
 
 class AllPostsView(LoginRequiredMixin, ListView):
     """ Basic view to see all posts """
-    template_name = 'all_posts.html'
-    paginate_by = 4
+    template_name = 'posts_listview.html'
+    paginate_by = 12
     queryset = Post.objects.filter(status='Approved').order_by('-created_on')
     context_object_name = 'posts'
+
+    def get_context_data(self, *args, **kwargs):
+
+        context = super(
+            AllPostsView, self).get_context_data(**kwargs)
+        context['pg_title'] = 'All Posts'
+
+        return context
 
 
 class PostDetailView(LoginRequiredMixin, DetailView, SuccessMessageMixin):
