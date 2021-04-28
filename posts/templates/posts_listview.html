@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block extra_title %}{{ pg_title }}{% endblock %}
+{% block extra_title %}{% if pg_title %}{{ pg_title }}{% else %}Filtered Results{% endif %}{% endblock %}
 
 {% block content %}
 
@@ -8,14 +8,15 @@
     <div class="row">
         <header class="list-view-header box-shadow-light-spread mt-2 col-12">
             <div class="row">
-                <div class="col-12 col-md-6">
-                    <h1 class="home-listview-heading">{{ pg_title }}</h1>
+                <div class="col-12 col-lg-6">
+                    <h1 class="home-listview-heading">{% if pg_title %}{{ pg_title }}{% else %}Filtered Results{% endif %}</h1>
                     <p class="m-0">
                         {{ page_obj.paginator.count }} result{% if page_obj.paginator.count > 1 %}s{% endif %}
                     </p>
                 </div>
-                <div class="col-12 col-md-6">
-                    <form action="{% url 'filtered_posts' %}" method="GET">
+                <div class="col-12 col-lg-6">
+                    <form action="{% url 'filtered_posts' %}" method="GET" id="filters">
+
                         <select name="category" class="form-select" aria-label="Select a category">
                             <option value="all">All</option>
                             {% for category in categories_nav %}
@@ -27,12 +28,14 @@
                                 {% endif %}
                             {% endfor %}
                         </select>
+                    
                         <select name="sort_method" class="form-select" aria-label="Select a category">
                             <option value="-created_on" {% if sort_method == "-created_on" %}selected{% endif %}>Newest</option>
                             <option value="created_on" {% if sort_method == "created_on" %}selected{% endif %}>Oldest</option>
                             <option value="likes" {% if sort_method == "likes" %}selected{% endif %}>Popular</option>
                         </select>
-                        <button type="submit">Apply</button>
+                    
+                        <button class="btn btn-outline-blue" type="submit">Apply</button>
                     </form>
                 </div>
             </div>            

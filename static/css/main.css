@@ -396,7 +396,8 @@ See media queries for other screen sizes.
 }
 
 #navbar .btn-outline-blue:hover,
-#mobile-search .btn-outline-blue:hover {
+#mobile-search .btn-outline-blue:hover,
+#filters .btn-outline-blue:hover{
     background-color: var(--blue);
     color: var(--white);
 }
@@ -881,6 +882,22 @@ on the post_detail page.
     right: 20px;
 }
 
+/* ---------------------
+    Forms
+--------------------- */
+
+#filters {
+    text-align: right;
+}
+
+#filters > select {
+    margin: .4rem 0;
+}
+
+#filters > button {
+    display: block;
+    margin-left: auto;
+}
 /* ----------------------------------------------- */
 
 /* draft css to get main functionality working,
@@ -907,9 +924,12 @@ will be adjusted for proper layout later */
 }
 
 /* Small devices (landscape phones, 576px and up) */
-/* @media (min-width: 576px) {
-    
-} */
+@media (min-width: 576px) {
+    #filters > select {
+        display: inline-block;
+        max-width: 49.5%;
+    }
+}
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
@@ -937,6 +957,14 @@ will be adjusted for proper layout later */
         box-shadow: 0 2px 9px 0 rgb(0 0 0 / 20%);
         -webkit-box-shadow: 0 2px 9px 0 rgb(0 0 0 / 20%);
     }
+
+    #filters > select {
+        display: inline-block;
+        max-width: 43.8%;
+    }
+    #filters > button {
+        display: inline-block;
+    }
 }
 
 /* Large devices (desktops, 992px and up) */
@@ -944,9 +972,21 @@ will be adjusted for proper layout later */
     #footer-push-down {
         min-height: calc(100vh - 361.19px);
     }
+
     .summary-and-likes {
         height: 140px;
     }
+
+    #filters {
+        margin-top: 2rem;
+    }
+    
+    #filters > select {
+        display: inline-block;
+        max-width: 170px;
+        margin: 0;
+    }
+    
 }
 
 /* X-Large devices (large desktops, 1200px and up) */
