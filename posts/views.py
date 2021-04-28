@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.db.models import Q
+from django.db.models import Q, Count
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
@@ -38,18 +38,26 @@ def filtered_posts_view(request, *args, **kwargs):
         sort_method = request.GET.get('sort_method')
 
         if sort_method == 'likes':
-            # code to get likes here
-            pass
+            if category_pk == 'all':
+                sorted_posts = Post.objects.annotate(
+                    like_count=Count('likes')).order_by('-like_count')
+            else:
+                sorted_posts = Post.objects.filter(
+                    category=category_pk
+                ).annotate(
+                    like_count=Count('likes')
+                ).order_by('-like_count')
+
         elif category_pk == 'all':
             sorted_posts = Post.objects.all().order_by(sort_method)
-        elif category_pk is not 'all':
+        else:
             sorted_posts = Post.objects.filter(
                 category=category_pk).order_by(sort_method)
 
         # Code for pagination with function based views from
         # https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html
         page = request.GET.get('page', 1)
-        paginator = Paginator(sorted_posts, 1)
+        paginator = Paginator(sorted_posts, 12)
         try:
             page_obj = paginator.page(page)
         except PageNotAnInteger:
