@@ -29,6 +29,7 @@ def user_profile_view(request, pk):
 
     return render(request, 'user_profile.html', context)
 
+
 class UserSettingsView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = User
     template_name = 'user_settings.html'
@@ -55,6 +56,7 @@ class UserBookmarksView(LoginRequiredMixin, SingleObjectMixin, ListView):
 
     def get_queryset(self):
         return self.object.post_bookmarks.all()
+
 
 class UpdateProfileView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = UserProfile

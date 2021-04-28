@@ -2,6 +2,7 @@ from django import forms
 from django.utils.translation import gettext_lazy as _
 from .models import PostFlag
 
+
 class FlagForm(forms.ModelForm):
     INNAPPROPRIATE = 'Innappropriate content'
     OUTDATED = 'Outdated content'
@@ -14,7 +15,7 @@ class FlagForm(forms.ModelForm):
         choices=FLAG_REASONS,
         widget=forms.Select(attrs={'class': "form-select"}),
     )
-    
+
     class Meta:
         model = PostFlag
         fields = ['reason']

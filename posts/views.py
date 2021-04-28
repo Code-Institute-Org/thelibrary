@@ -29,7 +29,8 @@ class PostDetailView(LoginRequiredMixin, DetailView, SuccessMessageMixin):
     model = Post
     template_name = 'post_detail.html'
     context_object_name = 'post'
-    success_message = "Thank you for flagging this post, an admin will review it shortly"
+    success_message = "Thank you for flagging this post,\
+        an admin will review it shortly"
 
     def get_context_data(self, *args, **kwargs):
 
@@ -53,7 +54,7 @@ class PostDetailView(LoginRequiredMixin, DetailView, SuccessMessageMixin):
             # Add flagger details to PostFlag instance
             form.instance.flagger = get_object_or_404(
                 User, pk=self.request.user.pk
-            ) 
+            )
             form.save()
 
             # Attach PostFlag instance to relevant Post
@@ -76,11 +77,11 @@ class PostDetailView(LoginRequiredMixin, DetailView, SuccessMessageMixin):
 
     def get_success_url(self):
         return reverse(
-        'detail_view',
-        kwargs={
-            'pk': self.object.pk,
-            'slug': self.object.slug 
-        })
+            'detail_view',
+            kwargs={
+                'pk': self.object.pk,
+                'slug': self.object.slug})
+
 
 class CreatePostView(LoginRequiredMixin, CreateView):
     model = Post
@@ -101,7 +102,7 @@ class CreatePostView(LoginRequiredMixin, CreateView):
         form.instance.author = self.request.user
         form.instance.slug = slugify(form.instance.title)
         return super().form_valid(form)
-    
+
     def get_success_url(self):
         return reverse('review_post', kwargs={'pk': self.object.pk})
 
@@ -131,9 +132,13 @@ class EditPostView(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         if self.object.status == 'Waiting':
-            return reverse('review_post', kwargs={'pk': self.object.pk, 'slug': self.object.slug })
+            return reverse(
+                    'review_post',
+                    kwargs={'pk': self.object.pk, 'slug': self.object.slug})
         else:
-            return reverse('post_detail', kwargs={'pk': self.object.pk, 'slug': self.object.slug})
+            return reverse(
+                    'post_detail',
+                    kwargs={'pk': self.object.pk, 'slug': self.object.slug})
 
 
 class ReviewPostsView(LoginRequiredMixin, ListView):
@@ -144,7 +149,7 @@ class ReviewPostsView(LoginRequiredMixin, ListView):
 
     def get(self, *args, **kwargs):
         user = self.request.user
-        if user.userprofile.is_mod == False:
+        if user.userprofile.is_mod is not True:
             return redirect('home')
         return super(ReviewPostsView, self).get(*args, **kwargs)
 
@@ -171,10 +176,10 @@ def delete_post(request, pk):
     if post.author == request.user:
         post.delete()
 
-        # Change this to redirect to where user was 
+        # Change this to redirect to where user was
         # looking before the post they deleted?
         return redirect('home')
-    
+
     # redirect users who are not the author away from
     # delete url without deleting post
     else:
@@ -189,7 +194,7 @@ class ReviewPostView(LoginRequiredMixin, DetailView, UpdateView):
 
     def get(self, *args, **kwargs):
         user = self.request.user
-        if user.userprofile.is_mod == False:
+        if user.userprofile.is_mod is not True:
             return redirect('home')
         return super(ReviewPostView, self).get(*args, **kwargs)
 
@@ -248,7 +253,7 @@ class TagPostsView(LoginRequiredMixin, SingleObjectMixin, ListView):
 
     def get_queryset(self):
         return self.object.post_tags.all()
-    
+
 
 @login_required
 def like_post(request, pk):
@@ -274,5 +279,3 @@ def bookmark_post(request, pk):
         post.bookmarks.add(request.user)
 
     return HttpResponseRedirect(reverse('post_detail', args=[pk, post.slug]))
-
-

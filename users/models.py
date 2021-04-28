@@ -5,7 +5,6 @@ from django.dispatch import receiver
 
 import datetime
 
-# Create your models here.
 
 class UserProfile(models.Model):
     """
@@ -14,7 +13,8 @@ class UserProfile(models.Model):
     """
     user = models.OneToOneField(User, unique=True, on_delete=models.CASCADE)
     bio = models.CharField(max_length=200, null=True, blank=True)
-    profile_pic = models.ImageField(null=True, blank=True, upload_to="images/profiles/")
+    profile_pic = models.ImageField(
+        null=True, blank=True, upload_to="images/profiles/")
     linkedin = models.URLField(null=True, blank=True)
     github = models.URLField(null=True, blank=True)
     is_admin = models.BooleanField(default=False)
@@ -28,7 +28,8 @@ class UserProfile(models.Model):
         highlights if user is admin or mod
         """
         status = '*mod' if self.is_mod else ''
-        if self.is_admin: status = '*admin'
+        if self.is_admin:
+            status = '*admin'
 
         return f'{self.user.username} {status} | {self.date_joined}'
 
@@ -40,7 +41,7 @@ class UserProfile(models.Model):
         returned will hide it.
         """
         total_posts = self.posts.filter(status="Approved").count()
-        
+
         if total_posts >= 15:
             return 'kudos-badge-gold'
         elif total_posts >= 8:
@@ -62,6 +63,7 @@ class UserProfile(models.Model):
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         UserProfile.objects.create(user=instance)
+
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):

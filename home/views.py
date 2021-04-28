@@ -15,7 +15,8 @@ def home_view(request):
         status="Approved").order_by('-created_on')[:4]
     favourite_posts = Post.objects.filter(
         status="Approved"
-    ).annotate(like_count=Count('likes')).order_by('-like_count')[:4]
+    ).annotate(
+        like_count=Count('likes')).order_by('-like_count')[:4]
     
     context = {
         'recent_posts': recent_posts,

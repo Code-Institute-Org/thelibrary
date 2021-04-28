@@ -9,7 +9,9 @@ from .views import (
 
 urlpatterns = [
     path('<int:pk>/', user_profile_view, name='user_profile'),
-    path('<int:pk>/update/', UpdateProfileView.as_view(), name='update_profile'),
+    path(
+        '<int:pk>/update/',
+        UpdateProfileView.as_view(), name='update_profile'),
     path('<int:pk>/settings/', UserSettingsView.as_view(), name="settings"),
     path('<int:pk>/bookmarks/', UserBookmarksView.as_view(), name="bookmarks"),
 ]
