@@ -17,17 +17,20 @@
                 <div class="col-12 col-md-6">
                     <form action="{% url 'filtered_posts' %}" method="GET">
                         <select name="category" class="form-select" aria-label="Select a category">
-                            <option selected>Category</option>
+                            <option>Category</option>
                             {% for category in categories_nav %}
                                 {% if category.posts_to_category.count > 0 %}
-                                    <option value="{{ category.pk }}">{{ category }}</option>
+                                    <option 
+                                        value="{{ category.pk }}"
+                                        {% if category.pk|stringformat:"i" == category_pk %}selected{% endif %}
+                                        >{{ category }}</option>
                                 {% endif %}
                             {% endfor %}
                         </select>
                         <select name="sort_method" class="form-select" aria-label="Select a category">
-                            <option value="-created_on" selected>Newest</option>
-                            <option value="created_on">Oldest</option>
-                            <option value="likes">Popular</option>
+                            <option value="-created_on" {% if sort_method == "-created_on" %}selected{% endif %}>Newest</option>
+                            <option value="created_on" {% if sort_method == "created_on" %}selected{% endif %}>Oldest</option>
+                            <option value="likes" {% if sort_method == "likes" %}selected{% endif %}>Popular</option>
                         </select>
                         <button type="submit">Apply</button>
                     </form>

@@ -67,3 +67,14 @@ pip install django-allauth
 1. z-index was not working on absolute positioned elements, causing user avatars on list view cards to overlap the menu dropdown options. 
 - Issue was solved by adding position: relative; to the navbar and then adding a z-index of 99.
 - Solution found in this post on [Stack Overflow](https://stackoverflow.com/questions/16315125/position-absolute-has-greater-z-index-than-position-fixed)
+
+2. Adding the `selected` attribute to the category `<option>` elements, conditional on which value was in the kwargs was not working.
+
+```html
+{% if category.pk == category_pk %}selected{% endif %}
+```
+- When printing `{{ category.pk }}` and `{{ category_pk }}` to the template, they were printing as the same. However the comparison of the two with `==` was not evaluating to True. 
+- After some digging I realized that one was a string and the other was an int. Using the `stringformat` filter fixed the problem:
+```html
+{% if category.pk|stringformat:"i" == category_pk %}selected{% endif %}
+```
