@@ -906,6 +906,10 @@ on the post_detail page.
     Profile page
 --------------------- */
 
+#profile-pg {
+    position: relative;
+}
+
 .profile-pic {
     width: 100px;
     height: 100px;
@@ -942,6 +946,24 @@ on the post_detail page.
     font-size: 24px;
     position: absolute;
     bottom: 32px;
+}
+
+#edit-profile {
+    width: 50px;
+    font-size: 20px;
+    text-align: right;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+#edit-profile > a {
+    color: var(--grey);
+    transition: all ease-in-out .4s;
+}
+
+#edit-profile > a:hover {
+    color: var(--navy);
 }
 
 

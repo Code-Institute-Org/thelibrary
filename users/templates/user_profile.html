@@ -64,6 +64,13 @@
                         <i class="fab fa-github-square"></i></a>
                 {% endif %}
             </div>
+            {% if user == request.user %}
+            <div id="edit-profile">
+                <a href="{% url 'update_profile' user.pk %}">
+                    <i class="far fa-edit" title="Edit"></i>
+                </a>
+            </div>
+            {% endif %}
         </address>
     </header>
     <div class="row">
