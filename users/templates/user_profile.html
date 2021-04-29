@@ -73,21 +73,23 @@
             {% endif %}
         </address>
     </header>
-    <div class="row">
-        <div class="list-view-header box-shadow-light-spread my-4 col-12 d-sm-flex justify-content-between">
-            <h2 class="m-0 home-listview-heading text-center text-sm-left">
-                Posts by {% if user.first_name %}{{ user.first_name }}{% else %}{{ user.username }}{% endif %}
-            </h2>
-            <div class="text-center text-sm-right mt-3 mt-sm-0">
-                <a href="{% url 'posts_by_author' user.pk %}" class="btn btn-orange">See all</a>
+    {% if approved_posts %}
+        <div class="row">
+            <div class="list-view-header box-shadow-light-spread my-4 col-12 d-sm-flex justify-content-between">
+                <h2 class="m-0 home-listview-heading text-center text-sm-left">
+                    Posts by {% if user.first_name %}{{ user.first_name }}{% else %}{{ user.username }}{% endif %}
+                </h2>
+                <div class="text-center text-sm-right mt-3 mt-sm-0">
+                    <a href="{% url 'posts_by_author' user.pk %}" class="btn btn-orange">See all</a>
+                </div>
             </div>
+            {% for post in approved_posts %}
+                <div class="col-12 col-md-6 col-lg-4 {% if forloop.counter == approved_posts|length %}d-lg-none{% endif %}">
+                    {% include 'components/post-card-semi.html' %}
+                </div>
+            {% endfor %}
         </div>
-        {% for post in approved_posts %}
-            <div class="col-12 col-md-6 col-lg-4 {% if forloop.counter == approved_posts|length %}d-lg-none{% endif %}">
-                {% include 'components/post-card-semi.html' %}
-            </div>
-        {% endfor %}
-    </div>
+    {% endif %}
 </div>
 
     {% for post in approved_posts %}
