@@ -97,6 +97,7 @@ body {
     margin-top: -10px;
 }
 
+
 /* ---------------------
     Navbar
 --------------------- */
@@ -954,7 +955,7 @@ on the post_detail page.
     text-align: right;
     position: absolute;
     top: 1rem;
-    right: 1rem;
+    right: 2rem;
 }
 
 #edit-profile > a {
@@ -966,12 +967,19 @@ on the post_detail page.
     color: var(--navy);
 }
 
+/* Profile pg post cards */
+
+#profile-pg .post-card {
+    padding-top: 1.3rem;
+    margin-top: 0;
+    margin-bottom: 2.4rem;
+}
+
 
 /* ---------------------
     Media Queries 
     - Bootstrap 5 breakpoints
 --------------------- */
-
 
 @media (min-width: 370px) {
     .navbar-avatar {

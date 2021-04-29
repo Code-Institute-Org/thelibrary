@@ -16,7 +16,8 @@ from .models import UserProfile, User
 @login_required
 def user_profile_view(request, pk):
     user = get_object_or_404(User, pk=pk)
-    approved_posts = Post.objects.filter(author=user.pk, status='Approved')[:5]
+    approved_posts = Post.objects.filter(
+        author=user.pk, status='Approved').order_by('-created_on')[:4]
     waiting_posts = Post.objects.filter(author=user.pk, status='Waiting')
     reviewed_posts = Post.objects.filter(author=user.pk, status='Review')
 

@@ -4,8 +4,8 @@
 
 {% block content %}
 
-<div id="profile-pg" class="container white-box box-shadow-light-spread my-2">
-    <header class="row">
+<div id="profile-pg" class="container">
+    <header class="row white-box box-shadow-light-spread my-2">
         <div class="dotted-line"></div>
         <div class="col-12">
             <div id="author-pic-wrapper">
@@ -74,15 +74,33 @@
         </address>
     </header>
     <div class="row">
-        <div class="col-12">
-            <div class="dotted-line mb-0 mt-3"></div>
+        <div class="list-view-header box-shadow-light-spread my-4 col-12 d-sm-flex justify-content-between">
+            <h2 class="m-0 home-listview-heading text-center text-sm-left">
+                Posts by {% if user.first_name %}{{ user.first_name }}{% else %}{{ user.username }}{% endif %}
+            </h2>
+            <div class="text-center text-sm-right mt-3 mt-sm-0">
+                <a href="{% url 'posts_by_author' user.pk %}" class="btn btn-orange">See all</a>
+            </div>
         </div>
+        {% for post in approved_posts %}
+            <div class="col-12 col-md-6 col-lg-4 {% if forloop.counter == approved_posts|length %}d-lg-none{% endif %}">
+                {% include 'components/post-card-semi.html' %}
+            </div>
+        {% endfor %}
     </div>
 </div>
 
+    {% for post in approved_posts %}
+        <a href="{% url 'post_detail' post.pk post.slug  %}">
+            <h2>{{ post.title }}</h2>
+        </a>
+        <p>{{ post.summary }}</p>
+    {% empty %}
+        <p>No published posts (yet!)</p>
+    {% endfor %}
 
-{% if user == request.user %}
-    <a href="{% url 'update_profile' user.pk %}">Update Profile</a>
+
+    {% if user == request.user %}
 
     <h3>Posts in Review</h3>
 
@@ -107,20 +125,5 @@
     {% endfor %}
 
 {% endif %}
-
-    <h3>Latest posts by {{ user.username }}</h3>
-
-    {% if approved_posts.count != 0 %}
-    <a href="{% url 'posts_by_author' user.pk %}">See all of {{  user.username }}'s posts</a>
-    {% endif %}
-
-    {% for post in approved_posts %}
-        <a href="{% url 'post_detail' post.pk post.slug  %}">
-            <h2>{{ post.title }}</h2>
-        </a>
-        <p>{{ post.summary }}</p>
-    {% empty %}
-        <p>No published posts (yet!)</p>
-    {% endfor %}
 
 {% endblock %}
