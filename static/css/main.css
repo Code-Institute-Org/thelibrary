@@ -72,7 +72,7 @@ body {
 
 .white-box {
     background-color: var(--white);
-    padding: 2rem;
+    padding: 1.5rem;
     border-radius: 8px;
 }
 
@@ -465,6 +465,11 @@ See media queries for other screen sizes.
 .btn-secondary:hover {
     background-color: var(--cta-teal);
     border-color: var(--cta-teal);
+}
+
+.invisible-button {
+    border: none;
+    background-color: transparent;
 }
 
 /* ---------------------
@@ -967,7 +972,9 @@ on the post_detail page.
     color: var(--navy);
 }
 
-/* Profile pg post cards */
+/* ---------------------
+Profile pg post cards 
+--------------------- */
 
 #profile-pg .post-card {
     padding-top: 1.3rem;
@@ -975,6 +982,37 @@ on the post_detail page.
     margin-bottom: 2.4rem;
 }
 
+/* ---------------------
+Profile dashboard
+--------------------- */
+
+.dashboard-heading {
+    display: inline-block;
+}
+
+#dashboard button {
+    display: inline-block;
+    vertical-align: text-bottom;
+}
+
+#dashboard button > i {
+    font-size: 1.2rem;
+    color: var(--grey);
+}
+
+#dashboard .dashboard-post-title {
+    font-size: 1rem;
+}
+
+#dashboard a {
+    color: var(--cta-teal);
+    transition: all ease-in-out var(--orange);
+    text-decoration: none;
+}
+
+.dashboard-table th {
+    font-weight: normal;
+}
 
 /* ---------------------
     Media Queries 

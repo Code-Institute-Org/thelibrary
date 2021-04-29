@@ -161,12 +161,16 @@
                             </li>
                             <li>
                                 <a class="dropdown-item ps-1" href="{% url 'user_profile' request.user.pk %}">
-                                    <i class="fas fa-user dropdown-icon"></i> My profile
+                                    <i class="fas fa-user dropdown-icon"></i> Profile
                                 </a>
                             </li>
                             <li>
+                                <a class="dropdown-item ps-1" href="{% url 'dashboard' request.user.pk %}">
+                                    <i class="fas fa-columns dropdown-icon"></i> Posts Dashboard</a>
+                            </li>
+                            <li>
                                 <a class="dropdown-item ps-1" href="{% url 'bookmarks' request.user.pk %}">
-                                    <i class="fas fa-bookmark dropdown-icon"></i> My Bookmarks</a>
+                                    <i class="fas fa-bookmark dropdown-icon"></i> Bookmarks</a>
                             </li>
                             <li>
                                 <a class="dropdown-item ps-1" href="{% url 'settings' request.user.pk %}">

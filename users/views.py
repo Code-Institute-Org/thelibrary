@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView
 from django.views.generic.edit import UpdateView
 from django.views.generic.detail import SingleObjectMixin
@@ -11,24 +11,42 @@ from posts.models import Post
 from .models import UserProfile, User
 
 
-# Create your views here.
-
 @login_required
 def user_profile_view(request, pk):
     user = get_object_or_404(User, pk=pk)
-    approved_posts = Post.objects.filter(
+    posts = Post.objects.filter(
         author=user.pk, status='Approved').order_by('-created_on')[:4]
-    waiting_posts = Post.objects.filter(author=user.pk, status='Waiting')
-    reviewed_posts = Post.objects.filter(author=user.pk, status='Review')
 
     context = {
         'user': user,
-        'approved_posts': approved_posts,
-        'waiting_posts': waiting_posts,
-        'reviewed_posts': reviewed_posts,
+        'posts': posts,
     }
 
     return render(request, 'user_profile.html', context)
+
+
+@login_required
+def dashboard_view(request, pk):
+    # If user tries to access another users dashboard,
+    # redirect them to the home page.
+    if pk is not request.user.pk:
+        return redirect('home')
+
+    else:
+        user = get_object_or_404(User, pk=pk)
+        approved_posts = Post.objects.filter(
+            author=user.pk, status='Approved').order_by('-created_on')
+        waiting_posts = Post.objects.filter(author=user.pk, status='Waiting')
+        reviewed_posts = Post.objects.filter(author=user.pk, status='Review')
+
+        context = {
+            'user': user,
+            'approved_posts': approved_posts,
+            'waiting_posts': waiting_posts,
+            'reviewed_posts': reviewed_posts,
+        }
+
+        return render(request, 'dashboard.html', context)
 
 
 class UserSettingsView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
