@@ -7,7 +7,7 @@
 
 {% block content %}
 
-    {% if post.status == 'Waiting' %}
+    {% if post.status == 'Submitted' %}
         <p>Thank you for submitting this post! It will be published after approval by a library moderator.</p>
     {% elif post.status == 'Review' %}
         <p>This post has been reviewed by {{post.moderator}}. They have requested the following change(s):</p>

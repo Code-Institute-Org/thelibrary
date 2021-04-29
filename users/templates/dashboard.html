@@ -7,71 +7,48 @@
 <div class="container">
     <div id="dashboard" class="row white-box box-shadow-light-spread my-4">
         <div class="col-12">
-            <h2 class="home-listview-heading text-center text-sm-start mb-4">
+            <h1 class="home-listview-heading text-center text-sm-start mb-4">
                 Your posts dashboard
-            </h2>
-        </div>
-        <div class="col-12 col-md-6">
-            <h3 class="thin-text dashboard-heading">Submitted</h3>
-            <button type="button" data-bs-toggle="popover"
-                class="invisible-button"
-                title="What's this?"
-                data-bs-content="Submitted posts are published after a moderator has approved them.">
-                <i class="far fa-question-circle"></i>
-            </button>
-            {% for post in waiting_posts %}
-                <a href="{% url 'post_detail' post.pk post.slug  %}">
-                    <h4 class="dashboard-post-title">{{ post.title }}</h4>
-                </a>
-            {% empty %}
-            <p>No submitted posts</p>
-            {% endfor %}
-        </div>
-        <div class="col-12 col-md-6">
-            <h3 class="thin-text dashboard-heading">In Review</h3>
-            <button type="button" data-bs-toggle="popover"
-                class="invisible-button"
-                title="What's this?"
-                data-bs-content="If a moderator has requested an edit to your new post, the post will appear here.">
-                <i class="far fa-question-circle"></i>
-            </button>
-            {% for post in reviewed_posts %}
-                <a href="{% url 'edit_post' post.pk post.slug  %}">
-                    <h4 class="dashboard-post-title">{{ post.title }}</h4>
-                </a>
-                <p>Post reviewed by {{ post.moderator }}</p>
-                <p>{{ post.mod_message }}</p>
-            {% empty %}
-            <p>No posts in review</p>
-            {% endfor %}
+            </h1>
         </div>
         <div class="col-12">
-            <h3 class="thin-text dashboard-heading">Published</h3>
             <table class="table dashboard-table">
+                <thead>
+                    <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">View</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
                 <tbody>
-                    {% for post in approved_posts %}
+                    {% for post in posts %}
                     <tr>
                         <th>{{ post.title }}</th>
                         <td>
+                            {{ post.status }}
+                        </td>
+                        <td>
                             <a href="{% url 'post_detail' post.pk post.slug  %}">
-                                View
+                                <i class="far fa-eye"></i>
                             </a>
                         </td>
                         <td>
                             <a href="{% url 'edit_post' post.pk post.slug  %}">
-                                Edit
+                                <i class="far fa-edit"></i>
                             </a>
                         </td>
                         <td>
                             <a href="#">
-                                Delete
+                                <i class="far fa-trash-alt"></i>
                             </a>
                         </td>
                     </tr>
                     {% empty %}
                     <tr>
                         <td colspan="4">
-                            No published posts (yet)
+                            No posts (yet)
                         </td>
                     </tr>
                     {% endfor %}

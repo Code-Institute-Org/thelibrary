@@ -21,7 +21,7 @@ class SearchResultsView(LoginRequiredMixin, ListView):
             Q(title__icontains=q)
             | Q(summary__icontains=q)
             | Q(body__icontains=q),
-            status="Approved")
+            status="Published")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

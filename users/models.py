@@ -40,7 +40,7 @@ class UserProfile(models.Model):
         If author has no kudos badge yet, the 'invisible' class
         returned will hide it.
         """
-        total_posts = self.posts.filter(status="Approved").count()
+        total_posts = self.posts.filter(status="Published").count()
 
         if total_posts >= 15:
             return 'kudos-badge-gold'

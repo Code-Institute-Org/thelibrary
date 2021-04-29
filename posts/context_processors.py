@@ -15,7 +15,7 @@ def notifications(request):
             status="Review"
         ).count()
         num_posts_to_review = Post.objects.filter(
-            status="Waiting"
+            status="Submitted"
         ).exclude(author=request.user.userprofile).count()
 
         context = {

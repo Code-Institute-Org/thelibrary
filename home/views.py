@@ -12,9 +12,9 @@ def home_view(request):
     and one post from each category.
     """
     recent_posts = Post.objects.filter(
-        status="Approved").order_by('-created_on')[:4]
+        status="Published").order_by('-created_on')[:4]
     favourite_posts = Post.objects.filter(
-        status="Approved"
+        status="Published"
     ).annotate(
         like_count=Count('likes')).order_by('-like_count')[:4]
     

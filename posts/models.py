@@ -50,12 +50,12 @@ class Post(models.Model):
     """
     Create instance of Post
     """
-    WAITING = 'Waiting'
-    APPROVED = 'Approved'
+    SUBMITTED = 'Submitted'
+    PUBLISHED = 'Published'
     REVIEW = 'Review'
     STATUS_CHOICES = (
-        (WAITING, "Awaiting Approval"),
-        (APPROVED, "Approved"),
+        (SUBMITTED, "Submitted"),
+        (PUBLISHED, "Published"),
         (REVIEW, "Review"),
     )
     title = models.CharField(
@@ -76,7 +76,7 @@ class Post(models.Model):
     status = models.CharField(
         max_length=100,
         choices=STATUS_CHOICES,
-        default=WAITING)
+        default=SUBMITTED)
     mod_message = models.TextField(max_length=300, null=True)
     moderator = models.ForeignKey(
         User,

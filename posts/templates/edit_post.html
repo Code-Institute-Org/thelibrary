@@ -15,8 +15,8 @@
     <!-- REMINDER: adjust tags field so tags options in a checklist 
     Also look into how to give user ability to add new tags -->
     <button>Submit</button>
-    {% if form.instance.status == 'Approved' %}
-        <small>Edits to approved posts are published immediately</small>
+    {% if form.instance.status == 'Published' %}
+        <small>Edits to previously published posts are published immediately</small>
     {% endif %}
     
 </form>

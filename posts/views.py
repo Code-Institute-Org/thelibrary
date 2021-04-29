@@ -21,7 +21,7 @@ class AllPostsView(LoginRequiredMixin, ListView):
     """ Basic view to see all posts """
     template_name = 'posts_listview.html'
     paginate_by = 12
-    queryset = Post.objects.filter(status='Approved').order_by('-created_on')
+    queryset = Post.objects.filter(status='Published').order_by('-created_on')
 
     def get_context_data(self, *args, **kwargs):
 
@@ -173,13 +173,13 @@ class EditPostView(LoginRequiredMixin, UpdateView):
 
     def form_valid(self, form):
         if form.instance.status == 'Review':
-            form.instance.status = 'Waiting'
+            form.instance.status = 'Submitted'
         form.instance.updated_on = timezone.now()
         form.mod_message = ''
         return super().form_valid(form)
 
     def get_success_url(self):
-        if self.object.status == 'Waiting':
+        if self.object.status == 'Submitted':
             return reverse(
                     'review_post',
                     kwargs={'pk': self.object.pk, 'slug': self.object.slug})
@@ -192,7 +192,7 @@ class EditPostView(LoginRequiredMixin, UpdateView):
 class ReviewPostsView(LoginRequiredMixin, ListView):
     template_name = 'review_posts.html'
     paginate_by = 4
-    queryset = Post.objects.filter(status='Waiting').order_by('-created_on')
+    queryset = Post.objects.filter(status='Submitted').order_by('-created_on')
     context_object_name = 'posts'
 
     def get(self, *args, **kwargs):
@@ -205,12 +205,12 @@ class ReviewPostsView(LoginRequiredMixin, ListView):
 @login_required
 def approve_post(request, pk, slug):
     """
-    Changes status of a post to approved if the user accessing the url
+    Changes status of a post to published if the user accessing the url
     is a moderator. Of not, user is redirected to home page.
     """
     post = get_object_or_404(Post, pk=pk)
     if post.author != request.user and request.user.userprofile.is_mod:
-        post.status = 'Approved'
+        post.status = 'Published'
         post.save()
         return redirect('review_posts')
     else:

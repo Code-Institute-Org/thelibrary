@@ -15,7 +15,7 @@ from .models import UserProfile, User
 def user_profile_view(request, pk):
     user = get_object_or_404(User, pk=pk)
     posts = Post.objects.filter(
-        author=user.pk, status='Approved').order_by('-created_on')[:4]
+        author=user.pk, status='Published').order_by('-created_on')[:4]
 
     context = {
         'user': user,
@@ -33,17 +33,11 @@ def dashboard_view(request, pk):
         return redirect('home')
 
     else:
-        user = get_object_or_404(User, pk=pk)
-        approved_posts = Post.objects.filter(
-            author=user.pk, status='Approved').order_by('-created_on')
-        waiting_posts = Post.objects.filter(author=user.pk, status='Waiting')
-        reviewed_posts = Post.objects.filter(author=user.pk, status='Review')
+        posts = Post.objects.filter(
+            author=pk).order_by('-created_on')
 
         context = {
-            'user': user,
-            'approved_posts': approved_posts,
-            'waiting_posts': waiting_posts,
-            'reviewed_posts': reviewed_posts,
+            'posts': posts,
         }
 
         return render(request, 'dashboard.html', context)
