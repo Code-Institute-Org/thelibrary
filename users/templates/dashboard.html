@@ -16,7 +16,12 @@
                 <thead>
                     <tr>
                         <th scope="col">Title</th>
-                        <th scope="col">Status</th>
+                        <th scope="col">Status
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#statusModal"
+                                title="What's this?">
+                                <i class="far fa-question-circle"></i>
+                            </button>
+                        </th>
                         <th scope="col">View</th>
                         <th scope="col">Edit</th>
                         <th scope="col">Delete</th>
@@ -58,6 +63,46 @@
             </table>
         </div>
 
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="statusModal" tabindex="-1" aria-labelledby="statusModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="statusModalLabel">Post Statuses</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Submitted posts are reviewed by library moderators before being published.</p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Status</th>
+                            <th scope="col">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td scope="row">Submitted</td>
+                            <td>This post is waiting for a moderator to review it.
+                                Only the author and moderators can access it.</td>
+                        </tr>
+                        <tr>
+                            <td scope="row">Review</td>
+                            <td>This post has been reviewed by a moderator and an edit has been requested.
+                                You can read the moderators message on the edit page for the post.</td>
+                        </tr>
+                        <tr>
+                            <td scope="row">Published</td>
+                            <td>This post has been approved by a moderator and is published to The Library. 
+                                All Library users can access it.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
 
