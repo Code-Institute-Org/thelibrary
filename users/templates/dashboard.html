@@ -29,17 +29,19 @@
                         <td>
                             {{ post.status }}
                         </td>
-                        <td>
+                        <td class="text-center">
+                            {% if post.status == 'Published' %}
                             <a href="{% url 'post_detail' post.pk post.slug  %}">
                                 <i class="far fa-eye"></i>
                             </a>
+                            {% endif %}
                         </td>
-                        <td>
+                        <td class="text-center">
                             <a href="{% url 'edit_post' post.pk post.slug  %}">
                                 <i class="far fa-edit"></i>
                             </a>
                         </td>
-                        <td>
+                        <td class="text-center">
                             <a href="#">
                                 <i class="far fa-trash-alt"></i>
                             </a>
