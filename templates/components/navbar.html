@@ -58,7 +58,7 @@
                         <a id="notifications" class="nav-link position-relative" href="#" id="userNotificationsDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
 
-                            {% if total_notifications > 0 and user.userprofile.is_mod %}
+                            {% if total_notifications > 0 and request.user.userprofile.is_mod %}
                             <!--
                                 Show bell icon as blue, and animate ringing if there are notifications
                             -->
@@ -75,7 +75,7 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            {% if user.userprofile.is_mod %}
+                            {% if request.user.userprofile.is_mod %}
                             <li>
                                 <a class="dropdown-item ps-1 position-relative" href="{% url 'review_posts' %}">
                                     <i class="fas fa-clock dropdown-icon"></i>
@@ -100,7 +100,7 @@
                             </li>
                             {% endif %}
                             <li>
-                                <a class="dropdown-item ps-1 position-relative" href="{% url 'user_profile' user.pk %}">
+                                <a class="dropdown-item ps-1 position-relative" href="{% url 'user_profile' request.user.pk %}">
                                     <i class="fas fa-pen-square dropdown-icon"></i>
                                     
                                     {% if num_author_posts_in_review > 0 %}
@@ -126,9 +126,9 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link p-0" href="#" id="userInfoDropdown" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            {% if user.userprofile.profile_pic %}
+                            {% if request.user.userprofile.profile_pic %}
                             <div class="navbar-avatar" title="Your account"
-                                style="background-image: url('{{ user.userprofile.profile_pic.url }}');"></div>
+                                style="background-image: url('{{ request.user.userprofile.profile_pic.url }}');"></div>
                             {% else %}
                             <div class="navbar-avatar" title="Your account"
                                 style="background-image: url('/media/images/profiles/default-profile-pic.png');"></div>
@@ -137,22 +137,22 @@
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userInfoDropdown">
                             <!-- Header of dropdown shows users avatar, and their name (if provided )-->
                             <div class="dropdown-header d-flex">
-                                {% if user.userprofile.profile_pic %}
+                                {% if request.user.userprofile.profile_pic %}
                                 <div class="navbar-avatar m-0 mt-1"
-                                    style="background-image: url('{{ user.userprofile.profile_pic.url }}');"></div>
+                                    style="background-image: url('{{ request.user.userprofile.profile_pic.url }}');"></div>
                                 {% else %}
                                 <div class="navbar-avatar m-0 mt-1"
                                     style="background-image: url('/media/images/profiles/default-profile-pic.png');">
                                 </div>
                                 {% endif %}
                                 <div class="ps-3">
-                                    {% if user.userprofile.is_staff %}
+                                    {% if request.user.userprofile.is_staff %}
                                     <div class="ci-username-logo"></div>
                                     {% endif %}
-                                    {{ user.username }}
+                                    {{ request.user.username }}
                                     <br>
-                                    {% if user.first_name %}{{ user.first_name }}{% endif %}
-                                    {% if user.last_name %}{{ user.last_name }}{% endif %}
+                                    {% if request.user.first_name %}{{ request.user.first_name }}{% endif %}
+                                    {% if request.user.last_name %}{{ request.user.last_name }}{% endif %}
                                 </div>
                             </div>
 
@@ -160,16 +160,16 @@
                                 <hr class="dropdown-divider">
                             </li>
                             <li>
-                                <a class="dropdown-item ps-1" href="{% url 'user_profile' user.pk %}">
+                                <a class="dropdown-item ps-1" href="{% url 'user_profile' request.user.pk %}">
                                     <i class="fas fa-user dropdown-icon"></i> My profile
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item ps-1" href="{% url 'bookmarks' user.pk %}">
+                                <a class="dropdown-item ps-1" href="{% url 'bookmarks' request.user.pk %}">
                                     <i class="fas fa-bookmark dropdown-icon"></i> My Bookmarks</a>
                             </li>
                             <li>
-                                <a class="dropdown-item ps-1" href="{% url 'settings' user.pk %}">
+                                <a class="dropdown-item ps-1" href="{% url 'settings' request.user.pk %}">
                                     <i class="fas fa-cog dropdown-icon"></i> Settings
                                 </a>
                             </li>
