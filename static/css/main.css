@@ -786,7 +786,7 @@ by Rich Text Editor for creating posts.
 #post-body h4,
 #post-body h5,
 #post-body h6 {
-    color: var(--cta-teal)
+    color: var(--cta-teal);
 }
 
 figure figcaption {
@@ -962,7 +962,7 @@ on the post_detail page.
 }
 
 /* ---------------------
-Profile pg post cards 
+    Profile pg post cards 
 --------------------- */
 
 #profile-pg .post-card {
@@ -972,7 +972,7 @@ Profile pg post cards
 }
 
 /* ---------------------
-Profile dashboard
+    Profile dashboard
 --------------------- */
 
 /*
