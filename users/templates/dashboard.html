@@ -22,13 +22,13 @@
                                 <i class="far fa-question-circle"></i>
                             </button>
                         </th>
-                        <th scope="col">View</th>
-                        <th scope="col">Edit</th>
-                        <th scope="col">Delete</th>
+                        <th class="text-center" scope="col">View</th>
+                        <th class="text-center" scope="col">Edit</th>
+                        <th class="text-center" scope="col">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for post in posts %}
+                    {% for post in page_obj %}
                     <tr>
                         <th>{{ post.title }}</th>
                         <td>
@@ -61,6 +61,28 @@
                     {% endfor %}
                 </tbody>
             </table>
+            {% if page_obj.has_other_pages %}
+            <ul class="pagination">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo;</a></li>
+                {% else %}
+                    <li class="disabled page-item"><a href="#" class="page-link">&laquo;</a></li>
+                {% endif %}
+                {% for i in page_obj.paginator.page_range %}
+                    {% if page_obj.number == i %}
+                        <li class="active page-item"><a href="#" class="page-link">{{ i }} <span class="sr-only">(current)</span></a></li>
+                    {% else %}
+                        <li class="page-item"><a href="?page={{ i }}" class="page-link">{{ i }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    <li class="page-item"><a href="?page={{ page_obj.next_page_number }}" class="page-link">&raquo;</a></li>
+                {% else %}
+                    <li class="disabled page-item"><a href="#" class="page-link">&raquo;</a></li>
+                {% endif %}
+            </ul>
+            {% endif %}
         </div>
 
     </div>

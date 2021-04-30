@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView
 from django.views.generic.edit import UpdateView
@@ -36,8 +37,17 @@ def dashboard_view(request, pk):
         posts = Post.objects.filter(
             author=pk).order_by('-created_on')
 
+        page = request.GET.get('page', 1)
+        paginator = Paginator(posts, 24)
+        try:
+            page_obj = paginator.page(page)
+        except PageNotAnInteger:
+            page_obj = paginator.page(1)
+        except EmptyPage:
+            page_obj = paginator.page(paginator.num_pages)
+
         context = {
-            'posts': posts,
+            'page_obj': page_obj,
         }
 
         return render(request, 'dashboard.html', context)

@@ -1010,6 +1010,11 @@ Profile dashboard
     text-decoration: none;
 }
 
+#dashboard .active a.page-link {
+    color: white;
+    background-color: var(--cta-teal);
+}
+
 .dashboard-table th {
     font-weight: normal;
 }
