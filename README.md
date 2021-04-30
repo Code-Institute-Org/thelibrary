@@ -2,6 +2,16 @@
 
 A hobby project to create a library of community generated resources. Built with Django.
 
+## UX/UI design
+### Wireframes
+- [Home page](https://ibb.co/8MMzCmz)
+- [List view for posts](https://ibb.co/T0SdJtX)
+- [Create and Edit post page](https://ibb.co/JFvpZph)
+- [Post detail](https://ibb.co/cT71jt4)
+- [Settings](https://ibb.co/L8HX30s)
+- [Author profile](https://ibb.co/PQkPZCS)
+- [Your profile](https://ibb.co/nzqbBJ2)
+
 ## Setting up project
 
 ### Project requirements
