@@ -441,16 +441,19 @@ See media queries for other screen sizes.
     color: var(--white);
 }
 
+/*
+!important needed to override styles from '#dashboard a' selector
+*/
 .btn-orange {
     background-color: var(--white);
-    color: var(--cta-orange);
+    color: var(--cta-orange)!important;
     border: 3px solid var(--cta-orange);
     transition: all ease-in-out .4s;
 }
 
 .btn-orange:hover {
     background-color: var(--cta-orange);
-    color: var(--white);
+    color: var(--white)!important;
 }
 
 .btn-thin-border {
@@ -993,8 +996,13 @@ Profile dashboard
 #dashboard a,
 #dashboard .deleteBtn > i {
     color: var(--cta-teal);
-    transition: all ease-in-out var(--orange);
+    transition: all ease-in-out .4s;
     text-decoration: none;
+}
+
+#dashboard a:hover,
+#dashboard .deleteBtn > i:hover {
+    color: var(--darkgrey);
 }
 
 #dashboard .active a.page-link {
