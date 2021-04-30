@@ -505,20 +505,6 @@ Header height 100% vh minus height of the navbar.
     font-weight: 300;
 }
 
-.paginate {
-    margin: 2rem auto;
-}
-
-.paginate .btn {
-    font-size: .9rem;
-    padding: .4rem .5rem .2rem;
-}
-
-.paginate .btn > i {
-    font-size: 20px;
-}
-
-
 /* ---------------------
     Post cards
 --------------------- */
