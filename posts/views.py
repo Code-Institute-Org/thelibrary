@@ -73,6 +73,69 @@ def filtered_posts_view(request, *args, **kwargs):
         return render(request, 'posts_listview.html', context)
 
 
+def author_posts_view(request, pk, *args, **kwargs):
+    """
+    Renders author posts page. Sets defaults on first loading the page
+    to show all of the authors posts, with their most recent first.
+    When a GET request is made, the results are filtered by category
+    and sort method.
+    """
+    if request.GET:
+        sort_method = request.GET.get('sort_method')
+        category_pk = request.GET.get('category')
+
+        if sort_method == 'likes':
+            if category_pk == 'all':
+                sorted_posts = Post.objects.filter(
+                    author=pk).annotate(
+                        like_count=Count('likes')
+                    ).order_by('-like_count')
+            else:
+                sorted_posts = Post.objects.filter(
+                    author=pk,
+                    category=category_pk
+                ).annotate(
+                    like_count=Count('likes')
+                ).order_by('-like_count')
+        elif category_pk == 'all':
+            sorted_posts = Post.objects.filter(
+                author=pk).order_by(sort_method)
+        else:
+            sorted_posts = Post.objects.filter(
+                author=pk,
+                category=category_pk
+            ).order_by(sort_method)
+
+    # Set defaults to show all posts by author
+    # sorted by recent first.
+    else:
+        sort_method = '-created_on'
+        category_pk = 'all'
+        sorted_posts = Post.objects.filter(
+            author=pk
+        ).order_by(sort_method)
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(sorted_posts, 12)
+    try:
+        page_obj = paginator.page(page)
+    except PageNotAnInteger:
+        page_obj = paginator.page(1)
+    except EmptyPage:
+        page_obj = paginator.page(paginator.num_pages)
+
+    userprofile = get_object_or_404(UserProfile, pk=pk)
+    context = {
+        'page_obj': page_obj,
+        'category_pk': category_pk,
+        'sort_method': sort_method,
+        'pg_title': f"Posts by {userprofile.user.username}",
+        'extra_filter': 'author',
+        'author_pk': pk,
+    }
+    return render(request, 'posts_listview.html', context)
+
+
 class PostDetailView(LoginRequiredMixin, DetailView, SuccessMessageMixin):
     """ Create view for full post """
     model = Post
@@ -266,23 +329,6 @@ class CategoryView(LoginRequiredMixin, SingleObjectMixin, ListView):
 
     def get_queryset(self):
         return self.object.posts_to_category.all().order_by('-created_on')
-
-
-class AuthorPostsView(LoginRequiredMixin, SingleObjectMixin, ListView):
-    paginate_by = 4
-    template_name = 'post_by_author.html'
-
-    def get(self, request, *args, **kwargs):
-        self.object = self.get_object(queryset=User.objects.all())
-        return super().get(request, *args, **kwargs)
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['author'] = self.object
-        return context
-
-    def get_queryset(self):
-        return self.object.userprofile.posts.all()
 
 
 class TagPostsView(LoginRequiredMixin, SingleObjectMixin, ListView):

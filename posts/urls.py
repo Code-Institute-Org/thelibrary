@@ -12,7 +12,8 @@ from .views import (
     like_post,
     bookmark_post,
     CategoryView,
-    AuthorPostsView,
+    # AuthorPostsView,
+    author_posts_view,
     TagPostsView,
     filtered_posts_view
 )
@@ -46,7 +47,7 @@ urlpatterns = [
         CategoryView.as_view(), name="category"),
     path(
         'author/<int:pk>/',
-        AuthorPostsView.as_view(), name="posts_by_author"),
+        author_posts_view, name="posts_by_author"),
     path(
         'tag/<int:pk>/', TagPostsView.as_view(), name="posts_by_tag"),
     path('filtered/', filtered_posts_view, name="filtered_posts")

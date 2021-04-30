@@ -15,7 +15,14 @@
                     </p>
                 </div>
                 <div class="col-12 col-lg-6">
-                    <form action="{% url 'filtered_posts' %}" method="GET" id="filters">
+                    <form action="
+                    {% if extra_filter %}
+                        {% if extra_filter == 'author' %}
+                            {% url 'posts_by_author' author_pk %}
+                        {% endif %}
+                    {% else %}
+                        {% url 'filtered_posts' %}
+                    {% endif %}" method="GET" id="filters">
 
                         <select name="category" class="form-select" aria-label="Select a category">
                             <option value="all">All</option>
