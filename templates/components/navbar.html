@@ -41,7 +41,7 @@
                                 {% if category.posts_to_category.count > 0 %}
                                 <li>
                                     <a class="dropdown-item"
-                                        href="{% url 'category' category.id category|slugify %}">{{ category }}</a>
+                                        href="{% url 'filtered_posts' %}?category={{category.pk}}&sort_method=-created_on">{{ category }}</a>
                                 </li>
                                 {% endif %}
                             {% endfor %}

@@ -9,7 +9,7 @@
         <header class="list-view-header box-shadow-light-spread mt-2 col-12">
             <div class="row">
                 <div class="col-12 col-lg-6">
-                    <h1 class="home-listview-heading">{% if pg_title %}{{ pg_title }}{% else %}Filtered Results{% endif %}</h1>
+                    <h1 class="home-listview-heading">{% if pg_title %}{{ pg_title }}{% else %}Results{% endif %}</h1>
                     <p class="m-0">
                         {{ page_obj.paginator.count }} result{% if page_obj.paginator.count > 1 %}s{% endif %}
                     </p>

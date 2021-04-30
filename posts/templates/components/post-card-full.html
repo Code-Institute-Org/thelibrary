@@ -51,7 +51,7 @@
         </div>        
     </div>
     <div class="category-wrapper text-center">
-        <a href="{% url 'category' post.category.pk post.category.name %}">
+        <a href="{% url 'filtered_posts' %}?category={{post.category.pk}}&sort_method=-created_on">
             <span class="category">{{ post.category }}</span>
         </a>
     </div>

@@ -87,7 +87,7 @@
         </header>
         <div class="category-wrapper">
             <div class="dotted-line"></div>
-            <a href="{% url 'category' post.category.pk post.category.name %}">
+            <a href="{% url 'filtered_posts' %}?category={{post.category.pk}}&sort_method=-created_on">
                 <span class="category">{{ post.category }}</span>
             </a>
         </div>
@@ -298,7 +298,7 @@
                 <i class="fas fa-chevron-left"></i>
                 <span>Back</span>
             </button>
-            <a href="{% url 'category' post.category.pk post.category.name %}" class="btn btn-outline-teal btn-thin-border me-2 mb-2">
+            <a href="{% url 'filtered_posts' %}?category={{post.category.pk}}&sort_method=-created_on" class="btn btn-outline-teal btn-thin-border me-2 mb-2">
                 More posts on {{ post.category }}
             </a>
         </div>

@@ -115,6 +115,7 @@ def author_posts_view(request, pk, *args, **kwargs):
             author=pk
         ).order_by(sort_method)
 
+    # Build pagination object (see code credit above)
     page = request.GET.get('page', 1)
     paginator = Paginator(sorted_posts, 12)
     try:
@@ -312,23 +313,6 @@ class ReviewPostView(LoginRequiredMixin, DetailView, UpdateView):
         form.instance.moderator = self.request.user
         form.instance.status = 'Review'
         return super().form_valid(form)
-
-
-class CategoryView(LoginRequiredMixin, SingleObjectMixin, ListView):
-    paginate_by = 4
-    template_name = 'category.html'
-
-    def get(self, request, *args, **kwargs):
-        self.object = self.get_object(queryset=PostCategory.objects.all())
-        return super().get(request, *args, **kwargs)
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['category'] = self.object
-        return context
-
-    def get_queryset(self):
-        return self.object.posts_to_category.all().order_by('-created_on')
 
 
 class TagPostsView(LoginRequiredMixin, SingleObjectMixin, ListView):
