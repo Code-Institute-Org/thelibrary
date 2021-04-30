@@ -12,8 +12,8 @@ function checkDelete(postID) {
 
     if (check) {
         let currentURL = window.location.href;
-        let splitStr = currentURL.split('posts/');
-        let url = splitStr[0] + 'posts/delete/' + postID;
+        let splitStr = currentURL.split('/');
+        let url = `${splitStr[0]}//${splitStr[2]}/posts/delete/${postID}`
         window.location.href = url;
         return
     } else {
@@ -25,16 +25,18 @@ function goBack() {
     window.history.back();
 }
 
-let backBtn = document.getElementById('back-btn');
 let deleteBtns = document.getElementsByClassName('deleteBtn');
-let postID = deleteBtns[0].getAttribute('data-post-pk');
 
 for (let i = 0; i < deleteBtns.length; i++) {
+    let postID = deleteBtns[i].getAttribute('data-post-pk');
     deleteBtns[i].addEventListener('click', function () {
         checkDelete(postID);
     });
 }
 
-backBtn.addEventListener('click', function() {
-    goBack();
-})
+if (document.getElementById('back-btn')) {
+    let backBtn = document.getElementById('back-btn');
+    backBtn.addEventListener('click', function() {
+        goBack();
+    });
+}

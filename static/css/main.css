@@ -990,7 +990,8 @@ Profile dashboard
     font-size: 1rem;
 }
 
-#dashboard a {
+#dashboard a,
+#dashboard .deleteBtn > i {
     color: var(--cta-teal);
     transition: all ease-in-out var(--orange);
     text-decoration: none;

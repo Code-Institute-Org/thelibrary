@@ -221,7 +221,7 @@ def approve_post(request, pk, slug):
 def delete_post(request, pk):
     """ Deletes post """
     post = get_object_or_404(Post, pk=pk)
-    if post.author == request.user:
+    if post.author == request.user.userprofile:
         post.delete()
 
         # Change this to redirect to where user was
