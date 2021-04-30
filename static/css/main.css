@@ -975,6 +975,14 @@ Profile pg post cards
 Profile dashboard
 --------------------- */
 
+/*
+Small font size for dashboard table on extra small
+screens. Media query adjusts size for small screens and up
+*/
+#dashboard {
+    font-size: .8rem;
+}
+
 .dashboard-heading {
     display: inline-block;
 }
@@ -1014,14 +1022,38 @@ Profile dashboard
     font-weight: normal;
 }
 
+#narrow-screen > img {
+    max-width: 100%;
+}
+
 /* ---------------------
     Media Queries 
-    - Bootstrap 5 breakpoints
 --------------------- */
+
+@media (max-width: 440px) {
+    .dashboard-table {
+        display: none;
+    }
+}
+
+@media (min-width: 440px) {
+    #narrow-screen {
+        display: none;
+    }
+    .dashboard-table {
+        display: table;
+    }
+}
 
 @media (min-width: 370px) {
     .navbar-avatar {
         margin-left: 1rem;
+    }
+}
+
+@media (min-width: 475px) {
+    #dashboard {
+        font-size: 1rem;
     }
 }
 

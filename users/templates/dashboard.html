@@ -11,8 +11,19 @@
                 Your Posts
             </h1>
             <div class="d-inline-block">
-                <a href="{% url 'create_post' %}" class="btn btn-orange"><i class="fas fa-plus"></i> Add New</a>
+                <a href="{% url 'create_post' %}" class="btn btn-orange" title="Add New" aria-label="Add a new post">
+                    <i class="fas fa-plus"></i>
+                    <span class="d-none d-sm-inline-block">Add New</span>
+                </a>
             </div>
+        </div>
+        <!--
+            Table for posts does not render well on narrow phone screens.
+            #narrow-screen column visible to ask users to turn their phones to view the posts.
+        -->
+        <div id="narrow-screen" class="col-12 text-center">
+            <strong>To view your posts, please turn your phone into landscape mode.</strong>
+            <img src="{% static 'img/rotate-phone.png' %}" alt="Rotate your phone icon">
         </div>
         <div class="col-12">
             <table class="table dashboard-table">
@@ -20,7 +31,7 @@
                     <tr>
                         <th scope="col">Title</th>
                         <th scope="col">Status
-                            <button class="invisible-button" type="button" data-bs-toggle="modal" data-bs-target="#statusModal"
+                            <button class="invisible-button p-0" type="button" data-bs-toggle="modal" data-bs-target="#statusModal"
                                 title="What's this?">
                                 <i class="far fa-question-circle"></i>
                             </button>
