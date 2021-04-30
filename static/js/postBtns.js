@@ -13,7 +13,7 @@ function checkDelete(postID) {
     if (check) {
         let currentURL = window.location.href;
         let splitStr = currentURL.split('/');
-        let url = `${splitStr[0]}//${splitStr[2]}/posts/delete/${postID}`
+        let url = `${splitStr[0]}//${splitStr[2]}/posts/delete/${postID}?next=${currentURL}`;
         window.location.href = url;
         return
     } else {

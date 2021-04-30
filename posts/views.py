@@ -224,9 +224,8 @@ def delete_post(request, pk):
     if post.author == request.user.userprofile:
         post.delete()
 
-        # Change this to redirect to where user was
-        # looking before the post they deleted?
-        return redirect('home')
+        next_pg = request.GET.get('next', '/')
+        return HttpResponseRedirect(next_pg)
 
     # redirect users who are not the author away from
     # delete url without deleting post
