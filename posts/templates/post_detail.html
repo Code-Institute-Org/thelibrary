@@ -77,10 +77,8 @@
                         <i class="far fa-thumbs-up"></i>
                         {% endif %}
                     </button>
-                    {% if total_likes > 99 %}
-                    99+
-                    {% else %}
-                    {{ total_likes }}
+                    {% if total_likes > 0 %}
+                        {{ total_likes }}
                     {% endif %}
                 </form>
             </div>
@@ -241,9 +239,7 @@
                         <i class="far fa-thumbs-up"></i>
                     {% endif %}
                     <span>
-                        {% if total_likes > 99 %}
-                            99+
-                        {% else %}
+                        {% if total_likes > 0 %}
                             {{ total_likes }}
                         {% endif %}
                     </span>
