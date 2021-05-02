@@ -1,8 +1,27 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %}{% load static %}
 
 {% block content %}
 
-<h1>Edit post page</h1>
+<div id="edit-pg" class="container white-box box-shadow-light-spread mt-2">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="display-5 mb-4">Edit post</h1>
+        </div>
+        {% if post.mod_message %}
+        <div class="col-12">
+            <div class="alert alert-info position-relative" role="alert">
+                <p>Your post has been reviewed by a library moderator.
+                    They have requested this change to the post before publishing.
+                    Please make the requested edit and resubmit your post. Thank you!</p>
+                <p><strong>Moderator message from {{ post.moderator }}:</strong></p>
+                <p>{{ post.mod_message }}</p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+
 
 {% if post.mod_message %}
 <p>{{ post.mod_message }}</p>
