@@ -18,14 +18,9 @@
             </div>
         </div>
         {% endif %}
+        
     </div>
 </div>
-
-
-
-{% if post.mod_message %}
-<p>{{ post.mod_message }}</p>
-{% endif %}
 
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
