@@ -1031,7 +1031,7 @@ screens. Media query adjusts size for small screens and up
 --------------------- */
 
 /*
-css for input fields in form taken from bootstrap 5
+css for input and select fields in form taken from bootstrap 5
 'form-control' class. As a way to avoid needing to apply
 the class to every input field in forms.py
 (Currently crispy-forms and django-bootstrap installations
@@ -1073,6 +1073,9 @@ together with js code in responsiveEditor.js file.
     color: var(--cta-blue);
 }
 
+#id_category {
+    max-width: 250px;
+}
 /* ---------------------
     Media Queries 
 --------------------- */

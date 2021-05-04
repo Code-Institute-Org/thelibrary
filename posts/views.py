@@ -13,7 +13,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.views.generic.detail import SingleObjectMixin
 from django.urls import reverse_lazy
 from users.models import User, UserProfile
-from .forms import FlagForm
+from .forms import FlagForm, EditPostForm
 from .models import Post, PostCategory, PostFlag, PostTag
 
 
@@ -239,17 +239,7 @@ class EditPostView(LoginRequiredMixin, UpdateView):
     model = Post
     template_name = 'edit_post.html'
     context_object_name = 'post'
-    fields = [
-        'title',
-        'summary',
-        'image_1',
-        'image_2',
-        'image_3',
-        'image_4',
-        'body',
-        'category',
-        'tags'
-    ]
+    form_class = EditPostForm
 
     def form_valid(self, form):
         if form.instance.status == 'Review':
