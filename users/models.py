@@ -8,7 +8,8 @@ import datetime
 
 class UserProfile(models.Model):
     """
-    Extends User model to track admin/mod status. Is automatically generated
+    Extends User model to track admin/mod/staff status, store social links,
+    bio and date joined. Instance of UserProfile is automatically generated
     on creation of a new User account.
     """
     user = models.OneToOneField(User, unique=True, on_delete=models.CASCADE)
@@ -52,7 +53,10 @@ class UserProfile(models.Model):
             return 'invisible'
 
     def get_author_name(self):
-
+        """
+        Method to return users full name if provided,
+        if not it returns their username
+        """
         if self.user.first_name and self.user.last_name:
             return f"{self.user.first_name} {self.user.last_name}"
         else:
@@ -61,10 +65,12 @@ class UserProfile(models.Model):
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
+    """ Creates UserProfile on new instance of User """
     if created:
         UserProfile.objects.create(user=instance)
 
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
+    """ Saves instance of UserProfile """
     instance.userprofile.save()

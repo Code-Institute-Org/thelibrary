@@ -14,6 +14,10 @@ from .models import UserProfile, User
 
 @login_required
 def user_profile_view(request, pk):
+    """
+    Render selected users profile,
+    including their 4 most recently published posts.
+    """
     user = get_object_or_404(User, pk=pk)
     posts = Post.objects.filter(
         author=user.pk, status='Published').order_by('-created_on')[:4]
@@ -28,8 +32,10 @@ def user_profile_view(request, pk):
 
 @login_required
 def dashboard_view(request, pk):
-    # If user tries to access another users dashboard,
-    # redirect them to the home page.
+    """
+    Render dashboard view for logged in user. Displays all the posts
+    the user has created in table format.
+    """
     if pk is not request.user.pk:
         return redirect('home')
 
@@ -53,18 +59,11 @@ def dashboard_view(request, pk):
         return render(request, 'dashboard.html', context)
 
 
-class UserSettingsView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
-    model = User
-    template_name = 'user_settings.html'
-    fields = ['username', 'first_name', 'last_name']
-    success_message = "Update successful!"
-
-    def get_success_url(self):
-        pk = self.request.user.pk
-        return reverse_lazy('settings', kwargs={'pk': pk})
-
-
 class UserBookmarksView(LoginRequiredMixin, SingleObjectMixin, ListView):
+    """
+    Render page for user to view their bookmarks.
+    """
+    # Notes: Add ability to filter and sort bookmarks.
     paginate_by = 4
     template_name = 'bookmarks.html'
 
@@ -81,7 +80,26 @@ class UserBookmarksView(LoginRequiredMixin, SingleObjectMixin, ListView):
         return self.object.post_bookmarks.all()
 
 
+class UserSettingsView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    """
+    Render view for user to edit the settings
+    associated with their User instance.
+    """
+    model = User
+    template_name = 'user_settings.html'
+    fields = ['username', 'first_name', 'last_name']
+    success_message = "Update successful!"
+
+    def get_success_url(self):
+        pk = self.request.user.pk
+        return reverse_lazy('settings', kwargs={'pk': pk})
+
+
 class UpdateProfileView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    """
+    Render view for user to edit the settings
+    associated with their UserProfile instance.
+    """
     model = UserProfile
     fields = ['bio', 'profile_pic', 'linkedin', 'github']
     template_name = 'update_profile.html'

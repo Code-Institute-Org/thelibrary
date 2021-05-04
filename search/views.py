@@ -7,7 +7,7 @@ from posts.models import Post
 
 
 class SearchResultsView(LoginRequiredMixin, ListView):
-    """ View to render search results with pagination """
+    """ Render search results with pagination """
     template_name = "search/search_results.html"
     paginate_by = 4
     context_object_name = 'posts'

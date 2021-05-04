@@ -9,6 +9,9 @@ from users.models import UserProfile
 
 
 class PostTag(models.Model):
+    """
+    Create tags for posts. Users should be able to add new tags.
+    """
     name = models.CharField(max_length=50)
 
     def __str__(self):
@@ -16,6 +19,10 @@ class PostTag(models.Model):
 
 
 class PostCategory(models.Model):
+    """
+    Create categories for posts.
+    Only admins should be able to add, edit or delete categories
+    """
     name = models.CharField(max_length=20)
 
     def __str__(self):
@@ -23,6 +30,11 @@ class PostCategory(models.Model):
 
 
 class PostFlag(models.Model):
+    """
+    Create instance of PostFlag so users can flag posts for
+    innappropriate or outdated content. Flags only visible to
+    Library admins.
+    """
     INNAPPROPRIATE = 'Innappropriate content'
     OUTDATED = 'Outdated content'
     FLAG_REASONS = (
@@ -110,6 +122,7 @@ class Post(models.Model):
         max_length=400, null=True, blank=True)
 
     def total_likes(self):
+        """ Returns total likes a post has """
         return self.likes.count()
 
     class Meta:

@@ -18,7 +18,7 @@ from .models import Post, PostCategory, PostFlag, PostTag
 
 
 class AllPostsView(LoginRequiredMixin, ListView):
-    """ Basic view to see all posts """
+    """ Basic view to see all posts, ordered by most recently created first """
     template_name = 'posts_listview.html'
     paginate_by = 12
     queryset = Post.objects.filter(status='Published').order_by('-created_on')
@@ -34,6 +34,12 @@ class AllPostsView(LoginRequiredMixin, ListView):
 
 @login_required
 def filtered_posts_view(request, *args, **kwargs):
+    """
+    View to handle filtering all posts by category and sort method.
+    Results paginated by 12 items, default category "all" and sort method
+    by most recently created first. Users can sort by single categories,
+    newest, oldest or most liked.
+    """
     if request.GET:
         category_pk = request.GET.get('category')
         sort_method = request.GET.get('sort_method')
@@ -140,7 +146,12 @@ def author_posts_view(request, pk, *args, **kwargs):
 
 
 class PostDetailView(LoginRequiredMixin, DetailView, SuccessMessageMixin):
-    """ Create view for full post """
+    """
+    Create view for single post detail page. Shows the post information, and
+    displays details about the author from their profile. Also loads the flag
+    form which is displayed in a modal, for users who wish to flag the post for
+    innappropriate or outdated content.
+    """
     model = Post
     template_name = 'post_detail.html'
     context_object_name = 'post'
@@ -163,6 +174,7 @@ class PostDetailView(LoginRequiredMixin, DetailView, SuccessMessageMixin):
         return context
 
     def post(self, request, *args, **kwargs):
+        """ Handles submission of the FlagForm """
         form = FlagForm(request.POST)
         if form.is_valid():
             # Add flagger details to PostFlag instance
@@ -198,6 +210,7 @@ class PostDetailView(LoginRequiredMixin, DetailView, SuccessMessageMixin):
 
 
 class CreatePostView(LoginRequiredMixin, CreateView):
+    """ Renders view to create a new post """
     model = Post
     template_name = 'create_post.html'
     fields = [
@@ -222,6 +235,7 @@ class CreatePostView(LoginRequiredMixin, CreateView):
 
 
 class EditPostView(LoginRequiredMixin, UpdateView):
+    """ Renders view to edit an existing post """
     model = Post
     template_name = 'edit_post.html'
     context_object_name = 'post'
@@ -256,6 +270,10 @@ class EditPostView(LoginRequiredMixin, UpdateView):
 
 
 class ReviewPostsView(LoginRequiredMixin, ListView):
+    """
+    Renders view for moderators to review submitted posts. If non-mod
+    tries to access this view, they are reidrected to the home page.
+    """
     template_name = 'review_posts.html'
     paginate_by = 4
     queryset = Post.objects.filter(status='Submitted').order_by('-created_on')
@@ -264,15 +282,16 @@ class ReviewPostsView(LoginRequiredMixin, ListView):
     def get(self, *args, **kwargs):
         user = self.request.user
         if user.userprofile.is_mod is not True:
-            return redirect('home')
+            return redirect('home')  # add message for user?
         return super(ReviewPostsView, self).get(*args, **kwargs)
 
 
 @login_required
 def approve_post(request, pk, slug):
     """
-    Changes status of a post to published if the user accessing the url
-    is a moderator. Of not, user is redirected to home page.
+    Checks if user approving the post is a moderator and is not the author of
+    the post, if this is True the post is set to published. Otherwise the user
+    is redirected to the home page.
     """
     post = get_object_or_404(Post, pk=pk)
     if post.author != request.user and request.user.userprofile.is_mod:
@@ -280,12 +299,15 @@ def approve_post(request, pk, slug):
         post.save()
         return redirect('review_posts')
     else:
-        return redirect('home')
+        return redirect('home')  # Add message for user here
 
 
 @login_required
 def delete_post(request, pk):
-    """ Deletes post """
+    """
+    Check if author of post is the logged in user.
+    If so, delete the selected post. If not, redirect user to home.
+    """
     post = get_object_or_404(Post, pk=pk)
     if post.author == request.user.userprofile:
         post.delete()
@@ -293,13 +315,14 @@ def delete_post(request, pk):
         next_pg = request.GET.get('next', '/')
         return HttpResponseRedirect(next_pg)
 
-    # redirect users who are not the author away from
-    # delete url without deleting post
     else:
-        return redirect('home')
+        return redirect('home')  # add message for user here.
 
 
 class ReviewPostView(LoginRequiredMixin, DetailView, UpdateView):
+    """
+    Render single post for moderator review.
+    """
     model = Post
     template_name = 'post_review.html'
     context_object_name = 'post'
@@ -318,6 +341,9 @@ class ReviewPostView(LoginRequiredMixin, DetailView, UpdateView):
 
 
 class TagPostsView(LoginRequiredMixin, SingleObjectMixin, ListView):
+    """
+    Render all posts that have the selected tag
+    """
     paginate_by = 4
     template_name = 'post_by_tag.html'
 
@@ -336,7 +362,7 @@ class TagPostsView(LoginRequiredMixin, SingleObjectMixin, ListView):
 
 @login_required
 def like_post(request, pk):
-    """ Adds like to post, tied to specific user """
+    """ Add like to post, tied to specific user """
     post = get_object_or_404(Post, pk=pk)
 
     if post.likes.filter(id=request.user.id).exists():
@@ -349,7 +375,7 @@ def like_post(request, pk):
 
 @login_required
 def bookmark_post(request, pk):
-    """ Adds post to users bookmarks """
+    """ Add post to users bookmarks """
     post = get_object_or_404(Post, pk=pk)
 
     if post.bookmarks.filter(id=request.user.id).exists():

@@ -4,6 +4,9 @@ from .models import PostFlag
 
 
 class FlagForm(forms.ModelForm):
+    """
+    Create form for users to flag posts.
+    """
     INNAPPROPRIATE = 'Innappropriate content'
     OUTDATED = 'Outdated content'
     FLAG_REASONS = (
