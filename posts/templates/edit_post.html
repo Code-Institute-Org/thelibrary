@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<div id="edit-pg" class="container white-box box-shadow-light-spread mt-2">
+<div id="edit-pg" class="container white-box box-shadow-light-spread my-2">
     <div class="row">
         {% if post.mod_message %}
         <div class="col-12">
@@ -54,19 +54,19 @@
                             {{ form.body }}
                         </div>
                     </div>
-                    <div class="col-12 col-md-6 col-xl-3 mb-3 mb-md-0">
+                    <div class="col-12 col-md-6 col-xl-3 mb-3">
                         <label for="id_image_1" class="form-label">Image 1</label>
                         {{ form.image_1 }}
                     </div>
-                    <div class="col-12 col-md-6 col-xl-3 mb-3 mb-md-0">
+                    <div class="col-12 col-md-6 col-xl-3 mb-3">
                         <label for="id_image_2" class="form-label">Image 2</label>
                         {{ form.image_2 }}
                     </div>
-                    <div class="col-12 col-md-6 col-xl-3 mb-3 mb-md-0">
+                    <div class="col-12 col-md-6 col-xl-3 mb-3">
                         <label for="id_image_3" class="form-label">Image 3</label>
                         {{ form.image_3 }}
                     </div>
-                    <div class="col-12 col-md-6 col-xl-3 mb-3 mb-md-0">
+                    <div class="col-12 col-md-6 col-xl-3 mb-3">
                         <label for="id_image_4" class="form-label">Image 4</label>
                         {{ form.image_4 }}
                     </div>
@@ -76,13 +76,14 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12 col-md-6">
+                    <div class="col-12">
                         <label for="id_category" class="form-label">Category</label>
                         {{ form.category }}
                     </div>
-                    <div class="col-12 col-md-6">
-                        <label for="id_tags" class="form-label">Tags</label>
+                    <div id="post-tags" class="col-12">
+                        <label for="id_tags" class="form-label mt-3">Tags</label>
                         {{ form.tags }}
+                        <div class="form-text">Select any tags that relate to your post.</div>
                     </div>
                 </div>
                 
@@ -90,7 +91,8 @@
                     <button>Publish</button>
                     <small>Edits to previously published posts are published immediately</small>
                 {% else %}
-                    <button>Submit</button>
+                    <button class="btn btn-orange mt-4">Submit</button>
+                    <div class="form-text">Your post will be reviewed by a library moderator before it is published.</div>
                 {% endif %}
             </form>
         </div>

@@ -1,6 +1,6 @@
 from django import forms
 from django.utils.translation import gettext_lazy as _
-from .models import PostFlag, PostCategory, Post
+from .models import PostFlag, PostCategory, Post, PostTag
 
 
 class FlagForm(forms.ModelForm):
@@ -32,6 +32,9 @@ class EditPostForm(forms.ModelForm):
         queryset=PostCategory.objects.all(),
         widget=forms.Select(attrs={'class': 'form-select'})
     )
+    # tags = forms.MultipleChoiceField(
+    #     widget=forms.CheckboxSelectMultiple()
+    # )
 
     class Meta:
         model = Post
@@ -46,3 +49,6 @@ class EditPostForm(forms.ModelForm):
             'category',
             'tags'
         ]
+        widgets = {
+            'tags': forms.CheckboxSelectMultiple
+        }

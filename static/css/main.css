@@ -1076,6 +1076,28 @@ together with js code in responsiveEditor.js file.
 #id_category {
     max-width: 250px;
 }
+
+#edit-post-form input[type=checkbox] {
+    appearance: auto;
+    -webkit-appearance: auto;
+    width: auto;
+    display: inline-block;
+}
+
+#edit-post-form li {
+    list-style-type: none;
+}
+
+/*
+Two columns for small screens, see media queries for
+larger screen sizes.
+*/
+#id_tags {
+    padding: 0;
+    column-count: 2;
+    column-gap: 2rem;
+}
+
 /* ---------------------
     Media Queries 
 --------------------- */
@@ -1113,6 +1135,9 @@ together with js code in responsiveEditor.js file.
         display: inline-block;
         max-width: 49.5%;
     }
+    #id_tags {
+        column-count: 3;
+    }
 }
 
 /* Medium devices (tablets, 768px and up) */
@@ -1149,6 +1174,10 @@ together with js code in responsiveEditor.js file.
     #filters > button {
         display: inline-block;
     }
+
+    #id_tags {
+        column-count: 4;
+    }
 }
 
 /* Large devices (desktops, 992px and up) */
@@ -1169,6 +1198,10 @@ together with js code in responsiveEditor.js file.
         display: inline-block;
         max-width: 170px;
         margin: 0;
+    }
+
+    #id_tags {
+        column-count: 5;
     }
     
 }
