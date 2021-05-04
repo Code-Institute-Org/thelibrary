@@ -34,6 +34,45 @@
                         in search results.
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-12 position-relative mb-4">
+                        <label for="id_body" class="form-label">Post main text
+                            <button type="button" class="invisible-button info-btn"
+                            data-bs-toggle="popover" title="Popover title"
+                            data-bs-content="Enter your post text here.
+                            If you insert images into the main body, you will need to
+                            upload them to an image sharing website
+                            like imgbb, and then link to them using the direct url.
+                            To fully customize your post, you can edit the html directly
+                            using the source option">
+                                <i class="fas fa-info" title="More info"></i>
+                            </button>
+                        </label>
+                        <div>
+                            {{ form.body }}
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-3 mb-3 mb-xl-0">
+                        <label for="id_image_1" class="form-label">Image 1</label>
+                        {{ form.image_1 }}
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-3 mb-3 mb-xl-0">
+                        <label for="id_image_2" class="form-label">Image 2</label>
+                        {{ form.image_2 }}
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-3 mb-3 mb-xl-0">
+                        <label for="id_image_3" class="form-label">Image 3</label>
+                        {{ form.image_3 }}
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-3 mb-3 mb-xl-0">
+                        <label for="id_image_4" class="form-label">Image 4</label>
+                        {{ form.image_4 }}
+                    </div>
+                    <div class="col-12">
+                        <div class="form-text">Load up to 4 images to go with your post.
+                            These images will be displayed under the main body of your post.</div>
+                    </div>
+                </div>
                 
                 {% if form.instance.status == 'Published' %}
                     <button>Publish</button>
@@ -46,17 +85,15 @@
     </div>
 </div>
 
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.media }}
-    {{ form.as_p }}
-    <!-- REMINDER: adjust tags field so tags options in a checklist 
-    Also look into how to give user ability to add new tags -->
-    <button>Submit</button>
-    {% if form.instance.status == 'Published' %}
-        <small>Edits to previously published posts are published immediately</small>
-    {% endif %}
-    
-</form>
+{{ form.as_p }}
 
 {% endblock %}
+
+{% block extra_js %}
+    <!-- custom script for bootstrap popovers -->
+    <script src="{% static 'js/popovers.js' %}"></script>
+    <!-- custom script to make text editor responsive -->
+    <script src="{% static 'js/responsiveEditor.js' %}"></script>
+{% endblock %}
+
+Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magni ipsam reprehenderit aliquam odit illum adipisci voluptates ipsa! Doloribus possimus, dignissimos soluta dolore voluptatum porro et reiciendis maiores tempore amet modi.
