@@ -84,6 +84,11 @@
                         <label for="id_tags" class="form-label mt-3">Tags</label>
                         {{ form.tags }}
                         <div class="form-text">Select any tags that relate to your post.</div>
+                        <label for="id_new_tags" class="form-label mt-3">Add your own tags</label>
+                        {{ form.new_tags }}
+                        <div class="form-text">Add more tags here, each separated with a space.
+                            Tags must be all one word, only letters and numbers are accepted.
+                            Please use camelCase for multiple word tags, eg: myTagExample</div>
                     </div>
                 </div>
                 

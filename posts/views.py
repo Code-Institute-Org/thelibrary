@@ -1,3 +1,4 @@
+import re
 from slugify import slugify
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
@@ -242,10 +243,22 @@ class EditPostView(LoginRequiredMixin, UpdateView):
     form_class = EditPostForm
 
     def form_valid(self, form):
+        post = form.save(commit=False)
+        post.save()
+
+        new_tags = self.request.POST.get('new_tags')
+        tags_list = re.split(' ', new_tags)
+
+        tl = []
+        for new_tag in tags_list:
+            tl.append(PostTag.objects.get_or_create(name=new_tag))
+        post.tags.add(tl)
+        post.save()
+
         if form.instance.status == 'Review':
             form.instance.status = 'Submitted'
         form.instance.updated_on = timezone.now()
-        form.mod_message = ''
+        form.instance.mod_message = ''
         return super().form_valid(form)
 
     def get_success_url(self):

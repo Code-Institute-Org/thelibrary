@@ -32,9 +32,13 @@ class EditPostForm(forms.ModelForm):
         queryset=PostCategory.objects.all(),
         widget=forms.Select(attrs={'class': 'form-select'})
     )
-    # tags = forms.MultipleChoiceField(
-    #     widget=forms.CheckboxSelectMultiple()
-    # )
+    new_tags = forms.CharField(
+        max_length=300, required=False,
+        widget=forms.TextInput(
+            attrs={
+                'pattern': '[a-zA-Z0-9 ]+',
+            }
+        ))
 
     class Meta:
         model = Post
@@ -47,7 +51,8 @@ class EditPostForm(forms.ModelForm):
             'image_4',
             'body',
             'category',
-            'tags'
+            'tags',
+            'new_tags'
         ]
         widgets = {
             'tags': forms.CheckboxSelectMultiple
