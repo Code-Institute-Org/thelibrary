@@ -4,9 +4,6 @@
 
 <div id="edit-pg" class="container white-box box-shadow-light-spread mt-2">
     <div class="row">
-        <div class="col-12">
-            <h1 class="display-5 mb-4">Edit post</h1>
-        </div>
         {% if post.mod_message %}
         <div class="col-12">
             <div class="alert alert-info position-relative" role="alert">
@@ -18,7 +15,34 @@
             </div>
         </div>
         {% endif %}
-        
+        <div class="col-12">
+            <h1 class="display-5 mb-4">Edit post</h1>
+        </div>
+        <div class="col-12">
+            <form id="edit-post-form" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.media }}
+                <div class="mb-3">
+                    <label for="id_title" class="form-label">Post Title</label>
+                    {{ form.title }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_summary" class="form-label">Post Summary</label>
+                    {{ form.summary }}
+                    <div class="form-text">
+                        Provide a brief summary of your post here. This text will appear with your post
+                        in search results.
+                    </div>
+                </div>
+                
+                {% if form.instance.status == 'Published' %}
+                    <button>Publish</button>
+                    <small>Edits to previously published posts are published immediately</small>
+                {% else %}
+                    <button>Submit</button>
+                {% endif %}
+            </form>
+        </div>
     </div>
 </div>
 

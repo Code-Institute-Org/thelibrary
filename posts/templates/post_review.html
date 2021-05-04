@@ -15,6 +15,8 @@
     {% endif %}
 
     <h1>{{ post.title }}</h1>
+
+    {# Remember to add summary here for review too #}
     
     <p>Author username: <a href="{% url 'user_profile' post.author.pk %}">{{ post.author.user.username }}</a> | Published: {{ post.created_on|date }}</p>
     <p>Author kudos badge: {{ post.author.kudos_badge }}</p>   
@@ -92,3 +94,4 @@
     <!-- custom script for delete button check -->
     <script src="{% static 'js/postBtns.js' %}"></script>
 {% endblock %}
+
