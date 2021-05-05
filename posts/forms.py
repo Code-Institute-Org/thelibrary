@@ -25,7 +25,7 @@ class FlagForm(forms.ModelForm):
         fields = ['reason']
 
 
-class EditPostForm(forms.ModelForm):
+class AddOrEditPostForm(forms.ModelForm):
     """
     Create form for edit post pg
     """

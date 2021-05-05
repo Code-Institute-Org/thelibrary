@@ -1,16 +1,105 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %}{% load static %}
+
+{% block extra_title %}Create New Post{% endblock %}
 
 {% block content %}
 
-<h1>Create post page</h1>
+<div id="edit-pg" class="container white-box box-shadow-light-spread my-2">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="display-5 my-4">Create New Post</h1>
+        </div>
+        <div class="col-12">
+            <form id="edit-post-form" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.media }}
+                <div class="mb-3">
+                    <label for="id_title" class="form-label">Post Title</label>
+                    {{ form.title }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_summary" class="form-label">Post Summary</label>
+                    {{ form.summary }}
+                    <div class="form-text">
+                        Provide a brief summary of your post here. This text will appear with your post
+                        in search results.
+                    </div>
+                    <label for="id_category" class="form-label mt-3">Category</label>
+                    {{ form.category }}
+                </div>
+                <div class="row">
+                    <div class="col-12 position-relative">
+                        <label for="id_body" class="form-label">Post main text
+                            <button type="button" class="invisible-button info-btn"
+                            data-bs-toggle="popover" title="Popover title"
+                            data-bs-content="Enter your post text here.
+                            If you insert images into the main body, you will need to
+                            upload them to an image sharing website
+                            like imgbb, and then link to them using the direct url.
+                            To fully customize your post, you can edit the html directly
+                            using the source option">
+                                <i class="fas fa-info" title="More info"></i>
+                            </button>
+                        </label>
+                        <div>
+                            {{ form.body }}
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-heading">Post images</div>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-3 mb-3">
+                        <label for="id_image_1" class="form-label">Image 1</label>
+                        {{ form.image_1 }}
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-3 mb-3">
+                        <label for="id_image_2" class="form-label">Image 2</label>
+                        {{ form.image_2 }}
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-3 mb-3">
+                        <label for="id_image_3" class="form-label">Image 3</label>
+                        {{ form.image_3 }}
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-3 mb-3">
+                        <label for="id_image_4" class="form-label">Image 4</label>
+                        {{ form.image_4 }}
+                    </div>
+                    <div class="col-12">
+                        <div class="form-text">Load up to 4 images to go with your post.
+                            These images will be displayed under the main body of your post.</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="post-tags" class="col-12">
+                        <div class="form-heading">Post Tags</div>
+                        <button class="btn btn-teal d-block mb-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            <label for="id_tags">View all tags</label>
+                        </button>
+                        <div class="collapse" id="collapseExample">
+                            <div class="card-body px-0">
+                                {{ form.tags }}
+                                <div class="form-text">Select any tags that relate to your post.</div>
+                            </div>
+                        </div>
+                        <label for="id_new_tags" class="form-label mt-2">Add more tags for your post</label>
+                        {{ form.new_tags }}
+                        <div class="form-text">Add more tags here, each separated with a space.
+                            <strong>Tags must be all one word, only letters and numbers are accepted.</strong>
+                            Please use camelCase for multiple word tags, eg: myTagExample</div>
+                    </div>
+                </div>
+                <button class="btn btn-orange mt-4">Submit</button>
+                <div class="form-text">Your post will be reviewed by a library moderator before it is published.</div>
+            </form>
+        </div>
+    </div>
+</div>
 
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.media }}
-    {{ form.as_p }}
-    <!-- REMINDER: adjust tags field so tags options in a checklist 
-    Also look into how to give user ability to add new tags -->
-    <button>Post</button>
-</form>
+{% endblock %}
 
+{% block extra_js %}
+    <!-- custom script for bootstrap popovers -->
+    <script src="{% static 'js/popovers.js' %}"></script>
+    <!-- custom script to make text editor responsive -->
+    <script src="{% static 'js/responsiveEditor.js' %}"></script>
 {% endblock %}

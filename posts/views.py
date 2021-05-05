@@ -13,7 +13,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.views.generic.detail import SingleObjectMixin
 from django.urls import reverse_lazy
 from users.models import User, UserProfile
-from .forms import FlagForm, EditPostForm
+from .forms import FlagForm, AddOrEditPostForm
 from .models import Post, PostCategory, PostFlag, PostTag
 
 
@@ -213,25 +213,28 @@ class CreatePostView(LoginRequiredMixin, CreateView):
     """ Renders view to create a new post """
     model = Post
     template_name = 'create_post.html'
-    fields = [
-        'title',
-        'summary',
-        'image_1',
-        'image_2',
-        'image_3',
-        'image_4',
-        'body',
-        'category',
-        'tags'
-    ]
+    form_class = AddOrEditPostForm
 
     def form_valid(self, form):
-        form.instance.author = self.request.user
+        form.instance.author = self.request.user.userprofile
         form.instance.slug = slugify(form.instance.title)
-        return super().form_valid(form)
 
-    def get_success_url(self):
-        return reverse('review_post', kwargs={'pk': self.object.pk})
+        # Code to solve saving m2m instances issue kindly provided by
+        # Willem Van Onsem on Stack Overflow:
+        # https://stackoverflow.com/questions/67391651/saving-instances-of-model-to-manytomany-field-thows-attributeerror-post-object
+        post = form.save()
+
+        new_tags = self.request.POST.get('new_tags')
+        tags_list = new_tags.split()
+
+        for new_tag in tags_list:
+            post.tags.add(PostTag.objects.get_or_create(name=new_tag)[0])
+
+        return HttpResponseRedirect(self.get_success_url(post))
+
+    def get_success_url(self, post):
+        return reverse(
+            'review_post', kwargs={'pk': post.pk, 'slug': post.slug})
 
 
 class EditPostView(LoginRequiredMixin, UpdateView):
@@ -239,7 +242,7 @@ class EditPostView(LoginRequiredMixin, UpdateView):
     model = Post
     template_name = 'edit_post.html'
     context_object_name = 'post'
-    form_class = EditPostForm
+    form_class = AddOrEditPostForm
 
     def form_valid(self, form):
         if form.instance.status == 'Review':
@@ -248,9 +251,6 @@ class EditPostView(LoginRequiredMixin, UpdateView):
         form.instance.updated_on = timezone.now()
         form.instance.mod_message = ''
 
-        # Code to solve saving m2m instances issue kindly provided by
-        # Willem Van Onsem on Stack Overflow:
-        # https://stackoverflow.com/questions/67391651/saving-instances-of-model-to-manytomany-field-thows-attributeerror-post-object
         post = form.save()
 
         new_tags = self.request.POST.get('new_tags')
