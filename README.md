@@ -74,11 +74,11 @@ pip install django-allauth
 ## Testing
 
 ### solved bugs
-1. z-index was not working on absolute positioned elements, causing user avatars on list view cards to overlap the menu dropdown options. 
+1. **z-index was not working on absolute positioned elements, causing user avatars on list view cards to overlap the menu dropdown options.**
 - Issue was solved by adding position: relative; to the navbar and then adding a z-index of 99.
 - Solution found in this post on [Stack Overflow](https://stackoverflow.com/questions/16315125/position-absolute-has-greater-z-index-than-position-fixed)
 
-2. Adding the `selected` attribute to the category `<option>` elements, conditional on which value was in the kwargs was not working.
+2. **Adding the `selected` attribute to the category `<option>` elements, conditional on which value was in the kwargs was not working.**
 
 ```html
 {% if category.pk == category_pk %}selected{% endif %}
@@ -88,3 +88,6 @@ pip install django-allauth
 ```html
 {% if category.pk|stringformat:"i" == category_pk %}selected{% endif %}
 ```
+
+3. **In the EditPostView, saving instances of PostTag to the tags ManyToManyField was throwing an error, despite the code actually working.** 
+- Full details, and the solution can be found in this [Stack Overflow Post](https://stackoverflow.com/questions/67391651/saving-instances-of-model-to-manytomany-field-thows-attributeerror-post-object)

@@ -242,30 +242,24 @@ class EditPostView(LoginRequiredMixin, UpdateView):
     form_class = EditPostForm
 
     def form_valid(self, form):
-        # update/add fields for form
         if form.instance.status == 'Review':
             form.instance.status = 'Submitted'
 
         form.instance.updated_on = timezone.now()
         form.instance.mod_message = ''
 
-        # Create, but don't save the Post instance
-        post = form.save(commit=False)
+        # Code to solve saving m2m instances issue kindly provided by
+        # Willem Van Onsem on Stack Overflow:
+        # https://stackoverflow.com/questions/67391651/saving-instances-of-model-to-manytomany-field-thows-attributeerror-post-object
+        post = form.save()
 
-        # get the tags from string provided by user
         new_tags = self.request.POST.get('new_tags')
         tags_list = new_tags.split()
 
-        # Loop through tags, get or create the PostTag instances
-        # and then add them to the Post instance
         for new_tag in tags_list:
             post.tags.add(PostTag.objects.get_or_create(name=new_tag)[0])
 
-        # Save the post
-        # post.save()
-        post.save_m2m()
-
-        return super().form_valid(form)
+        return HttpResponseRedirect(self.get_success_url())
 
     def get_success_url(self):
         if self.object.status == 'Submitted':
