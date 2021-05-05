@@ -9,8 +9,10 @@
 {% block content %}
 
     {% if post.status == 'Submitted' and post.author == request.user.userprofile %}
-        <div class="alert alert-success" role="alert">
-            Thank you for submitting this post! It will be published after approval by a library moderator.
+        <div class="alert alert-success text-center" role="alert">
+            Thank you for submitting this post! It will be published after approval by a library moderator. 
+            <br>
+            Check out your <a href="{% url 'dashboard' request.user.pk %}">dashboard</a> to see the status of your posts.
         </div>
     {% endif %}
     {% if post.status == 'Review' %}
@@ -123,7 +125,7 @@
         </div>
     </article>
 
-    <div class="container white-box box-shadow-light-spread">
+    <div class="container white-box box-shadow-light-spread my-3">
         <div class="row">
             <div class="col-12">
                 {% if post.author == user.userprofile %}
@@ -133,7 +135,7 @@
 
                     <!-- Message if mod is trying to approve own posts -->
                     {% if post.author == user.userprofile and user.userprofile.is_mod %}
-                    <p class="mt-2">You cannot approve your own posts</p>
+                    <p class="mt-2 mb-0">You cannot approve your own posts</p>
                     {% endif %}
 
                 {% else %}

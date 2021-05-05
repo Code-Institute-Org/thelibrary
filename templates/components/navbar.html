@@ -100,7 +100,7 @@
                             </li>
                             {% endif %}
                             <li>
-                                <a class="dropdown-item ps-1 position-relative" href="{% url 'user_profile' request.user.pk %}">
+                                <a class="dropdown-item ps-1 position-relative" href="{% url 'dashboard' request.user.pk %}">
                                     <i class="fas fa-pen-square dropdown-icon"></i>
                                     
                                     {% if num_author_posts_in_review > 0 %}
@@ -170,7 +170,7 @@
                             </li>
                             <li>
                                 <a class="dropdown-item ps-1" href="{% url 'dashboard' request.user.pk %}">
-                                    <i class="fas fa-th-list dropdown-icon"></i> Posts</a>
+                                    <i class="fas fa-th-list dropdown-icon"></i> Posts Dashboard</a>
                             </li>
                             <li>
                                 <a class="dropdown-item ps-1" href="{% url 'settings' request.user.pk %}">
