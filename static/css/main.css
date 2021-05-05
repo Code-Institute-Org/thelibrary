@@ -1038,7 +1038,8 @@ the class to every input field in forms.py
 are still set to bootstrap 4)
 */
 #edit-post-form input,
-#edit-post-form textarea {
+#edit-post-form textarea,
+#modMessageForm textarea {
     display: block;
     width: 100%;
     padding: .375rem .75rem;

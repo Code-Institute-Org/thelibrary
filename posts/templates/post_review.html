@@ -1,4 +1,5 @@
 {% extends 'base.html' %}{% load static %}
+{% block extra_title %}Preview: {{ post.title }}{% endblock %}
 
 {% block extra_css %}
     <!-- css for fancybox -->
@@ -7,79 +8,161 @@
 
 {% block content %}
 
-    {% if post.status == 'Submitted' %}
-        <p>Thank you for submitting this post! It will be published after approval by a library moderator.</p>
-    {% elif post.status == 'Review' %}
-        <p>This post has been reviewed by {{post.moderator}}. They have requested the following change(s):</p>
-        <p>{{post.mod_message}}</p>
+    {% if post.status == 'Submitted' and post.author == request.user.userprofile %}
+        <div class="alert alert-success" role="alert">
+            Thank you for submitting this post! It will be published after approval by a library moderator.
+        </div>
     {% endif %}
-
-    <h1>{{ post.title }}</h1>
-
-    {# Remember to add summary here for review too #}
+    {% if post.status == 'Review' %}
+        <div class="container">
+            <div class="row">
+                <div class="alert alert-info col-12 mt-3" role="alert">
+                    <p>Your post has been reviewed by a library moderator.
+                        They have requested a change to the post before publishing.
+                        Please make the requested edit and resubmit your post. Thank you!</p>
+                    <p><strong>Moderator message from {{ post.moderator }}:</strong></p>
+                    <p>{{ post.mod_message }}</p>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    <article id="post-detail" class="container my-2 white-box box-shadow-light-spread">
+        <div class="row">
+            <header id="post-detail-header" class="col-12">
+                <!-- Show edit/delete buttons for author -->
+                {% if post.author.user == user %}
+                    <div id="author-crud-btns">                
+                        <a href="{% url 'edit_post' post.pk post.slug %}" 
+                            aria-label="Go to edit post page" title="Edit this post">
+                            <i class="far fa-edit"></i></a>
+                        <button type="button" class="deleteBtn" data-post-pk="{{ post.pk }}" 
+                            aria-label="Delete this post" title="Edit this post">
+                            <i class="far fa-trash-alt"></i>
+                        </button>
+                    </div>
+                {% endif %}
+                <h2 class="display-5 mb-3 mb-md-4 mb-lg-5">{{ post.title }}</h2>
+                <div class="byline">
+                    <address class="author d-inline-block">Written by:
+                        {% if post.author.user.is_staff %}
+                        <span class="ci-username-logo"></span>
+                        {% endif %}
+                        <a rel="author" href="{% url 'user_profile' post.author.pk %}">
+                            {{ post.author.user.username }}
+                        </a>
+                    </address>
+                </div>
+            </header>
+            <div class="category-wrapper">
+                <div class="dotted-line"></div>
+                <a href="{% url 'filtered_posts' %}?category={{post.category.pk}}&sort_method=-created_on">
+                    <span class="category">{{ post.category }}</span>
+                </a>
+            </div>
+            {% if post.editors_note %}
+            <aside id="editors-note" class="col-12">
+                <h2>Editors note</h2>
+                <p>{{ post.editors_note }}</p>
+            </aside>
+            {% endif %}
+            <div class="col-12">
+                <h2 class="mt-3 thin-text">Post Summary:</h2>
+                <p><small>This summary will appear on the post card in search results.</small></p>
+                <p>{{ post.summary }}</p>
+            </div>
+            <h2 class="mt-3 thin-text">Post body:</h2>
+            <section id="post-body" class="col-12 mt-4">
+                {{ post.body|safe }}
+            </section>
+            {% if post.image_1 or post.image_2 or post.image_3 or post.image_4 %}
+                <figure class="col-12">
+                    <div class="row justify-content-center">
+                        {% if post.image_1 %}
+                            <div class="col-6 col-md-3">
+                                <a data-fancybox="gallery" href="{{ post.image_1.url }}">
+                                    <img class="post-image box-shadow-sharp" src="{{ post.image_1.url }}" alt="Image to accompany post">
+                                </a>
+                            </div>
+                        {% endif %}
     
-    <p>Author username: <a href="{% url 'user_profile' post.author.pk %}">{{ post.author.user.username }}</a> | Published: {{ post.created_on|date }}</p>
-    <p>Author kudos badge: {{ post.author.kudos_badge }}</p>   
-    {% if post.updated_on %}
-        <p>Last updated: {{ post.updated_on }}</p>
-    {% endif %} 
+                        {% if post.image_2 %}
+                            <div class="col-6 col-md-3">
+                                <a data-fancybox="gallery" href="{{ post.image_2.url }}">
+                                    <img class="post-image box-shadow-sharp" src="{{ post.image_2.url }}" alt="Image to accompany post">
+                                </a>
+                            </div>
+                        {% endif %}
+    
+                        {% if post.image_3 %}
+                            <div class="col-6 col-md-3">
+                                <a data-fancybox="gallery" href="{{ post.image_3.url }}">
+                                    <img class="post-image box-shadow-sharp" src="{{ post.image_3.url }}" alt="Image to accompany post">
+                                </a>
+                            </div>
+                        {% endif %}
+    
+                        {% if post.image_4 %}
+                            <div class="col-6 col-md-3">
+                                <a data-fancybox="gallery" href="{{ post.image_4.url }}">
+                                    <img class="post-image box-shadow-sharp" src="{{ post.image_4.url }}" alt="Image to accompany post">
+                                </a>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <figcaption>Click on a thumbnail to enlarge</figcaption>
+                </figure>
+            {% endif %}
+            
+            <div class="col-12">
+                <h2 class="mt-3 thin-text">Post Tags:</h2>
+                {% for tag in post.tags.all %}
+                    <a href="{% url 'posts_by_tag' tag.pk %}"
+                        class="btn btn-sm btn-secondary me-2 mb-2">{{ tag }}</a> 
+                {% endfor %}
+            </div>
+        </div>
+    </article>
 
-    <p>Category: <a href="{% url 'filtered_posts' %}?category={{post.category.pk}}&sort_method=-created_on">{{ post.category }}</a></p>
+    <div class="container white-box box-shadow-light-spread">
+        <div class="row">
+            <div class="col-12">
+                {% if post.author == user.userprofile %}
+                    <!-- edit and delete buttons for author -->
+                    <a href="{% url 'edit_post' post.pk post.slug %}" class="btn btn-teal me-2">Edit post</a>
+                    <button class="deleteBtn btn btn-orange" data-post-pk="{{ post.pk }}">Delete post</button>
 
-    <p>Tags: {% for tag in post.tags.all %}{{ tag }} {% endfor %}</p>
+                    <!-- Message if mod is trying to approve own posts -->
+                    {% if post.author == user.userprofile and user.userprofile.is_mod %}
+                    <p class="mt-2">You cannot approve your own posts</p>
+                    {% endif %}
 
-    {{ post.body|safe }}
+                {% else %}
+                    <!-- buttons for moderator -->
+                    <button type="button" data-bs-toggle="collapse"
+                        data-bs-target="#requestEdit" aria-expanded="false"
+                        aria-controls="requestEdit"
+                        class="btn btn-teal me-2">Request Edit</button>
+                    <a href="{% url 'approve_post' post.pk post.slug %}" class="btn btn-orange">Approve Post</a>
+                    <br>
+                    <div class="collapse mt-3" id="requestEdit">
+                        <p>
+                            Please let the author know what edits they need to make to this post before it
+                            can be published.
+                        </p>
+                        <form id="modMessageForm" method="post">
+                            {% csrf_token %}
+                            {{ form.mod_message }}
+                            <input type="submit" value="Send" class="btn btn-teal mt-3">
+                        </form>
+                    </div>
+                    <div class="text-end">
+                        <a href="{% url 'review_posts' %}" class="btn btn-teal mt-3">Back to reviews page</a>
+                    </div>
+                {% endif %}
+            </div>  
+        </div>
+    </div>
 
-    {% if post.image_1 %}
-        <a data-fancybox="gallery" href="{{ post.image_1.url }}">
-            <img class="post-image" src="{{ post.image_1.url }}" alt="Image to accompany post">
-        </a>
-    {% endif %}
-
-    {% if post.image_2 %}
-    <a data-fancybox="gallery" href="{{ post.image_2.url }}">
-        <img class="post-image" src="{{ post.image_2.url }}" alt="Image to accompany post">
-    </a>
-    {% endif %}
-
-    {% if post.image_3 %}
-        <a data-fancybox="gallery" href="{{ post.image_3.url }}">
-            <img class="post-image" src="{{ post.image_3.url }}" alt="Image to accompany post">
-        </a>
-    {% endif %}
-
-    {% if post.image_4 %}
-        <a data-fancybox="gallery" href="{{ post.image_4.url }}">
-            <img class="post-image" src="{{ post.image_4.url }}" alt="Image to accompany post">
-        </a>
-    {% endif %}    
-
-    {% if post.author == user.userprofile %}
-    <!-- edit and delete buttons for author -->
-    <a href="{% url 'edit_post' post.pk post.slug %}">Edit post</a>
-    <button class="deleteBtn" data-post-pk="{{ post.pk }}">Delete post</button>
-
-        <!-- Message if mod is trying to approve own posts -->
-        {% if post.author == user.userprofile.author and user.userprofile.is_mod %}
-
-        <p>You cannot approve your own posts</p>
-
-        {% endif %}
-
-    <a href="{% url 'user_profile' user.pk %}">Your profile</a>
-
-    {% else %}
-        <!-- buttons for moderator -->
-        <a href="{% url 'approve_post' post.pk post.slug %}">Approve</a>
-        <br>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="Request Change">
-        </form>
-        <a href="{% url 'review_posts' %}">Back to reviews page</a>
-
-    {% endif %}
 
 
 {% endblock %}
