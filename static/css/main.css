@@ -1094,8 +1094,21 @@ larger screen sizes.
 */
 #id_tags {
     padding: 0;
-    column-count: 2;
-    column-gap: 2rem;
+}
+
+#id_tags > li {
+    display: inline-block;
+    padding-left: 1rem;
+}
+
+.form-heading {
+    float: left;
+    width: 100%;
+    padding: 0;
+    margin-bottom: .5rem;
+    margin-top: 1rem;
+    font-size: calc(1.275rem + .3vw);
+    line-height: inherit;
 }
 
 /* ---------------------
@@ -1135,9 +1148,6 @@ larger screen sizes.
         display: inline-block;
         max-width: 49.5%;
     }
-    #id_tags {
-        column-count: 3;
-    }
 }
 
 /* Medium devices (tablets, 768px and up) */
@@ -1174,10 +1184,6 @@ larger screen sizes.
     #filters > button {
         display: inline-block;
     }
-
-    #id_tags {
-        column-count: 4;
-    }
 }
 
 /* Large devices (desktops, 992px and up) */
@@ -1198,12 +1204,7 @@ larger screen sizes.
         display: inline-block;
         max-width: 170px;
         margin: 0;
-    }
-
-    #id_tags {
-        column-count: 5;
-    }
-    
+    }    
 }
 
 /* X-Large devices (large desktops, 1200px and up) */
