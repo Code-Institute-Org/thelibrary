@@ -279,8 +279,15 @@ class ReviewPostsView(LoginRequiredMixin, ListView):
     """
     template_name = 'review_posts.html'
     paginate_by = 4
-    queryset = Post.objects.filter(status='Submitted').order_by('-created_on')
     context_object_name = 'posts'
+
+    def get_queryset(self, *args, **kwargs):
+        # Get all submitted posts, excluding ones by the author
+        queryset = Post.objects.filter(
+            status='Submitted'
+        ).exclude(
+            author=self.request.user.userprofile).order_by('-created_on')
+        return queryset
 
     def get(self, *args, **kwargs):
         user = self.request.user
