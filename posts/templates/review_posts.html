@@ -22,6 +22,7 @@
                 <thead>
                     <tr>
                         <th scope="col">Post title</th>
+                        <th class="text-center" scope="col">Submitted</th>
                         <th class="text-center" scope="col">Author</th>
                         <th class="text-center" scope="col">Category</th>
                     </tr>
@@ -30,6 +31,7 @@
                     {% for post in page_obj %}
                     <tr>
                         <th><a href="{% url 'review_post' post.pk post.slug  %}">{{ post.title }}</a></th>
+                        <td class="text-center">{{ post.created_on|date }}</td>
                         
                         <td class="text-center">
                             <a href="{% url 'user_profile' post.author.user.pk  %}">{{ post.author.user.username }}</a>
