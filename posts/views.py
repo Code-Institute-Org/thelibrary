@@ -285,8 +285,7 @@ class ReviewPostsView(LoginRequiredMixin, ListView):
     tries to access this view, they are reidrected to the home page.
     """
     template_name = 'review_posts.html'
-    paginate_by = 4
-    context_object_name = 'posts'
+    paginate_by = 24
 
     def get_queryset(self, *args, **kwargs):
         # Get all submitted posts, excluding ones by the author
@@ -354,7 +353,9 @@ class ReviewPostView(LoginRequiredMixin, DetailView, UpdateView):
     def form_valid(self, form):
         form.instance.moderator = self.request.user
         form.instance.status = 'Review'
-        return super().form_valid(form)
+        form.save()
+        # return super().form_valid(form)
+        return HttpResponseRedirect(reverse('review_posts'))
 
 
 class TagPostsView(LoginRequiredMixin, SingleObjectMixin, ListView):

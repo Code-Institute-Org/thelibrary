@@ -1,41 +1,76 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %}{% load static %}
 
 
 {% block content %}
-<h1>Review posts page</h1>
 
-{% for post in posts %}
-
-    <a href="{% url 'review_post' post.pk post.slug  %}">
-        <h2>{{ post.title }}</h2>
-    </a>
-    <p>{{ post.summary }}</p>
-    <p>Created by <a href="{% url 'user_profile' post.author.pk %}">{{ post.author.user.username }}</a> on {{ post.created_on }}</p>
-    <p>Author kudos badge: {{ post.author.kudos_badge }}</p>
-
-{% empty %}
-
-<p>No posts waiting for review</p>
-
-{% endfor %}
-
-<!-- pagination -->
-<div class="pagination">
-    <span class="step-links">
-        {% if page_obj.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-        {% endif %}
-
-        <span class="current">
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-        </span>
-
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">next</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-    </span>
+<div class="container white-box box-shadow-light-spread my-2">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="m-0 home-listview-heading">Posts Awaiting Moderator Review</h2>
+            <p class="lead mt-3">Click any post title to review it</p>
+        </div>
+        <!--
+            Table for posts does not render well on narrow phone screens.
+            #narrow-screen column visible to ask users to turn their phones to view the posts.
+        -->
+        <div id="narrow-screen" class="col-12 text-center">
+            <strong>To view posts to review, please turn your phone into landscape mode.</strong>
+            <img src="{% static 'img/rotate-phone.png' %}" alt="Rotate your phone icon">
+        </div>
+        <div class="col-12">
+            <table class="table dashboard-table">
+                <thead>
+                    <tr>
+                        <th scope="col">Post title</th>
+                        <th class="text-center" scope="col">Author</th>
+                        <th class="text-center" scope="col">Category</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for post in page_obj %}
+                    <tr>
+                        <th><a href="{% url 'review_post' post.pk post.slug  %}">{{ post.title }}</a></th>
+                        
+                        <td class="text-center">
+                            <a href="{% url 'user_profile' post.author.user.pk  %}">{{ post.author.user.username }}</a>
+                        </td>
+                        <td class="text-center">{{ post.category }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4">
+                            No posts waiting for review
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+            <!-- pagination -->
+            {% if page_obj.has_other_pages %}
+            <ul class="pagination">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo;</a></li>
+                {% else %}
+                    <li class="disabled page-item"><a href="#" class="page-link">&laquo;</a></li>
+                {% endif %}
+                {% for i in page_obj.paginator.page_range %}
+                    {% if page_obj.number == i %}
+                        <li class="active page-item"><a href="#" class="page-link">{{ i }} <span class="sr-only">(current)</span></a></li>
+                    {% else %}
+                        <li class="page-item"><a href="?page={{ i }}" class="page-link">{{ i }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    <li class="page-item"><a href="?page={{ page_obj.next_page_number }}" class="page-link">&raquo;</a></li>
+                {% else %}
+                    <li class="disabled page-item"><a href="#" class="page-link">&raquo;</a></li>
+                {% endif %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
 </div>
 
 {% endblock %}

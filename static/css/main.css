@@ -33,6 +33,16 @@ body {
     color: var(--darkgrey);
 }
 
+a {
+    color: var(--cta-teal);
+    text-decoration: none;
+    transition: color ease-in-out .4s;
+}
+
+a:hover {
+    color: var(--cta-orange);
+}
+
 /* --------------------- 
     site-wide icons
 --------------------- */
