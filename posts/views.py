@@ -46,20 +46,24 @@ def filtered_posts_view(request, *args, **kwargs):
 
         if sort_method == 'likes':
             if category_pk == 'all':
-                sorted_posts = Post.objects.annotate(
-                    like_count=Count('likes')).order_by('-like_count')
+                sorted_posts = Post.objects.filter(
+                    status="Published").annotate(
+                        like_count=Count('likes')
+                    ).order_by('-like_count')
             else:
                 sorted_posts = Post.objects.filter(
-                    category=category_pk
+                    category=category_pk, status="Published"
                 ).annotate(
                     like_count=Count('likes')
                 ).order_by('-like_count')
 
         elif category_pk == 'all':
-            sorted_posts = Post.objects.all().order_by(sort_method)
+            sorted_posts = Post.objects.filter(
+                status="Published").order_by(sort_method)
         else:
             sorted_posts = Post.objects.filter(
-                category=category_pk).order_by(sort_method)
+                category=category_pk, status="Published"
+            ).order_by(sort_method)
 
         # Code for pagination with function based views from
         # https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html
@@ -95,23 +99,26 @@ def author_posts_view(request, pk, *args, **kwargs):
         if sort_method == 'likes':
             if category_pk == 'all':
                 sorted_posts = Post.objects.filter(
-                    author=pk).annotate(
+                    author=pk, status="Published").annotate(
                         like_count=Count('likes')
                     ).order_by('-like_count')
             else:
                 sorted_posts = Post.objects.filter(
                     author=pk,
-                    category=category_pk
+                    category=category_pk,
+                    status="Published"
                 ).annotate(
                     like_count=Count('likes')
                 ).order_by('-like_count')
         elif category_pk == 'all':
             sorted_posts = Post.objects.filter(
-                author=pk).order_by(sort_method)
+                author=pk, status="Published"
+            ).order_by(sort_method)
         else:
             sorted_posts = Post.objects.filter(
                 author=pk,
-                category=category_pk
+                category=category_pk,
+                status="Published"
             ).order_by(sort_method)
 
     # Set defaults to show all posts by author
