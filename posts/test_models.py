@@ -161,3 +161,17 @@ class PostTestCase(TestCase):
         post = Post.objects.get(pk=1)
         url = post.get_absolute_url()
         self.assertEqual(url, '/posts/post/1/post-title/')
+
+    def test_post_tags(self):
+        tag_a = PostTag(name='tagA')
+        tag_a.save()
+        tag_b = PostTag(name='tagB')
+        tag_b.save()
+
+        post = Post.objects.get(pk=1)
+        post.tags.add(tag_a)
+        post.tags.add(tag_b)
+        post.save()
+
+        self.assertEqual(post.tags.count(), 2)
+        self.assertIsInstance(post.tags.all()[0], PostTag)
