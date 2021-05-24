@@ -136,7 +136,7 @@ class PostTestCase(TestCase):
         self.assertIsInstance(post.moderator, User)
         self.assertIsInstance(post.flag, PostFlag)
         self.assertEqual(post.editors_note, 'test editors note')
-        
+
     def test_post_likes(self):
         user_a = User(username="user_a", email="a@email.com")
         user_a.set_password("test321")
