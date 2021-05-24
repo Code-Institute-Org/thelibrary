@@ -144,6 +144,10 @@ class GetAuthorNameMethodTestCase(TestCase):
 
 
 def create_num_posts_for_author(num):
+    """
+    Generate specified number of posts in the test database
+    for a single author. To test kudos badge method of UserProfile
+    """
     user = User(username="testUsername", email="test@email.com")
     user.set_password('testing321')
     user.save()
@@ -179,3 +183,40 @@ class CreateNumPostsForAuthorTestCase(TestCase):
         date = datetime.date.today()
         self.assertEqual(str(post.author), f'testUsername | {date}')
 
+
+class KudosBadgeTestCase(TestCase):
+    def test_kudos_badge_is_invisible_when_no_posts_by_author(self):
+        create_num_posts_for_author(0)
+        user = User.objects.get(pk=1)
+        badge = user.userprofile.kudos_badge()
+        self.assertEqual(badge, 'invisible')
+
+    def test_kudos_badge_is_invisible_when_2_posts_by_author(self):
+        create_num_posts_for_author(2)
+        user = User.objects.get(pk=1)
+        badge = user.userprofile.kudos_badge()
+        self.assertEqual(badge, 'invisible')
+
+    def test_kudos_badge_is_bronze_when_3_posts_by_author(self):
+        create_num_posts_for_author(3)
+        user = User.objects.get(pk=1)
+        badge = user.userprofile.kudos_badge()
+        self.assertEqual(badge, 'kudos-badge-bronze')
+
+    def test_kudos_badge_is_silver_when_8_posts_by_author(self):
+        create_num_posts_for_author(8)
+        user = User.objects.get(pk=1)
+        badge = user.userprofile.kudos_badge()
+        self.assertEqual(badge, 'kudos-badge-silver')
+
+    def test_kudos_badge_is_gold_when_15_posts_by_author(self):
+        create_num_posts_for_author(15)
+        user = User.objects.get(pk=1)
+        badge = user.userprofile.kudos_badge()
+        self.assertEqual(badge, 'kudos-badge-gold')
+
+    def test_kudos_badge_is_gold_when_25_posts_by_author(self):
+        create_num_posts_for_author(25)
+        user = User.objects.get(pk=1)
+        badge = user.userprofile.kudos_badge()
+        self.assertEqual(badge, 'kudos-badge-gold')
