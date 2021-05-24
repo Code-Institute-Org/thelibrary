@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.test import TestCase
-from .models import PostTag, PostCategory, PostFlag
+from .models import PostTag, PostCategory, PostFlag, Post
 
 
 class PostTagTestCase(TestCase):
@@ -63,3 +63,11 @@ class PostFlagTestCase(TestCase):
         flag = PostFlag.objects.get(pk=1)
         self.assertEqual(
             str(flag), 'flag by testUsername | Innappropriate content')
+
+
+# class PostTestCase(TestCase):
+#     def setUp(self):
+#         post = Post(title='Test post title')
+#         post.summary = 'Test post summary'
+#         post.slug = 'test-post-summary'
+#         post.author

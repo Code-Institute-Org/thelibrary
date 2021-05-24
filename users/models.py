@@ -28,11 +28,14 @@ class UserProfile(models.Model):
         Returns usable string for admin panel,
         highlights if user is admin or mod
         """
-        status = '*mod' if self.is_mod else ''
         if self.is_admin:
-            status = '*admin'
+            status = ' *admin'
+        elif self.is_mod:
+            status = ' *mod'
+        else:
+            status = ''
 
-        return f'{self.user.username} {status} | {self.date_joined}'
+        return f'{self.user.username}{status} | {self.date_joined}'
 
     def kudos_badge(self):
         """
