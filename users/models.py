@@ -15,7 +15,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, unique=True, on_delete=models.CASCADE)
     bio = models.CharField(max_length=200, null=True, blank=True)
     profile_pic = models.ImageField(
-        null=True, blank=True, upload_to="images/profiles/",
+        null=False, blank=False, upload_to="images/profiles/",
         default="/images/profiles/default-profile-pic.png")
     linkedin = models.URLField(null=True, blank=True)
     github = models.URLField(null=True, blank=True)
