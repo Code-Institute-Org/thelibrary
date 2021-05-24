@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.test import TestCase
 from .models import UserProfile
+from posts.models import PostTag, PostCategory, Post
 import datetime
 
 
@@ -98,3 +99,45 @@ class UserProfileTestCase(TestCase):
         self.assertEqual(
             str(profile), f"testUsername *mod | {today}"
         )
+
+    def test_default_profile_pic_created(self):
+        profile = UserProfile.objects.get(pk=1)
+        expected = '/media/images/profiles/default-profile-pic.png'
+        self.assertEqual(profile.profile_pic.url, expected)
+
+
+class GetAuthorNameMethodTestCase(TestCase):
+    def setUp(self):
+        user = User(username="testUsername", email="test@email.com")
+        user.set_password('testing321')
+        user.save()
+
+    def test_first_name_does_not_exist(self):
+        user = User.objects.get(pk=1)
+        self.assertEqual(user.first_name, '')
+        self.assertEqual(user.last_name, '')
+
+    def test_get_author_name_when_only_username_exists(self):
+        user = User.objects.get(pk=1)
+        expected = "testUsername"
+        result = user.userprofile.get_author_name()
+        self.assertEqual(result, expected)
+
+    def test_get_author_name_when_only_first_name_exists(self):
+        user = User.objects.get(pk=1)
+        user.first_name = 'Arthur'
+        user.save()
+
+        expected = "testUsername"
+        result = user.userprofile.get_author_name()
+        self.assertEqual(result, expected)
+
+    def test_get_author_name_when_first_and_last_names_exist(self):
+        user = User.objects.get(pk=1)
+        user.first_name = 'Arthur'
+        user.last_name = 'Dent'
+        user.save()
+
+        expected = "Arthur Dent"
+        result = user.userprofile.get_author_name()
+        self.assertEqual(result, expected)
