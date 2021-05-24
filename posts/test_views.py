@@ -79,6 +79,6 @@ class AllPostsViewTests(TestCase):
         response = c.get(reverse('all_posts'))
         pg_obj = response.context['page_obj']
         self.assertEqual(response.context['pg_title'], 'All Posts')
-        
+
         # Checks if only "Published" posts are in queryset
         self.assertEqual(pg_obj.paginator.count, 15)
