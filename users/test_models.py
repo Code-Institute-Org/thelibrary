@@ -141,3 +141,41 @@ class GetAuthorNameMethodTestCase(TestCase):
         expected = "Arthur Dent"
         result = user.userprofile.get_author_name()
         self.assertEqual(result, expected)
+
+
+def create_num_posts_for_author(num):
+    user = User(username="testUsername", email="test@email.com")
+    user.set_password('testing321')
+    user.save()
+
+    category = PostCategory(name='test category')
+    category.save()
+
+    for i in range(num):
+        post = Post(title=f"post title {i}")
+        post.summary = f"post summary {i}"
+        post.slug = f"post-title-{i}"
+        post.body = 'body'
+        post.author = user.userprofile
+        post.status = "Published"
+        post.category = category
+        post.save()
+
+
+class CreateNumPostsForAuthorTestCase(TestCase):
+    def test_no_posts_created(self):
+        create_num_posts_for_author(0)
+        posts_qs_count = Post.objects.all().count()
+        self.assertEqual(posts_qs_count, 0)
+
+    def test_five_posts_created(self):
+        create_num_posts_for_author(5)
+        posts_qs_count = Post.objects.all().count()
+        self.assertEqual(posts_qs_count, 5)
+
+    def test_author_instance_applied_to_created_posts(self):
+        create_num_posts_for_author(1)
+        post = Post.objects.get(pk=1)
+        date = datetime.date.today()
+        self.assertEqual(str(post.author), f'testUsername | {date}')
+
