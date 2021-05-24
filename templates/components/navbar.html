@@ -126,25 +126,14 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link p-0" href="#" id="userInfoDropdown" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            {% if request.user.userprofile.profile_pic %}
                             <div class="navbar-avatar" title="Your account"
                                 style="background-image: url('{{ request.user.userprofile.profile_pic.url }}');"></div>
-                            {% else %}
-                            <div class="navbar-avatar" title="Your account"
-                                style="background-image: url('/media/images/profiles/default-profile-pic.png');"></div>
-                            {% endif %}
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userInfoDropdown">
                             <!-- Header of dropdown shows users avatar, and their name (if provided )-->
                             <div class="dropdown-header d-flex">
-                                {% if request.user.userprofile.profile_pic %}
                                 <div class="navbar-avatar m-0 mt-1"
                                     style="background-image: url('{{ request.user.userprofile.profile_pic.url }}');"></div>
-                                {% else %}
-                                <div class="navbar-avatar m-0 mt-1"
-                                    style="background-image: url('/media/images/profiles/default-profile-pic.png');">
-                                </div>
-                                {% endif %}
                                 <div class="ps-3">
                                     {% if request.user.userprofile.is_staff %}
                                     <div class="ci-username-logo"></div>
