@@ -4,17 +4,16 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.db.models import Q, Count
+from django.db.models import Count
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.utils import timezone
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.views.generic.detail import SingleObjectMixin
-from django.urls import reverse_lazy
 from users.models import User, UserProfile
 from .forms import FlagForm, AddOrEditPostForm
-from .models import Post, PostCategory, PostFlag, PostTag
+from .models import Post, PostFlag, PostTag
 
 
 class AllPostsView(LoginRequiredMixin, ListView):
