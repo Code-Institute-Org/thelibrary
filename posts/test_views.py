@@ -7,10 +7,10 @@ from users.models import User
 def create_full_test_database():
     """
     Create database of 20 posts.
-    10 set to category_a and user_a as author
-    10 set to category_b and user_b as author
-    15 with status="Published"
-    3 with status="Review"
+    10 set to category_a and user_a as author,
+    10 set to category_b and user_b as author,
+    15 with status="Published",
+    3 with status="Review",
     2 with status="Submitted"
 
     """
