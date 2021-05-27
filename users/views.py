@@ -64,7 +64,7 @@ class UserBookmarksView(LoginRequiredMixin, SingleObjectMixin, ListView):
     Render page for user to view their bookmarks.
     """
     # Notes: Add ability to filter and sort bookmarks.
-    paginate_by = 4
+    paginate_by = 24
     template_name = 'bookmarks.html'
 
     def get(self, request, *args, **kwargs):

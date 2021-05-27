@@ -1,34 +1,78 @@
-{% extends 'base.html' %}
-
+{% extends 'base.html' %}{% load static %}
 
 {% block content %}
-<h1>Your bookmarks page</h1>
 
-{% for post in page_obj %}
-    <a href="{% url 'post_detail' post.pk post.slug  %}">
-        <h2>{{ post.title }}</h2>
-    </a>
-    <p>{{ post.summary }}</p>
-    <p>Created by <a href="{% url 'user_profile' post.author.pk %}">{{ post.author.user.username }}</a> on {{ post.created_on }}</p>
-{% endfor %}
+<div class="container">
+    <div id="dashboard" class="row white-box box-shadow-light-spread my-4">
+        <div class="col-12">
+            <h1 class="home-listview-heading text-center text-sm-start mb-4">
+                Your Bookmarks
+            </h1>
+        </div>
+        <!--
+            Table for posts does not render well on narrow phone screens.
+            #narrow-screen column visible to ask users to turn their phones to view the posts.
+        -->
+        <div id="narrow-screen" class="col-12 text-center">
+            <strong>To view your posts, please turn your phone into landscape mode.</strong>
+            <img src="{% static 'img/rotate-phone.png' %}" alt="Rotate your phone icon">
+        </div>
+        <div class="col-12">
+            <table class="table dashboard-table">
+                <thead>
+                    <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Summary</th>
+                        <th scope="col">Author</th>
+                        <th scope="col">Category</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for post in page_obj %}
+                    <tr>
+                        <th><a href="{% url 'post_detail' post.pk post.slug %}">{{ post.title }}</a></th>
+                        <td>{{ post.summary }}</td>
+                        <td><a href="{% url 'user_profile' post.author.user.pk %}">{{ post.author.user.username }}</a></td>
+                        <td>
+                            <a href="{% url 'filtered_posts' %}?category={{post.category.pk}}&sort_method=-created_on">
+                                {{ post.category }}
+                            </a>                            
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4">
+                            No bookmarks
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% if page_obj.has_other_pages %}
+            <ul class="pagination">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo;</a></li>
+                {% else %}
+                    <li class="disabled page-item"><a href="#" class="page-link">&laquo;</a></li>
+                {% endif %}
+                {% for i in page_obj.paginator.page_range %}
+                    {% if page_obj.number == i %}
+                        <li class="active page-item"><a href="#" class="page-link">{{ i }} <span class="sr-only">(current)</span></a></li>
+                    {% else %}
+                        <li class="page-item"><a href="?page={{ i }}" class="page-link">{{ i }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    <li class="page-item"><a href="?page={{ page_obj.next_page_number }}" class="page-link">&raquo;</a></li>
+                {% else %}
+                    <li class="disabled page-item"><a href="#" class="page-link">&raquo;</a></li>
+                {% endif %}
+            </ul>
+            {% endif %}
+        </div>
 
-<!-- pagination -->
-<div class="pagination">
-    <span class="step-links">
-        {% if page_obj.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-        {% endif %}
-
-        <span class="current">
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-        </span>
-
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">next</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-    </span>
+    </div>
 </div>
 
 {% endblock %}
