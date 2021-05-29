@@ -150,5 +150,8 @@ class Bookmark(models.Model):
 
     created_on = models.DateTimeField(default=timezone.now)
 
+    class Meta:
+        ordering = ['created_on']
+
     def __str__(self):
         return f"{self.user.username}: post {self.post.pk}"

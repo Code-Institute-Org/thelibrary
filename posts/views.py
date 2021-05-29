@@ -67,7 +67,7 @@ def filtered_posts_view(request, *args, **kwargs):
         # Code for pagination with function based views from
         # https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html
         page = request.GET.get('page', 1)
-        paginator = Paginator(sorted_posts, 12)
+        paginator = Paginator(sorted_posts, 3)
         try:
             page_obj = paginator.page(page)
         except PageNotAnInteger:

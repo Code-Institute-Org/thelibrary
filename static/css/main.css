@@ -1123,6 +1123,14 @@ larger screen sizes.
 }
 
 /* ---------------------
+    Bookmarks pg 
+--------------------- */
+
+.bookmark-sort-form {
+    display: none;
+}
+
+/* ---------------------
     Media Queries 
 --------------------- */
 
@@ -1138,6 +1146,9 @@ larger screen sizes.
     }
     .dashboard-table {
         display: table;
+    }
+    .bookmark-sort-form {
+        display: block;
     }
 }
 

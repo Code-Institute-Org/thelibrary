@@ -61,12 +61,21 @@ def bookmarks_view(request):
     """
     Render page for user to view their bookmarks.
     """
+    bookmarks = Bookmark.objects.filter(user=request.user)
+    sort_method = request.GET.get('sort_method', 'date')
 
-    # Notes: Add ability to filter and sort bookmarks.
-
-    user = request.user
-    bookmarks = Bookmark.objects.filter(user=user)
-    bookmarked_posts = Post.objects.filter(bookmarked_post__in=bookmarks)
+    if sort_method == 'date' or sort_method == '':
+        bookmarked_posts = Post.objects.filter(
+            bookmarked_post__in=bookmarks
+        ).order_by('-bookmarked_post__created_on')
+    elif sort_method == 'category':
+        bookmarked_posts = Post.objects.filter(
+            bookmarked_post__in=bookmarks
+        ).order_by('category__name')
+    else:
+        bookmarked_posts = Post.objects.filter(
+            bookmarked_post__in=bookmarks
+        ).order_by(sort_method)
 
     page = request.GET.get('page', 1)
     paginator = Paginator(bookmarked_posts, 24)

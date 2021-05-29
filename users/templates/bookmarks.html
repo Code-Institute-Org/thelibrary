@@ -17,6 +17,22 @@
             <strong>To view your posts, please turn your phone into landscape mode.</strong>
             <img src="{% static 'img/rotate-phone.png' %}" alt="Rotate your phone icon">
         </div>
+        <div class="col-12 bookmark-sort-form">
+            <form method="GET" class="row justify-content-end row-cols-sm-auto g-3 mb-2">
+                <div class="col-12">
+                    <select id="sort_method" name="sort_method" class="form-select" aria-label="Select a sort method">
+                        <option value="date" {% if request.GET.sort_method == 'date' %}selected{% endif %}>Recent</option>
+                        <option value="title" {% if request.GET.sort_method == 'title' %}selected{% endif %}>Title</option>
+                        <option value="author" {% if request.GET.sort_method == 'author' %}selected{% endif %}>Author</option>
+                        <option value="category" {% if request.GET.sort_method == 'category' %}selected{% endif %}>Category</option>
+                    </select>
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-outline-blue" type="submit">Apply</button>
+                </div>
+                
+            </form>
+        </div>
         <div class="col-12">
             <table class="table dashboard-table">
                 <thead>
@@ -52,7 +68,7 @@
             <ul class="pagination">
                 {% if page_obj.has_previous %}
                     <li class="page-item">
-                        <a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo;</a></li>
+                        <a href="?page={{ page_obj.previous_page_number }}&sort_method={{ request.GET.sort_method }}" class="page-link">&laquo;</a></li>
                 {% else %}
                     <li class="disabled page-item"><a href="#" class="page-link">&laquo;</a></li>
                 {% endif %}
@@ -60,11 +76,11 @@
                     {% if page_obj.number == i %}
                         <li class="active page-item"><a href="#" class="page-link">{{ i }} <span class="sr-only">(current)</span></a></li>
                     {% else %}
-                        <li class="page-item"><a href="?page={{ i }}" class="page-link">{{ i }}</a></li>
+                        <li class="page-item"><a href="?page={{ i }}&sort_method={{ request.GET.sort_method }}" class="page-link">{{ i }}</a></li>
                     {% endif %}
                 {% endfor %}
                 {% if page_obj.has_next %}
-                    <li class="page-item"><a href="?page={{ page_obj.next_page_number }}" class="page-link">&raquo;</a></li>
+                    <li class="page-item"><a href="?page={{ page_obj.next_page_number }}&sort_method={{ request.GET.sort_method }}" class="page-link">&raquo;</a></li>
                 {% else %}
                     <li class="disabled page-item"><a href="#" class="page-link">&raquo;</a></li>
                 {% endif %}
