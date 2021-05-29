@@ -908,6 +908,10 @@ on the post_detail page.
     margin-left: auto;
 }
 
+#settings-form {
+    max-width: 400px;
+}
+
 /* ---------------------
     Profile page
 --------------------- */
@@ -1050,7 +1054,8 @@ are still set to bootstrap 4)
 */
 #edit-post-form input,
 #edit-post-form textarea,
-#modMessageForm textarea {
+#modMessageForm textarea,
+#settings-form input {
     display: block;
     width: 100%;
     padding: .375rem .75rem;

@@ -2,18 +2,43 @@
 
 
 {% block content %}
-<h1>User Settings Page</h1>
 
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button>Update</button>
-</form>
-
-<a href="{% url 'account_email' %}">Manage your email addresses</a>
-<br>
-<a href="{% url 'account_change_password' %}">Change password</a>
-<br>
-<a href="{% url 'user_profile' user.pk %}">View Profile</a>
-
-{% endblock %}
+<div class="container">
+    <div class="row white-box box-shadow-light-spread my-4">
+        <div class="col-12">
+            <h1 class="home-listview-heading text-center text-sm-start">
+                Your Settings
+            </h1>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div id="settings-form" class="white-box box-shadow-light-spread mb-4">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="id_username" class="form-label">Username</label>
+                    {{ form.username }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_first_name" class="form-label">First Name</label>
+                    {{ form.first_name }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_last_name" class="form-label">Last Name</label>
+                    {{ form.last_name }}
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-orange mb-3">Update</button>
+                </div>
+            </form>
+            <div class="text-center">
+                <a href="{% url 'account_email' %}">Manage your email</a>
+                <br>
+                <a href="{% url 'account_change_password' %}">Change your password</a>
+                <br>
+                <a href="{% url 'update_profile' request.user.pk %}">Manage your Profile</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
