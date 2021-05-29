@@ -35,16 +35,39 @@
                         Provide a brief summary of your post here. This text will appear with your post
                         in search results.
                     </div>
-                    <label for="id_category" class="form-label mt-3">Category</label>
-                    {{ form.category }}
+                    <div class="row">
+                        <div class="col-12 col-md-4">
+                            <label for="id_category" class="form-label mt-3">Category</label>
+                            {{ form.category }}
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <label for="id_slack_channel" class="form-label mt-3">Slack Channel
+                                <button type="button" class="invisible-button info-btn"
+                                data-bs-toggle="popover" title="Slack Channel"
+                                data-bs-content="Select the most relevant slack channel for this post.
+                                Students who have questions about this post will be directed
+                                to this slack channel to ask about it.">
+                                    <i class="fas fa-question" title="More info"></i>
+                                </button>
+                            </label>
+                            {{ form.slack_channel }}
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <label for="id_course" class="form-label mt-3">Course
+                                <button type="button" class="invisible-button info-btn" data-bs-toggle="modal" data-bs-target="#courseModal">
+                                    <i class="fas fa-question" title="What's this?"></i>
+                                </button>
+                            </label>
+                            {{ form.course }}
+                        </div>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-12 position-relative">
                         <label for="id_body" class="form-label">Post main text
                             <button type="button" class="invisible-button info-btn"
-                            data-bs-toggle="popover" title="Popover title"
-                            data-bs-content="Enter your post text here.
-                            If you insert images into the main body, you will need to
+                            data-bs-toggle="popover" title="Images in main body of post"
+                            data-bs-content="If you insert images into the main body, you will need to
                             upload them to an image sharing website
                             like imgbb, and then link to them using the direct url.
                             To fully customize your post, you can edit the html directly
@@ -101,7 +124,7 @@
                 </div>
                 
                 {% if form.instance.status == 'Published' %}
-                    <button>Publish</button>
+                    <button class="btn btn-orange mt-4">Publish</button>
                     <div class="form-text">Edits to previously published posts are published immediately</div>
                 {% else %}
                     <button class="btn btn-orange mt-4">Submit</button>
