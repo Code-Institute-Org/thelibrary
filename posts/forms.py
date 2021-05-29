@@ -1,7 +1,9 @@
 from django import forms
 from django.db.models import Count
 from django.utils.translation import gettext_lazy as _
-from .models import PostFlag, PostCategory, Post, PostTag
+from courses.models import Course
+from slack.models import SlackChannel
+from .models import PostFlag, PostCategory, Post
 
 
 class FlagForm(forms.ModelForm):
@@ -33,6 +35,14 @@ class AddOrEditPostForm(forms.ModelForm):
         queryset=PostCategory.objects.all(),
         widget=forms.Select(attrs={'class': 'form-select'})
     )
+    slack_channel = forms.ModelChoiceField(
+        queryset=SlackChannel.objects.all(),
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
+    course = forms.ModelChoiceField(
+        queryset=Course.objects.all(),
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
     new_tags = forms.CharField(
         max_length=300, required=False,
         widget=forms.TextInput(
@@ -53,7 +63,9 @@ class AddOrEditPostForm(forms.ModelForm):
             'body',
             'category',
             'tags',
-            'new_tags'
+            'new_tags',
+            'slack_channel',
+            'course',
         ]
         widgets = {
             'tags': forms.CheckboxSelectMultiple

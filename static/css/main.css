@@ -1093,7 +1093,9 @@ together with js code in responsiveEditor.js file.
     color: var(--cta-blue);
 }
 
-#id_category {
+#id_category,
+#id_slack_channel,
+#id_course {
     max-width: 250px;
 }
 
