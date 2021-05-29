@@ -1,9 +1,11 @@
 from ckeditor.fields import RichTextField
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models.deletion import CASCADE
+from django.db.models.deletion import CASCADE, PROTECT
 from django.urls import reverse
 from django.utils import timezone
+from courses.models import Course
+from slack.models import SlackChannel
 from users.models import UserProfile
 
 
@@ -120,6 +122,13 @@ class Post(models.Model):
         related_name='flags')
     editors_note = models.TextField(
         max_length=400, null=True, blank=True)
+    slack_channel = models.ForeignKey(
+        SlackChannel, on_delete=PROTECT,
+        null=False, blank=False)
+    course = models.ForeignKey(
+        Course, on_delete=PROTECT,
+        null=False, blank=False
+    )
 
     def total_likes(self):
         """ Returns total likes a post has """
