@@ -1,6 +1,5 @@
 from django.contrib import admin
-from .models import Post, PostCategory, PostTag, PostFlag
-# Register your models here.
+from .models import Post, PostCategory, PostTag, PostFlag, Bookmark
 
 
 class PostAdmin(admin.ModelAdmin):
@@ -14,3 +13,4 @@ admin.site.register(Post, PostAdmin)
 admin.site.register(PostCategory)
 admin.site.register(PostTag)
 admin.site.register(PostFlag)
+admin.site.register(Bookmark)

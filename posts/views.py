@@ -13,7 +13,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.views.generic.detail import SingleObjectMixin
 from users.models import User, UserProfile
 from .forms import FlagForm, AddOrEditPostForm
-from .models import Post, PostFlag, PostTag
+from .models import Post, PostFlag, PostTag, Bookmark
 
 
 class AllPostsView(LoginRequiredMixin, ListView):
@@ -171,8 +171,9 @@ class PostDetailView(LoginRequiredMixin, DetailView, SuccessMessageMixin):
         context['total_likes'] = post.total_likes()
         context['liked'] = post.likes.filter(
             id=self.request.user.id).exists()
-        context['bookmarked'] = post.bookmarks.filter(
-            id=self.request.user.id).exists()
+        context['bookmarked'] = Bookmark.objects.filter(
+            post=self.kwargs['pk'],
+            user=self.request.user).exists()
         context['kudos_badge'] = post.author.kudos_badge()
         context['author_name'] = post.author.get_author_name()
         context['form'] = FlagForm()
@@ -395,9 +396,12 @@ def bookmark_post(request, pk):
     """ Add post to users bookmarks """
     post = get_object_or_404(Post, pk=pk)
 
-    if post.bookmarks.filter(id=request.user.id).exists():
-        post.bookmarks.remove(request.user)
-    else:
-        post.bookmarks.add(request.user)
+    bookmark, created = Bookmark.objects.get_or_create(
+        post=post,
+        user=request.user
+    )
+
+    if not created:
+        bookmark.delete()
 
     return HttpResponseRedirect(reverse('post_detail', args=[pk, post.slug]))

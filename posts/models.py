@@ -1,6 +1,7 @@
 from ckeditor.fields import RichTextField
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.deletion import CASCADE
 from django.urls import reverse
 from django.utils import timezone
 from users.models import UserProfile
@@ -104,8 +105,6 @@ class Post(models.Model):
         PostTag, related_name='post_tags', blank=True)
     likes = models.ManyToManyField(
         User, related_name='post_likes', blank=True)
-    bookmarks = models.ManyToManyField(
-        User, related_name='post_bookmarks', blank=True)
     image_1 = models.ImageField(
         null=True, blank=True, upload_to="images/posts/")
     image_2 = models.ImageField(
@@ -136,3 +135,20 @@ class Post(models.Model):
         return reverse(
             'post_detail',
             kwargs={'pk': self.pk, 'slug': self.slug})
+
+
+class Bookmark(models.Model):
+    post = models.ForeignKey(
+        Post, on_delete=CASCADE,
+        related_name="bookmarked_post"
+    )
+
+    user = models.ForeignKey(
+        User, on_delete=CASCADE,
+        related_name="bookmark_owner"
+    )
+
+    created_on = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return f"{self.user.username}: post {self.post.pk}"
