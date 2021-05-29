@@ -15,5 +15,5 @@ urlpatterns = [
         UpdateProfileView.as_view(), name='update_profile'),
     path('<int:pk>/settings/', UserSettingsView.as_view(), name="settings"),
     path('<int:pk>/bookmarks/', UserBookmarksView.as_view(), name="bookmarks"),
-    path('/dashboard/', dashboard_view, name="dashboard"),
+    path('dashboard/', dashboard_view, name="dashboard"),
 ]
