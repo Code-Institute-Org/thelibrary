@@ -225,6 +225,10 @@ class CreatePostView(LoginRequiredMixin, CreateView):
         form.instance.author = self.request.user.userprofile
         form.instance.slug = slugify(form.instance.title)
 
+        # CI Staff posts immediately published, no review process.
+        if self.request.user.userprofile.is_staff:
+            form.instance.status = "Published"
+
         # Code to solve saving m2m instances issue kindly provided by
         # Willem Van Onsem on Stack Overflow:
         # https://stackoverflow.com/questions/67391651/saving-instances-of-model-to-manytomany-field-thows-attributeerror-post-object
@@ -314,7 +318,7 @@ def approve_post(request, pk, slug):
         post.save()
         return redirect('review_posts')
     else:
-        return redirect('home')  # Add message for user here
+        return redirect('home')
 
 
 @login_required
@@ -353,7 +357,6 @@ class ReviewPostView(LoginRequiredMixin, DetailView, UpdateView):
         form.instance.moderator = self.request.user
         form.instance.status = 'Review'
         form.save()
-        # return super().form_valid(form)
         return HttpResponseRedirect(reverse('review_posts'))
 
 

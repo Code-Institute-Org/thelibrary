@@ -88,8 +88,12 @@
                             Please use camelCase for multiple word tags, eg: myTagExample</div>
                     </div>
                 </div>
+                {% if request.user.is_staff %}
+                <button class="btn btn-orange mt-4">Publish</button>
+                {% else %}
                 <button class="btn btn-orange mt-4">Submit</button>
                 <div class="form-text">Your post will be reviewed by a library moderator before it is published.</div>
+                {% endif %}
             </form>
         </div>
     </div>
