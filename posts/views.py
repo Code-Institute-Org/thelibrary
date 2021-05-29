@@ -315,6 +315,7 @@ def approve_post(request, pk, slug):
     post = get_object_or_404(Post, pk=pk)
     if post.author != request.user and request.user.userprofile.is_mod:
         post.status = 'Published'
+        post.created_on = timezone.now()
         post.save()
         return redirect('review_posts')
     else:
