@@ -2,13 +2,13 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView
 from django.views.generic.edit import UpdateView
 from django.views.generic.detail import SingleObjectMixin
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse_lazy
 
-from posts.models import Post
+from posts.models import Post, Bookmark
 from .models import UserProfile, User
 
 
@@ -56,25 +56,32 @@ def dashboard_view(request):
     return render(request, 'dashboard.html', context)
 
 
-class UserBookmarksView(LoginRequiredMixin, SingleObjectMixin, ListView):
+@login_required
+def bookmarks_view(request):
     """
     Render page for user to view their bookmarks.
     """
+
     # Notes: Add ability to filter and sort bookmarks.
-    paginate_by = 24
-    template_name = 'bookmarks.html'
 
-    def get(self, request, *args, **kwargs):
-        self.object = self.get_object(queryset=User.objects.all())
-        return super().get(request, *args, **kwargs)
+    user = request.user
+    bookmarks = Bookmark.objects.filter(user=user)
+    bookmarked_posts = Post.objects.filter(bookmarked_post__in=bookmarks)
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['post'] = self.object
-        return context
+    page = request.GET.get('page', 1)
+    paginator = Paginator(bookmarked_posts, 24)
+    try:
+        page_obj = paginator.page(page)
+    except PageNotAnInteger:
+        page_obj = paginator.page(1)
+    except EmptyPage:
+        page_obj = paginator.page(paginator.num_pages)
 
-    def get_queryset(self):
-        return self.object.post_bookmarks.all()
+    context = {
+        'page_obj': page_obj,
+    }
+
+    return render(request, 'dashboard.html', context)
 
 
 class UserSettingsView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):

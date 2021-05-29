@@ -3,8 +3,8 @@ from django.urls import path
 from .views import (
     user_profile_view,
     dashboard_view,
+    bookmarks_view,
     UserSettingsView,
-    UserBookmarksView,
     UpdateProfileView,
 )
 
@@ -14,7 +14,6 @@ urlpatterns = [
         '<int:pk>/update/',
         UpdateProfileView.as_view(), name='update_profile'),
     path('<int:pk>/settings/', UserSettingsView.as_view(), name="settings"),
-    path(
-    '<int:pk>/bookmarks/', UserBookmarksView.as_view(), name="bookmarks"),
+    path('bookmarks/', bookmarks_view, name="bookmarks"),
     path('dashboard/', dashboard_view, name="dashboard"),
 ]

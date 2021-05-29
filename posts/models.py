@@ -145,7 +145,7 @@ class Bookmark(models.Model):
 
     user = models.ForeignKey(
         User, on_delete=CASCADE,
-        related_name="bookmark_owner"
+        related_name="bookmarks"
     )
 
     created_on = models.DateTimeField(default=timezone.now)
