@@ -12,7 +12,7 @@
         <div class="alert alert-success text-center" role="alert">
             Thank you for submitting this post! It will be published after approval by a library moderator. 
             <br>
-            Check out your <a href="{% url 'dashboard' request.user.pk %}">dashboard</a> to see the status of your posts.
+            Check out your <a href="{% url 'dashboard' %}">dashboard</a> to see the status of your posts.
         </div>
     {% endif %}
     {% if post.status == 'Review' %}

@@ -31,32 +31,29 @@ def user_profile_view(request, pk):
 
 
 @login_required
-def dashboard_view(request, pk):
+def dashboard_view(request):
     """
     Render dashboard view for logged in user. Displays all the posts
     the user has created in table format.
     """
-    if pk is not request.user.pk:
-        return redirect('home')
 
-    else:
-        posts = Post.objects.filter(
-            author=pk).order_by('-created_on')
+    posts = Post.objects.filter(
+        author=request.user.userprofile.pk).order_by('-created_on')
 
-        page = request.GET.get('page', 1)
-        paginator = Paginator(posts, 24)
-        try:
-            page_obj = paginator.page(page)
-        except PageNotAnInteger:
-            page_obj = paginator.page(1)
-        except EmptyPage:
-            page_obj = paginator.page(paginator.num_pages)
+    page = request.GET.get('page', 1)
+    paginator = Paginator(posts, 24)
+    try:
+        page_obj = paginator.page(page)
+    except PageNotAnInteger:
+        page_obj = paginator.page(1)
+    except EmptyPage:
+        page_obj = paginator.page(paginator.num_pages)
 
-        context = {
-            'page_obj': page_obj,
-        }
+    context = {
+        'page_obj': page_obj,
+    }
 
-        return render(request, 'dashboard.html', context)
+    return render(request, 'dashboard.html', context)
 
 
 class UserBookmarksView(LoginRequiredMixin, SingleObjectMixin, ListView):
