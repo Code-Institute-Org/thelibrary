@@ -47,7 +47,7 @@
         <header class="list-view-header box-shadow-light-spread my-4 col-12 d-flex justify-content-between">
             <h2 class="m-0 home-listview-heading">Popular <span class="d-none d-sm-inline">posts</span></h2>
             <div class="d-inline-block">
-                <a href="#" class="btn btn-orange">See all</a>
+                <a href="{% url 'filtered_posts' %}?category=all&sort_method=likes" class="btn btn-orange">See all</a>
             </div>
             
         </header>

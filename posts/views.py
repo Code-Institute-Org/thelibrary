@@ -39,48 +39,47 @@ def filtered_posts_view(request, *args, **kwargs):
     by most recently created first. Users can sort by single categories,
     newest, oldest or most liked.
     """
-    if request.GET:
-        category_pk = request.GET.get('category', 'all')
-        sort_method = request.GET.get('sort_method', '-created_on')
+    category_pk = request.GET.get('category', 'all')
+    sort_method = request.GET.get('sort_method', '-created_on')
 
-        if sort_method == 'likes':
-            if category_pk == 'all':
-                sorted_posts = Post.objects.filter(
-                    status="Published").annotate(
-                        like_count=Count('likes')
-                    ).order_by('-like_count')
-            else:
-                sorted_posts = Post.objects.filter(
-                    category=category_pk, status="Published"
-                ).annotate(
+    if sort_method == 'likes':
+        if category_pk == 'all':
+            sorted_posts = Post.objects.filter(
+                status="Published").annotate(
                     like_count=Count('likes')
                 ).order_by('-like_count')
-
-        elif category_pk == 'all':
-            sorted_posts = Post.objects.filter(
-                status="Published").order_by(sort_method)
         else:
             sorted_posts = Post.objects.filter(
                 category=category_pk, status="Published"
-            ).order_by(sort_method)
+            ).annotate(
+                like_count=Count('likes')
+            ).order_by('-like_count')
 
-        # Code for pagination with function based views from
-        # https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html
-        page = request.GET.get('page', 1)
-        paginator = Paginator(sorted_posts, 12)
-        try:
-            page_obj = paginator.page(page)
-        except PageNotAnInteger:
-            page_obj = paginator.page(1)
-        except EmptyPage:
-            page_obj = paginator.page(paginator.num_pages)
+    elif category_pk == 'all':
+        sorted_posts = Post.objects.filter(
+            status="Published").order_by(sort_method)
+    else:
+        sorted_posts = Post.objects.filter(
+            category=category_pk, status="Published"
+        ).order_by(sort_method)
 
-        context = {
-            'page_obj': page_obj,
-            'category_pk': category_pk,
-            'sort_method': sort_method
-        }
-        return render(request, 'posts_listview.html', context)
+    # Code for pagination with function based views from
+    # https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html
+    page = request.GET.get('page', 1)
+    paginator = Paginator(sorted_posts, 12)
+    try:
+        page_obj = paginator.page(page)
+    except PageNotAnInteger:
+        page_obj = paginator.page(1)
+    except EmptyPage:
+        page_obj = paginator.page(paginator.num_pages)
+
+    context = {
+        'page_obj': page_obj,
+        'category_pk': category_pk,
+        'sort_method': sort_method
+    }
+    return render(request, 'posts_listview.html', context)
 
 
 @login_required
