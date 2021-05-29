@@ -81,7 +81,7 @@ def bookmarks_view(request):
         'page_obj': page_obj,
     }
 
-    return render(request, 'dashboard.html', context)
+    return render(request, 'bookmarks.html', context)
 
 
 class UserSettingsView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
