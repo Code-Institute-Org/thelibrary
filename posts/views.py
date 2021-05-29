@@ -40,8 +40,8 @@ def filtered_posts_view(request, *args, **kwargs):
     newest, oldest or most liked.
     """
     if request.GET:
-        category_pk = request.GET.get('category')
-        sort_method = request.GET.get('sort_method')
+        category_pk = request.GET.get('category', 'all')
+        sort_method = request.GET.get('sort_method', '-created_on')
 
         if sort_method == 'likes':
             if category_pk == 'all':
@@ -67,7 +67,7 @@ def filtered_posts_view(request, *args, **kwargs):
         # Code for pagination with function based views from
         # https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html
         page = request.GET.get('page', 1)
-        paginator = Paginator(sorted_posts, 3)
+        paginator = Paginator(sorted_posts, 12)
         try:
             page_obj = paginator.page(page)
         except PageNotAnInteger:
