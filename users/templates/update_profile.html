@@ -2,15 +2,47 @@
 
 
 {% block content %}
-<h1>Update profile page</h1>
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.media }}
-    {{ form.as_p }}
-    <button>Update</button>
-</form>
 
-<a href="{% url 'user_profile' user.pk %}">View Profile</a>
+<div class="container white-box box-shadow-light-spread my-4">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="home-listview-heading text-center text-sm-start">
+                Author Profile Settings
+            </h1>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div id="author-settings-form">
+            <form method="POST" enctype="multipart/form-data" class="row">
+                {% csrf_token %}
+                {{ form.media }}
+                <div class="mb-3 col-12">
+                    <label for="id_bio" class="form-label">Bio</label>
+                    {{ form.bio }}
+                </div>
+                <div class="mb-3 col-12 col-sm-6">
+                    <label for="id_linkedin" class="form-label">LinkedIn Profile</label>
+                    {{ form.linkedin }}
+                </div>
+                <div class="mb-3 col-12 col-sm-6">
+                    <label for="id_linkedin" class="form-label">GitHub Profile</label>
+                    {{ form.github }}
+                </div>
+                <div class="mb-3 col-12 col-md-4">
+                    <label for="id_profile_pic" class="form-label">Profile Image</label>
+                    <br>                    {{ form.profile_pic }}
+                </div>
+                <div class="mb-3 col-12">
+                    <button class="btn btn-orange mb-3">Update</button>
+                </div>
+            </form>
+            <div>
+                <a href="{% url 'user_profile' request.user.pk %}">View Profile</a>
+                <br>
+                To edit your personal info, visit <a href="{% url 'settings' user.pk %}">Your Settings</a></a>
+            </div>
+        </div>
+    </div>
+</div>
 
-<p>To edit your personal information please visit the <a href="{% url 'settings' user.pk %}">settings</a></p>
 {% endblock %}
