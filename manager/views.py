@@ -74,18 +74,6 @@ class ManageUserProfile(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
         return reverse_lazy('manage_user', kwargs={'pk': pk})
 
 
-class ManageCategories(LoginRequiredMixin, ListView):
-    template_name = 'manage_categories.html'
-    model = PostCategory
-    context_object_name = 'categories'
-
-    def get(self, request, *args, **kwargs):
-        if not request.user.userprofile.is_admin:
-            return redirect('home')
-        else:
-            return super(ManageCategories, self).get(request, *args, **kwargs)
-
-
 @login_required
 def manage_categories(request):
     if not request.user.userprofile.is_admin:
