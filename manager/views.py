@@ -106,3 +106,19 @@ def manage_categories(request):
         }
 
         return render(request, 'manage_categories.html', context)
+
+
+class EditCategory(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    model = PostCategory
+    template_name = 'edit_category.html'
+    fields = ['name']
+    success_message = 'Category name successfully updated!'
+
+    def get(self, request, *args, **kwargs):
+        if not request.user.userprofile.is_admin:
+            return redirect('home')
+        else:
+            return super(EditCategory, self).get(request, *args, **kwargs)
+
+    def get_success_url(self):
+        return reverse_lazy('manage_categories')

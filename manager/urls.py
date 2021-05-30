@@ -5,6 +5,7 @@ from .views import (
     profile_search,
     ManageUserProfile,
     manage_categories,
+    EditCategory,
 )
 
 urlpatterns = [
@@ -16,4 +17,7 @@ urlpatterns = [
     path(
         'manage_categories/',
         manage_categories, name='manage_categories'),
+    path(
+        'edit_category/<int:pk>',
+        EditCategory.as_view(), name='edit_category'),
 ]

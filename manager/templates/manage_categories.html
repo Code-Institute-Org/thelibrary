@@ -10,7 +10,7 @@
         <tr>
             <td>{{ cat.name }}</td>
             <td class="text-center">
-                <a href="#" aria-label="Edit this category">
+                <a href="{% url 'edit_category' cat.pk %}" aria-label="Edit this category">
                     Edit
                 </a>
             </td>
