@@ -532,6 +532,10 @@ Header height 100% vh minus height of the navbar.
     position: relative;
 }
 
+/*
+Code for css triangle in card corners from
+https://stackoverflow.com/questions/18531959/how-to-create-triangle-shape-in-the-top-right-angle-of-another-div-to-look-divid
+*/
 .post-card::before,
 .post-card::after {
     content: '';

@@ -41,6 +41,12 @@
                             <option value="created_on" {% if sort_method == "created_on" %}selected{% endif %}>Oldest</option>
                             <option value="likes" {% if sort_method == "likes" %}selected{% endif %}>Popular</option>
                         </select>
+
+                        <select name="course_selection" id="course" class="form-select" aria-label="Select a course">
+                            {% for course in courses %}
+                            <option value="{{ course.id }}" {% if course_selection == course.id|stringformat:"i" %}selected{% endif %}>{{ course.name }}</option>
+                            {% endfor %}
+                        </select>
                     
                         <button class="btn btn-outline-blue" type="submit">Apply</button>
                     </form>

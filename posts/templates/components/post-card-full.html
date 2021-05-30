@@ -1,6 +1,6 @@
 {% load static %}
 <!-- "post-" extension used on classes to avoid calling bootstrap card classes -->
-<div class="post-card box-shadow-sharp {% if post.course.name == '4P'%}p4-corner{% elif post.course.name == '5P' %}p5-corner{% endif %}">
+<div class="post-card box-shadow-sharp {% if post.course.name == '4P Course'%}p4-corner{% elif post.course.name == '5P Course' %}p5-corner{% endif %}">
     <div class="post-card-circles-wrapper">
         <div class="post-card-circles">
             <div class="card-avatar box-shadow-sharp"
@@ -13,9 +13,13 @@
             </div>
         </div>
     </div>
-    {% if post.course.name == '4P' or post.course.name == '5P' %}
+    {% if post.course.name == '4P Course' or post.course.name == '5P Course' %}
     <button class="post-course invisible-button info-btn" title="What's this?" data-bs-toggle="modal" data-bs-target="#courseModal">
-        {{ post.course }}
+        {% if post.course.name == '4P Course' %}
+        4P
+        {% else %}
+        5P
+        {% endif %}
     </button>
     {% endif %}
     <div class="post-card-header text-center">

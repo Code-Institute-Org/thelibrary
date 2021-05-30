@@ -11,6 +11,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.views.generic.detail import SingleObjectMixin
+from courses.models import Course
 from users.models import User, UserProfile
 from .forms import FlagForm, AddOrEditPostForm
 from .models import Post, PostFlag, PostTag, Bookmark
@@ -27,6 +28,7 @@ class AllPostsView(LoginRequiredMixin, ListView):
         context = super(
             AllPostsView, self).get_context_data(**kwargs)
         context['pg_title'] = 'All Posts'
+        context['courses'] = Course.objects.all()
 
         return context
 
@@ -35,33 +37,68 @@ class AllPostsView(LoginRequiredMixin, ListView):
 def filtered_posts_view(request, *args, **kwargs):
     """
     View to handle filtering all posts by category and sort method.
-    Results paginated by 12 items, default category "all" and sort method
-    by most recently created first. Users can sort by single categories,
+    Results paginated by 12 items. Default category "all", sort method
+    by most recently created first and default course selection set to "all. 
+    Users can sort by single categories,
     newest, oldest or most liked.
     """
     category_pk = request.GET.get('category', 'all')
     sort_method = request.GET.get('sort_method', '-created_on')
+    course_selection = request.GET.get('course_selection', 'all')
+
+    if course_selection == '3':
+        course_selection = 'all'
 
     if sort_method == 'likes':
         if category_pk == 'all':
-            sorted_posts = Post.objects.filter(
-                status="Published").annotate(
+            if course_selection == 'all':
+                sorted_posts = Post.objects.filter(
+                    status="Published").annotate(
+                        like_count=Count('likes')
+                    ).order_by('-like_count')
+            else:
+                sorted_posts = Post.objects.filter(
+                    status="Published", course=course_selection
+                ).annotate(
                     like_count=Count('likes')
                 ).order_by('-like_count')
         else:
-            sorted_posts = Post.objects.filter(
-                category=category_pk, status="Published"
-            ).annotate(
-                like_count=Count('likes')
-            ).order_by('-like_count')
+            if course_selection == 'all':
+                sorted_posts = Post.objects.filter(
+                    category=category_pk,
+                    status="Published",
+                ).annotate(
+                    like_count=Count('likes')
+                ).order_by('-like_count')
+            else:
+                sorted_posts = Post.objects.filter(
+                    category=category_pk,
+                    course=course_selection,
+                    status="Published",
+                ).annotate(
+                    like_count=Count('likes')
+                ).order_by('-like_count')
 
     elif category_pk == 'all':
-        sorted_posts = Post.objects.filter(
-            status="Published").order_by(sort_method)
+        if course_selection == 'all':
+            sorted_posts = Post.objects.filter(
+                status="Published").order_by(sort_method)
+        else:
+            sorted_posts = Post.objects.filter(
+                status="Published",
+                course=course_selection
+            ).order_by(sort_method)
     else:
-        sorted_posts = Post.objects.filter(
-            category=category_pk, status="Published"
-        ).order_by(sort_method)
+        if course_selection == 'all':
+            sorted_posts = Post.objects.filter(
+                category=category_pk, status="Published"
+            ).order_by(sort_method)
+        else:
+            sorted_posts = Post.objects.filter(
+                category=category_pk,
+                course=course_selection,
+                status="Published"
+            ).order_by(sort_method)
 
     # Code for pagination with function based views from
     # https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html
@@ -74,10 +111,14 @@ def filtered_posts_view(request, *args, **kwargs):
     except EmptyPage:
         page_obj = paginator.page(paginator.num_pages)
 
+    courses = Course.objects.all()
+
     context = {
         'page_obj': page_obj,
         'category_pk': category_pk,
-        'sort_method': sort_method
+        'sort_method': sort_method,
+        'course_selection': course_selection,
+        'courses': courses,
     }
     return render(request, 'posts_listview.html', context)
 

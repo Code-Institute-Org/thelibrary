@@ -95,11 +95,11 @@
             <p>{{ post.editors_note }}</p>
         </aside>
         {% endif %}
-        {% if post.course.name == '4P' or post.course.name == '5P' %}
+        {% if post.course.name == '4P Course' or post.course.name == '5P Course' %}
         <aside id="course-note" class="col-12 post-detail-note">
             <h2>Important</h2>
             <p>This post is only relevant to the older
-                {% if post.course.name == '4P' %}
+                {% if post.course.name == '4P Course' %}
                 <strong>4 project (4P)</strong>
                 {% else %}
                 <strong>5 project (5P)</strong>
