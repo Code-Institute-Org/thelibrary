@@ -74,7 +74,7 @@
                 <ul class="pagination">
                     {% if page_obj.has_previous %}
                         <li class="page-item">
-                            <a href="?page={{ page_obj.previous_page_number }}&category={{ request.GET.category }}&sort_method={{ request.GET.sort_method }}" class="page-link">&laquo;</a></li>
+                            <a href="?page={{ page_obj.previous_page_number }}&category={{ request.GET.category }}&sort_method={{ request.GET.sort_method }}&course_selection={{ request.GET.course_selection }}" class="page-link">&laquo;</a></li>
                     {% else %}
                         <li class="disabled page-item"><a href="#" class="page-link">&laquo;</a></li>
                     {% endif %}
@@ -82,11 +82,11 @@
                         {% if page_obj.number == i %}
                             <li class="active page-item"><a href="#" class="page-link">{{ i }} <span class="sr-only">(current)</span></a></li>
                         {% else %}
-                            <li class="page-item"><a href="?page={{ i }}&category={{ request.GET.category }}&sort_method={{ request.GET.sort_method }}" class="page-link">{{ i }}</a></li>
+                            <li class="page-item"><a href="?page={{ i }}&category={{ request.GET.category }}&sort_method={{ request.GET.sort_method }}&course_selection={{ request.GET.course_selection }}" class="page-link">{{ i }}</a></li>
                         {% endif %}
                     {% endfor %}
                     {% if page_obj.has_next %}
-                        <li class="page-item"><a href="?page={{ page_obj.next_page_number }}&category={{ request.GET.category }}&sort_method={{ request.GET.sort_method }}" class="page-link">&raquo;</a></li>
+                        <li class="page-item"><a href="?page={{ page_obj.next_page_number }}&category={{ request.GET.category }}&sort_method={{ request.GET.sort_method }}&course_selection={{ request.GET.course_selection }}" class="page-link">&raquo;</a></li>
                     {% else %}
                         <li class="disabled page-item"><a href="#" class="page-link">&raquo;</a></li>
                     {% endif %}
