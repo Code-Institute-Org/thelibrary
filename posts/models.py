@@ -42,7 +42,7 @@ class PostFlag(models.Model):
     INNAPPROPRIATE = 'Innappropriate content'
     OUTDATED = 'Outdated content'
     FLAG_REASONS = (
-        (INNAPPROPRIATE, "Innappropriate content"),
+        (INNAPPROPRIATE, "Inappropriate content"),
         (OUTDATED, "Outdated content"),
     )
     flagger = models.ForeignKey(
