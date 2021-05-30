@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'search',
     'slack',
     'courses',
+    'manager',
 ]
 
 MIDDLEWARE = [

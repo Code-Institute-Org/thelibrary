@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Library Manager</h1>
+
+{% for post in flagged_posts %}
+
+<h2>{{ post.title }}</h2>
+<p>{{ post.author.user.username }}</p>
+<strong>{{ post.flag.flagger }}: {{ post.flag.reason }}</strong>
+
+{% endfor %}
+
+{% endblock %}
