@@ -15,6 +15,8 @@ Code Institute brand
     --pink: #ff5a60;
     --teal: #23bbbb;
     --t-teal: rgba(35, 187, 187, 0.2);
+    --t-blue: rgb(0, 159, 227, 0.2);
+    --t-orange: rgb(234, 45, 0, 0.2);
     --lightgrey: #fafafa;
     --grey: #aaaaaa;
     --darkgrey: #4a4a4f;
@@ -798,19 +800,26 @@ Header height 100% vh minus height of the navbar.
     margin-top: -15px;
 }
 
-#editors-note {
+.post-detail-note {
     padding: 1rem;
-    background-color: var(--t-teal);
     color: var(--navy);
 }
 
-#editors-note > h2 {
+.post-detail-note > h2 {
     font-size: 1.3rem;
 }
 
-#editors-note > p {
+.post-detail-note > p {
     font-size: .9rem;
     margin: 0;
+}
+
+#editors-note {
+    background-color: var(--t-orange);
+}
+
+#course-note {
+    background-color: var(--t-teal);
 }
 
 .post-image {

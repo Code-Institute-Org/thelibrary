@@ -90,9 +90,27 @@
             </a>
         </div>
         {% if post.editors_note %}
-        <aside id="editors-note" class="col-12">
+        <aside id="editors-note" class="col-12 post-detail-note mb-2">
             <h2>Editors note</h2>
             <p>{{ post.editors_note }}</p>
+        </aside>
+        {% endif %}
+        {% if post.course.name == '4P' or post.course.name == '5P' %}
+        <aside id="course-note" class="col-12 post-detail-note">
+            <h2>Important</h2>
+            <p>This post is only relevant to the older
+                {% if post.course.name == '4P' %}
+                <strong>4 project (4P)</strong>
+                {% else %}
+                <strong>5 project (5P)</strong>
+                {% endif %}
+                Code Institute course.
+            </p>
+            <p>Not sure which course you are on? 
+                <button class="invisible-button info-btn" 
+                    title="What's this?" data-bs-toggle="modal"
+                    data-bs-target="#courseModal">click here</button>
+            </p>
         </aside>
         {% endif %}
         <section id="post-body" class="col-12 mt-4">
