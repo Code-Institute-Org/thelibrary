@@ -1,6 +1,10 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import Q
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+from django.views.generic.edit import UpdateView
 from posts.models import Post, PostFlag
 from users.models import UserProfile, User
 
@@ -48,3 +52,14 @@ def profile_search(request):
             'users': users
         }
         return render(request, 'user_search.html', context)
+
+
+class ManageUserProfile(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    model = UserProfile
+    fields = ['is_admin', 'is_mod', 'is_staff']
+    template_name = 'manage_profile.html'
+    success_message = 'This profile has been successfully updated!'
+
+    def get_success_url(self):
+        pk = self.kwargs['pk']
+        return reverse_lazy('manage_user', kwargs={'pk': pk})

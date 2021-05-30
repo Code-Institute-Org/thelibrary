@@ -3,10 +3,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView
-from django.views.generic.edit import UpdateView
-from django.views.generic.detail import SingleObjectMixin
 from django.urls import reverse_lazy
+from django.views.generic.edit import UpdateView
 
 from posts.models import Post, Bookmark
 from .models import UserProfile, User

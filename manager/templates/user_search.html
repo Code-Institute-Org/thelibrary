@@ -19,7 +19,7 @@
 <p>First name: {{ user.first_name }}</p>
 <p>Last name: {{ user.last_name }}</p>
 <p>Date joined: {{ user.userprofile.date_joined }}</p>
-<p><a href="{% url 'user_profile' user.pk %}" target="_blank">Visit user profile</a></p>
+<p><a href="{% url 'manage_user' user.userprofile.id %}" target="_blank">Edit {{user.username}}'s settings</a></p>
 {% empty %}
 <p>No results for your user profile search</p>
 {% endfor %}
