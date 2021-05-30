@@ -530,6 +530,46 @@ Header height 100% vh minus height of the navbar.
     position: relative;
 }
 
+.post-card::before,
+.post-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-color: transparent;
+    border-style: solid;
+}
+
+.post-card::before {
+    border-width: 32px;
+}
+
+.post-card::after {
+    border-radius: 0.4em;
+    border-width: 1.35em;
+}
+
+.p4-corner::before,
+.p4-corner::after {
+    border-right-color: var(--cta-teal);
+    border-top-color: var(--cta-teal);
+}
+
+.p5-corner::before,
+.p5-corner::after {
+    border-right-color: var(--orange);
+    border-top-color: var(--orange);
+}
+
+.post-course {
+    color: white!important;
+    position: absolute;
+    padding: 7px;
+    top: 0;
+    right: 0;
+    z-index: 10;
+}
+
 .likes {
     position: absolute;
     top: 15px;
@@ -621,6 +661,12 @@ Header height 100% vh minus height of the navbar.
 .kudos-badge-silver {background-color: #aaa9ad;}
 
 .kudos-badge-bronze {background-color: #b08d57;}
+
+.post-card-circles-wrapper {
+    position: relative;
+}
+
+
 
 .category {
     display: inline-block;
