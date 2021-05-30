@@ -10,6 +10,10 @@
 <p>{{ post.author.user.username }}</p>
 <strong>{{ post.flag.flagger }}: {{ post.flag.reason }}</strong>
 
+{% empty %}
+
+<p>No flagged posts</p>
+
 {% endfor %}
 
 {% endblock %}
