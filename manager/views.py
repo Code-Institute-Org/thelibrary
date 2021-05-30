@@ -1,6 +1,8 @@
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from django.shortcuts import render, redirect
 from posts.models import Post, PostFlag
+from users.models import UserProfile, User
 
 
 @login_required
@@ -19,3 +21,30 @@ def manager_view(request):
             'flagged_posts': flagged_posts,
         }
         return render(request, 'manager.html', context)
+
+
+@login_required
+def profile_search(request):
+    if not request.user.userprofile.is_admin:
+        return redirect('home')
+    else:
+        q = request.GET.get('name_q')
+        if ' ' in q:
+            names = q.split(' ', 1)
+            first_name = names[0]
+            last_name = names[1]
+            users = User.objects.filter(
+                Q(username__icontains=q)
+                | Q(first_name__icontains=first_name)
+                | Q(last_name__icontains=last_name),
+            )
+        else:
+            users = User.objects.filter(
+                Q(username__icontains=q)
+                | Q(first_name__icontains=q)
+                | Q(last_name__icontains=q),
+            )
+        context = {
+            'users': users
+        }
+        return render(request, 'user_search.html', context)

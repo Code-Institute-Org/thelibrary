@@ -16,4 +16,17 @@
 
 {% endfor %}
 
+<h2>Search user profiles</h2>
+<form action="{% url 'profile_search' %}" method="GET">
+    <label for="name_q">Search for a user</label>
+    <br>
+    <input id="name_q" name="name_q" type="text" required>
+    <br>
+    <small>Search by name or username</small>
+    <br>
+    <button type="submit">Submit</button>
+</form>
+
+
+
 {% endblock %}

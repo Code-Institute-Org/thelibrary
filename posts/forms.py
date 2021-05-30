@@ -1,5 +1,4 @@
 from django import forms
-from django.db.models import Count
 from django.utils.translation import gettext_lazy as _
 from courses.models import Course
 from slack.models import SlackChannel

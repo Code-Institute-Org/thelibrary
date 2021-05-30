@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Search user profiles</h2>
+<form action="">
+    <label for="name_q">Search for a user</label>
+    <br>
+    <input id="name_q" name="name_q" type="text" value="{{ request.GET.name_q }}" required>
+    <br>
+    <small>Search by name or username</small>
+    <br>
+    <button type="submit">Submit</button>
+</form>
+
+<h2>Results</h2>
+{% for user in users %}
+<p><strong>{{user.username}}</strong></p>
+<p>First name: {{ user.first_name }}</p>
+<p>Last name: {{ user.last_name }}</p>
+<p>Date joined: {{ user.userprofile.date_joined }}</p>
+<p><a href="{% url 'user_profile' user.pk %}" target="_blank">Visit user profile</a></p>
+{% empty %}
+<p>No results for your user profile search</p>
+{% endfor %}
+
+{% endblock %}
