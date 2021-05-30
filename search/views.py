@@ -13,28 +13,29 @@ class SearchResultsView(LoginRequiredMixin, ListView):
     context_object_name = 'posts'
 
     def get_queryset(self):
+        """
+        Checks if keywords specifying the course is in search query.
+        If True, strips these keywords out of the query and filters
+        results for course specified.
+        """
 
         q = self.request.GET.get('q')
-        print(q)
 
-        if '4P' not in q and '5P' not in q:
+        if not any(course in q.lower() for course in ['4p', '5p']):
+            q = q.lower().replace('4p', '').replace('5p', '')
             queryset = Post.objects.filter(
                 Q(title__icontains=q)
                 | Q(summary__icontains=q)
                 | Q(body__icontains=q),
                 status="Published")
-        elif '4P' in q:
-            queryset = Post.objects.filter(
-                Q(title__icontains=q)
-                | Q(summary__icontains=q)
-                | Q(body__icontains=q),
-                status="Published", course='1')
         else:
+            course = '1' if '4p' in q.lower() else '2'
+            q = q.lower().replace('4p', '').replace('5p', '')
             queryset = Post.objects.filter(
                 Q(title__icontains=q)
                 | Q(summary__icontains=q)
                 | Q(body__icontains=q),
-                status="Published", course='1')
+                status="Published", course=course)
 
         return queryset
 
@@ -42,3 +43,4 @@ class SearchResultsView(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['q'] = self.request.GET.get('q')
         return context
+
