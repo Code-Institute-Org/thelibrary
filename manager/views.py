@@ -5,11 +5,11 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView
 from django.views.generic.edit import UpdateView
 from posts.models import Post, PostFlag, PostCategory
 from users.models import UserProfile, User
-from .forms import CreateCategoryForm
+from slack.models import SlackChannel
+from .forms import CreateCategoryForm, CreateChannelForm
 
 
 @login_required
@@ -110,3 +110,41 @@ class EditCategory(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('manage_categories')
+
+
+@login_required
+def manage_channels(request):
+    if not request.user.userprofile.is_admin:
+        return redirect('home')
+    else:
+        if request.method == "POST":
+            form = CreateChannelForm(request.POST)
+            if form.is_valid():
+                form.save()
+                messages.add_message(
+                    request, messages.INFO, "New channel added successfully!")
+
+        channels = SlackChannel.objects.all().order_by('name')
+        form = CreateChannelForm()
+        context = {
+            'channels': channels,
+            'form': form
+        }
+
+        return render(request, 'manage_channels.html', context)
+
+
+class EditChannel(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    model = SlackChannel
+    template_name = 'edit_channel.html'
+    fields = ['name', 'slack_channel_id']
+    success_message = 'Slack channel successfully updated!'
+
+    def get(self, request, *args, **kwargs):
+        if not request.user.userprofile.is_admin:
+            return redirect('home')
+        else:
+            return super(EditChannel, self).get(request, *args, **kwargs)
+
+    def get_success_url(self):
+        return reverse_lazy('manage_channels')

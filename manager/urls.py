@@ -6,6 +6,8 @@ from .views import (
     ManageUserProfile,
     manage_categories,
     EditCategory,
+    manage_channels,
+    EditChannel,
 )
 
 urlpatterns = [
@@ -20,4 +22,10 @@ urlpatterns = [
     path(
         'edit_category/<int:pk>',
         EditCategory.as_view(), name='edit_category'),
+    path(
+        'manage_channels/',
+        manage_channels, name='manage_channels'),
+    path(
+        'edit_channel/<int:pk>',
+        EditChannel.as_view(), name='edit_channel'),
 ]

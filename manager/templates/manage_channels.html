@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Category Manager</h1>
+
+<table>
+    <tbody>
+        {% for channel in channels %}
+        <tr>
+            <td>{{ channel.name }}</td>
+            <td class="text-center">
+                <a href="{% url 'edit_channel' channel.id %}" aria-label="Edit this category">
+                    Edit
+                </a>
+            </td>
+            <td>
+                <button type="button">Delete</button>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Add new -->
+<h2>Add new channel</h2>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <small>To get the channel id, right click the channel name in slack 
+        and select "Copy Link". The id is the characters at the end of the url.
+    <br>
+    For example, if the link to the channel is
+    https://code-institute-room.slack.com/archives/C01DGQ5VCSJ,
+    the channel id is <strong>C01DGQ5VCSJ</strong></small>
+    <br>
+    <button type="submit">Submit</button>
+</form>
+
+
+{% endblock %}
