@@ -38,7 +38,7 @@ def filtered_posts_view(request, *args, **kwargs):
     """
     View to handle filtering all posts by category and sort method.
     Results paginated by 12 items. Default category "all", sort method
-    by most recently created first and default course selection set to "all. 
+    by most recently created first and default course selection set to "all.
     Users can sort by single categories,
     newest, oldest or most liked.
     """
