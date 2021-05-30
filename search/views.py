@@ -43,4 +43,3 @@ class SearchResultsView(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['q'] = self.request.GET.get('q')
         return context
-

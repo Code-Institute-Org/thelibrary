@@ -60,6 +60,12 @@ class ManageUserProfile(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     template_name = 'manage_profile.html'
     success_message = 'This profile has been successfully updated!'
 
+    def get(self, request, *args, **kwargs):
+        if not request.user.userprofile.is_admin:
+            return redirect('home')
+        else:
+            return super(ManageUserProfile, self).get(request, *args, **kwargs)
+
     def get_success_url(self):
         pk = self.kwargs['pk']
         return reverse_lazy('manage_user', kwargs={'pk': pk})
