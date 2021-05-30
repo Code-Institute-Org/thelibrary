@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Category Manager</h1>
+
+<table>
+    <tbody>
+        {% for cat in categories %}
+        <tr>
+            <td>{{ cat.name }}</td>
+            <td class="text-center">
+                <a href="#" aria-label="Edit this category">
+                    Edit
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Add new -->
+<h2>Add new category</h2>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+</form>
+
+
+{% endblock %}

@@ -1,12 +1,15 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
+from django.views.generic import ListView, CreateView
 from django.views.generic.edit import UpdateView
-from posts.models import Post, PostFlag
+from posts.models import Post, PostFlag, PostCategory
 from users.models import UserProfile, User
+from .forms import CreateCategoryForm
 
 
 @login_required
@@ -69,3 +72,37 @@ class ManageUserProfile(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     def get_success_url(self):
         pk = self.kwargs['pk']
         return reverse_lazy('manage_user', kwargs={'pk': pk})
+
+
+class ManageCategories(LoginRequiredMixin, ListView):
+    template_name = 'manage_categories.html'
+    model = PostCategory
+    context_object_name = 'categories'
+
+    def get(self, request, *args, **kwargs):
+        if not request.user.userprofile.is_admin:
+            return redirect('home')
+        else:
+            return super(ManageCategories, self).get(request, *args, **kwargs)
+
+
+@login_required
+def manage_categories(request):
+    if not request.user.userprofile.is_admin:
+        return redirect('home')
+    else:
+        if request.method == "POST":
+            form = CreateCategoryForm(request.POST)
+            if form.is_valid():
+                form.save()
+                messages.add_message(
+                    request, messages.INFO, "New category added successfully!")
+
+        categories = PostCategory.objects.all().order_by('name')
+        form = CreateCategoryForm()
+        context = {
+            'categories': categories,
+            'form': form
+        }
+
+        return render(request, 'manage_categories.html', context)
