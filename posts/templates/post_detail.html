@@ -155,6 +155,16 @@
             </figure>
         {% endif %}
         <div class="dotted-line col-12 my-5"></div>
+        <div class="col-12 text-center">
+            <h3>Got a question about this post?</h3>
+            <p>Visit the {{ post.slack_channel.name }} channel in slack to ask about it.
+                <br>
+                Don't forget to link back to this post with your question.
+            </p>
+            <a href="https://slack.com/app_redirect?channel={{ post.slack_channel.slack_channel_id }}" target="_blank" 
+            aria-label="Visit the {{ post.slack_channel.name }} channel in slack" class="btn btn-orange">Visit {{ post.slack_channel.name }}</a>
+        </div>
+        <div class="dotted-line col-12 my-5"></div>
 
         <!-- Card to show author information -->
         <footer class="col-12">
