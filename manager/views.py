@@ -3,13 +3,17 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import Q
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse_lazy
 from django.views.generic.edit import UpdateView
-from posts.models import Post, PostFlag, PostCategory
+from posts.models import Post, PostFlag, PostCategory, PostTag
 from users.models import UserProfile, User
 from slack.models import SlackChannel
-from .forms import CreateCategoryForm, CreateChannelForm
+from .forms import (
+    CreateCategoryForm,
+    CreateChannelForm,
+    CreatePostTag,
+)
 
 
 @login_required
@@ -148,3 +152,52 @@ class EditChannel(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('manage_channels')
+
+
+@login_required
+def manage_tags(request):
+    if not request.user.userprofile.is_admin:
+        return redirect('home')
+    else:
+        if request.method == "POST":
+            form = CreatePostTag(request.POST)
+            if form.is_valid():
+                form.save()
+        
+        form = CreatePostTag()
+
+        context = {
+            'tags': PostTag.objects.all().order_by('name'),
+            'form': form,
+        }
+
+        return render(request, 'manage_tags.html', context)
+
+
+class EditTag(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    model = PostTag
+    template_name = 'edit_tag.html'
+    fields = ['name']
+    success_message = 'Tag successfully updated!'
+
+    def get(self, request, *args, **kwargs):
+        if not request.user.userprofile.is_admin:
+            return redirect('home')
+        else:
+            return super(EditTag, self).get(request, *args, **kwargs)
+
+    def get_success_url(self):
+        return reverse_lazy('manage_tags')
+
+
+def delete_tag(request, pk):
+    if not request.user.userprofile.is_admin:
+        return redirect('home')
+    else:
+        tag = get_object_or_404(PostTag, pk=pk)
+        tag_name = tag.name
+        tag.delete()
+        messages.add_message(
+            request, messages.INFO, f"{tag_name} tag deleted!")
+
+        return redirect('manage_tags')

@@ -8,6 +8,9 @@ from .views import (
     EditCategory,
     manage_channels,
     EditChannel,
+    manage_tags,
+    EditTag,
+    delete_tag,
 )
 
 urlpatterns = [
@@ -28,4 +31,11 @@ urlpatterns = [
     path(
         'edit_channel/<int:pk>',
         EditChannel.as_view(), name='edit_channel'),
+    path(
+        'manage_tags/',
+        manage_tags, name='manage_tags'),
+    path(
+        'edit_tag/<int:pk>',
+        EditTag.as_view(), name='edit_tag'),
+    path('delete_tag/<int:pk>', delete_tag, name="delete_tag")
 ]

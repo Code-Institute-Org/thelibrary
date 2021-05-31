@@ -1,5 +1,5 @@
 from django import forms
-from posts.models import PostCategory
+from posts.models import PostCategory, PostTag
 from slack.models import SlackChannel
 
 
@@ -13,3 +13,9 @@ class CreateChannelForm(forms.ModelForm):
     class Meta:
         model = SlackChannel
         fields = ['name', 'slack_channel_id']
+
+
+class CreatePostTag(forms.ModelForm):
+    class Meta:
+        model = PostTag
+        fields = ['name']

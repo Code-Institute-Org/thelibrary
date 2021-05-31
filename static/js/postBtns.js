@@ -17,7 +17,7 @@ function checkDelete(postID) {
         window.location.href = url;
         return
     } else {
-        return false
+        return false;
     }
 };
 

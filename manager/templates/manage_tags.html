@@ -1,0 +1,41 @@
+{% extends 'base.html' %}{% load static %}
+
+{% block content %}
+
+<h1>Tag Manager</h1>
+
+<table>
+    <tbody>
+        {% for tag in tags %}
+        <tr>
+            <td>{{ tag.name }}</td>
+            <td class="text-center">
+                <a href="{% url 'edit_tag' tag.id %}" aria-label="Edit this tag">
+                    Edit
+                </a>
+            </td>
+            <td class="text-center">
+                <button data-tag-id="{{ tag.id }}" aria-label="Delete this tag" class="tagDeleteBtn">
+                    Delete
+                </button>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Add new -->
+<h2>Add new tag</h2>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    
+    <button type="submit">Submit</button>
+</form>
+
+{% endblock %}
+
+{% block extra_js %}
+<!-- custom script for bootstrap popovers -->
+<script src="{% static 'js/deleteTag.js' %}"></script>
+{% endblock %}
