@@ -4,7 +4,7 @@
 
 <h1>Channel Manager</h1>
 <p>Post authors choose from these channels to attach to their posts.
-    if a student has a question about the post, they are directed to the 
+    Then if a student has a question about the post, they are directed to the 
     chosen slack channel to ask about it.
 </p>
 
@@ -28,11 +28,11 @@
 <form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
-    <small>To get the channel id, right click the channel name in slack 
+    <small>To get the channel id, go to the slack app, then right-click the channel name 
         and select "Copy Link". The id is the characters at the end of the url.
     <br>
     For example, if the link to the channel is
-    https://code-institute-room.slack.com/archives/C01DGQ5VCSJ,
+    <strong>https://code-institute-room.slack.com/archives/C01DGQ5VCSJ</strong>,
     the channel id is <strong>C01DGQ5VCSJ</strong></small>
     <br>
     <button type="submit">Submit</button>
