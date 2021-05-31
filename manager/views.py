@@ -163,7 +163,7 @@ def manage_tags(request):
             form = CreatePostTag(request.POST)
             if form.is_valid():
                 form.save()
-        
+
         form = CreatePostTag()
 
         context = {
