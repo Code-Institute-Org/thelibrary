@@ -2,7 +2,11 @@
 
 {% block content %}
 
-<h1>Category Manager</h1>
+<h1>Channel Manager</h1>
+<p>Post authors choose from these channels to attach to their posts.
+    if a student has a question about the post, they are directed to the 
+    chosen slack channel to ask about it.
+</p>
 
 <table>
     <tbody>
@@ -13,9 +17,6 @@
                 <a href="{% url 'edit_channel' channel.id %}" aria-label="Edit this category">
                     Edit
                 </a>
-            </td>
-            <td>
-                <button type="button">Delete</button>
             </td>
         </tr>
         {% endfor %}
