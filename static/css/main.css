@@ -713,19 +713,33 @@ https://stackoverflow.com/questions/18531959/how-to-create-triangle-shape-in-the
     right: -7px;
 }
 
-#author-crud-btns button {
-    background-color: var(--white);
+#editor-crud-btns {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+#author-crud-btns button,
+#editor-crud-btns button {
+    background-color: transparent;
     border: none;
 }
 
-#author-crud-btns i {
+#author-crud-btns i,
+#editor-crud-btns i,
+.edit-btn {
     color: var(--grey);
     font-size: 1.4rem;
     transition: all ease-in-out .4s;
 }
 
-#author-crud-btns i:hover {
+#author-crud-btns i:hover,
+#editor-crud-btns i:hover {
     color: var(--orange);
+}
+
+#editors-note {
+    position: relative;
 }
 
 .author {

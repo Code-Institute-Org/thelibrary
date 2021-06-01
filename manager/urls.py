@@ -11,6 +11,9 @@ from .views import (
     manage_tags,
     EditTag,
     delete_tag,
+    EditEditorsNote,
+    delete_editors_note,
+    AddEditorsNote
 )
 
 urlpatterns = [
@@ -37,5 +40,14 @@ urlpatterns = [
     path(
         'edit_tag/<int:pk>',
         EditTag.as_view(), name='edit_tag'),
-    path('delete_tag/<int:pk>', delete_tag, name="delete_tag")
+    path('delete_tag/<int:pk>', delete_tag, name="delete_tag"),
+    path(
+        'editors_note/edit/<int:pk>',
+        EditEditorsNote.as_view(), name="edit_editors_note"),
+    path(
+        'editors_note/delete/<int:pk>',
+        delete_editors_note, name="delete_editors_note"),
+    path(
+        'editors_note/add/<int:pk>',
+        AddEditorsNote.as_view(), name="add_editors_note"),
 ]

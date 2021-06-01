@@ -7,7 +7,7 @@
  * Local url is needed so code will work in development and deployed site
  * @returns false if user clicks cancel on confirm window
  */
-function checkDelete(postID) {
+function checkDeletePost(postID) {
     let check = confirm("This will permanently delete your post, are you sure?");
 
     if (check) {
@@ -30,7 +30,7 @@ let deleteBtns = document.getElementsByClassName('deleteBtn');
 for (let i = 0; i < deleteBtns.length; i++) {
     let postID = deleteBtns[i].getAttribute('data-post-pk');
     deleteBtns[i].addEventListener('click', function () {
-        checkDelete(postID);
+        checkDeletePost(postID);
     });
 }
 
@@ -40,3 +40,22 @@ if (document.getElementById('back-btn')) {
         goBack();
     });
 }
+
+function checkDeleteEditorsNote(postID) {
+    let check = confirm("Are you sure you want to delete this editors note?");
+    if (check) {
+        let currentURL = window.location.href;
+        let splitStr = currentURL.split('/');
+        let url = `${splitStr[0]}//${splitStr[2]}/manager/editors_note/delete/${postID}`;
+        window.location.href = url;
+        return
+    } else {
+        return false;
+    }
+}
+
+let editorsNoteDeleteBtn = document.getElementById('editorsNoteDeleteBtn');
+editorsNoteDeleteBtn.addEventListener('click', function () {
+    let postID = editorsNoteDeleteBtn.getAttribute('data-post-pk');
+    checkDeleteEditorsNote(postID);
+});
