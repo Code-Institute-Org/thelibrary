@@ -8,7 +8,7 @@
  * @returns false if user clicks cancel on confirm window
  */
 function checkDeletePost(postID) {
-    let check = confirm("This will permanently delete your post, are you sure?");
+    let check = confirm("This will permanently delete this post, are you sure?");
 
     if (check) {
         let currentURL = window.location.href;

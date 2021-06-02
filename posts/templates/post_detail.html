@@ -14,6 +14,21 @@
 
 {% block content %}
 
+<div class="container-fluid">
+    <div class="row">
+        {% if post.flag and user.userprofile.is_admin %}
+        <div id="flag-info" class="col-12 post-detail-note">
+            <h2>This post has been flagged</h2>
+            <p>Flagged by {{ post.flag.flagger.username }}</p>
+            <p>Reason: {{ post.flag.reason }}</p>
+            <button>Remove flag</button>
+            <button>Deactivate post</button>
+            <button>Contact {{ post.flag.flagger.username }} for more info</button>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
 <article id="post-detail" class="container my-2 white-box box-shadow-light-spread">
     <div class="row">
         <header id="post-detail-header" class="col-12">
