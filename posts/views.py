@@ -399,7 +399,8 @@ class ReviewPostView(LoginRequiredMixin, DetailView, UpdateView):
         user = get_object_or_404(User, pk=self.request.user.pk)
         post = get_object_or_404(Post, pk=self.kwargs['pk'])
 
-        # comparison with user.id needed here to solve bug #
+        # comparison with user.id needed here to solve bug. 
+        # More info in README.md (bug #4)
         if post.author.user.id is user.id or user.userprofile.is_mod:
             return super(ReviewPostView, self).get(*args, **kwargs)
         else:
