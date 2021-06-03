@@ -1,9 +1,9 @@
-from courses.models import Course
-from slack.models import SlackChannel
-from posts.models import Post, PostCategory
 from django.test import TestCase, Client
 from django.urls import reverse
 from users.models import User
+from courses.models import Course
+from slack.models import SlackChannel
+from posts.models import Post, PostCategory
 
 
 class AllPostsViewTests(TestCase):

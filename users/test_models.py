@@ -1,7 +1,9 @@
 from django.contrib.auth.models import User
 from django.test import TestCase
 from .models import UserProfile
-from posts.models import PostTag, PostCategory, Post
+from courses.models import Course
+from slack.models import SlackChannel
+from posts.models import PostCategory, Post
 import datetime
 
 
@@ -155,6 +157,14 @@ def create_num_posts_for_author(num):
     category = PostCategory(name='test category')
     category.save()
 
+    # Create slack channel
+    channel = SlackChannel.objects.create(
+        name="#test", slack_channel_id="ABCDE")
+
+    # create course
+    course = Course.objects.create(
+        name="A1")
+
     for i in range(num):
         post = Post(title=f"post title {i}")
         post.summary = f"post summary {i}"
@@ -163,6 +173,8 @@ def create_num_posts_for_author(num):
         post.author = user.userprofile
         post.status = "Published"
         post.category = category
+        post.slack_channel = channel
+        post.course = course
         post.save()
 
 
