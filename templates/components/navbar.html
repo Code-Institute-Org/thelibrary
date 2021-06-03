@@ -63,6 +63,8 @@
                                 Show bell icon as blue, and animate ringing if there are notifications
                             -->
                                 <i id="ringing-bell" class="fas fa-bell navbar-icon"></i>
+                            {% elif num_post_flags > 0 and request.user.userprofile.is_admin %}
+                                <i id="ringing-bell" class="fas fa-bell navbar-icon"></i>
                             {% else %}
                                 <i class="fas fa-bell navbar-icon"></i>
                             {% endif %}
@@ -75,6 +77,30 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
+                            {% if request.user.userprofile.is_admin %}
+                            <li>
+                                <a class="dropdown-item ps-1 position-relative" href="{% url 'manager' %}">
+                                    <i class="far fa-flag dropdown-icon"></i>
+                                    
+                                    {% if num_post_flags > 0 %}
+                                        <!--
+                                            Show notification circle only if there are notifications to see.
+                                            If there are more than 9 notifications, show "9+" instead of the
+                                            total. This allows for large numbers that would break out of
+                                            the notification circle.
+                                        -->
+                                        <div class="notification-num">
+                                            {% if num_post_flags < 10 %}
+                                                {{ num_post_flags }}
+                                            {% else %}
+                                                9+
+                                            {% endif %}
+                                        </div>
+                                    {% endif %}
+                                    Flagged posts
+                                </a>
+                            </li>
+                            {% endif %}
                             {% if request.user.userprofile.is_mod %}
                             <li>
                                 <a class="dropdown-item ps-1 position-relative" href="{% url 'review_posts' %}">
@@ -118,7 +144,12 @@
                             </li>
                         </ul>
                     </li>
-
+                    {% if request.user.userprofile.is_admin %}
+                    <li class="nav-item">
+                        <a href="{% url 'manager' %}" title="Library Manager"><i
+                                class="fas fa-wrench navbar-icon nav-link"></i></a>
+                    </li>
+                    {% endif %}
                     <!--
                         Avatar circle displays users profile_pic. 
                         When clicked, it shows dropdown menu user account options.

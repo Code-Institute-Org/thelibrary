@@ -224,6 +224,7 @@ a.dropdown-item:hover > i {
     left: 34px;
     top: -1px;
     text-align: center;
+    padding-top: 2px;
 }
 
 /*

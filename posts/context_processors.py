@@ -1,6 +1,6 @@
 from django.db.models import Q
 
-from .models import PostCategory, Post
+from .models import PostCategory, Post, PostFlag
 
 
 def categories(request):
@@ -17,11 +17,13 @@ def notifications(request):
         num_posts_to_review = Post.objects.filter(
             status="Submitted"
         ).exclude(author=request.user.userprofile).count()
+        num_post_flags = PostFlag.objects.all().count()
 
         context = {
             'num_author_posts_in_review': num_posts_in_review,
             'num_posts_to_review': num_posts_to_review,
             'total_notifications': num_posts_in_review + num_posts_to_review,
+            'num_post_flags': num_post_flags
         }
 
         return context
