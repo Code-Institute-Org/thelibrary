@@ -1,4 +1,5 @@
-import datetime
+from courses.models import Course
+from slack.models import SlackChannel
 from users.models import UserProfile
 from django.contrib.auth.models import User
 from django.test import TestCase
@@ -76,12 +77,22 @@ class PostTestCase(TestCase):
         category = PostCategory(name='test category')
         category.save()
 
+        # Create slack channel
+        channel = SlackChannel.objects.create(
+            name="#test", slack_channel_id="ABCDE")
+
+        # create course
+        course = Course.objects.create(
+            name="A1")
+
         post = Post(title="post title")
         post.summary = "post summary"
         post.slug = "post-title"
         post.body = 'body'
         post.author = user.userprofile
         post.category = category
+        post.course = course
+        post.slack_channel = channel
         post.save()
 
     def test_post_exists(self):
@@ -94,7 +105,11 @@ class PostTestCase(TestCase):
         self.assertIsInstance(post.author, UserProfile)
         self.assertEqual(post.author, user.userprofile)
         self.assertIsInstance(post.category, PostCategory)
-        self.assertEqual(str(post.category), 'test category')
+        self.assertEqual(post.category.name, 'test category')
+        self.assertEqual(post.slack_channel.name, '#test')
+        self.assertIsInstance(post.slack_channel, SlackChannel)
+        self.assertEqual(post.course.name, 'A1')
+        self.assertIsInstance(post.course, Course)
 
     def test_post_default_values(self):
         post = Post.objects.get(pk=1)
