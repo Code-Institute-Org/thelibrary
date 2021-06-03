@@ -92,3 +92,39 @@ pip install django-allauth
 
 3. **In the EditPostView, saving instances of PostTag to the tags ManyToManyField was throwing an error, despite the code actually working.** 
 - Full details, and the solution can be found in this [Stack Overflow Post](https://stackoverflow.com/questions/67391651/saving-instances-of-model-to-manytomany-field-thows-attributeerror-post-object)
+
+4. **If statement in ReviewPostView to allow the author to view this page even when they are not a mod not working**
+
+- Despite these values being identical in the terminal:
+```python
+# code
+print(user)
+print(post.author.user)
+print(type(user))
+print(type(post.author.user))
+```
+```
+# terminal output:
+username
+username
+<class 'django.contrib.auth.models.User'>
+<class 'django.contrib.auth.models.User'>
+```
+- This comparison was returning False
+```python
+if post.author.user is user:
+```
+
+- When changed to compare with the `user.id` it worked.
+```python
+# Working code
+def get(self, *args, **kwargs):
+    user = get_object_or_404(User, pk=self.request.user.pk)
+    post = get_object_or_404(Post, pk=self.kwargs['pk'])
+
+    # comparison with user.id needed here to solve bug #
+    if post.author.user.id is user.id or user.userprofile.is_mod:
+        return super(ReviewPostView, self).get(*args, **kwargs)
+    else:
+        return redirect('home')
+```

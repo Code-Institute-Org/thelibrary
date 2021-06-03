@@ -17,7 +17,7 @@ def notifications(request):
         num_posts_to_review = Post.objects.filter(
             status="Submitted"
         ).exclude(author=request.user.userprofile).count()
-        num_post_flags = PostFlag.objects.all().count()
+        num_post_flags = Post.objects.exclude(flag__isnull=True).count()
 
         context = {
             'num_author_posts_in_review': num_posts_in_review,

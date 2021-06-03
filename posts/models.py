@@ -117,7 +117,7 @@ class Post(models.Model):
         null=True, blank=True, upload_to="images/posts/")
     flag = models.ForeignKey(
         PostFlag,
-        on_delete=models.CASCADE,
+        on_delete=models.PROTECT,
         null=True, blank=True,
         related_name='flags')
     editors_note = models.TextField(

@@ -224,6 +224,13 @@ class PostDetailView(LoginRequiredMixin, DetailView, SuccessMessageMixin):
         """ Handles submission of the FlagForm """
         form = FlagForm(request.POST)
         if form.is_valid():
+            post = get_object_or_404(Post, id=self.kwargs['pk'])
+
+            # If older flag exists on the post, delete it before attaching
+            # a new one. Saves database from being populated with duplicates
+            if post.flag:
+                post.flag.delete()
+
             # Add flagger details to PostFlag instance
             form.instance.flagger = get_object_or_404(
                 User, pk=self.request.user.pk
@@ -231,7 +238,6 @@ class PostDetailView(LoginRequiredMixin, DetailView, SuccessMessageMixin):
             form.save()
 
             # Attach PostFlag instance to relevant Post
-            post = get_object_or_404(Post, id=self.kwargs['pk'])
             post.flag = get_object_or_404(PostFlag, pk=form.instance.pk)
             post.save()
 
@@ -342,7 +348,7 @@ class ReviewPostsView(LoginRequiredMixin, ListView):
     def get(self, *args, **kwargs):
         user = self.request.user
         if user.userprofile.is_mod is not True:
-            return redirect('home')  # add message for user?
+            return redirect('home')
         return super(ReviewPostsView, self).get(*args, **kwargs)
 
 
@@ -390,10 +396,14 @@ class ReviewPostView(LoginRequiredMixin, DetailView, UpdateView):
     fields = ['mod_message']
 
     def get(self, *args, **kwargs):
-        user = self.request.user
-        if user.userprofile.is_mod is not True:
+        user = get_object_or_404(User, pk=self.request.user.pk)
+        post = get_object_or_404(Post, pk=self.kwargs['pk'])
+
+        # comparison with user.id needed here to solve bug #
+        if post.author.user.id is user.id or user.userprofile.is_mod:
+            return super(ReviewPostView, self).get(*args, **kwargs)
+        else:
             return redirect('home')
-        return super(ReviewPostView, self).get(*args, **kwargs)
 
     def form_valid(self, form):
         form.instance.moderator = self.request.user
