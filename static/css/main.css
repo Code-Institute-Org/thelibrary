@@ -1265,7 +1265,7 @@ larger screen sizes.
 @media (min-width: 576px) {
     #filters > select {
         display: inline-block;
-        max-width: 49.5%;
+        max-width: 32%;
     }
 }
 
@@ -1298,7 +1298,7 @@ larger screen sizes.
 
     #filters > select {
         display: inline-block;
-        max-width: 43.8%;
+        max-width: 29%;
     }
     #filters > button {
         display: inline-block;
