@@ -446,7 +446,7 @@ class ReviewPostView(LoginRequiredMixin, DetailView, UpdateView):
         return HttpResponseRedirect(reverse('review_posts'))
 
 
-class TagPostsView(LoginRequiredMixin, SingleObjectMixin, ListView):
+class TagPostsView(SingleObjectMixin, ListView):
     """
     Render all posts that have the selected tag
     """
