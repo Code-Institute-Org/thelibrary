@@ -122,7 +122,6 @@ def filtered_posts_view(request, *args, **kwargs):
     return render(request, 'posts_listview.html', context)
 
 
-@login_required
 def author_posts_view(request, pk, *args, **kwargs):
     """
     Renders author posts page. Sets defaults on first loading the page
