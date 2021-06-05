@@ -190,7 +190,7 @@ def author_posts_view(request, pk, *args, **kwargs):
     return render(request, 'posts_listview.html', context)
 
 
-class PostDetailView(LoginRequiredMixin, DetailView, SuccessMessageMixin):
+class PostDetailView(DetailView, SuccessMessageMixin):
     """
     Create view for single post detail page. Shows the post information, and
     displays details about the author from their profile. Also loads the flag
@@ -210,12 +210,14 @@ class PostDetailView(LoginRequiredMixin, DetailView, SuccessMessageMixin):
         context['total_likes'] = post.total_likes()
         context['liked'] = post.likes.filter(
             id=self.request.user.id).exists()
-        context['bookmarked'] = Bookmark.objects.filter(
-            post=self.kwargs['pk'],
-            user=self.request.user).exists()
         context['kudos_badge'] = post.author.kudos_badge()
         context['author_name'] = post.author.get_author_name()
         context['form'] = FlagForm()
+
+        if self.request.user.is_authenticated:
+            context['bookmarked'] = Bookmark.objects.filter(
+                post=self.kwargs['pk'],
+                user=self.request.user).exists()
 
         return context
 
