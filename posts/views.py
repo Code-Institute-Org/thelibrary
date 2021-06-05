@@ -129,43 +129,72 @@ def author_posts_view(request, pk, *args, **kwargs):
     When a GET request is made, the results are filtered by category
     and sort method.
     """
-    if request.GET:
-        sort_method = request.GET.get('sort_method')
-        category_pk = request.GET.get('category')
+    category_pk = request.GET.get('category', 'all')
+    sort_method = request.GET.get('sort_method', '-created_on')
+    course_selection = request.GET.get('course_selection', 'all')
 
-        if sort_method == 'likes':
-            if category_pk == 'all':
+    if course_selection == '3':
+        course_selection = 'all'
+
+    if sort_method == 'likes':
+        if category_pk == 'all':
+            if course_selection == 'all':
                 sorted_posts = Post.objects.filter(
-                    author=pk, status="Published").annotate(
+                    author=pk,
+                    status="Published").annotate(
                         like_count=Count('likes')
                     ).order_by('-like_count')
             else:
                 sorted_posts = Post.objects.filter(
                     author=pk,
-                    category=category_pk,
-                    status="Published"
+                    status="Published",
+                    course=course_selection
                 ).annotate(
                     like_count=Count('likes')
                 ).order_by('-like_count')
-        elif category_pk == 'all':
+        else:
+            if course_selection == 'all':
+                sorted_posts = Post.objects.filter(
+                    author=pk,
+                    category=category_pk,
+                    status="Published",
+                ).annotate(
+                    like_count=Count('likes')
+                ).order_by('-like_count')
+            else:
+                sorted_posts = Post.objects.filter(
+                    author=pk,
+                    category=category_pk,
+                    course=course_selection,
+                    status="Published",
+                ).annotate(
+                    like_count=Count('likes')
+                ).order_by('-like_count')
+
+    elif category_pk == 'all':
+        if course_selection == 'all':
             sorted_posts = Post.objects.filter(
-                author=pk, status="Published"
+                author=pk,
+                status="Published").order_by(sort_method)
+        else:
+            sorted_posts = Post.objects.filter(
+                author=pk,
+                status="Published",
+                course=course_selection
+            ).order_by(sort_method)
+    else:
+        if course_selection == 'all':
+            sorted_posts = Post.objects.filter(
+                author=pk,
+                category=category_pk, status="Published"
             ).order_by(sort_method)
         else:
             sorted_posts = Post.objects.filter(
                 author=pk,
                 category=category_pk,
+                course=course_selection,
                 status="Published"
             ).order_by(sort_method)
-
-    # Set defaults to show all posts by author
-    # sorted by recent first.
-    else:
-        sort_method = '-created_on'
-        category_pk = 'all'
-        sorted_posts = Post.objects.filter(
-            author=pk
-        ).order_by(sort_method)
 
     # Build pagination object (see code credit above)
     page = request.GET.get('page', 1)
@@ -177,6 +206,8 @@ def author_posts_view(request, pk, *args, **kwargs):
     except EmptyPage:
         page_obj = paginator.page(paginator.num_pages)
 
+    courses = Course.objects.all()
+
     userprofile = get_object_or_404(UserProfile, pk=pk)
     context = {
         'page_obj': page_obj,
@@ -185,6 +216,8 @@ def author_posts_view(request, pk, *args, **kwargs):
         'pg_title': f"Posts by {userprofile.user.username}",
         'extra_filter': 'author',
         'author_pk': pk,
+        'course_selection': course_selection,
+        'courses': courses,
     }
     return render(request, 'posts_listview.html', context)
 
