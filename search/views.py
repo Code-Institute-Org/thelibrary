@@ -5,7 +5,7 @@ from django.views.generic import ListView
 from posts.models import Post
 
 
-class SearchResultsView(LoginRequiredMixin, ListView):
+class SearchResultsView(ListView):
     """ Render search results with pagination """
     template_name = "search/search_results.html"
     paginate_by = 12
