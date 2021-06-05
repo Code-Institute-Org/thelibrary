@@ -52,7 +52,7 @@
                         <a href="{% url 'create_post' %}" title="Create a new post"><i
                                 class="fas fa-plus navbar-icon nav-link"></i></a>
                     </li>
-
+                    {% if user.is_authenticated %}
                     <!-- Bell icon when clicked shows dropdown menu for notifications -->
                     <li class="nav-item dropdown dropdown-menu-end">
                         <a id="notifications" class="nav-link position-relative" href="#" id="userNotificationsDropdown" role="button"
@@ -207,6 +207,29 @@
                             </li>
                         </ul>
                     </li>
+                {% else %}
+                    <!-- Post icon when clicked shows dropdown menu for posts by category -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <i class="fas fa-user-circle navbar-icon" aria-label="View account options"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountDropdown">
+                            <a class="dropdown-item" href="#">Account</a>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <a class="dropdown-item"
+                                    href="{% url 'account_login' %}">Log in</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item"
+                                    href="{% url 'account_signup' %}">Create account</a>
+                            </li>
+                        </ul>
+                    </li>
+                {% endif %}
                 </ul>
             </div>
         </div>

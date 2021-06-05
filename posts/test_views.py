@@ -76,3 +76,33 @@ class AllPostsViewTests(TestCase):
 
         # Checks if only "Published" posts are in queryset
         self.assertEqual(pg_obj.paginator.count, 15)
+
+
+# class BookmarkPostViewTests(TestCase):
+
+#     def setUp(self):
+#         user_a = User(username="user_a", email="a@x.com")
+#         user_a.set_password('pass')
+#         user_a.save()
+
+#         category_a = PostCategory.objects.create(name="category_a")
+#         channel = SlackChannel.objects.create(
+#             name="#test", slack_channel_id="ABCDE")
+#         course = Course.objects.create(name="A1")
+
+#         post = Post(title="post title")
+#         post.summary = "post summary"
+#         post.slug = "post-title"
+#         post.body = 'body'
+#         post.slack_channel = channel
+#         post.course = course
+#         post.author = user_a.userprofile
+#         post.category = category_a
+#         post.status = "Published"
+#         post.save()
+
+#     def test_anon_user_redirected(self):
+#         response = self.client.get('/posts/bookmark/1')
+#         self.assertRedirects(
+#             response, '/accounts/login/?next=/bookmark/1/', status_code=301,
+#             target_status_code=200, fetch_redirect_response=True)

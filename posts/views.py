@@ -17,7 +17,7 @@ from .forms import FlagForm, AddOrEditPostForm
 from .models import Post, PostFlag, PostTag, Bookmark
 
 
-class AllPostsView(LoginRequiredMixin, ListView):
+class AllPostsView(ListView):
     """ Basic view to see all posts, ordered by most recently created first """
     template_name = 'posts_listview.html'
     paginate_by = 12
@@ -33,7 +33,6 @@ class AllPostsView(LoginRequiredMixin, ListView):
         return context
 
 
-@login_required
 def filtered_posts_view(request, *args, **kwargs):
     """
     View to handle filtering all posts by category and sort method.

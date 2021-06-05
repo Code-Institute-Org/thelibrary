@@ -1,10 +1,8 @@
-from django.contrib.auth.decorators import login_required
 from django.db.models import Count
-from django.shortcuts import render, get_object_or_404
-from posts.models import Post, PostCategory
+from django.shortcuts import render
+from posts.models import Post
 
 
-@login_required
 def home_view(request):
     """
     Render home page with 4 most recent posts and 4 most popular posts

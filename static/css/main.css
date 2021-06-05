@@ -208,6 +208,14 @@ a.dropdown-item:hover > i {
     text-align: center;
 }
 
+#accountDropdown .navbar-icon {
+    font-size: 2rem;
+}
+
+#accountDropdown {
+    padding: 5.5px;
+}
+
 /* ---------------------
     Navbar notifications
 --------------------- */
