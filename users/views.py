@@ -10,7 +10,6 @@ from posts.models import Post, Bookmark
 from .models import UserProfile, User
 
 
-@login_required
 def user_profile_view(request, pk):
     """
     Render selected users profile,
