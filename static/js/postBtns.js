@@ -63,7 +63,7 @@ if (editorsNoteDeleteBtn) {
 }
 
 function checkDeleteFlag(flagID) {
-    let check = confirm("Are you sure you want to delete this flag?");
+    let check = confirm("Are you sure you want to dismiss this flag?");
     if (check) {
         let currentURL = window.location.href;
         let splitStr = currentURL.split('/');

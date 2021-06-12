@@ -139,17 +139,31 @@
                     {% endif %}
 
                 {% else %}
+
+                    {% if post.flag %}
+                    <div id="flag-info" class="post-detail-note mb-4">
+                        <h2>This post has been flagged</h2>
+                        <p>Flagged by {{ post.flag.flagger.username }}</p>
+                        <p>Reason: {{ post.flag.reason }}</p>
+                    </div>
+                    {% endif %}
                     <!-- buttons for moderator -->
                     <button type="button" data-bs-toggle="collapse"
                         data-bs-target="#requestEdit" aria-expanded="false"
                         aria-controls="requestEdit"
                         class="btn btn-teal me-2">Request Edit</button>
-                    <a href="{% url 'approve_post' post.pk post.slug %}" class="btn btn-orange">Approve Post</a>
+                    {% if post.flag %}
+                        <button id="deleteFlag" class="btn btn-orange" data-flag-id="{{ post.flag.id }}">Dismiss flag</button>
+                    {% else %}
+                        <a href="{% url 'approve_post' post.pk post.slug %}" class="btn btn-orange">Approve Post</a>
+                    {% endif %}
                     <br>
                     <div class="collapse mt-3" id="requestEdit">
+                        
                         <p>
                             Please let the author know what edits they need to make to this post before it
-                            can be published.
+                            can be published {% if post.flag %}again. This post will be deactivated until the author
+                            makes adjustments and resubmits it for review{% endif %}.
                         </p>
                         <form id="modMessageForm" method="post">
                             {% csrf_token %}

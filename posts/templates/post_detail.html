@@ -14,20 +14,20 @@
 
 {% block content %}
 
-<div class="container-fluid">
-    <div class="row">
-        {% if post.flag and user.userprofile.is_admin %}
-        <div id="flag-info" class="col-12 post-detail-note">
-            <h2>This post has been flagged</h2>
-            <p>Flagged by {{ post.flag.flagger.username }}</p>
-            <p>Reason: {{ post.flag.reason }}</p>
-            <button id="deleteFlag" class="btn btn-sm btn-orange" data-flag-id="{{ post.flag.id }}">Dismiss flag</button>
-            <button>Deactivate post</button>
-            <button>Contact {{ post.flag.flagger.username }} for more info</button>
+{% if post.flag and user.userprofile.is_admin %}
+<div id="flag-info">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 post-detail-note">
+                <h2>This post has been flagged</h2>
+                <p>Flagged by {{ post.flag.flagger.username }}</p>
+                <p>Reason: {{ post.flag.reason }}</p>
+                <a href="{% url 'review_post' post.id post.slug  %}" class="btn btn-sm btn-teal">Review post</a>
+            </div>
         </div>
-        {% endif %}
     </div>
 </div>
+{% endif %}
 
 <article id="post-detail" class="container my-2 white-box box-shadow-light-spread">
     <div class="row">

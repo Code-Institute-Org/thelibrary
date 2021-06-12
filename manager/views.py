@@ -6,6 +6,7 @@ from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse_lazy
+from django.urls.base import reverse
 from django.views.generic.edit import UpdateView
 from posts.models import Post, PostFlag, PostCategory, PostTag
 from users.models import UserProfile, User
@@ -266,6 +267,5 @@ def delete_flag(request, pk):
     post_flag = get_object_or_404(PostFlag, pk=pk)
     post_flag.delete()
     messages.add_message(
-            request, messages.SUCCESS, "Flag successfully deleted")
-    next_pg = request.GET.get('next', '/')
-    return HttpResponseRedirect(next_pg)
+            request, messages.SUCCESS, "Flag successfully dismissed")
+    return redirect('manage_flags')

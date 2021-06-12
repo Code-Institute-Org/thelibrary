@@ -853,6 +853,10 @@ https://stackoverflow.com/questions/18531959/how-to-create-triangle-shape-in-the
     background-color: var(--t-orange);
 }
 
+#flag-info p {
+    margin-bottom: 8px;
+}
+
 .post-image {
     width: 100%;
     margin-top: 1.5rem;
