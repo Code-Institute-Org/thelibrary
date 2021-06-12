@@ -313,11 +313,13 @@
                 </button>
             </form>
 
+            {% if request.user.username != post.author.user.username %}
             <button id="flag" type="button" data-bs-toggle="modal" data-bs-target="#flagModal"
                 class="post-icon btn blue-btn-outline btn-thin-border me-2 mb-2"
                 title="Flag this post">
                 <i class="far fa-flag"></i>
             </button>
+            {% endif %}
             <!-- Modal -->
             <div class="modal fade" id="flagModal" tabindex="-1" aria-labelledby="flagModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
