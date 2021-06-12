@@ -1,36 +1,76 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %}{% load static %}
 
 {% block content %}
 
-<h1>Library Manager</h1>
 
-<h2>Flagged posts</h2>
-
-<table class="table dashboard-table">
-    <thead>
-        <tr>
-            <th scope="col">Title</th>
-            <th scope="col">Author</th>
-            <th scope="col">Flagged by</th>
-            <th scope="col">Reason for flag</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for post in flagged_posts %}
-        <tr>
-            <th><a href="{% url 'post_detail' post.pk post.slug %}">{{ post.title }}</a></th>
-            <td>{{ post.author.user.username }}</td>
-            <td>{{ post.flag.flagger }}</td>
-            <td>{{ post.flag.reason }}</td>
-        </tr>
-        {% empty %}
-        <tr>
-            <td colspan="4">
-                No flagged posts
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+<div class="container">
+    <div id="dashboard" class="row white-box box-shadow-light-spread my-4">
+        <div class="col-12">
+            <h1 class="home-listview-heading text-center text-sm-start mb-4">
+                Flagged Posts
+            </h1>
+        </div>
+        <!--
+            Table for posts does not render well on narrow phone screens.
+            #narrow-screen column visible to ask users to turn their phones to view the posts.
+        -->
+        <div id="narrow-screen" class="col-12 text-center">
+            <strong>To view list of flagged posts, please turn your phone into landscape mode.</strong>
+            <img src="{% static 'img/rotate-phone.png' %}" alt="Rotate your phone icon">
+        </div>
+        <div class="col-12">
+            <table class="table dashboard-table">
+                <thead>
+                    <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Author</th>
+                        <th scope="col">Flagged by</th>
+                        <th scope="col">Reason for flag</th>
+                        <th scope="col">Review post</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for post in page_obj %}
+                    <tr>
+                        <th>{{ post.title }}</th>
+                        <td>{{ post.author.user.username }}</td>
+                        <td>{{ post.flag.flagger }}</td>
+                        <td>{{ post.flag.reason }}</td>
+                        <td><a href="{% url 'review_post' post.pk post.slug %}">Review</a></td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5">
+                            No flagged posts
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% if page_obj.has_other_pages %}
+            <ul class="pagination">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo;</a></li>
+                {% else %}
+                    <li class="disabled page-item"><a href="#" class="page-link">&laquo;</a></li>
+                {% endif %}
+                {% for i in page_obj.paginator.page_range %}
+                    {% if page_obj.number == i %}
+                        <li class="active page-item"><a href="#" class="page-link">{{ i }} <span class="sr-only">(current)</span></a></li>
+                    {% else %}
+                        <li class="page-item"><a href="?page={{ i }}" class="page-link">{{ i }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    <li class="page-item"><a href="?page={{ page_obj.next_page_number }}" class="page-link">&raquo;</a></li>
+                {% else %}
+                    <li class="disabled page-item"><a href="#" class="page-link">&raquo;</a></li>
+                {% endif %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+</div>
 
 {% endblock %}

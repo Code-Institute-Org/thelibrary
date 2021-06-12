@@ -2,11 +2,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
-from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse_lazy
-from django.urls.base import reverse
 from django.views.generic.edit import UpdateView
 from posts.models import Post, PostFlag, PostCategory, PostTag
 from users.models import UserProfile, User
@@ -30,8 +29,17 @@ def manage_flags(request):
         flags = PostFlag.objects.all()
         flagged_posts = Post.objects.filter(flag__in=flags)
 
+        page = request.GET.get('page', 1)
+        paginator = Paginator(flagged_posts, 24)
+        try:
+            page_obj = paginator.page(page)
+        except PageNotAnInteger:
+            page_obj = paginator.page(1)
+        except EmptyPage:
+            page_obj = paginator.page(paginator.num_pages)
+
         context = {
-            'flagged_posts': flagged_posts,
+            'page_obj': page_obj,
         }
         return render(request, 'manage_flags.html', context)
 
