@@ -93,7 +93,7 @@ class Post(models.Model):
         max_length=100,
         choices=STATUS_CHOICES,
         default=SUBMITTED)
-    mod_message = models.TextField(max_length=300, null=True)
+    mod_message = models.TextField(max_length=300, null=True, blank=True)
     moderator = models.ForeignKey(
         User,
         on_delete=models.PROTECT,

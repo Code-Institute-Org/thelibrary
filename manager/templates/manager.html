@@ -5,18 +5,33 @@
 <h1>Library Manager</h1>
 
 <h2>Flagged posts</h2>
-{% for post in flagged_posts %}
 
-<h3>{{ post.title }}</h3>
-<p>{{ post.author.user.username }}</p>
-<strong>{{ post.flag.flagger }}: {{ post.flag.reason }}</strong>
-<hr>
-
-{% empty %}
-
-<p>No flagged posts</p>
-
-{% endfor %}
+<table class="table dashboard-table">
+    <thead>
+        <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Author</th>
+            <th scope="col">Flagged by</th>
+            <th scope="col">Reason for flag</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for post in flagged_posts %}
+        <tr>
+            <th><a href="{% url 'post_detail' post.pk post.slug %}">{{ post.title }}</a></th>
+            <td>{{ post.author.user.username }}</td>
+            <td>{{ post.flag.flagger }}</td>
+            <td>{{ post.flag.reason }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">
+                No flagged posts
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 
 <h2>Search user profiles</h2>
 <form action="{% url 'profile_search' %}" method="GET">
