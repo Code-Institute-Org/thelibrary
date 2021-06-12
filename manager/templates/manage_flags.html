@@ -33,22 +33,4 @@
     </tbody>
 </table>
 
-<h2>Search user profiles</h2>
-<form action="{% url 'profile_search' %}" method="GET">
-    <label for="name_q">Search for a user</label>
-    <br>
-    <input id="name_q" name="name_q" type="text" required>
-    <br>
-    <small>Search by name or username</small>
-    <br>
-    <button type="submit">Submit</button>
-</form>
-
-<!-- Manage categories -->
-<p><a href="{% url 'manage_categories' %}">Manage Categories</a></p>
-<!-- Manage slack channels -->
-<p><a href="{% url 'manage_channels' %}">Manage Slack Channels</a></p>
-<!-- Manage post tags -->
-<p><a href="{% url 'manage_tags' %}">Manage Post Tags</a></p>
-
 {% endblock %}

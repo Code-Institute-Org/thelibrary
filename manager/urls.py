@@ -1,7 +1,7 @@
 from django.urls import path
 
 from .views import (
-    manager_view,
+    manage_flags,
     profile_search,
     ManageUserProfile,
     manage_categories,
@@ -17,7 +17,7 @@ from .views import (
 )
 
 urlpatterns = [
-    path('', manager_view, name='manager'),
+    path('manage_flags/', manage_flags, name='manage_flags'),
     path('users/', profile_search, name='profile_search'),
     path(
         'manage_user/<int:pk>',

@@ -13,15 +13,17 @@
     <button type="submit">Submit</button>
 </form>
 
-<h2>Results</h2>
-{% for user in users %}
-<p><strong>{{user.username}}</strong></p>
-<p>First name: {{ user.first_name }}</p>
-<p>Last name: {{ user.last_name }}</p>
-<p>Date joined: {{ user.userprofile.date_joined }}</p>
-<p><a href="{% url 'manage_user' user.userprofile.id %}" target="_blank">Edit {{user.username}}'s settings</a></p>
-{% empty %}
-<p>No results for your user profile search</p>
-{% endfor %}
+{% if users != "none" %}
+    <h2>Results</h2>
+    {% for user in users %}
+    <p><strong>{{user.username}}</strong></p>
+    <p>First name: {{ user.first_name }}</p>
+    <p>Last name: {{ user.last_name }}</p>
+    <p>Date joined: {{ user.userprofile.date_joined }}</p>
+    <p><a href="{% url 'manage_user' user.userprofile.id %}" target="_blank">Edit {{user.username}}'s settings</a></p>
+    {% empty %}
+    <p>No results for your user profile search</p>
+    {% endfor %}
+{% endif %}
 
 {% endblock %}

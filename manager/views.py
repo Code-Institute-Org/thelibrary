@@ -17,7 +17,7 @@ from .forms import (
 
 
 @login_required
-def manager_view(request):
+def manage_flags(request):
     """
     Render manager pg for library admins.
     Redirects non admins to the home page.
@@ -31,7 +31,7 @@ def manager_view(request):
         context = {
             'flagged_posts': flagged_posts,
         }
-        return render(request, 'manager.html', context)
+        return render(request, 'manage_flags.html', context)
 
 
 @login_required
@@ -40,21 +40,26 @@ def profile_search(request):
         return redirect('home')
     else:
         q = request.GET.get('name_q')
-        if ' ' in q:
-            names = q.split(' ', 1)
-            first_name = names[0]
-            last_name = names[1]
-            users = User.objects.filter(
-                Q(username__icontains=q)
-                | Q(first_name__icontains=first_name)
-                | Q(last_name__icontains=last_name),
-            )
+
+        if q:
+            if ' ' in q:
+                names = q.split(' ', 1)
+                first_name = names[0]
+                last_name = names[1]
+                users = User.objects.filter(
+                    Q(username__icontains=q)
+                    | Q(first_name__icontains=first_name)
+                    | Q(last_name__icontains=last_name),
+                )
+            else:
+                users = User.objects.filter(
+                    Q(username__icontains=q)
+                    | Q(first_name__icontains=q)
+                    | Q(last_name__icontains=q),
+                )
         else:
-            users = User.objects.filter(
-                Q(username__icontains=q)
-                | Q(first_name__icontains=q)
-                | Q(last_name__icontains=q),
-            )
+            users = 'none'
+
         context = {
             'users': users
         }
