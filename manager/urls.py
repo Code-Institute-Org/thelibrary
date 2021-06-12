@@ -13,7 +13,8 @@ from .views import (
     delete_tag,
     EditEditorsNote,
     delete_editors_note,
-    AddEditorsNote
+    AddEditorsNote,
+    delete_flag
 )
 
 urlpatterns = [
@@ -50,4 +51,7 @@ urlpatterns = [
     path(
         'editors_note/add/<int:pk>',
         AddEditorsNote.as_view(), name="add_editors_note"),
+    path(
+        'delete_flag/<int:pk>',
+        delete_flag, name="delete_flag"),
 ]

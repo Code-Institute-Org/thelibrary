@@ -1,4 +1,3 @@
-
 /**
  * 
  * @param {str} postID 
@@ -36,7 +35,7 @@ for (let i = 0; i < deleteBtns.length; i++) {
 
 if (document.getElementById('back-btn')) {
     let backBtn = document.getElementById('back-btn');
-    backBtn.addEventListener('click', function() {
+    backBtn.addEventListener('click', function () {
         goBack();
     });
 }
@@ -55,7 +54,29 @@ function checkDeleteEditorsNote(postID) {
 }
 
 let editorsNoteDeleteBtn = document.getElementById('editorsNoteDeleteBtn');
-editorsNoteDeleteBtn.addEventListener('click', function () {
-    let postID = editorsNoteDeleteBtn.getAttribute('data-post-pk');
-    checkDeleteEditorsNote(postID);
+
+if (editorsNoteDeleteBtn) {
+    editorsNoteDeleteBtn.addEventListener('click', function () {
+        let postID = editorsNoteDeleteBtn.getAttribute('data-post-pk');
+        checkDeleteEditorsNote(postID);
+    });
+}
+
+function checkDeleteFlag(flagID) {
+    let check = confirm("Are you sure you want to delete this flag?");
+    if (check) {
+        let currentURL = window.location.href;
+        let splitStr = currentURL.split('/');
+        let url = `${splitStr[0]}//${splitStr[2]}/manager/delete_flag/${flagID}`;
+        window.location.href = url;
+        return
+    } else {
+        return false;
+    }
+}
+
+let deleteFlagBtn = document.getElementById('deleteFlag');
+deleteFlagBtn.addEventListener('click', function () {
+    let flagID = deleteFlagBtn.getAttribute('data-flag-id');
+    checkDeleteFlag(flagID);
 });

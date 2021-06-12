@@ -3,9 +3,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import Q
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse_lazy
-from django.views.generic.edit import UpdateView, CreateView
+from django.views.generic.edit import UpdateView
 from posts.models import Post, PostFlag, PostCategory, PostTag
 from users.models import UserProfile, User
 from slack.models import SlackChannel
@@ -234,7 +235,7 @@ def delete_editors_note(request, pk):
     post.save()
 
     messages.add_message(
-            request, messages.SUCCESS, f"Editors note successfully deleted!")
+            request, messages.SUCCESS, "Editors note successfully deleted!")
 
     context = {
         'post': post
@@ -259,3 +260,12 @@ class AddEditorsNote(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
         post = get_object_or_404(Post, pk=self.kwargs['pk'])
         return reverse_lazy(
             'post_detail', kwargs={'pk': post.pk, 'slug': post.slug})
+
+
+def delete_flag(request, pk):
+    post_flag = get_object_or_404(PostFlag, pk=pk)
+    post_flag.delete()
+    messages.add_message(
+            request, messages.SUCCESS, "Flag successfully deleted")
+    next_pg = request.GET.get('next', '/')
+    return HttpResponseRedirect(next_pg)
