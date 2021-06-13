@@ -1160,7 +1160,8 @@ are still set to bootstrap 4)
 #edit-post-form textarea,
 #modMessageForm textarea,
 #settings-form input,
-#author-settings-form input {
+#author-settings-form input,
+#manage-categories input {
     display: block;
     width: 100%;
     padding: .375rem .75rem;

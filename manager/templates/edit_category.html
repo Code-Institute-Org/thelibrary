@@ -4,13 +4,32 @@
 
 {% block content %}
 
-<h1>Edit Category</h1>
+<div class="container">
+    <div class="row white-box box-shadow-light-spread my-4">
+        <div class="col-12">
+            <h1 class="home-listview-heading text-center text-sm-start mb-4">
+                Edit Category
+            </h1>
+        </div>
+    </div>
+</div>
 
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Submit</button>
-</form>
+<div class="container" id="manage-categories">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-6 col-xl-4 white-box box-shadow-light-spread">
+            <form method="POST">
+                <label for="id_name" class="form-label">Category Name</label>
+                {% csrf_token %}
+                <div class="mb-3">
+                    {{ form.name }}
+                    <div class="form-text">This category may already be attached to existing posts. 
+                        Edits to the category name <strong>should not change its meaning</strong>.</div>
+                </div>
+                <button type="submit" class="btn btn-orange">Update</button>
+            </form>
+        </div>
+    </div>
+</div>
 
 
 {% endblock %}
