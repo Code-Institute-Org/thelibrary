@@ -4,36 +4,60 @@
 
 {% block content %}
 
-<h1>Manage Tags</h1>
+<div class="container">
+    <div id="manage-profile" class="row white-box box-shadow-light-spread my-4">
+        <div class="col-12">
+            <h1 class="home-listview-heading text-center text-sm-start mb-4">
+                Manage Tags
+            </h1>
+            <p>Tags are attached to posts as a way to navigate to other related topics.</p>
+        </div>
+        <div class="col-12 col-lg-6">
+            <table class="table dashboard-table">
+                <thead>
+                    <tr>
+                        <th scope="col">Tag Name</th>
+                        <th scope="col" class="text-center">Edit Tag</th>
+                        <th scope="col" class="text-center">Delete Tag</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for tag in tags %}
+                    <tr>
+                        <td>{{ tag.name }}</td>
+                        <td class="text-center">
+                            <a href="{% url 'edit_tag' tag.pk %}" aria-label="Edit this tag">
+                                Edit
+                            </a>
+                        </td>
+                        <td class="text-center">
+                            <button data-tag-id="{{ tag.id }}" 
+                                data-tag-name="{{ tag.name }}" 
+                                aria-label="Delete this tag" 
+                                class="tagDeleteBtn invisible-button">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-1"></div>
+        <div class="col-12 col-lg-4 mt-4 mt-lg-0">
+            <!-- Add new -->
+            <h3>Add new tag</h3>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    {{ form.name }}
+                </div>
+                <button type="submit" class="btn btn-orange">Add</button>
+            </form>
+        </div>
+    </div>
+</div>
 
-<table>
-    <tbody>
-        {% for tag in tags %}
-        <tr>
-            <td>{{ tag.name }}</td>
-            <td class="text-center">
-                <a href="{% url 'edit_tag' tag.id %}" aria-label="Edit this tag">
-                    Edit
-                </a>
-            </td>
-            <td class="text-center">
-                <button data-tag-id="{{ tag.id }}" aria-label="Delete this tag" class="tagDeleteBtn">
-                    Delete
-                </button>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-
-<!-- Add new -->
-<h2>Add new tag</h2>
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    
-    <button type="submit">Submit</button>
-</form>
 
 {% endblock %}
 

@@ -43,6 +43,15 @@ class CreateChannelForm(forms.ModelForm):
 
 
 class CreatePostTag(forms.ModelForm):
+    name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': "form-control",
+                'placeholder': "Tag"
+            }
+        )
+    )
+
     class Meta:
         model = PostTag
         fields = ['name']

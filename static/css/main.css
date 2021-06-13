@@ -496,6 +496,10 @@ See media queries for other screen sizes.
     background-color: transparent;
 }
 
+.tagDeleteBtn {
+    color: var(--cta-teal);
+}
+
 /* ---------------------
     Home page
 --------------------- */
