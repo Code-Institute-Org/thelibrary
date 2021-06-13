@@ -6,6 +6,15 @@ from slack.models import SlackChannel
 
 
 class CreateCategoryForm(forms.ModelForm):
+    name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': "form-control",
+                'placeholder': "Category Name"
+            }
+        )
+    )
+
     class Meta:
         model = PostCategory
         fields = ['name']
