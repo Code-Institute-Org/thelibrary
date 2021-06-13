@@ -4,13 +4,42 @@
 
 {% block content %}
 
-<h1>Edit Channel</h1>
+<div class="container">
+    <div class="row white-box box-shadow-light-spread my-4">
+        <div class="col-12">
+            <h1 class="home-listview-heading text-center text-sm-start">
+                Edit Channel
+            </h1>
+        </div>
+    </div>
+</div>
 
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Submit</button>
-</form>
-
+<div class="container" id="manage-categories">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-6 col-xl-4 white-box box-shadow-light-spread mb-4">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="id_name" class="form-label">Channel Name</label>
+                    {{ form.name }}
+                    <div class="form-text">This channel may already be attached to existing posts. 
+                        Edits to the channel name <strong>should match a change to the same channel name within Slack</strong>.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="id_name" class="form-label">Channel ID</label>
+                    {{ form.slack_channel_id }}
+                    <div class="form-text">To get the channel id, go to the slack app, then right-click the channel name 
+                        and select "Copy Link". The id is the characters at the end of the url.
+                        <br><br>
+                        For example, if the link to the channel is
+                        https://code-institute-room.slack.com/archives/C01DGQ5VCSJ,
+                        the channel id is <strong>C01DGQ5VCSJ</strong>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-orange">Update</button>
+            </form>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
