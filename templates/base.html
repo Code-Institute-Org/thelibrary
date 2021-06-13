@@ -35,6 +35,9 @@
 </head>
 
 <body>
+    <div id="loadingGifBg">
+        <div class="loader"></div>
+    </div>
     <div id="footer-push-down">
 
         {% include 'components/navbar.html' %}
@@ -65,6 +68,9 @@
         <!-- scripts for bootstrap -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.4/umd/popper.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/js/bootstrap.min.js"></script>
+
+        <!-- loading gif js -->
+        <script src="{% static 'js/loadingGif.js' %}"></script>
     {% endblock %}
 
     {% block extra_js %}

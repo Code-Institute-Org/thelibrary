@@ -49,6 +49,16 @@ a:hover {
     site-wide icons
 --------------------- */
 
+#loadingGifBg {
+    background: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999999999;
+}
+
 .ci-username-logo {
     height: 18px;
     width: 18px;
@@ -64,6 +74,31 @@ a:hover {
     border: 6px solid var(--orange);
     border-radius: 50%;
     display: inline-block;
+}
+
+/* Loader code from https://www.w3schools.com/howto/howto_css_loader.asp */
+.loader {
+    border: 10px solid #f3f3f3;
+    /* Light grey */
+    border-top: 10px solid var(--cta-orange);
+    /* Blue */
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    animation: spin 2s linear infinite;
+    position: absolute;
+    top: calc(50% - 35px);
+    left: calc(50% - 35px);
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 /* ---------------------
@@ -162,12 +197,12 @@ bootstrap width on search bar
 }
 
 .dropdown-item,
-.dropdown-item > i {
+.dropdown-item>i {
     transition: all ease-in-out .4s;
 }
 
 a.dropdown-item:hover,
-a.dropdown-item:hover > i {
+a.dropdown-item:hover>i {
     color: var(--orange);
 }
 
@@ -258,85 +293,299 @@ https://codepen.io/fazlurr/pen/xeXpqx
 }
 
 @-webkit-keyframes ring {
-    0% { -webkit-transform: rotateZ(0); }
-    1% { -webkit-transform: rotateZ(30deg); }
-    3% { -webkit-transform: rotateZ(-28deg); }
-    5% { -webkit-transform: rotateZ(34deg); }
-    7% { -webkit-transform: rotateZ(-32deg); }
-    9% { -webkit-transform: rotateZ(30deg); }
-    11% { -webkit-transform: rotateZ(-28deg); }
-    13% { -webkit-transform: rotateZ(26deg); }
-    15% { -webkit-transform: rotateZ(-24deg); }
-    17% { -webkit-transform: rotateZ(22deg); }
-    19% { -webkit-transform: rotateZ(-20deg); }
-    21% { -webkit-transform: rotateZ(18deg); }
-    23% { -webkit-transform: rotateZ(-16deg); }
-    25% { -webkit-transform: rotateZ(14deg); }
-    27% { -webkit-transform: rotateZ(-12deg); }
-    29% { -webkit-transform: rotateZ(10deg); }
-    31% { -webkit-transform: rotateZ(-8deg); }
-    33% { -webkit-transform: rotateZ(6deg); }
-    35% { -webkit-transform: rotateZ(-4deg); }
-    37% { -webkit-transform: rotateZ(2deg); }
-    39% { -webkit-transform: rotateZ(-1deg); }
-    41% { -webkit-transform: rotateZ(1deg); }
-    43% { -webkit-transform: rotateZ(0); }
-    100% { -webkit-transform: rotateZ(0); }
+    0% {
+        -webkit-transform: rotateZ(0);
+    }
+
+    1% {
+        -webkit-transform: rotateZ(30deg);
+    }
+
+    3% {
+        -webkit-transform: rotateZ(-28deg);
+    }
+
+    5% {
+        -webkit-transform: rotateZ(34deg);
+    }
+
+    7% {
+        -webkit-transform: rotateZ(-32deg);
+    }
+
+    9% {
+        -webkit-transform: rotateZ(30deg);
+    }
+
+    11% {
+        -webkit-transform: rotateZ(-28deg);
+    }
+
+    13% {
+        -webkit-transform: rotateZ(26deg);
+    }
+
+    15% {
+        -webkit-transform: rotateZ(-24deg);
+    }
+
+    17% {
+        -webkit-transform: rotateZ(22deg);
+    }
+
+    19% {
+        -webkit-transform: rotateZ(-20deg);
+    }
+
+    21% {
+        -webkit-transform: rotateZ(18deg);
+    }
+
+    23% {
+        -webkit-transform: rotateZ(-16deg);
+    }
+
+    25% {
+        -webkit-transform: rotateZ(14deg);
+    }
+
+    27% {
+        -webkit-transform: rotateZ(-12deg);
+    }
+
+    29% {
+        -webkit-transform: rotateZ(10deg);
+    }
+
+    31% {
+        -webkit-transform: rotateZ(-8deg);
+    }
+
+    33% {
+        -webkit-transform: rotateZ(6deg);
+    }
+
+    35% {
+        -webkit-transform: rotateZ(-4deg);
+    }
+
+    37% {
+        -webkit-transform: rotateZ(2deg);
+    }
+
+    39% {
+        -webkit-transform: rotateZ(-1deg);
+    }
+
+    41% {
+        -webkit-transform: rotateZ(1deg);
+    }
+
+    43% {
+        -webkit-transform: rotateZ(0);
+    }
+
+    100% {
+        -webkit-transform: rotateZ(0);
+    }
 }
 
 @-moz-keyframes ring {
-    0% { -moz-transform: rotate(0); }
-    1% { -moz-transform: rotate(30deg); }
-    3% { -moz-transform: rotate(-28deg); }
-    5% { -moz-transform: rotate(34deg); }
-    7% { -moz-transform: rotate(-32deg); }
-    9% { -moz-transform: rotate(30deg); }
-    11% { -moz-transform: rotate(-28deg); }
-    13% { -moz-transform: rotate(26deg); }
-    15% { -moz-transform: rotate(-24deg); }
-    17% { -moz-transform: rotate(22deg); }
-    19% { -moz-transform: rotate(-20deg); }
-    21% { -moz-transform: rotate(18deg); }
-    23% { -moz-transform: rotate(-16deg); }
-    25% { -moz-transform: rotate(14deg); }
-    27% { -moz-transform: rotate(-12deg); }
-    29% { -moz-transform: rotate(10deg); }
-    31% { -moz-transform: rotate(-8deg); }
-    33% { -moz-transform: rotate(6deg); }
-    35% { -moz-transform: rotate(-4deg); }
-    37% { -moz-transform: rotate(2deg); }
-    39% { -moz-transform: rotate(-1deg); }
-    41% { -moz-transform: rotate(1deg); }
-    43% { -moz-transform: rotate(0); }
-    100% { -moz-transform: rotate(0); }
+    0% {
+        -moz-transform: rotate(0);
+    }
+
+    1% {
+        -moz-transform: rotate(30deg);
+    }
+
+    3% {
+        -moz-transform: rotate(-28deg);
+    }
+
+    5% {
+        -moz-transform: rotate(34deg);
+    }
+
+    7% {
+        -moz-transform: rotate(-32deg);
+    }
+
+    9% {
+        -moz-transform: rotate(30deg);
+    }
+
+    11% {
+        -moz-transform: rotate(-28deg);
+    }
+
+    13% {
+        -moz-transform: rotate(26deg);
+    }
+
+    15% {
+        -moz-transform: rotate(-24deg);
+    }
+
+    17% {
+        -moz-transform: rotate(22deg);
+    }
+
+    19% {
+        -moz-transform: rotate(-20deg);
+    }
+
+    21% {
+        -moz-transform: rotate(18deg);
+    }
+
+    23% {
+        -moz-transform: rotate(-16deg);
+    }
+
+    25% {
+        -moz-transform: rotate(14deg);
+    }
+
+    27% {
+        -moz-transform: rotate(-12deg);
+    }
+
+    29% {
+        -moz-transform: rotate(10deg);
+    }
+
+    31% {
+        -moz-transform: rotate(-8deg);
+    }
+
+    33% {
+        -moz-transform: rotate(6deg);
+    }
+
+    35% {
+        -moz-transform: rotate(-4deg);
+    }
+
+    37% {
+        -moz-transform: rotate(2deg);
+    }
+
+    39% {
+        -moz-transform: rotate(-1deg);
+    }
+
+    41% {
+        -moz-transform: rotate(1deg);
+    }
+
+    43% {
+        -moz-transform: rotate(0);
+    }
+
+    100% {
+        -moz-transform: rotate(0);
+    }
 }
 
 @keyframes ring {
-    0% { transform: rotate(0); }
-    1% { transform: rotate(30deg); }
-    3% { transform: rotate(-28deg); }
-    5% { transform: rotate(34deg); }
-    7% { transform: rotate(-32deg); }
-    9% { transform: rotate(30deg); }
-    11% { transform: rotate(-28deg); }
-    13% { transform: rotate(26deg); }
-    15% { transform: rotate(-24deg); }
-    17% { transform: rotate(22deg); }
-    19% { transform: rotate(-20deg); }
-    21% { transform: rotate(18deg); }
-    23% { transform: rotate(-16deg); }
-    25% { transform: rotate(14deg); }
-    27% { transform: rotate(-12deg); }
-    29% { transform: rotate(10deg); }
-    31% { transform: rotate(-8deg); }
-    33% { transform: rotate(6deg); }
-    35% { transform: rotate(-4deg); }
-    37% { transform: rotate(2deg); }
-    39% { transform: rotate(-1deg); }
-    41% { transform: rotate(1deg); }
-    43% { transform: rotate(0); }
-    100% { transform: rotate(0); }
+    0% {
+        transform: rotate(0);
+    }
+
+    1% {
+        transform: rotate(30deg);
+    }
+
+    3% {
+        transform: rotate(-28deg);
+    }
+
+    5% {
+        transform: rotate(34deg);
+    }
+
+    7% {
+        transform: rotate(-32deg);
+    }
+
+    9% {
+        transform: rotate(30deg);
+    }
+
+    11% {
+        transform: rotate(-28deg);
+    }
+
+    13% {
+        transform: rotate(26deg);
+    }
+
+    15% {
+        transform: rotate(-24deg);
+    }
+
+    17% {
+        transform: rotate(22deg);
+    }
+
+    19% {
+        transform: rotate(-20deg);
+    }
+
+    21% {
+        transform: rotate(18deg);
+    }
+
+    23% {
+        transform: rotate(-16deg);
+    }
+
+    25% {
+        transform: rotate(14deg);
+    }
+
+    27% {
+        transform: rotate(-12deg);
+    }
+
+    29% {
+        transform: rotate(10deg);
+    }
+
+    31% {
+        transform: rotate(-8deg);
+    }
+
+    33% {
+        transform: rotate(6deg);
+    }
+
+    35% {
+        transform: rotate(-4deg);
+    }
+
+    37% {
+        transform: rotate(2deg);
+    }
+
+    39% {
+        transform: rotate(-1deg);
+    }
+
+    41% {
+        transform: rotate(1deg);
+    }
+
+    43% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(0);
+    }
 }
+
 /* end code by Fazlur Rahman */
 
 /* ---------------------
@@ -354,16 +603,16 @@ https://codepen.io/fazlurr/pen/xeXpqx
     padding: 0;
 }
 
-#footer > nav {
+#footer>nav {
     padding: 1rem;
     font-size: 1.2rem;
 }
 
-#footer > nav > ul {
+#footer>nav>ul {
     text-align: center;
 }
 
-#footer > nav li {
+#footer>nav li {
     display: inline-block;
 }
 
@@ -386,7 +635,7 @@ https://codepen.io/fazlurr/pen/xeXpqx
     text-align: center;
 }
 
-#footer .social-icons > li {
+#footer .social-icons>li {
     font-size: 2rem;
     display: inline-block;
     margin: .6rem;
@@ -433,7 +682,7 @@ See media queries for other screen sizes.
 
 #navbar .btn-outline-blue:hover,
 #mobile-search .btn-outline-blue:hover,
-#filters .btn-outline-blue:hover{
+#filters .btn-outline-blue:hover {
     background-color: var(--blue);
     color: var(--white);
 }
@@ -467,18 +716,18 @@ See media queries for other screen sizes.
 */
 .btn-orange {
     background-color: var(--white);
-    color: var(--cta-orange)!important;
+    color: var(--cta-orange) !important;
     border: 3px solid var(--cta-orange);
     transition: all ease-in-out .4s;
 }
 
 .btn-orange:hover {
     background-color: var(--cta-orange);
-    color: var(--white)!important;
+    color: var(--white) !important;
 }
 
 .btn-thin-border {
-    border-width: 1px!important;
+    border-width: 1px !important;
 }
 
 .btn-secondary {
@@ -507,7 +756,7 @@ See media queries for other screen sizes.
 Header height 100% vh minus height of the navbar.
 */
 #home-header,
-#home-header > .row {
+#home-header>.row {
     min-height: calc(100vh - 103px);
 }
 
@@ -581,7 +830,7 @@ https://stackoverflow.com/questions/18531959/how-to-create-triangle-shape-in-the
 }
 
 .post-course {
-    color: white!important;
+    color: white !important;
     position: absolute;
     padding: 7px;
     top: 0;
@@ -675,11 +924,17 @@ https://stackoverflow.com/questions/18531959/how-to-create-triangle-shape-in-the
     z-index: 2;
 }
 
-.kudos-badge-gold {background-color: #d4af37;}
+.kudos-badge-gold {
+    background-color: #d4af37;
+}
 
-.kudos-badge-silver {background-color: #aaa9ad;}
+.kudos-badge-silver {
+    background-color: #aaa9ad;
+}
 
-.kudos-badge-bronze {background-color: #b08d57;}
+.kudos-badge-bronze {
+    background-color: #b08d57;
+}
 
 .post-card-circles-wrapper {
     position: relative;
@@ -694,12 +949,12 @@ https://stackoverflow.com/questions/18531959/how-to-create-triangle-shape-in-the
     transition: all ease-in-out .4s;
 }
 
-.category-wrapper > a {
+.category-wrapper>a {
     color: white;
     text-decoration: none;
 }
 
-.category-wrapper > a:hover .category {
+.category-wrapper>a:hover .category {
     background-color: var(--cta-teal);
 }
 
@@ -716,7 +971,7 @@ https://stackoverflow.com/questions/18531959/how-to-create-triangle-shape-in-the
     padding-bottom: 1rem;
 }
 
-#post-detail-header > h1 {
+#post-detail-header>h1 {
     margin-bottom: 1rem;
 }
 
@@ -759,13 +1014,13 @@ https://stackoverflow.com/questions/18531959/how-to-create-triangle-shape-in-the
     margin: 0;
 }
 
-.author > a {
+.author>a {
     color: var(--cta-teal);
     text-decoration: none;
     transition: all ease-in-out .4s;
 }
 
-.author > a:hover {
+.author>a:hover {
     color: var(--cta-orange);
 }
 
@@ -793,7 +1048,7 @@ https://stackoverflow.com/questions/18531959/how-to-create-triangle-shape-in-the
     color: var(--cta-blue);
 }
 
-.blue-btn-outline > span {
+.blue-btn-outline>span {
     vertical-align: text-bottom;
     padding-left: 7px;
 }
@@ -804,8 +1059,8 @@ https://stackoverflow.com/questions/18531959/how-to-create-triangle-shape-in-the
     color: white;
 }
 
-#bottom-post-btns > form,
-#post-icons > form {
+#bottom-post-btns>form,
+#post-icons>form {
     display: inline-block;
 }
 
@@ -836,11 +1091,11 @@ https://stackoverflow.com/questions/18531959/how-to-create-triangle-shape-in-the
     color: var(--navy);
 }
 
-.post-detail-note > h2 {
+.post-detail-note>h2 {
     font-size: 1.3rem;
 }
 
-.post-detail-note > p {
+.post-detail-note>p {
     font-size: .9rem;
     margin: 0;
 }
@@ -938,11 +1193,11 @@ figure figcaption {
     margin-bottom: -47px;
 }
 
-.profile-link-wrapper > a > .category {
+.profile-link-wrapper>a>.category {
     color: white;
 }
 
-.profile-link-wrapper > a > .category:hover {
+.profile-link-wrapper>a>.category:hover {
     background-color: var(--cta-teal);
 }
 
@@ -993,11 +1248,11 @@ on the post_detail page.
     text-align: right;
 }
 
-#filters > select {
+#filters>select {
     margin: .4rem 0;
 }
 
-#filters > button {
+#filters>button {
     display: block;
     margin-left: auto;
 }
@@ -1066,12 +1321,12 @@ on the post_detail page.
     right: 2rem;
 }
 
-#edit-profile > a {
+#edit-profile>a {
     color: var(--grey);
     transition: all ease-in-out .4s;
 }
 
-#edit-profile > a:hover {
+#edit-profile>a:hover {
     color: var(--navy);
 }
 
@@ -1106,7 +1361,7 @@ screens. Media query adjusts size for small screens and up
     vertical-align: text-bottom;
 }
 
-#dashboard button > i {
+#dashboard button>i {
     font-size: 1.2rem;
     color: var(--grey);
 }
@@ -1116,14 +1371,14 @@ screens. Media query adjusts size for small screens and up
 }
 
 #dashboard a,
-#dashboard .deleteBtn > i {
+#dashboard .deleteBtn>i {
     color: var(--cta-teal);
     transition: all ease-in-out .4s;
     text-decoration: none;
 }
 
 #dashboard a:hover,
-#dashboard .deleteBtn > i:hover {
+#dashboard .deleteBtn>i:hover {
     color: var(--darkgrey);
 }
 
@@ -1136,7 +1391,7 @@ screens. Media query adjusts size for small screens and up
     font-weight: normal;
 }
 
-#narrow-screen > img {
+#narrow-screen>img {
     max-width: 100%;
 }
 
@@ -1223,7 +1478,7 @@ larger screen sizes.
     padding: 0;
 }
 
-#id_tags > li {
+#id_tags>li {
     display: inline-block;
     padding-left: 1rem;
 }
@@ -1260,9 +1515,11 @@ larger screen sizes.
     #narrow-screen {
         display: none;
     }
+
     .dashboard-table {
         display: table;
     }
+
     .bookmark-sort-form {
         display: block;
     }
@@ -1282,7 +1539,7 @@ larger screen sizes.
 
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
-    #filters > select {
+    #filters>select {
         display: inline-block;
         max-width: 32%;
     }
@@ -1293,19 +1550,24 @@ larger screen sizes.
     #footer-push-down {
         min-height: calc(100vh - 385.19px);
     }
+
     #home-header,
-    #home-header > .row {
+    #home-header>.row {
         min-height: calc(100vh - 54.4px);
     }
+
     .post-card {
         max-width: 100%;
     }
+
     .summary-and-likes {
         height: 120px;
     }
+
     #post-author-info {
         clip-path: inset(-40px 0px -40px -40px);
     }
+
     /*
     Overrides hover that was only affecting one side of the
     author info card for med screens and higher. After many
@@ -1315,17 +1577,18 @@ larger screen sizes.
         -webkit-box-shadow: 0 2px 9px 0 rgb(0 0 0 / 20%);
     }
 
-    #filters > select {
+    #filters>select {
         display: inline-block;
         max-width: 29%;
     }
-    #filters > button {
+
+    #filters>button {
         display: inline-block;
     }
 }
 
 /* Large devices (desktops, 992px and up) */
-@media (min-width: 992px) { 
+@media (min-width: 992px) {
     #footer-push-down {
         min-height: calc(100vh - 361.19px);
     }
@@ -1337,19 +1600,20 @@ larger screen sizes.
     #filters {
         margin-top: 2rem;
     }
-    
-    #filters > select {
+
+    #filters>select {
         display: inline-block;
         max-width: 170px;
         margin: 0;
-    }    
+    }
 }
 
 /* X-Large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) { 
+@media (min-width: 1200px) {
     #footer-push-down {
         min-height: calc(100vh - 337.19px);
     }
+
     .summary-and-likes {
         height: 120px;
     }
@@ -1360,6 +1624,7 @@ larger screen sizes.
     #footer-push-down {
         min-height: calc(100vh - 337.19px);
     }
+
     .summary-and-likes {
         height: 100px;
     }
