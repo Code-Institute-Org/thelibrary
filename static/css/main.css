@@ -1077,7 +1077,7 @@ on the post_detail page.
 }
 
 /* ---------------------
-    Profile dashboard
+    Dashboards
 --------------------- */
 
 /*
@@ -1130,6 +1130,12 @@ screens. Media query adjusts size for small screens and up
 #narrow-screen > img {
     max-width: 100%;
 }
+
+.dashboard-table .fa-check-circle {
+    color: var(--cta-orange);
+    font-size: 1.2rem;
+}
+
 
 /* ---------------------
     Create & Edit Post pgs

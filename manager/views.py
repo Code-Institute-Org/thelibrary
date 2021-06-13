@@ -67,11 +67,21 @@ def profile_search(request):
                     | Q(first_name__icontains=q)
                     | Q(last_name__icontains=q),
                 )
+
+            page = request.GET.get('page', 1)
+            paginator = Paginator(users, 24)
+            try:
+                page_obj = paginator.page(page)
+            except PageNotAnInteger:
+                page_obj = paginator.page(1)
+            except EmptyPage:
+                page_obj = paginator.page(paginator.num_pages)
+
         else:
-            users = 'none'
+            page_obj = 'none'
 
         context = {
-            'users': users
+            'page_obj': page_obj,
         }
         return render(request, 'user_search.html', context)
 

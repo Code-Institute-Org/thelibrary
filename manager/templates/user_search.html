@@ -1,29 +1,106 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% load static %}
 
 {% block content %}
 
-<h2>Search user profiles</h2>
-<form action="">
-    <label for="name_q">Search for a user</label>
-    <br>
-    <input id="name_q" name="name_q" type="text" value="{{ request.GET.name_q }}" required>
-    <br>
-    <small>Search by name or username</small>
-    <br>
-    <button type="submit">Submit</button>
-</form>
+<div class="container white-box box-shadow-light-spread my-4">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="home-listview-heading text-center text-sm-start">
+                Search user profiles
+            </h1>
+        </div>
+    </div>
+</div>
+<div class="container white-box box-shadow-light-spread mb-4">
+    <div class="row justify-content-center">
+        <form action="" class="col-12">
+            <div class="input-group">
+                <input 
+                    id="name_q"
+                    name="name_q"
+                    type="text"
+                    class="form-control"
+                    placeholder="Search for a user"
+                    aria-label="Search for a user"
+                    aria-describedby="button-addon2 searchUsers"
+                    value="{{ request.GET.name_q }}"
+                    required>
+                <button class="btn btn-orange" type="submit" id="button-addon2">Submit</button>
+            </div>
+            <div class="form-text" id="searchUsers">Search by name or username</div>
+        </form>
 
-{% if users != "none" %}
-    <h2>Results</h2>
-    {% for user in users %}
-    <p><strong>{{user.username}}</strong></p>
-    <p>First name: {{ user.first_name }}</p>
-    <p>Last name: {{ user.last_name }}</p>
-    <p>Date joined: {{ user.userprofile.date_joined }}</p>
-    <p><a href="{% url 'manage_user' user.userprofile.id %}" target="_blank">Edit {{user.username}}'s settings</a></p>
-    {% empty %}
-    <p>No results for your user profile search</p>
-    {% endfor %}
-{% endif %}
-
+        {% if page_obj != "none" %}
+            <!--
+            Table for posts does not render well on narrow phone screens.
+            #narrow-screen column visible to ask users to turn their phones to view the posts.
+            -->
+            <div id="narrow-screen" class="col-12 text-center mt-5">
+                <strong>To view list of flagged posts, please turn your phone into landscape mode.</strong>
+                <img src="{% static 'img/rotate-phone.png' %}" alt="Rotate your phone icon">
+            </div>
+            <div class="col-12">
+                <h2 class="mt-4 home-listview-heading d-none d-sm-block">Results</h2>
+                <table class="table dashboard-table">
+                    <thead>
+                        <tr>
+                            <!-- hide first, last name and date joined columns on smaller screens so table width is thinner -->
+                            <th scope="col">Username</th>
+                            <th scope="col" class="d-none d-md-table-cell">First Name</th>
+                            <th scope="col" class="d-none d-md-table-cell">Last Name</th>
+                            <th scope="col" class="d-none d-lg-table-cell">Date joined</th>
+                            <th scope="col" class="text-center">Admin</th>
+                            <th scope="col" class="text-center">Staff</th>
+                            <th scope="col" class="text-center">Mod<span class="d-none d-lg-inline">erator</span></th>
+                            <th scope="col" class="text-center">Edit User</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in page_obj %}
+                        <tr>
+                            <!-- hide first, last name and date joined columns on small screens so table width is thinner -->
+                            <th><a href="{% url 'user_profile' user.pk %}">{{ user.username }}</a></th>
+                            <td class="d-none d-md-table-cell">{{ user.first_name }}</td>
+                            <td class="d-none d-md-table-cell">{{ user.last_name }}</td>
+                            <td class="d-none d-lg-table-cell">{{ user.userprofile.date_joined }}</td>
+                            <td class="text-center">{% if user.userprofile.is_admin %}<i class="far fa-check-circle"></i>{% endif %}</td>
+                            <td class="text-center">{% if user.userprofile.is_staff %}<i class="far fa-check-circle"></i>{% endif %}</td>
+                            <td class="text-center">{% if user.userprofile.is_mod %}<i class="far fa-check-circle"></i>{% endif %}</td>
+                            <td class="text-center"><a href="{% url 'manage_user' user.pk %}">Edit</a></td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="8">
+                                No users match this search
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% if page_obj.has_other_pages %}
+                <ul class="pagination">
+                    {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a href="?page={{ page_obj.previous_page_number }}&name_q={{ request.GET.name_q }}" class="page-link">&laquo;</a></li>
+                    {% else %}
+                        <li class="disabled page-item"><a href="#" class="page-link">&laquo;</a></li>
+                    {% endif %}
+                    {% for i in page_obj.paginator.page_range %}
+                        {% if page_obj.number == i %}
+                            <li class="active page-item"><a href="#" class="page-link">{{ i }} <span class="sr-only">(current)</span></a></li>
+                        {% else %}
+                            <li class="page-item"><a href="?page={{ i }}&name_q={{ request.GET.name_q }}" class="page-link">{{ i }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                        <li class="page-item"><a href="?page={{ page_obj.next_page_number }}&name_q={{ request.GET.name_q }}" class="page-link">&raquo;</a></li>
+                    {% else %}
+                        <li class="disabled page-item"><a href="#" class="page-link">&raquo;</a></li>
+                    {% endif %}
+                </ul>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+</div>
 {% endblock %}
