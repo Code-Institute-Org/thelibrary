@@ -450,7 +450,7 @@ class TagPostsView(SingleObjectMixin, ListView):
     """
     Render all posts that have the selected tag
     """
-    paginate_by = 4
+    paginate_by = 12
     template_name = 'post_by_tag.html'
 
     def get(self, request, *args, **kwargs):
