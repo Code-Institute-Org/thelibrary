@@ -63,9 +63,24 @@
                             <td class="d-none d-md-table-cell">{{ user.first_name }}</td>
                             <td class="d-none d-md-table-cell">{{ user.last_name }}</td>
                             <td class="d-none d-lg-table-cell">{{ user.userprofile.date_joined }}</td>
-                            <td class="text-center">{% if user.userprofile.is_admin %}<i class="far fa-check-circle"></i>{% endif %}</td>
-                            <td class="text-center">{% if user.userprofile.is_staff %}<i class="far fa-check-circle"></i>{% endif %}</td>
-                            <td class="text-center">{% if user.userprofile.is_mod %}<i class="far fa-check-circle"></i>{% endif %}</td>
+                            <td class="text-center">
+                                {% if user.userprofile.is_admin %}
+                                    <i class="far fa-check-circle"></i>
+                                {% else %}
+                                    -
+                                {% endif %}</td>
+                            <td class="text-center">
+                                {% if user.userprofile.is_staff %}
+                                    <i class="far fa-check-circle"></i>
+                                {% else %}
+                                    -
+                                {% endif %}</td>
+                            <td class="text-center">
+                                {% if user.userprofile.is_mod %}
+                                    <i class="far fa-check-circle"></i>
+                                {% else %}
+                                    -
+                                {% endif %}</td>
                             <td class="text-center"><a href="{% url 'manage_user' user.userprofile.pk %}">Edit</a></td>
                         </tr>
                         {% empty %}
