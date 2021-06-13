@@ -52,6 +52,7 @@
                             <th scope="col" class="text-center">Admin</th>
                             <th scope="col" class="text-center">Staff</th>
                             <th scope="col" class="text-center">Mod<span class="d-none d-lg-inline">erator</span></th>
+                            <th scope="col" class="text-center">View Profile</th>
                             <th scope="col" class="text-center">Edit User</th>
                         </tr>
                     </thead>
@@ -59,7 +60,7 @@
                         {% for user in page_obj %}
                         <tr>
                             <!-- hide first, last name and date joined columns on small screens so table width is thinner -->
-                            <th><a href="{% url 'user_profile' user.pk %}">{{ user.username }}</a></th>
+                            <th>{{ user.username }}</th>
                             <td class="d-none d-md-table-cell">{{ user.first_name }}</td>
                             <td class="d-none d-md-table-cell">{{ user.last_name }}</td>
                             <td class="d-none d-lg-table-cell">{{ user.userprofile.date_joined }}</td>
@@ -81,6 +82,7 @@
                                 {% else %}
                                     -
                                 {% endif %}</td>
+                            <td class="text-center"><a href="{% url 'user_profile' user.pk %}">View</a></td>
                             <td class="text-center"><a href="{% url 'manage_user' user.userprofile.pk %}">Edit</a></td>
                         </tr>
                         {% empty %}
