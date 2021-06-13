@@ -2,12 +2,52 @@
 
 {% block content %}
 
-<h1>Manage {{ userprofile.user.username }}'s settings</h1>
-
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Submit</button>
-</form>
+<div id="manage-profile" class="container">
+    <div class="row justify-content-center white-box box-shadow-light-spread my-4">
+        <div class="col-12 col-md-6">
+            <h1 class="home-listview-heading text-center text-sm-start">
+                Manage {{ userprofile.user.username }}'s settings
+            </h1>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3 mt-3">
+                    {{ form.is_admin }}
+                    <label for="id_is_admin" class="form-check-label">Admin</label>
+                </div>
+                <div class="mb-3">
+                    {{ form.is_staff }}
+                    <label for="id_is_staff" class="form-check-label">CI Staff</label>
+                </div>
+                <div class="mb-3">
+                    {{ form.is_mod }}
+                    <label for="id_is_mod" class="form-check-label">Moderator</label>
+                </div>
+                <div>
+                    <button class="btn btn-orange mb-3">Update</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-12 col-md-6">
+            <h2 class="home-listview-heading">Permissions details</h2>
+            <h3>Admins</h3>
+            <ul>
+                <li>Edit user profile settings (Make other users admins, moderators or staff)</li>
+                <li>Manage Library categories, tags and slack channels</li>
+                <li>Review flagged posts</li>
+                <li>Deactivate flagged posts</li>
+            </ul>
+            <h3>CI Staff</h3>
+            <ul>
+                <li>CI logo added to username display</li>
+                <li>Skip moderator process. New posts are published immediately</li>
+            </ul>
+            <h3>Moderators</h3>
+            <ul>
+                <li>Review submitted posts</li>
+                <li>Approve submitted posts</li>
+            </ul>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

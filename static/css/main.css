@@ -1002,6 +1002,11 @@ on the post_detail page.
     max-width: 400px;
 }
 
+#manage-profile h3 {
+    font-weight: 300;
+    font-size: 1.5rem;
+}
+
 /* ---------------------
     Profile page
 --------------------- */
