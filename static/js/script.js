@@ -5,3 +5,4 @@ function hideLoader() {
 setTimeout(function () {
     hideLoader();
 }, 600);
+
