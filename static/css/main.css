@@ -284,11 +284,11 @@ https://codepen.io/fazlurr/pen/xeXpqx
 */
 #ringing-bell {
     color: var(--blue);
-    -webkit-animation: ring 4s .7s ease-in-out;
+    -webkit-animation: ring 5s 1s ease-in-out;
     -webkit-transform-origin: 50% 4px;
-    -moz-animation: ring 4s .7s ease-in-out;
+    -moz-animation: ring 5s 1s ease-in-out;
     -moz-transform-origin: 50% 4px;
-    animation: ring 4s .7s ease-in-out;
+    animation: ring 5s 1s ease-in-out;
     transform-origin: 50% 4px;
 }
 
