@@ -4,41 +4,67 @@
 
 {% block content %}
 
-<h1>Channel Manager</h1>
-<p>Post authors choose from these channels to attach to their posts.
-    Then if a student has a question about the post, they are directed to the 
-    chosen slack channel to ask about it.
-</p>
-
-<table>
-    <tbody>
-        {% for channel in channels %}
-        <tr>
-            <td>{{ channel.name }}</td>
-            <td class="text-center">
-                <a href="{% url 'edit_channel' channel.id %}" aria-label="Edit this category">
-                    Edit
-                </a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-
-<!-- Add new -->
-<h2>Add new channel</h2>
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <small>To get the channel id, go to the slack app, then right-click the channel name 
-        and select "Copy Link". The id is the characters at the end of the url.
-    <br>
-    For example, if the link to the channel is
-    <strong>https://code-institute-room.slack.com/archives/C01DGQ5VCSJ</strong>,
-    the channel id is <strong>C01DGQ5VCSJ</strong></small>
-    <br>
-    <button type="submit">Submit</button>
-</form>
-
+<div class="container">
+    <div id="manage-profile" class="row white-box box-shadow-light-spread my-4">
+        <div class="col-12">
+            <h1 class="home-listview-heading text-center text-sm-start mb-4">
+                Manage Channels
+            </h1>
+            <p>Authors of library posts choose from these channels to attach to their posts.
+                Then if a student has a question about the post, they are directed to the 
+                chosen slack channel to ask about it.
+            </p>
+        </div>
+        <div class="col-12 col-md-6">
+            <table class="table dashboard-table">
+                <thead>
+                    <tr>
+                        <th scope="col">Channel Name</th>
+                        <th scope="col">Channel ID</th>
+                        <th scope="col">Edit Channel</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for channel in channels %}
+                    <tr>
+                        <td>{{ channel.name }}</td>
+                        <td>{{ channel.slack_channel_id }}</td>
+                        <td>
+                            <a href="{% url 'edit_channel' channel.pk %}" aria-label="Edit this channel">
+                                Edit
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-12 col-md-4">
+            <!-- Add new -->
+            <h3>Add new channel</h3>
+            
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="id_name" class="form-label">Channel Name</label>
+                    {{ form.name }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_slack_channel_id" class="form-label">Channel ID</label>
+                    {{ form.slack_channel_id }}
+                    <div class="form-text">To get the channel id, go to the slack app, then right-click the channel name 
+                        and select "Copy Link". The id is the characters at the end of the url.
+                        <br><br>
+                        For example, if the link to the channel is
+                        https://code-institute-room.slack.com/archives/C01DGQ5VCSJ,
+                        the channel id is <strong>C01DGQ5VCSJ</strong>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-orange">Add</button>
+            </form>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

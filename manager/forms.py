@@ -21,6 +21,22 @@ class CreateCategoryForm(forms.ModelForm):
 
 
 class CreateChannelForm(forms.ModelForm):
+    name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': "form-control",
+                'placeholder': "#channel-name"
+            }
+        )
+    )
+    slack_channel_id = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': "form-control"
+            }
+        )
+    )
+
     class Meta:
         model = SlackChannel
         fields = ['name', 'slack_channel_id']
