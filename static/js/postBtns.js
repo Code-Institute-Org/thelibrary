@@ -6,7 +6,7 @@
  * Local url is needed so code will work in development and deployed site
  * @returns false if user clicks cancel on confirm window
  */
-function checkDeletePost(postID) {
+ function checkDeletePostDashboardPg(postID) {
     let check = confirm("This will permanently delete this post, are you sure?");
 
     if (check) {
@@ -14,23 +14,25 @@ function checkDeletePost(postID) {
         let splitStr = currentURL.split('/');
         let url = `${splitStr[0]}//${splitStr[2]}/posts/delete/${postID}?next=${currentURL}`;
         window.location.href = url;
-        return
+        return;
     } else {
         return false;
     }
-};
+}
 
 function goBack() {
     window.history.back();
 }
 
-let deleteBtns = document.getElementsByClassName('deleteBtn');
+let dashboardDeleteBtns = document.getElementsByClassName('dashboardDeleteBtn');
 
-for (let i = 0; i < deleteBtns.length; i++) {
-    let postID = deleteBtns[i].getAttribute('data-post-pk');
-    deleteBtns[i].addEventListener('click', function () {
-        checkDeletePost(postID);
+if (dashboardDeleteBtns) {
+  for (let i = 0; i < dashboardDeleteBtns.length; i++) {
+    let postID = dashboardDeleteBtns[i].getAttribute('data-post-pk');
+    dashboardDeleteBtns[i].addEventListener('click', function () {
+        checkDeletePostDashboardPg(postID);
     });
+}
 }
 
 if (document.getElementById('back-btn')) {
@@ -47,7 +49,7 @@ function checkDeleteEditorsNote(postID) {
         let splitStr = currentURL.split('/');
         let url = `${splitStr[0]}//${splitStr[2]}/manager/editors_note/delete/${postID}`;
         window.location.href = url;
-        return
+        return;
     } else {
         return false;
     }
@@ -69,14 +71,40 @@ function checkDeleteFlag(flagID) {
         let splitStr = currentURL.split('/');
         let url = `${splitStr[0]}//${splitStr[2]}/manager/delete_flag/${flagID}`;
         window.location.href = url;
-        return
+        return;
     } else {
         return false;
     }
 }
 
 let deleteFlagBtn = document.getElementById('deleteFlag');
-deleteFlagBtn.addEventListener('click', function () {
-    let flagID = deleteFlagBtn.getAttribute('data-flag-id');
-    checkDeleteFlag(flagID);
-});
+
+if (deleteFlagBtn) {
+    deleteFlagBtn.addEventListener('click', function () {
+        let flagID = deleteFlagBtn.getAttribute('data-flag-id');
+        checkDeleteFlag(flagID);
+    });
+}
+
+function checkDeletePost(postID) {
+    let check = confirm("This will permanently delete this post, are you sure?");
+
+    if (check) {
+        let currentURL = window.location.href;
+        let splitStr = currentURL.split('/');
+        let url = `${splitStr[0]}//${splitStr[2]}/posts/delete/${postID}`;
+        window.location.href = url;
+        return;
+    } else {
+        return false;
+    }
+}
+
+let deleteBtns = document.getElementsByClassName('deleteBtn');
+
+for (let i = 0; i < deleteBtns.length; i++) {
+    let postID = deleteBtns[i].getAttribute('data-post-pk');
+    deleteBtns[i].addEventListener('click', function () {
+        checkDeletePost(postID);
+    });
+}

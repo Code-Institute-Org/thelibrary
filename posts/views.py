@@ -411,8 +411,13 @@ def delete_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if post.author == request.user.userprofile:
         post.delete()
+        messages.add_message(
+            request, messages.SUCCESS, "Post successfully deleted")
 
         next_pg = request.GET.get('next', '/')
+        print(' ----- ')
+        print(next_pg)
+        print(' ----- ')
         return HttpResponseRedirect(next_pg)
 
     else:
