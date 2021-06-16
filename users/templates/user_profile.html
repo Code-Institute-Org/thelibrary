@@ -9,10 +9,15 @@
         <div class="dotted-line"></div>
         <div class="col-12">
             <div id="author-pic-wrapper">
+                {% if user.userprofile.profile_pic %}
                 <div class="profile-pic box-shadow-sharp"
                     style="background-image: url('{{ user.userprofile.profile_pic.url }}');"
                     title="{{ user.username }}'s profile picture"></div>
-                </a>
+                {% else %}
+                <div class="profile-pic box-shadow-sharp"
+                style="background-image: url('https://ci-student-library.s3.amazonaws.com/media/images/profiles/default-profile-pic.png');"
+                title="Default profile picture"></div>
+                {% endif %}
                 {% if user.userprofile.is_mod %}
                 <div class="moderator-icon author-badge" title="This user is a library moderator">
                     <i class="fas fa-shield-alt"></i>

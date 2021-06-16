@@ -17,7 +17,7 @@ class UserProfileTestCase(TestCase):
         user_a = User.objects.get(pk=1)
         profile = UserProfile.objects.get(pk=1)
         self.assertEqual(profile.user, user_a)
-    
+
     def test_userprofile_bio_blank_by_default(self):
         profile = UserProfile.objects.get(pk=1)
         self.assertIsNone(profile.bio)

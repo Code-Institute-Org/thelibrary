@@ -3,9 +3,13 @@
 <div class="post-card box-shadow-sharp {% if post.course.name == '4P Course'%}p4-corner{% elif post.course.name == '5P Course' %}p5-corner{% endif %}">
     <div class="post-card-circles-wrapper">
         <div class="post-card-circles">
+            {% if post.author.profile_pic %}
             <div class="card-avatar box-shadow-sharp"
                 style="background-image: url('{{ post.author.profile_pic.url }}');"></div>
-            </a>
+            {% else %}
+            <div class="card-avatar box-shadow-sharp"
+                style="background-image: url('https://ci-student-library.s3.amazonaws.com/media/images/profiles/default-profile-pic.png');"></div>
+            {% endif %}
             <!-- kudos badge class returned from kudos_badge method of UserProfile model-->
             <div class="card-kudos-circle card-mini-circle {{ post.author.kudos_badge }} box-shadow-sharp"
                 title="{{ post.author.kudos_badge }}">
