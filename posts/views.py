@@ -1,3 +1,4 @@
+import re
 from slugify import slugify
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
@@ -304,6 +305,12 @@ class CreatePostView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user.userprofile
         form.instance.slug = slugify(form.instance.title)
+
+        # Regex code solution for capturing only the hosted
+        # Youtube video ID written by Sean Murphy
+        if form.instance.youtube is not None:
+            form.instance.youtube = ''.join(re.findall(
+                '(?<=v=)(.{11})', form.instance.youtube))
 
         # CI Staff posts immediately published, no review process.
         if self.request.user.userprofile.is_staff:

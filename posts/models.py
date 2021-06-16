@@ -133,6 +133,9 @@ class Post(models.Model):
         Course, on_delete=PROTECT,
         null=False, blank=False
     )
+    youtube = models.URLField(
+        null=True, blank=True
+    )
 
     def total_likes(self):
         """ Returns total likes a post has """

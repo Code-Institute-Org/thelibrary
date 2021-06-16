@@ -68,6 +68,7 @@ class AddOrEditPostForm(forms.ModelForm):
             'image_4',
             'body',
             'category',
+            'youtube',
             'tags',
             'new_tags',
             'slack_channel',
