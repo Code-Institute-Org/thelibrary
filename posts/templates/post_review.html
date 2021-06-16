@@ -46,7 +46,7 @@
                 <h2 class="display-5 mb-3 mb-md-4 mb-lg-5">{{ post.title }}</h2>
                 <div class="byline">
                     <address class="author d-inline-block">Written by:
-                        {% if post.author.user.is_staff %}
+                        {% if post.author.user.userprofile.is_staff %}
                         <span class="ci-username-logo"></span>
                         {% endif %}
                         <a rel="author" href="{% url 'user_profile' post.author.pk %}">

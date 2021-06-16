@@ -47,7 +47,7 @@
             <h1 class="display-5 mb-3 mb-md-4 mb-lg-5">{{ post.title }}</h1>
             <div class="byline">
                 <address class="author d-inline-block">Written by:
-                    {% if post.author.user.is_staff %}
+                    {% if post.author.is_staff %}
                     <span class="ci-username-logo"></span>
                     {% endif %}
                     <a rel="author" href="{% url 'user_profile' post.author.pk %}">
@@ -226,7 +226,7 @@
                                 
                                 <div class="post-card-header text-center">
                                     <p>
-                                        {% if post.author.user.is_staff %}
+                                        {% if post.author.is_staff %}
                                         <span class="ci-username-logo"></span>
                                         {% endif %}
                                         <a href="{% url 'user_profile' post.author.user.pk %}">{{ post.author.user.username }}</a>

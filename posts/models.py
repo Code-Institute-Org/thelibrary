@@ -100,7 +100,7 @@ class Post(models.Model):
     moderator = models.ForeignKey(
         User,
         on_delete=models.PROTECT,
-        null=True, blank=False,
+        null=True, blank=True,
         related_name='mod_field')
     category = models.ForeignKey(
         PostCategory,

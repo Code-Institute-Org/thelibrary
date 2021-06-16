@@ -28,7 +28,7 @@
     {% endif %}
     <div class="post-card-header text-center">
         <p>
-            {% if post.author.user.is_staff %}
+            {% if post.author.is_staff %}
             <span class="ci-username-logo"></span>
             {% endif %}
             <a href="{% url 'user_profile' post.author.user.pk %}">{{ post.author.user.username }}</a>
