@@ -60,6 +60,7 @@ class PostFlag(models.Model):
         choices=FLAG_REASONS,
         default=INNAPPROPRIATE
     )
+    message = models.TextField(max_length=200, null=True, blank=False)
 
     def __str__(self):
         return f"flag by {self.flagger} | {self.reason}"

@@ -22,6 +22,7 @@
                 <h2>This post has been flagged</h2>
                 <p>Flagged by {{ post.flag.flagger.username }}</p>
                 <p>Reason: {{ post.flag.reason }}</p>
+                <p>Flag message: {{ post.flag.message }}</p>
                 <a href="{% url 'review_post' post.id post.slug  %}" class="btn btn-sm btn-teal">Review post</a>
             </div>
         </div>
@@ -335,9 +336,17 @@
                         <div class="modal-body">
                             <form action="{% url 'post_detail' post.pk post.slug %}" method="POST" class="form">
                                 {% csrf_token %}
-                                {{ form }}
-                                <div class="modal-line"></div>
-                                <button type="submit">Send</button>
+                                <div class="mb-3">
+                                    <label for="id_reason" class="form-label">Select reason</label>
+                                    {{ form.reason }}
+                                </div>
+                                <div class="mb-3">
+                                    <label for="id_message" class="form-label">
+                                        Please provide some detail about why you are flagging this post.
+                                    </label>
+                                    {{ form.message }}
+                                </div>
+                                <button class="mt-4" type="submit">Send</button>
                             </form>
                         </div>
                     </div>

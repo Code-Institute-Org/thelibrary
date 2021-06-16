@@ -16,14 +16,21 @@ class FlagForm(forms.ModelForm):
         (OUTDATED, "Outdated content"),
     )
     reason = forms.ChoiceField(
-        label="Please select the reason for flagging this post",
         choices=FLAG_REASONS,
         widget=forms.Select(attrs={'class': "form-select"}),
+    )
+    message = forms.CharField(
+        widget=forms.Textarea(
+            attrs={
+                'class': "form-control",
+                'maxlength': '400'
+            }
+        )
     )
 
     class Meta:
         model = PostFlag
-        fields = ['reason']
+        fields = ['reason', 'message']
 
 
 class AddOrEditPostForm(forms.ModelForm):

@@ -1160,7 +1160,6 @@ figure figcaption {
 
 #flagModal form {
     position: relative;
-    height: 150px;
 }
 
 #flagModal form button {
@@ -1171,9 +1170,9 @@ figure figcaption {
     margin-bottom: .5rem;
     color: var(--cta-orange);
     background-color: var(--white);
-    position: absolute;
+    /* position: absolute;
     right: 0;
-    bottom: 0;
+    bottom: 0; */
     transition: all ease-in-out .4s;
 }
 
