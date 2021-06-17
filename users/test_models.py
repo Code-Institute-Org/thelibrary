@@ -102,11 +102,6 @@ class UserProfileTestCase(TestCase):
             str(profile), f"testUsername *mod | {today}"
         )
 
-    def test_default_profile_pic_created(self):
-        profile = UserProfile.objects.get(pk=1)
-        expected = '/media/images/profiles/default-profile-pic.png'
-        self.assertEqual(profile.profile_pic.url, expected)
-
 
 class GetAuthorNameMethodTestCase(TestCase):
     def setUp(self):

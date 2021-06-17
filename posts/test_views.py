@@ -58,12 +58,10 @@ class AllPostsViewTests(TestCase):
         response = c.get(reverse('all_posts'))
         self.assertEqual(response.status_code, 200)
 
-    def test_redirected_to_login_pg_when_not_logged_in(self):
+    def test_can_access_when_not_logged_in(self):
         response = self.client.get(reverse('all_posts'), follow=True)
 
-        self.assertRedirects(
-            response, '/accounts/login/?next=/posts/all/', status_code=302,
-            target_status_code=200, fetch_redirect_response=True)
+        self.assertEqual(response.status_code, 200)
 
     def test_all_posts_view_context(self):
         c = Client()
