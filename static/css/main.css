@@ -1563,19 +1563,6 @@ larger screen sizes.
         height: 120px;
     }
 
-    #post-author-info {
-        clip-path: inset(-40px 0px -40px -40px);
-    }
-
-    /*
-    Overrides hover that was only affecting one side of the
-    author info card for med screens and higher. After many
-    */
-    #post-author-info:hover {
-        box-shadow: 0 2px 9px 0 rgb(0 0 0 / 20%);
-        -webkit-box-shadow: 0 2px 9px 0 rgb(0 0 0 / 20%);
-    }
-
     #filters>select {
         display: inline-block;
         max-width: 29%;

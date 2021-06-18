@@ -30,8 +30,8 @@
 </div>
 {% endif %}
 
-<article id="post-detail" class="container my-2 white-box box-shadow-light-spread">
-    <div class="row">
+<article id="post-detail" class="container my-2">
+    <div class="row white-box box-shadow-light-spread">
         <header id="post-detail-header" class="col-12">
             <!-- Show edit/delete buttons for author -->
             {% if post.author.user == user %}
@@ -105,274 +105,289 @@
                 <span class="category">{{ post.category }}</span>
             </a>
         </div>
-        {% if post.editors_note %}
-        <aside id="editors-note" class="col-12 post-detail-note mb-2">
-            <h2>Editors note</h2>
-            <p>{{ post.editors_note }}</p>
-            <div id="editor-crud-btns">                
-                <a href="{% url 'edit_editors_note' post.pk %}"
-                    aria-label="Edit editors note" title="Edit this note">
-                    <i class="far fa-edit"></i></a>
-                <button type="button" id="editorsNoteDeleteBtn" data-post-pk="{{post.pk}}"
-                    aria-label="Delete this editors note" title="Delete this note">
-                    <i class="far fa-trash-alt"></i>
-                </button>
-            </div>
-        </aside>
-        {% elif request.user.userprofile.is_mod %}
-        <p class="text-end">
-            <a href="{% url 'add_editors_note' post.pk %}" title="Add editors note" class="edit-btn">
-                <i class="fas fa-pen-alt"></i>
-            </a>
-        </p>
-        {% endif %}
-        {% if post.course.name == '4P Course' or post.course.name == '5P Course' %}
-        <aside id="course-note" class="col-12 post-detail-note">
-            <h2>Important</h2>
-            <p>This post is only relevant to the older
-                {% if post.course.name == '4P Course' %}
-                <strong>4 project (4P)</strong>
-                {% else %}
-                <strong>5 project (5P)</strong>
-                {% endif %}
-                Code Institute course.
-            </p>
-            <p>Not sure which course you are on? 
-                <button class="invisible-button info-btn" 
-                    title="What's this?" data-bs-toggle="modal"
-                    data-bs-target="#courseModal">click here</button>
-            </p>
-        </aside>
-        {% endif %}
-        <section id="post-body" class="col-12 mt-4">
-            {{ post.body|safe }}
-        </section>
-        {% if post.image_1 or post.image_2 or post.image_3 or post.image_4 %}
-            <figure class="col-12">
-                <div class="row justify-content-center">
-                    {% if post.image_1 %}
-                        <div class="col-6 col-md-3">
-                            <a data-fancybox="gallery" href="{{ post.image_1.url }}">
-                                <img class="post-image box-shadow-sharp" src="{{ post.image_1.url }}" alt="Image to accompany post">
-                            </a>
-                        </div>
-                    {% endif %}
-
-                    {% if post.image_2 %}
-                        <div class="col-6 col-md-3">
-                            <a data-fancybox="gallery" href="{{ post.image_2.url }}">
-                                <img class="post-image box-shadow-sharp" src="{{ post.image_2.url }}" alt="Image to accompany post">
-                            </a>
-                        </div>
-                    {% endif %}
-
-                    {% if post.image_3 %}
-                        <div class="col-6 col-md-3">
-                            <a data-fancybox="gallery" href="{{ post.image_3.url }}">
-                                <img class="post-image box-shadow-sharp" src="{{ post.image_3.url }}" alt="Image to accompany post">
-                            </a>
-                        </div>
-                    {% endif %}
-
-                    {% if post.image_4 %}
-                        <div class="col-6 col-md-3">
-                            <a data-fancybox="gallery" href="{{ post.image_4.url }}">
-                                <img class="post-image box-shadow-sharp" src="{{ post.image_4.url }}" alt="Image to accompany post">
-                            </a>
-                        </div>
-                    {% endif %}
-                </div>
-                <figcaption>Click on a thumbnail to enlarge</figcaption>
-            </figure>
-        {% endif %}
-        <div class="dotted-line col-12 my-5"></div>
-        <div class="col-12 text-center">
-            <h3>Got a question about this post?</h3>
-            <p>Visit the {{ post.slack_channel.name }} channel in slack to ask about it.
-                <br>
-                Don't forget to link back to this post with your question.
-            </p>
-            <a href="https://slack.com/app_redirect?channel={{ post.slack_channel.slack_channel_id }}" target="_blank" 
-            aria-label="Visit the {{ post.slack_channel.name }} channel in slack" class="btn btn-orange">Visit {{ post.slack_channel.name }}</a>
-        </div>
-        <div class="dotted-line col-12 my-5"></div>
-
-        <!-- Card to show author information -->
-        <footer class="col-12">
-            <h2 class="text-center thin-text">About the Author</h2>
-            <!-- 
-                "post-" extension used on classes to avoid calling bootstrap card classes
-            -->
+    </div>
+    <div class="row">
+        <div class="col-12 col-lg-8 white-box box-shadow-light-spread mt-4">
             <div class="row">
-                <div class="container-fluid" id="author-card">
-                    <div class="row">
-                        <div class="col-12 col-md-4 p-md-0">
-                            <address id="post-author-info" class="post-card box-shadow-sharp">
-                                <div class="post-card-circles-wrapper">
-                                    <div class="post-card-circles">
-                                        {% if post.author.profile_pic %}
-                                        <div class="card-avatar box-shadow-sharp"
-                                            style="background-image: url('{{ post.author.profile_pic.url }}');"></div>
-                                        {% else %}
-                                        <div class="card-avatar box-shadow-sharp"
-                                            style="background-image: url('https://ci-student-library.s3.amazonaws.com/media/images/profiles/default-profile-pic.png');"></div>
-                                        {% endif %}
-                                        <!-- kudos badge class returned from kudos_badge method of UserProfile model-->
-                                        <div class="card-kudos-circle card-mini-circle {{ post.author.kudos_badge }} box-shadow-sharp"
-                                            title="{{ post.author.kudos_badge }}">
-                                            <i class="far fa-star"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="post-card-header text-center">
-                                    <p>
-                                        {% if post.author.is_staff %}
-                                        <span class="ci-username-logo"></span>
-                                        {% endif %}
-                                        <a href="{% url 'user_profile' post.author.user.pk %}">{{ post.author.user.username }}</a>
-                                    </p>
-                                </div>
-                                <div class="post-card-body">
-                                    <div class="text-center">
-                                        {% if post.author.user.first_name and post.author.user.last_name %}
-                                            <h3 class="mt--1">{{ post.author.user.first_name }} {{ post.author.user.last_name }}</h3>
-                                        {% endif %}
-                                        <p class="post-card-summary d-md-none">
-                                            {% if post.author.bio %}
-                                                {{ post.author.bio }}
-                                            {% else %}
-                                                This author hasn't written a bio yet
-                                            {% endif %}
-                                        </p>
-                                        <div class="author-social-icons">
-                                            {% if post.author.linkedin %}
-                                                <a href="{{ post.author.linkedin }}" 
-                                                    aria-label="Visit {{ post.author.user.username }}'s linkedin profile (opens in a new tab)"
-                                                    target="_blank" rel="noopener">
-                                                    <i class="fab fa-linkedin"></i></a>
-                                            {% endif %}
-
-                                            {% if post.author.linkedin %}
-                                                <a href="{{ post.author.github }}" 
-                                                    aria-label="Visit {{ post.author.user.username }}'s github profile (opens in a new tab)"
-                                                    target="_blank" rel="noopener">
-                                                    <i class="fab fa-github-square"></i></a>
-                                            {% endif %}
-                                        </div>
-                                    </div>        
-                                </div>
-                                <div class="profile-link-wrapper text-center">
-                                    <a href="{% url 'user_profile' post.author.pk %}">
-                                        <span class="category">Visit Profile</span>
+                {% if post.editors_note %}
+                <aside id="editors-note" class="col-12 post-detail-note mb-2">
+                    <h2>Editors note</h2>
+                    <p>{{ post.editors_note }}</p>
+                    {% if request.user.userprofile.is_admin %}
+                    <div id="editor-crud-btns">                
+                        <a href="{% url 'edit_editors_note' post.pk %}"
+                            aria-label="Edit editors note" title="Edit this note">
+                            <i class="far fa-edit"></i></a>
+                        <button type="button" id="editorsNoteDeleteBtn" data-post-pk="{{post.pk}}"
+                            aria-label="Delete this editors note" title="Delete this note">
+                            <i class="far fa-trash-alt"></i>
+                        </button>
+                    </div>
+                    {% endif %}
+                </aside>
+                {% elif request.user.userprofile.is_mod %}
+                <p class="text-end">
+                    <a href="{% url 'add_editors_note' post.pk %}" title="Add editors note" class="edit-btn">
+                        <i class="fas fa-pen-alt"></i>
+                    </a>
+                </p>
+                {% endif %}
+                {% if post.course.name == '4P Course' or post.course.name == '5P Course' %}
+                <aside id="course-note" class="col-12 post-detail-note">
+                    <h2>Important</h2>
+                    <p>This post is only relevant to the older
+                        {% if post.course.name == '4P Course' %}
+                        <strong>4 project (4P)</strong>
+                        {% else %}
+                        <strong>5 project (5P)</strong>
+                        {% endif %}
+                        Code Institute course.
+                    </p>
+                    <p>Not sure which course you are on? 
+                        <button class="invisible-button info-btn" 
+                            title="What's this?" data-bs-toggle="modal"
+                            data-bs-target="#courseModal">click here</button>
+                    </p>
+                </aside>
+                {% endif %}
+                <section id="post-body" class="col-12 mt-4 px-4">
+                    {{ post.body|safe }}
+                </section>
+                {% if post.image_1 or post.image_2 or post.image_3 or post.image_4 %}
+                    <figure class="col-12">
+                        <div class="row justify-content-center">
+                            {% if post.image_1 %}
+                                <div class="col-6 col-md-3">
+                                    <a data-fancybox="gallery" href="{{ post.image_1.url }}">
+                                        <img class="post-image box-shadow-sharp" src="{{ post.image_1.url }}" alt="Image to accompany post">
                                     </a>
                                 </div>
-                            </address>
+                            {% endif %}
+
+                            {% if post.image_2 %}
+                                <div class="col-6 col-md-3">
+                                    <a data-fancybox="gallery" href="{{ post.image_2.url }}">
+                                        <img class="post-image box-shadow-sharp" src="{{ post.image_2.url }}" alt="Image to accompany post">
+                                    </a>
+                                </div>
+                            {% endif %}
+
+                            {% if post.image_3 %}
+                                <div class="col-6 col-md-3">
+                                    <a data-fancybox="gallery" href="{{ post.image_3.url }}">
+                                        <img class="post-image box-shadow-sharp" src="{{ post.image_3.url }}" alt="Image to accompany post">
+                                    </a>
+                                </div>
+                            {% endif %}
+
+                            {% if post.image_4 %}
+                                <div class="col-6 col-md-3">
+                                    <a data-fancybox="gallery" href="{{ post.image_4.url }}">
+                                        <img class="post-image box-shadow-sharp" src="{{ post.image_4.url }}" alt="Image to accompany post">
+                                    </a>
+                                </div>
+                            {% endif %}
                         </div>
-                        <div id="author-side-bio" 
-                            class="d-none col-md-8 box-shadow-sharp d-md-flex align-items-center text-center">
-                            <p class="post-card-summary mx-auto">
-                                {% if post.author.bio %}
-                                    {{ post.author.bio }}
-                                {% else %}
-                                    This author hasn't written a bio yet
+                        <figcaption>Click on a thumbnail to enlarge</figcaption>
+                    </figure>
+                {% endif %}
+                <div class="dotted-line col-12 my-5"></div>
+
+                <div id="bottom-post-btns" class="col-12">
+                    <form action="{% url 'like_post' post.pk %}" method="POST">
+                        {% csrf_token %}
+                        <button class="post-icon btn blue-btn-outline btn-thin-border me-2 mb-2"
+                            type="submit">
+                            {% if liked %}
+                                <i class="fas fa-thumbs-up"></i>
+                            {% else %}
+                                <i class="far fa-thumbs-up"></i>
+                            {% endif %}
+                            <span>
+                                {% if total_likes > 0 %}
+                                    {{ total_likes }}
                                 {% endif %}
-                            </p>
+                            </span>
+                            <span>Like{% if liked %}d{% endif %}</span>
+                        </button>
+                    </form>
+                    
+                    <form action="{% url 'bookmark_post' post.pk %}" method="POST">
+                        {% csrf_token %}
+                        <button class="post-icon btn blue-btn-outline btn-thin-border me-2 mb-2"
+                            type="submit">
+                            {% if bookmarked %}
+                                <i class="fas fa-bookmark"></i>
+                            {% else %}
+                                <i class="far fa-bookmark"></i>
+                            {% endif %}
+                            <span>Bookmark{% if bookmarked %}ed{% endif %}</span>
+                        </button>
+                    </form>
+
+                    {% if request.user.username != post.author.user.username %}
+                    <button id="flag" type="button" data-bs-toggle="modal" data-bs-target="#flagModal"
+                        class="post-icon btn blue-btn-outline btn-thin-border me-2 mb-2"
+                        title="Flag this post">
+                        <i class="far fa-flag"></i>
+                    </button>
+                    {% endif %}
+                    <!-- Modal -->
+                    <div class="modal fade" id="flagModal" tabindex="-1" aria-labelledby="flagModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="flagModalLabel">Modal title</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{% url 'post_detail' post.pk post.slug %}" method="POST" class="form">
+                                        {% csrf_token %}
+                                        <div class="mb-3">
+                                            <label for="id_reason" class="form-label">Select reason</label>
+                                            {{ form.reason }}
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="id_message" class="form-label">
+                                                Please provide some detail about why you are flagging this post.
+                                            </label>
+                                            {{ form.message }}
+                                        </div>
+                                        <button class="mt-4" type="submit">Send</button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="dotted-line col-12 my-5"></div>
-        </footer>
-
-        <div id="bottom-post-btns" class="col-12">
-            <form action="{% url 'like_post' post.pk %}" method="POST">
-                {% csrf_token %}
-                <button class="post-icon btn blue-btn-outline btn-thin-border me-2 mb-2"
-                    type="submit">
-                    {% if liked %}
-                        <i class="fas fa-thumbs-up"></i>
-                    {% else %}
-                        <i class="far fa-thumbs-up"></i>
-                    {% endif %}
-                    <span>
-                        {% if total_likes > 0 %}
-                            {{ total_likes }}
-                        {% endif %}
-                    </span>
-                    <span>Like{% if liked %}d{% endif %}</span>
-                </button>
-            </form>
-            
-            <form action="{% url 'bookmark_post' post.pk %}" method="POST">
-                {% csrf_token %}
-                <button class="post-icon btn blue-btn-outline btn-thin-border me-2 mb-2"
-                    type="submit">
-                    {% if bookmarked %}
-                        <i class="fas fa-bookmark"></i>
-                    {% else %}
-                        <i class="far fa-bookmark"></i>
-                    {% endif %}
-                    <span>Bookmark{% if bookmarked %}ed{% endif %}</span>
-                </button>
-            </form>
-
-            {% if request.user.username != post.author.user.username %}
-            <button id="flag" type="button" data-bs-toggle="modal" data-bs-target="#flagModal"
-                class="post-icon btn blue-btn-outline btn-thin-border me-2 mb-2"
-                title="Flag this post">
-                <i class="far fa-flag"></i>
-            </button>
-            {% endif %}
-            <!-- Modal -->
-            <div class="modal fade" id="flagModal" tabindex="-1" aria-labelledby="flagModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="flagModalLabel">Modal title</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form action="{% url 'post_detail' post.pk post.slug %}" method="POST" class="form">
-                                {% csrf_token %}
-                                <div class="mb-3">
-                                    <label for="id_reason" class="form-label">Select reason</label>
-                                    {{ form.reason }}
-                                </div>
-                                <div class="mb-3">
-                                    <label for="id_message" class="form-label">
-                                        Please provide some detail about why you are flagging this post.
-                                    </label>
-                                    {{ form.message }}
-                                </div>
-                                <button class="mt-4" type="submit">Send</button>
-                            </form>
-                        </div>
-                    </div>
+                <div class="col-12">
+                    <!-- 
+                        JS on this button sends user back to the
+                        previous entry in their browser history
+                    -->
+                    <button id="back-btn" type="button" class="btn btn-outline-teal btn-thin-border me-2 mb-2">
+                        <i class="fas fa-chevron-left"></i>
+                        <span>Back</span>
+                    </button>
+                    <a href="{% url 'filtered_posts' %}?category={{post.category.pk}}&sort_method=-created_on" class="btn btn-outline-teal btn-thin-border me-2 mb-2">
+                        More posts about {{ post.category }}
+                    </a>
                 </div>
             </div>
         </div>
-        <div class="col-12">
-            <!-- 
-                JS on this button sends user back to the
-                previous entry in their browser history
-            -->
-            <button id="back-btn" type="button" class="btn btn-outline-teal btn-thin-border me-2 mb-2">
-                <i class="fas fa-chevron-left"></i>
-                <span>Back</span>
-            </button>
-            <a href="{% url 'filtered_posts' %}?category={{post.category.pk}}&sort_method=-created_on" class="btn btn-outline-teal btn-thin-border me-2 mb-2">
-                More posts on {{ post.category }}
-            </a>
+        <!-- Post info column -->
+        <div class="col-12 col-lg-4 mt-4 ps-4">
+            <div class="row">
+                <!-- Card to show author information -->
+                <footer class="col-12">
+                    <!-- 
+                        "post-" extension used on classes to avoid calling bootstrap card classes
+                    -->
+                    <div class="row">
+                        <div class="container-fluid" id="author-card">
+                            <div class="row">
+                                <div class="col-12">
+                                    <address id="post-author-info" class="post-card box-shadow-sharp">
+                                        <div class="post-card-circles-wrapper">
+                                            <div class="post-card-circles">
+                                                {% if post.author.profile_pic %}
+                                                <div class="card-avatar box-shadow-sharp"
+                                                    style="background-image: url('{{ post.author.profile_pic.url }}');"></div>
+                                                {% else %}
+                                                <div class="card-avatar box-shadow-sharp"
+                                                    style="background-image: url('https://ci-student-library.s3.amazonaws.com/media/images/profiles/default-profile-pic.png');"></div>
+                                                {% endif %}
+                                                <!-- kudos badge class returned from kudos_badge method of UserProfile model-->
+                                                <div class="card-kudos-circle card-mini-circle {{ post.author.kudos_badge }} box-shadow-sharp"
+                                                    title="{{ post.author.kudos_badge }}">
+                                                    <i class="far fa-star"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="post-card-header text-center">
+                                            <p>About the Author</p>
+                                            <p>
+                                                {% if post.author.is_staff %}
+                                                <span class="ci-username-logo"></span>
+                                                {% endif %}
+                                                <a href="{% url 'user_profile' post.author.user.pk %}">{{ post.author.user.username }}</a>
+                                            </p>
+                                        </div>
+                                        <div class="post-card-body">
+                                            <div class="text-center">
+                                                {% if post.author.user.first_name and post.author.user.last_name %}
+                                                    <h3 class="mt--1">{{ post.author.user.first_name }} {{ post.author.user.last_name }}</h3>
+                                                {% endif %}
+                                                <p class="post-card-summary">
+                                                    {% if post.author.bio %}
+                                                        {{ post.author.bio }}
+                                                    {% else %}
+                                                        This author hasn't written a bio yet
+                                                    {% endif %}
+                                                </p>
+                                                <div class="author-social-icons">
+                                                    {% if post.author.linkedin %}
+                                                        <a href="{{ post.author.linkedin }}" 
+                                                            aria-label="Visit {{ post.author.user.username }}'s linkedin profile (opens in a new tab)"
+                                                            target="_blank" rel="noopener">
+                                                            <i class="fab fa-linkedin"></i></a>
+                                                    {% endif %}
+
+                                                    {% if post.author.linkedin %}
+                                                        <a href="{{ post.author.github }}" 
+                                                            aria-label="Visit {{ post.author.user.username }}'s github profile (opens in a new tab)"
+                                                            target="_blank" rel="noopener">
+                                                            <i class="fab fa-github-square"></i></a>
+                                                    {% endif %}
+                                                </div>
+                                            </div>        
+                                        </div>
+                                        <div class="profile-link-wrapper text-center">
+                                            <a href="{% url 'user_profile' post.author.pk %}">
+                                                <span class="category">Visit Profile</span>
+                                            </a>
+                                        </div>
+                                    </address>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+                <div class="dotted-line col-12 mt-5 mb-3"></div>
+                <div class="col-12">
+                    <h2 class="mt-3 thin-text">Got a question about this post?</h2>
+                    <p>Ask about it in the <strong>{{ post.slack_channel.name }}</strong> channel in slack.
+                        <br>
+                        <small>Don't forget to link back to this post with your question.</small>
+                    </p>
+                    <a href="https://slack.com/app_redirect?channel={{ post.slack_channel.slack_channel_id }}" target="_blank" 
+                    aria-label="Visit the {{ post.slack_channel.name }} channel in slack" class="btn btn-orange">Visit {{ post.slack_channel.name }}</a>
+                </div>
+                <div class="dotted-line col-12 mt-5 mb-3"></div>
+                <div class="col-12">
+                    <h2 class="mt-3 thin-text">Related posts</h2>
+                    <ul>
+                        <li>Dummy post title 1</li>
+                        <li>Dummy post title 2</li>
+                        <li>Dummy post title 3</li>
+                    </ul>
+
+                    {% if post.tags.all.count > 0 %}
+                    <div class="dotted-line col-12 my-5"></div>
+                    <h2 class="mt-3 thin-text">Tags</h2>
+                    {% for tag in post.tags.all %}
+                        <a href="{% url 'posts_by_tag' tag.pk %}"
+                            class="btn btn-sm btn-secondary me-2 mb-2">{{ tag }}</a> 
+                    {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
         </div>
-        <div class="col-12">
-            <h2 class="mt-3 thin-text">Related Tags</h2>
-            {% for tag in post.tags.all %}
-                <a href="{% url 'posts_by_tag' tag.pk %}"
-                    class="btn btn-sm btn-secondary me-2 mb-2">{{ tag }}</a> 
-            {% endfor %}
-        </div>
+        
+        <!---->
+
+
     </div>
 </article>
 
