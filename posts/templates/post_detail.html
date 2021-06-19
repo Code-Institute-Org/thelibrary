@@ -151,6 +151,15 @@
                 </aside>
                 {% endif %}
                 <section id="post-body" class="col-12 mt-4 px-4">
+                    {% if post.youtube %}
+                    <div id="video-wrapper">
+                        <iframe 
+                        src="https://www.youtube.com/embed/{{ post.youtube }}" 
+                        title="YouTube video player" frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen></iframe>
+                    </div>
+                    {% endif %}
                     {{ post.body|safe }}
                 </section>
                 {% if post.image_1 or post.image_2 or post.image_3 or post.image_4 %}
