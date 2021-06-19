@@ -1055,6 +1055,10 @@ Fluid width video css from https://css-tricks.com/fluid-width-video/
     transition: all ease-in-out .4s;
 }
 
+.side-panel-content-wrapper {
+    padding: 5px;
+}
+
 .bookmark-btn {
     margin-right: 5px;
 }
@@ -1114,6 +1118,20 @@ Fluid width video css from https://css-tricks.com/fluid-width-video/
 .post-detail-note>p {
     font-size: .9rem;
     margin: 0;
+}
+
+.related-posts {
+    padding: 5px;
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.related-posts > li {
+    list-style-type: none;
+}
+
+.related-posts i {
+    padding-right: 7px;
 }
 
 #editors-note {

@@ -259,6 +259,12 @@ class PostDetailView(DetailView, SuccessMessageMixin):
                 post=self.kwargs['pk'],
                 user=self.request.user).exists()
 
+        # Get related posts
+        context['related_posts'] = Post.objects.filter(
+            status="Published", category=post.category
+        ).exclude(pk=post.pk).annotate(
+            like_count=Count('likes')).order_by('-like_count')[:4]
+
         return context
 
     def post(self, request, *args, **kwargs):
