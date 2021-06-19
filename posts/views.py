@@ -247,6 +247,13 @@ class PostDetailView(DetailView, SuccessMessageMixin):
         context['author_name'] = post.author.get_author_name()
         context['form'] = FlagForm()
 
+        # Regex code solution for capturing only the hosted
+        # Youtube video ID written by Sean Murphy, taken from
+        # project by JimLynx https://github.com/JimLynx/Channel-Lead-Resources
+        if post.youtube is not None:
+            context['youtube_id'] = ''.join(re.findall(
+                '(?<=v=)(.{11})', post.youtube))
+
         if self.request.user.is_authenticated:
             context['bookmarked'] = Bookmark.objects.filter(
                 post=self.kwargs['pk'],
@@ -305,12 +312,6 @@ class CreatePostView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user.userprofile
         form.instance.slug = slugify(form.instance.title)
-
-        # Regex code solution for capturing only the hosted
-        # Youtube video ID written by Sean Murphy
-        if form.instance.youtube is not None:
-            form.instance.youtube = ''.join(re.findall(
-                '(?<=v=)(.{11})', form.instance.youtube))
 
         # CI Staff posts immediately published, no review process.
         if self.request.user.userprofile.is_staff:
