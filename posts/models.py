@@ -84,7 +84,7 @@ class Post(models.Model):
         error_messages={
             'unique': "This post title already exists, please choose another."
         })
-    summary = models.CharField(max_length=150)
+    summary = models.CharField(max_length=140)
     slug = models.SlugField(max_length=200, unique=True)
     body = RichTextField()
     author = models.ForeignKey(
