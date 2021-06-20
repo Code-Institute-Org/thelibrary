@@ -7,15 +7,24 @@
 {% endblock %}
 
 {% block content %}
-
+    <div class="alert alert-danger mb-0 text-center" role="alert">
+        Post Preview
+    </div>
     {% if post.status == 'Submitted' and post.author == request.user.userprofile %}
-        <div class="alert alert-danger mb-0 text-center" role="alert">
-            Post Preview
-        </div>
         <div class="alert alert-success text-center" role="alert">
             Thank you for submitting this post! It will be published after approval by a library moderator. 
             <br>
             Check out your <a href="{% url 'dashboard' %}">dashboard</a> to see the status of your posts.
+        </div>
+    {% elif post.status == 'Submitted' %}
+        <div class="alert alert-success text-center" role="alert">
+            This post has been submitted and is awaiting a review.
+            <br>
+            Please check that the contents of this post conforms
+            to our <a href="#" target="_blank">Library content guidelines</a>.
+            <br>If it does, you can approve the post. If not,
+            you can request the author resubmits the post.
+            <br>
         </div>
     {% endif %}
     {% if post.status == 'Review' %}
