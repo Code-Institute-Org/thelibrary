@@ -450,6 +450,11 @@ class ReviewPostView(LoginRequiredMixin, DetailView, UpdateView):
     context_object_name = 'post'
     fields = ['mod_message']
 
+    def get_form(self, Post=None):
+        form = super(ReviewPostView, self).get_form(Post)
+        form.fields['mod_message'].required = True
+        return form
+
     def get(self, *args, **kwargs):
         user = get_object_or_404(User, pk=self.request.user.pk)
         post = get_object_or_404(Post, pk=self.kwargs['pk'])
@@ -464,7 +469,13 @@ class ReviewPostView(LoginRequiredMixin, DetailView, UpdateView):
     def form_valid(self, form):
         form.instance.moderator = self.request.user
         form.instance.status = 'Review'
+
         form.save()
+
+        if form.instance.flag:
+            flag = PostFlag.objects.filter(pk=form.instance.flag.id)
+            flag.delete()
+
         return HttpResponseRedirect(reverse('review_posts'))
 
 
