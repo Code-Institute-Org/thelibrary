@@ -2,11 +2,50 @@
 
 The Slack room for our Code Institute community of students, alumni and staff contains a wealth of useful information, tips, advice and resources created by the community for CI students. But Slack doesn't provide a good place to store, sort, search, filter and categorize the content produced by our community members. This library was created to provide a central hub of resources to support our students, with all the search and filtering functionality they need to make it accessible and useful.
 
+## Table of Contents
+1. [UX](#ux)
+    - [User Goals](#user-goals)
+    - [User Stories](#user-stories)
+        - [CI students](#ci-students)
+        - [Authors](#authors)
+        - [General users](#general-users)
+        - [Staff users](#staff-users)
+        - [Moderator users](#moderator-users)
+        - [Admin users](#admin-users)
+    - [Wireframes](#wireframes)
+2. [Features](#features)
+3. [Information Architecture](#information-architecture)
+    - [Database Choice](#database-choice)
+    - [Data Models](#data-models)
+        - [User](#user)
+        - [UserProfile](#userprofile)
+        - [PostTag](#posttag)
+        - [PostCategory](#postcategory)
+        - [PostFlag](#postflag)
+        - [Bookmark](#bookmark)
+        - [Course](#course)
+        - [SlackChannel](#slackchannel)
+4. [Technologies Used](#technologies-used)
+    - [Tools](#tools)
+    - [Databases](#databases)
+    - [Libraries](#libraries)
+5. [Testing](#testing)
+    - [Solved Bugs](#solved-bugs)
+6. [Deployment](#deployment)
+    - [Run this project locally](#run-this-project-locally)
+        - [Requirements](#requirements)
+        - [Instructions](#instructions)
+    - [Heroku Deployment](#heroku-deployment)
+7. [Credits](#credits)
+    - [Code](#code)
+    - [Images](#images)
+8. [Acknowledgements](#acknowledgements)
+9. [Contact](#contact)
+
+
 ## UX
 
-### Goals
-
-#### User Goals
+### User Goals
 The central target users for The Library are: 
 - Code Institute students
 - Potential students who want to see what the CI community has to offer
@@ -147,6 +186,9 @@ The Library is a great way to meet these needs, because
 - [Author profile](https://ibb.co/PQkPZCS)
 - [Your profile](https://ibb.co/nzqbBJ2)
 
+
+## Features 
+*To be added*
 ## Information Architecture
 
 ### Database Choice
@@ -159,7 +201,7 @@ The Library is a great way to meet these needs, because
 #### User
 The User model utilized for this project is the standard one provided by `django.contrib.auth.models`. This model was not adapted, instead the user data was extended into a custom UserProfile model.
 
-#### UserProfile Model
+#### UserProfile
 
 Name | DB Key | Specifications | Field Type
 --- | --- | --- | ---
@@ -179,7 +221,7 @@ This model contains two methods:
 
 An instance of UserProfile is automatically generated for every new instance of User.
 
-#### PostTag Model
+#### PostTag
 
 Name | DB Key | Specifications | Field Type
 --- | --- | --- | ---
@@ -187,7 +229,7 @@ Name | name | max_length=50 | CharField
 
 PostTag query sets are returned ordered alphabetically.
 
-#### PostCategory Model
+#### PostCategory
 
 Name | DB Key | Specifications | Field Type
 --- | --- | --- | ---
@@ -195,7 +237,7 @@ Name | name | max_length=20 | CharField
 
 PostCategory query sets are returned ordered alphabetically.
 
-#### PostFlag Model
+#### PostFlag
 
 Name | DB Key | Specifications | Field Type
 --- | --- | --- | ---
@@ -203,7 +245,7 @@ Flagger | flagger | on_delete=models.PROTECT | ForeignKey to User
 Reason | reason | choices=FLAG_REASONS | CharField
 Flag Message | message | max_length=200 | TextField
 
-#### Post Model
+#### Post
 Name | DB Key | Specifications | Field Type
 --- | --- | --- | ---
 Post Title | title | max_length=70 | CharField
@@ -232,7 +274,7 @@ YouTube Video | youtube | - | URLField
 This model contains one custom method: 
 - `total_likes()` which returns the total number of likes a post has.
 
-#### Bookmark Model
+#### Bookmark
 Name | DB Key | Specifications | Field Type
 --- | --- | --- | ---
 Post | post | on_delete=CASCADE | ForeignKey to Post
@@ -241,24 +283,20 @@ Date Bookmarked | created_on | default=timezone.now | DateTimeField
 
 Bookmark query sets are returned ordered by when they were created.
 
-#### Course Model
+#### Course
 Name | DB Key | Specifications | Field Type
 --- | --- | --- | ---
 Name | name | max_length=50 | CharField
 
 Bookmark query sets are returned ordered by their id.
 
-#### SlackChannel Model
+#### SlackChannel
 Name | DB Key | Specifications | Field Type
 --- | --- | --- | ---
 Name | name | max_length=50, unique=True | CharField
 Channel ID | slack_channel_id | max_length=20, unique=True | CharField
 
 Bookmark query sets are returned ordered alphabetically by their name.
-
-### Project requirements
-- Python 3
-- Git
 
 ## Technologies Used
 
@@ -356,6 +394,8 @@ def get(self, *args, **kwargs):
 ## Deployment
 
 ### Run this project locally
+
+#### Requirements
 
 Ensure you have the following tools: 
 - An IDE such as VSCode
@@ -485,19 +525,19 @@ Instructions on how to do these steps can be found in the [heroku devcenter docu
 12. Once instances of these items exist in your database your heroku site will run as expected.
 ## Credits
 
-### code
+### Code
 - Code to animate notification bell in the navbar by [Fazlur Rahman](https://codepen.io/fazlurr/pen/xeXpqx)
 - Code to handle pagination in function based views from [simpleisbetterthancomplex.com](https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html)
 - Code to create triangle in post card corners for course indication from [This stack overflow post](https://stackoverflow.com/questions/18531959/how-to-create-triangle-shape-in-the-top-right-angle-of-another-div-to-look-divid)
 - Loading spinner code from [W3Schools](https://www.w3schools.com/howto/howto_css_loader.asp) 
 
-### images
+### Images
 - Library background image by [mentatdgt on Pexels.com](https://www.pexels.com/photo/library-photo-1319854/)
 
 ## Acknowledgements
 
 Special thanks to [Chris Z.](https://github.com/ckz8780) for his help with a couple of sticky moments while working on this project.
 
-# Contact
+## Contact
 To contact me, feel free to email
 `anna (at) codeinstitute (dot) net`
