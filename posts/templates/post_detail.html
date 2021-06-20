@@ -125,7 +125,7 @@
                     </div>
                     {% endif %}
                 </aside>
-                {% elif request.user.userprofile.is_mod %}
+                {% elif request.user.userprofile.is_admin %}
                 <p class="text-end">
                     <a href="{% url 'add_editors_note' post.pk %}" title="Add editors note" class="edit-btn">
                         <i class="fas fa-pen-alt"></i>

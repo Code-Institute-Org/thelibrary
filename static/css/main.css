@@ -973,6 +973,11 @@ https://stackoverflow.com/questions/18531959/how-to-create-triangle-shape-in-the
     margin-bottom: 1rem;
 }
 
+#post-detail #search-card-preview .category-wrapper {
+    margin-bottom: -31px;
+    padding: 0;
+}
+
 /*
 Fluid width video css from https://css-tricks.com/fluid-width-video/
 */
