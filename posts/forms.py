@@ -10,9 +10,11 @@ class FlagForm(forms.ModelForm):
     Create form for users to flag posts.
     """
     INNAPPROPRIATE = 'Innappropriate content'
+    INCORRECT = 'Incorrect content'
     OUTDATED = 'Outdated content'
     FLAG_REASONS = (
         (INNAPPROPRIATE, "Innappropriate content"),
+        (INCORRECT, 'Incorrect content'),
         (OUTDATED, "Outdated content"),
     )
     reason = forms.ChoiceField(
