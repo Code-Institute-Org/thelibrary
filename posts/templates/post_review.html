@@ -27,7 +27,7 @@
             <br>
         </div>
     {% endif %}
-    {% if post.status == 'Review' %}
+    {% if post.status == 'Review' and post.author == request.user.userprofile %}
         <div class="container">
             <div class="row">
                 <div class="alert alert-info col-12 mt-3" role="alert">
