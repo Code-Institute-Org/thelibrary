@@ -43,9 +43,11 @@ class PostFlag(models.Model):
     Library admins.
     """
     INNAPPROPRIATE = 'Innappropriate content'
+    INCORRECT = 'Incorrect content'
     OUTDATED = 'Outdated content'
     FLAG_REASONS = (
         (INNAPPROPRIATE, "Inappropriate content"),
+        (INCORRECT, 'Incorrect content'),
         (OUTDATED, "Outdated content"),
     )
     flagger = models.ForeignKey(
