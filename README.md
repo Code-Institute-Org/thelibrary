@@ -2,6 +2,10 @@
 
 The Slack room for our Code Institute community of students, alumni and staff contains a wealth of useful information, tips, advice and resources created by the community for CI students. But Slack doesn't provide a good place to store, sort, search, filter and categorize the content produced by our community members. This library was created to provide a central hub of resources to support our students, with all the search and filtering functionality they need to make it accessible and useful.
 
+<div align="center">
+    <img src="https://i.ibb.co/m9vV9Pp/home.png" alt="The Library Home page"/>
+</div>
+
 ## Table of Contents
 1. [UX](#ux)
     - [User Goals](#user-goals)
