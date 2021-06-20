@@ -337,8 +337,14 @@ class CreatePostView(LoginRequiredMixin, CreateView):
         return HttpResponseRedirect(self.get_success_url(post))
 
     def get_success_url(self, post):
-        return reverse(
-            'review_post', kwargs={'pk': post.pk, 'slug': post.slug})
+        if self.request.user.userprofile.is_staff:
+            messages.add_message(
+                self.request, messages.SUCCESS, "Post successfully published")
+            return reverse(
+                'post_detail', kwargs={'pk': post.pk, 'slug': post.slug})
+        else:
+            return reverse(
+                'review_post', kwargs={'pk': post.pk, 'slug': post.slug})
 
 
 class EditPostView(LoginRequiredMixin, UpdateView):
@@ -429,9 +435,6 @@ def delete_post(request, pk):
             request, messages.SUCCESS, "Post successfully deleted")
 
         next_pg = request.GET.get('next', '/')
-        print(' ----- ')
-        print(next_pg)
-        print(' ----- ')
         return HttpResponseRedirect(next_pg)
 
     else:
