@@ -32,16 +32,16 @@
         </div>
         <address class="col-12 text-center pt-4">
             {% if user.first_name and user.last_name %}
-            <h1 class="display-6">{{user.first_name}} {{user.last_name}}</h1>
+            <p class="display-6">{{user.first_name}} {{user.last_name}}</p>
             {% elif user.first_name %}
-            <h1 class="display-6">{{user.first_name}}</h1>
+            <p class="display-6">{{user.first_name}}</p>
             {% endif %}
-            <h2 class="thin-text">
+            <p class="thin-text">
                 {% if user.userprofile.is_staff %}
                 <span class="ci-username-logo-md" title="This user is a Code Institute staff member"></span>
                 {% endif %}
                 {{ user.username }}
-            </h2>
+            </p>
             <p class="lead">Member since {{ user.userprofile.date_joined }}</p>
             
             {% if user.userprofile.bio %}
