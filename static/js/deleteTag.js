@@ -1,5 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+    /**
+     * @param {str} tagID 
+     * @param {str} tagName 
+     * Function to check with the user if they really want to delete the selected tag.
+     * If user confirms deletion, the client is redirected to the correct URL to complete
+     * the deletion.
+     */
     function checkDeleteTag(tagID, tagName) {
         let check = confirm(`"This will permanently delete the '${tagName}' tag \
 and remove it from any posts that it belongs to. Are you sure?"`);
@@ -24,4 +31,4 @@ and remove it from any posts that it belongs to. Are you sure?"`);
             checkDeleteTag(tagID, tagName);
         });
     }
-})
+});

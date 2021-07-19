@@ -6,7 +6,7 @@
  * Local url is needed so code will work in development and deployed site
  * @returns false if user clicks cancel on confirm window
  */
- function checkDeletePostDashboardPg(postID) {
+function checkDeletePostDashboardPg(postID) {
     let check = confirm("This will permanently delete this post, are you sure?");
 
     if (check) {
@@ -27,12 +27,12 @@ function goBack() {
 let dashboardDeleteBtns = document.getElementsByClassName('dashboardDeleteBtn');
 
 if (dashboardDeleteBtns) {
-  for (let i = 0; i < dashboardDeleteBtns.length; i++) {
-    let postID = dashboardDeleteBtns[i].getAttribute('data-post-pk');
-    dashboardDeleteBtns[i].addEventListener('click', function () {
-        checkDeletePostDashboardPg(postID);
-    });
-}
+    for (let i = 0; i < dashboardDeleteBtns.length; i++) {
+        let postID = dashboardDeleteBtns[i].getAttribute('data-post-pk');
+        dashboardDeleteBtns[i].addEventListener('click', function () {
+            checkDeletePostDashboardPg(postID);
+        });
+    }
 }
 
 if (document.getElementById('back-btn')) {
@@ -42,6 +42,12 @@ if (document.getElementById('back-btn')) {
     });
 }
 
+/**
+ * 
+ * @param {str} postID 
+ * Function checks that user does wish to delete the editors note.
+ * If confirmed, redirects client to the correct URL to carry out deletion.
+ */
 function checkDeleteEditorsNote(postID) {
     let check = confirm("Are you sure you want to delete this editors note?");
     if (check) {
@@ -64,6 +70,13 @@ if (editorsNoteDeleteBtn) {
     });
 }
 
+
+/**
+ * 
+ * @param {str} postID 
+ * Function checks that user does wish to dismiss a post flag.
+ * If confirmed, redirects client to the correct URL to carry out deletion of the flag.
+ */
 function checkDeleteFlag(flagID) {
     let check = confirm("Are you sure you want to dismiss this flag?");
     if (check) {
@@ -86,6 +99,12 @@ if (deleteFlagBtn) {
     });
 }
 
+/**
+ * 
+ * @param {str} postID 
+ * Function checks that user does wish to delete a post.
+ * If confirmed, redirects client to the correct URL to carry out deletion.
+ */
 function checkDeletePost(postID) {
     let check = confirm("This will permanently delete this post, are you sure?");
 
