@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
 /* ---------------------
 As this site is for student and staff created content to complement
 the CI course, the colors and fonts are taken from the 
@@ -38,6 +45,8 @@ body {
 a {
     color: var(--cta-teal);
     text-decoration: none;
+    -webkit-transition: color ease-in-out .4s;
+    -o-transition: color ease-in-out .4s;
     transition: color ease-in-out .4s;
 }
 
@@ -85,19 +94,34 @@ a:hover {
     border-radius: 50%;
     width: 70px;
     height: 70px;
-    animation: spin 2s linear infinite;
+    -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
     position: absolute;
     top: calc(50% - 35px);
     left: calc(50% - 35px);
 }
 
-@keyframes spin {
+@-webkit-keyframes spin {
     0% {
-        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
     }
 
     100% {
-        transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
     }
 }
 
@@ -198,6 +222,8 @@ bootstrap width on search bar
 
 .dropdown-item,
 .dropdown-item>i {
+    -webkit-transition: all ease-in-out .4s;
+    -o-transition: all ease-in-out .4s;
     transition: all ease-in-out .4s;
 }
 
@@ -228,6 +254,8 @@ a.dropdown-item:hover>i {
 
 #navbar .fa-plus.navbar-icon {
     color: var(--orange);
+    -webkit-transition: all ease-in-out .4s;
+    -o-transition: all ease-in-out .4s;
     transition: all ease-in-out .4s;
 }
 
@@ -289,7 +317,8 @@ https://codepen.io/fazlurr/pen/xeXpqx
     -moz-animation: ring 5s 1s ease-in-out;
     -moz-transform-origin: 50% 4px;
     animation: ring 5s 1s ease-in-out;
-    transform-origin: 50% 4px;
+    -ms-transform-origin: 50% 4px;
+        transform-origin: 50% 4px;
 }
 
 @-webkit-keyframes ring {
@@ -390,199 +419,125 @@ https://codepen.io/fazlurr/pen/xeXpqx
     }
 }
 
-@-moz-keyframes ring {
-    0% {
-        -moz-transform: rotate(0);
-    }
-
-    1% {
-        -moz-transform: rotate(30deg);
-    }
-
-    3% {
-        -moz-transform: rotate(-28deg);
-    }
-
-    5% {
-        -moz-transform: rotate(34deg);
-    }
-
-    7% {
-        -moz-transform: rotate(-32deg);
-    }
-
-    9% {
-        -moz-transform: rotate(30deg);
-    }
-
-    11% {
-        -moz-transform: rotate(-28deg);
-    }
-
-    13% {
-        -moz-transform: rotate(26deg);
-    }
-
-    15% {
-        -moz-transform: rotate(-24deg);
-    }
-
-    17% {
-        -moz-transform: rotate(22deg);
-    }
-
-    19% {
-        -moz-transform: rotate(-20deg);
-    }
-
-    21% {
-        -moz-transform: rotate(18deg);
-    }
-
-    23% {
-        -moz-transform: rotate(-16deg);
-    }
-
-    25% {
-        -moz-transform: rotate(14deg);
-    }
-
-    27% {
-        -moz-transform: rotate(-12deg);
-    }
-
-    29% {
-        -moz-transform: rotate(10deg);
-    }
-
-    31% {
-        -moz-transform: rotate(-8deg);
-    }
-
-    33% {
-        -moz-transform: rotate(6deg);
-    }
-
-    35% {
-        -moz-transform: rotate(-4deg);
-    }
-
-    37% {
-        -moz-transform: rotate(2deg);
-    }
-
-    39% {
-        -moz-transform: rotate(-1deg);
-    }
-
-    41% {
-        -moz-transform: rotate(1deg);
-    }
-
-    43% {
-        -moz-transform: rotate(0);
-    }
-
-    100% {
-        -moz-transform: rotate(0);
-    }
-}
-
 @keyframes ring {
     0% {
-        transform: rotate(0);
+        -webkit-transform: rotate(0);
+                transform: rotate(0);
     }
 
     1% {
-        transform: rotate(30deg);
+        -webkit-transform: rotate(30deg);
+                transform: rotate(30deg);
     }
 
     3% {
-        transform: rotate(-28deg);
+        -webkit-transform: rotate(-28deg);
+                transform: rotate(-28deg);
     }
 
     5% {
-        transform: rotate(34deg);
+        -webkit-transform: rotate(34deg);
+                transform: rotate(34deg);
     }
 
     7% {
-        transform: rotate(-32deg);
+        -webkit-transform: rotate(-32deg);
+                transform: rotate(-32deg);
     }
 
     9% {
-        transform: rotate(30deg);
+        -webkit-transform: rotate(30deg);
+                transform: rotate(30deg);
     }
 
     11% {
-        transform: rotate(-28deg);
+        -webkit-transform: rotate(-28deg);
+                transform: rotate(-28deg);
     }
 
     13% {
-        transform: rotate(26deg);
+        -webkit-transform: rotate(26deg);
+                transform: rotate(26deg);
     }
 
     15% {
-        transform: rotate(-24deg);
+        -webkit-transform: rotate(-24deg);
+                transform: rotate(-24deg);
     }
 
     17% {
-        transform: rotate(22deg);
+        -webkit-transform: rotate(22deg);
+                transform: rotate(22deg);
     }
 
     19% {
-        transform: rotate(-20deg);
+        -webkit-transform: rotate(-20deg);
+                transform: rotate(-20deg);
     }
 
     21% {
-        transform: rotate(18deg);
+        -webkit-transform: rotate(18deg);
+                transform: rotate(18deg);
     }
 
     23% {
-        transform: rotate(-16deg);
+        -webkit-transform: rotate(-16deg);
+                transform: rotate(-16deg);
     }
 
     25% {
-        transform: rotate(14deg);
+        -webkit-transform: rotate(14deg);
+                transform: rotate(14deg);
     }
 
     27% {
-        transform: rotate(-12deg);
+        -webkit-transform: rotate(-12deg);
+                transform: rotate(-12deg);
     }
 
     29% {
-        transform: rotate(10deg);
+        -webkit-transform: rotate(10deg);
+                transform: rotate(10deg);
     }
 
     31% {
-        transform: rotate(-8deg);
+        -webkit-transform: rotate(-8deg);
+                transform: rotate(-8deg);
     }
 
     33% {
-        transform: rotate(6deg);
+        -webkit-transform: rotate(6deg);
+                transform: rotate(6deg);
     }
 
     35% {
-        transform: rotate(-4deg);
+        -webkit-transform: rotate(-4deg);
+                transform: rotate(-4deg);
     }
 
     37% {
-        transform: rotate(2deg);
+        -webkit-transform: rotate(2deg);
+                transform: rotate(2deg);
     }
 
     39% {
-        transform: rotate(-1deg);
+        -webkit-transform: rotate(-1deg);
+                transform: rotate(-1deg);
     }
 
     41% {
-        transform: rotate(1deg);
+        -webkit-transform: rotate(1deg);
+                transform: rotate(1deg);
     }
 
     43% {
-        transform: rotate(0);
+        -webkit-transform: rotate(0);
+                transform: rotate(0);
     }
 
     100% {
-        transform: rotate(0);
+        -webkit-transform: rotate(0);
+                transform: rotate(0);
     }
 }
 
@@ -619,6 +574,8 @@ https://codepen.io/fazlurr/pen/xeXpqx
 #footer a {
     text-decoration: none;
     color: var(--white);
+    -webkit-transition: all ease-in-out .4s;
+    -o-transition: all ease-in-out .4s;
     transition: all ease-in-out .4s;
 }
 
@@ -642,12 +599,16 @@ https://codepen.io/fazlurr/pen/xeXpqx
 }
 
 #footer .social-icons i {
+    -webkit-transition: all ease-in-out .4s;
+    -o-transition: all ease-in-out .4s;
     transition: all ease-in-out .4s;
 }
 
 #footer .social-icons i:hover {
     color: var(--teal);
-    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+            transform: scale(1.2);
 }
 
 /*
@@ -665,6 +626,8 @@ See media queries for other screen sizes.
     background-color: var(--white);
     color: var(--orange);
     border: 1px solid var(--orange);
+    -webkit-transition: all ease-in-out .4s;
+    -o-transition: all ease-in-out .4s;
     transition: all ease-in-out .4s;
 }
 
@@ -677,6 +640,8 @@ See media queries for other screen sizes.
     background-color: var(--white);
     color: var(--blue);
     border: 1px solid var(--blue);
+    -webkit-transition: all ease-in-out .4s;
+    -o-transition: all ease-in-out .4s;
     transition: all ease-in-out .4s;
 }
 
@@ -691,6 +656,8 @@ See media queries for other screen sizes.
     background-color: var(--white);
     color: var(--cta-teal);
     border: 3px solid var(--cta-teal);
+    -webkit-transition: all ease-in-out .4s;
+    -o-transition: all ease-in-out .4s;
     transition: all ease-in-out .4s;
 }
 
@@ -703,6 +670,8 @@ See media queries for other screen sizes.
     background-color: var(--white);
     color: var(--cta-teal);
     border: 3px solid var(--cta-teal);
+    -webkit-transition: all ease-in-out .4s;
+    -o-transition: all ease-in-out .4s;
     transition: all ease-in-out .4s;
 }
 
@@ -718,6 +687,8 @@ See media queries for other screen sizes.
     background-color: var(--white);
     color: var(--cta-orange) !important;
     border: 3px solid var(--cta-orange);
+    -webkit-transition: all ease-in-out .4s;
+    -o-transition: all ease-in-out .4s;
     transition: all ease-in-out .4s;
 }
 
@@ -790,6 +761,8 @@ Header height 100% vh minus height of the navbar.
     background-color: var(--white);
     margin: 3rem auto 1.6rem auto;
     padding: .7rem;
+    -webkit-transition: all ease-in-out .4s;
+    -o-transition: all ease-in-out .4s;
     transition: all ease-in-out .4s;
     position: relative;
 }
@@ -859,6 +832,8 @@ https://stackoverflow.com/questions/18531959/how-to-create-triangle-shape-in-the
 .post-card-link {
     text-decoration: none;
     color: var(--cta-teal);
+    -webkit-transition: all ease-in-out .4s;
+    -o-transition: all ease-in-out .4s;
     transition: all ease-in-out .4s;
 }
 
@@ -904,6 +879,8 @@ https://stackoverflow.com/questions/18531959/how-to-create-triangle-shape-in-the
     position: absolute;
     left: 29px;
     top: 0;
+    -webkit-transition: all ease-in-out .4s;
+    -o-transition: all ease-in-out .4s;
     transition: all ease-in-out .4s;
 }
 
@@ -944,6 +921,8 @@ https://stackoverflow.com/questions/18531959/how-to-create-triangle-shape-in-the
     display: inline-block;
     background-color: var(--pink);
     padding: 7px 15px;
+    -webkit-transition: all ease-in-out .4s;
+    -o-transition: all ease-in-out .4s;
     transition: all ease-in-out .4s;
 }
 
@@ -1019,6 +998,8 @@ Fluid width video css from https://css-tricks.com/fluid-width-video/
 .edit-btn {
     color: var(--grey);
     font-size: 1.4rem;
+    -webkit-transition: all ease-in-out .4s;
+    -o-transition: all ease-in-out .4s;
     transition: all ease-in-out .4s;
 }
 
@@ -1038,6 +1019,8 @@ Fluid width video css from https://css-tricks.com/fluid-width-video/
 .author>a {
     color: var(--cta-teal);
     text-decoration: none;
+    -webkit-transition: all ease-in-out .4s;
+    -o-transition: all ease-in-out .4s;
     transition: all ease-in-out .4s;
 }
 
@@ -1057,6 +1040,8 @@ Fluid width video css from https://css-tricks.com/fluid-width-video/
 .post-icon i {
     color: var(--cta-blue);
     font-size: 1.5rem;
+    -webkit-transition: all ease-in-out .4s;
+    -o-transition: all ease-in-out .4s;
     transition: all ease-in-out .4s;
 }
 
@@ -1158,6 +1143,8 @@ Fluid width video css from https://css-tricks.com/fluid-width-video/
 .post-image {
     width: 100%;
     margin-top: 1.5rem;
+    -webkit-transition: all ease-in-out .4s;
+    -o-transition: all ease-in-out .4s;
     transition: all ease-in-out .4s;
 }
 
@@ -1212,6 +1199,8 @@ figure figcaption {
     /* position: absolute;
     right: 0;
     bottom: 0; */
+    -webkit-transition: all ease-in-out .4s;
+    -o-transition: all ease-in-out .4s;
     transition: all ease-in-out .4s;
 }
 
@@ -1247,6 +1236,8 @@ figure figcaption {
 #profile-pg .author-social-icons i {
     font-size: 26px;
     color: var(--navy);
+    -webkit-transition: all ease-in-out .4s;
+    -o-transition: all ease-in-out .4s;
     transition: all ease-in-out .4s;
     margin: 0 .5rem;
 }
@@ -1267,7 +1258,8 @@ on the post_detail page.
     margin-bottom: 1.6rem;
     z-index: 3;
     border-left: 2px dashed var(--grey);
-    clip-path: inset(-25px -25px -25px 0px);
+    -webkit-clip-path: inset(-25px -25px -25px 0px);
+            clip-path: inset(-25px -25px -25px 0px);
     padding: 1rem;
     position: relative;
 }
@@ -1361,6 +1353,8 @@ on the post_detail page.
 
 #edit-profile>a {
     color: var(--grey);
+    -webkit-transition: all ease-in-out .4s;
+    -o-transition: all ease-in-out .4s;
     transition: all ease-in-out .4s;
 }
 
@@ -1411,6 +1405,8 @@ screens. Media query adjusts size for small screens and up
 #dashboard a,
 #dashboard .deleteBtn>i {
     color: var(--cta-teal);
+    -webkit-transition: all ease-in-out .4s;
+    -o-transition: all ease-in-out .4s;
     transition: all ease-in-out .4s;
     text-decoration: none;
 }
@@ -1469,7 +1465,11 @@ are still set to bootstrap 4)
     -moz-appearance: none;
     appearance: none;
     border-radius: .25rem;
+    -webkit-transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+    transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+    -o-transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
 }
 
 #edit-post-form input[type=file],
@@ -1498,7 +1498,8 @@ together with js code in responsiveEditor.js file.
 }
 
 #edit-post-form input[type=checkbox] {
-    appearance: auto;
+    -moz-appearance: auto;
+         appearance: auto;
     -webkit-appearance: auto;
     width: auto;
     display: inline-block;
