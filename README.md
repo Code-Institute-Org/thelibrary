@@ -395,6 +395,12 @@ def get(self, *args, **kwargs):
         return redirect('home')
 ```
 
+4. Running collectstatic for changes to CSS took an extremely long time due to the size of the ckeditor package. 
+- Adjusting the collectstatic command to ignore these files made the process much faster
+```
+python manage.py collectstatic -i ckeditor -i admin
+```
+
 ## Deployment
 
 ### Run this project locally
