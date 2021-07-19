@@ -61,10 +61,10 @@
                     line separated by a | 
                 -->
                 <span class="d-none d-lg-inline post-info-separator">|</span><br class="d-lg-none">
-                Published: <time>{{ post.created_on|date }}</time>
+                Published: {{ post.created_on|date }}
                 {% if post.updated_on %}
                 <span class="d-none d-lg-inline post-info-separator">|</span><br class="d-lg-none">
-                Updated: <time>{{ post.updated_on|date }}</time>
+                Updated: {{ post.updated_on|date }}
                 {% endif %}
             </div>
 
@@ -155,7 +155,7 @@
                     <div id="video-wrapper">
                         <iframe 
                         src="https://www.youtube.com/embed/{{ youtube_id }}" 
-                        title="YouTube video player" frameborder="0" 
+                        title="YouTube video player" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                         allowfullscreen></iframe>
                     </div>
@@ -326,7 +326,7 @@
                                         <div class="post-card-body">
                                             <div class="text-center">
                                                 {% if post.author.user.first_name and post.author.user.last_name %}
-                                                    <h3 class="mt--1">{{ post.author.user.first_name }} {{ post.author.user.last_name }}</h3>
+                                                    <p class="mt--1"><strong>{{ post.author.user.first_name }} {{ post.author.user.last_name }}</strong></p>
                                                 {% endif %}
                                                 <p class="post-card-summary">
                                                     {% if post.author.bio %}
