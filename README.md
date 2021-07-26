@@ -401,6 +401,11 @@ def get(self, *args, **kwargs):
 python manage.py collectstatic -i ckeditor -i admin
 ```
 
+### Unsolved bugs
+1. **Querying database with text based search produces duplicate results when referencing ManyToMany fields**
+- Initially I wanted text based search to also search the category and tags assigned to a post, however this caused results to get duplicated. According to the Django Documentation this is a known issue. I tried several fixes suggested on Stack Overflow, but so far have been unable to find a solution that works.
+- For the time being this feature has been rolled back until I have more time to dig into it. So for now text searches use the post title, summary and body for search, but does not include the category or tags fields.
+
 ### Validator testing
 
 **Social Media testing**

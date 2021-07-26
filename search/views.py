@@ -39,10 +39,6 @@ class SearchResultsView(ListView):
                 "summary", weight="B"
             ) + SearchVector(
                 "body", weight="C"
-            ) + SearchVector(
-                "category", weight="D"
-            ) + SearchVector(
-                "tags", weight="D"
             )
             search_query = SearchQuery(q)
             queryset = Post.objects.annotate(
@@ -63,10 +59,6 @@ class SearchResultsView(ListView):
                 "summary", weight="B"
             ) + SearchVector(
                 "body", weight="C"
-            ) + SearchVector(
-                "category", weight="D"
-            ) + SearchVector(
-                "tags", weight="D"
             )
             search_query = SearchQuery(q)
             queryset = Post.objects.annotate(
