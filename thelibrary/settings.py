@@ -50,6 +50,9 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
 
+    # postgres search
+    'django.contrib.postgres',
+
     # third party apps
     'ckeditor',  # Rich Text Editor for creating posts
     'storages',
