@@ -401,6 +401,12 @@ def get(self, *args, **kwargs):
 python manage.py collectstatic -i ckeditor -i admin
 ```
 
+### Validator testing
+
+**Social Media testing**
+- [Twitter validator](https://dev.twitter.com/docs/cards/validation/validator)
+- [Facebook debugger](https://developers.facebook.com/tools/debug)
+
 ## Deployment
 
 ### Run this project locally
