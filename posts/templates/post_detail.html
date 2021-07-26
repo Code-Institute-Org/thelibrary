@@ -1,15 +1,32 @@
 {% extends 'base.html' %}{% load static %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
 {% endblock %}
 
 {% block extra_title %}{{ post.title }}{% endblock %}
 
 {% block extra_meta %}
+
+<!-- Standard meta data -->
 <meta name="description" content="{{ post.summary }}">
 <meta name="keywords" content="{{ post.category }}{% for tag in post.tags.all %}, {{ tag }}{% endfor %}">
 <meta name="author" content="{{ author_name }}">
+
+<!-- Facebook meta data -->
+<!-- <meta property="og:url" content="ADD THIS WHEN PRODUCTION URL IS KNOWN"> -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="{{ post.title }}">
+<meta property="og:description" content="{{ post.summary }}">
+<!-- <meta property="og:image" content="CI BRAND IMAGE URL HERE"> -->
+
+<!-- Twitter meta data -->
+<meta name="twitter:title" content="{{ post.title }}">
+<meta name="twitter:description" content="{{ post.summary }}">
+<meta name="twitter:site" content="@codeinstitute">
+<!-- <meta name="twitter:image" content="CI BRAND IMAGE URL HERE"> -->
+<meta name="twitter:card" content="summary">
+
 {% endblock %}
 
 {% block content %}
