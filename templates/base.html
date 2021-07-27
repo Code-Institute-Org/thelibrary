@@ -40,6 +40,12 @@
         <div class="loader"></div>
     </div>
     <div id="footer-push-down">
+        {% if not request.user.is_authenticated %}
+        <div id="sales-banner" class="alert alert-warning alert-dismissible fade show text-center mb-0" role="alert">
+            <strong>Sales funnel</strong> content here linking back to main marketing website <a href="https://codeinstitute.net/" target="_blank">Code Institute</a>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endif %}
 
         {% include 'components/navbar.html' %}
 

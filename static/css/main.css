@@ -168,6 +168,21 @@ a:hover {
     margin-top: -10px;
 }
 
+/* ---------------------
+    Sales banner
+--------------------- */
+
+#sales-banner {
+    background-color: var(--cta-orange);
+    color: white;
+}
+
+#sales-banner a {
+    color: white;
+    font-weight: 500;
+    text-decoration: underline;
+}
+
 
 /* ---------------------
     Navbar
