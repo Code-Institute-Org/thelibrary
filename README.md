@@ -76,8 +76,13 @@ The Library meets these needs, because
 - Strengthen position of CI within the coding bootcamp market
 - Contribute to sales funnel enhancements
 - Contribute to CI brand positioning
-- Improve motivation, engagement and gamefication of the student experience
+- Improve motivation, engagement and gamification of the student experience
 
+The Library meets these needs, because
+- The format of useful posts filled with resources will generate strong SEO results, leading more people who want to learn to code towards a Code Institute owned website. 
+- The content within the website will demonstrate the strength of our student community and staff support beyond the course materials themselves. Allowing potential new students to get a glimpse of the value provided by some of our student supports.
+- The site provides a place for students who create supporting content to show off what they have created. These links can be shared with potential employers, as well as friends and colleagues who are interested in learning to code.
+- Gamification with the use of badges to reward prolific authors encourages engagement and recognizes their contributions.
 ### User Stories
 
 #### CI students
