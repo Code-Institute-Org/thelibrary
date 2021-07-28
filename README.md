@@ -2,6 +2,8 @@
 
 The Slack room for our Code Institute community of students, alumni and staff contains a wealth of useful information, tips, advice and resources created by the community for CI students. But Slack doesn't provide a good place to store, sort, search, filter and categorize the content produced by our community members. This library was created to provide a central hub of resources to support our students, with all the search and filtering functionality they need to make it accessible and useful.
 
+The Library also has the potential to improve the online reach of Code Institute marketing strategies, generate new sales leads, and demonstrate the thriving student support community available on Code Institute courses.
+
 <div align="center">
     <img src="https://i.ibb.co/m9vV9Pp/home.png" alt="The Library Home page"/>
 </div>
@@ -9,6 +11,7 @@ The Slack room for our Code Institute community of students, alumni and staff co
 ## Table of Contents
 1. [UX](#ux)
     - [User Goals](#user-goals)
+    - [Business Goals](#business-goals)
     - [User Stories](#user-stories)
         - [CI students](#ci-students)
         - [Authors](#authors)
@@ -55,18 +58,25 @@ The central target users for The Library are:
 - Potential students who want to see what the CI community has to offer
 - Code Institute staff who want to share useful resources outside of the course content
 
-User goals include:
+**User goals include:**
 - Find posts relevant to an issue I am currently facing with my project
 - Find extra resources to support my research and debugging
 - Learn more about a certain coding subject
 - Be able to navigate The Library easily to find what I need
 - Be able to create new posts in the Library
 
-The Library is a great way to meet these needs, because
+The Library meets these needs, because
 - The website has been carefully designs with the needs of the community in mind. As the developer was herself once a CI student who created supporting content, and understands the pitfalls of the current slack pinned posts approach to the problem The Library solves.
 - The navigation fits with conventions of well laid out software, emulating the Google simple icon based navigation approach.
 - All the information a reader needs is easy to find and well laid out.
 - Post information can be searched using keywords, categories and tags, and can be filtered by newest, oldest, popularity and category. Giving users multiple ways to find what they need within the application's database.
+
+**Business goals include:**
+- Increase leads that contribute to company growth
+- Strengthen position of CI within the coding bootcamp market
+- Contribute to sales funnel enhancements
+- Contribute to CI brand positioning
+- Improve motivation, engagement and gamefication of the student experience
 
 ### User Stories
 
@@ -551,7 +561,8 @@ Instructions on how to do these steps can be found in the [heroku devcenter docu
 - Code to handle pagination in function based views from [simpleisbetterthancomplex.com](https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html)
 - Code to create triangle in post card corners for course indication from [This stack overflow post](https://stackoverflow.com/questions/18531959/how-to-create-triangle-shape-in-the-top-right-angle-of-another-div-to-look-divid)
 - Loading spinner code from [W3Schools](https://www.w3schools.com/howto/howto_css_loader.asp) 
-- Django ranked text search for postgres tutorial from [testdriven.io ](https://testdriven.io/blog/django-search/)
+- Django ranked text search for postgres tutorial from [testdriven.io](https://testdriven.io/blog/django-search/)
+- JavaScript code to set expiry on localStorage data from [www.sohamkamani.com](https://www.sohamkamani.com/blog/javascript-localstorage-with-ttl-expiry/#full-example)
 
 ### Images
 - Library background image by [mentatdgt on Pexels.com](https://www.pexels.com/photo/library-photo-1319854/)
