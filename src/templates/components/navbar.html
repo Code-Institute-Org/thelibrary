@@ -38,11 +38,13 @@
                             </li>
                             
                             {% for category in categories_nav %}
-                                {% if category.posts_to_category.count > 0 %}
-                                <li>
-                                    <a class="dropdown-item"
-                                        href="{% url 'filtered_posts' %}?category={{category.pk}}&sort_method=-created_on">{{ category }}</a>
-                                </li>
+                                {% if category.posts_to_category %}
+                                    {% if category.posts_to_category.count > 0 %}
+                                    <li>
+                                        <a class="dropdown-item"
+                                            href="{% url 'filtered_posts' %}?category={{category.pk}}&sort_method=-created_on">{{ category }}</a>
+                                    </li>
+                                    {% endif %}
                                 {% endif %}
                             {% endfor %}
                         </ul>
