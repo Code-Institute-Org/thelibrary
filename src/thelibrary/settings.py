@@ -10,13 +10,15 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
-from pathlib import Path
 
 from django.core.management.utils import get_random_secret_key
 import dj_database_url
 
-if os.path.exists('env.py'):
-    import env
+import sentry_sdk  # noqa: F401, E402
+from sentry_sdk.integrations.django import DjangoIntegration  # noqa: F401,E402
+
+if os.getenv('ENV_FILE'):
+    load_dotenv(os.getenv('ENV_FILE'))
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -30,10 +32,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('SECRET', get_random_secret_key())
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if 'DEV' in os.environ:
-    DEBUG = True
-else:
-    DEBUG = True  # set to False before handing over
+DEBUG = os.environ.get("DEBUG") == "True"
 
 ALLOWED_HOSTS = [os.environ.get('HOSTNAME')]
 
@@ -217,3 +216,9 @@ if 'USE_AWS' in os.environ:
     # Override static and media URLs in production
     STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/"
     MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/"
+
+if os.environ.get("SENTRY_DSN"):
+    sentry_sdk.init(
+        dsn=os.environ.get("SENTRY_DSN"),
+        integrations=[DjangoIntegration()]
+    )
