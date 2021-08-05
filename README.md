@@ -479,7 +479,7 @@ import os
 
 os.environ["SECRET"] = "<enter key here>"
 os.environ["DEV"] = "1"
-os.environ["HOSTNAME"] = "<enter hostname here>"
+os.environ["ALLOWED_HOST"] = "<enter hostname here>"
 os.environ["DATABASE_URL"] = "<enter url here>"
 os.environ["USE_AWS"] = "True"
 os.environ["AWS_STORAGE_BUCKET_NAME"] = "<enter bucket name here>"
@@ -488,7 +488,7 @@ os.environ["AWS_ACCESS_KEY_ID"] = '<enter key here>'
 os.environ["AWS_SECRET_ACCESS_KEY"] = '<enter key here>'
 ```
 
-- `HOSTNAME` should be the local address for the site when running within your own IDE.
+- `ALLOWED_HOST` should be the local address for the site when running within your own IDE.
 - `DEV` environment variable is set only within the development environment, it does not exist in the deployed version, making it possible to have different settings for the two environments. For example setting DEBUG to True only when working in development and not on the deployed site.
 
 8. Migrate the admin panel models to create your database template with the terminal command
@@ -539,7 +539,7 @@ AWS_S3_REGION_NAME | `<your region name>`
 AWS_SECRET_ACCESS_KEY | `<your aws access key>`
 AWS_STORAGE_BUCKET_NAME | `<your aws bucket name>`
 DATABASE_URL | `<your postgres database url>`
-HOSTNAME | `<your heroku app hostname>`
+ALLOWED_HOST | `<your heroku app hostname>`
 SECRET | `<your secret key>`
 USE_AWS | `True`
 

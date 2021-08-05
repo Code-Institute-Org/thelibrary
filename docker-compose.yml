@@ -7,9 +7,6 @@ services:
       - "8000:8000"
     environment:
         - ENV_FILE=/thelibrary/dev_secrets.env
-        - SECRET=&ft+Us&.MdEy#,g1pd#_9k:95*6<
-        - DATABASE_URL=postgres://thelibraryuser:thelibrarypsw@postgres:5432/thelibrarydb
-        - HOSTNAME=8000-aqua-barracuda-wf8w3t2r.ws-eu14.gitpod.io
     entrypoint: ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
     volumes:
       - ./src/:/thelibrary/

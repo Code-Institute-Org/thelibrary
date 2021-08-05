@@ -13,6 +13,7 @@ import os
 
 from django.core.management.utils import get_random_secret_key
 import dj_database_url
+from dotenv import load_dotenv  # noqa: F401, E402
 
 import sentry_sdk  # noqa: F401, E402
 from sentry_sdk.integrations.django import DjangoIntegration  # noqa: F401,E402
@@ -34,8 +35,7 @@ SECRET_KEY = os.environ.get('SECRET', get_random_secret_key())
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG") == "True"
 
-ALLOWED_HOSTS = [os.environ.get('HOSTNAME')]
-
+ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOST')]
 
 # Application definition
 
