@@ -28,6 +28,10 @@
 <meta name="twitter:image" content="https://codeinstitute.net/wp-content/uploads/2020/12/5day_graphics.png">
 <meta name="twitter:card" content="summary_large_image">
 
+{% if post.author.twitter %}
+<meta name="twitter:creator" content="{{ post.author.twitter }}">
+{% endif %}
+
 {% endblock %}
 
 {% block content %}
