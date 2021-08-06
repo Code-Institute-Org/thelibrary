@@ -1,0 +1,1362 @@
+[
+    {
+        "model": "posts.posttag",
+        "pk": 1,
+        "fields": {
+            "name": "bootstrap"
+        }
+    },
+    {
+        "model": "posts.posttag",
+        "pk": 2,
+        "fields": {
+            "name": "html"
+        }
+    },
+    {
+        "model": "posts.posttag",
+        "pk": 3,
+        "fields": {
+            "name": "css"
+        }
+    },
+    {
+        "model": "posts.posttag",
+        "pk": 4,
+        "fields": {
+            "name": "javascript"
+        }
+    },
+    {
+        "model": "posts.posttag",
+        "pk": 5,
+        "fields": {
+            "name": "projects"
+        }
+    },
+    {
+        "model": "posts.posttag",
+        "pk": 6,
+        "fields": {
+            "name": "gitpod"
+        }
+    },
+    {
+        "model": "posts.posttag",
+        "pk": 7,
+        "fields": {
+            "name": "gitPush"
+        }
+    },
+    {
+        "model": "posts.posttag",
+        "pk": 8,
+        "fields": {
+            "name": "CMD"
+        }
+    },
+    {
+        "model": "posts.posttag",
+        "pk": 9,
+        "fields": {
+            "name": "multidimensionalArray"
+        }
+    },
+    {
+        "model": "posts.posttag",
+        "pk": 10,
+        "fields": {
+            "name": "challenge"
+        }
+    },
+    {
+        "model": "posts.posttag",
+        "pk": 11,
+        "fields": {
+            "name": "troubleshooting"
+        }
+    },
+    {
+        "model": "posts.posttag",
+        "pk": 12,
+        "fields": {
+            "name": "debugging"
+        }
+    },
+    {
+        "model": "posts.posttag",
+        "pk": 13,
+        "fields": {
+            "name": "problemSolving"
+        }
+    },
+    {
+        "model": "posts.posttag",
+        "pk": 14,
+        "fields": {
+            "name": "tips"
+        }
+    },
+    {
+        "model": "posts.posttag",
+        "pk": 15,
+        "fields": {
+            "name": "advice"
+        }
+    },
+    {
+        "model": "posts.posttag",
+        "pk": 16,
+        "fields": {
+            "name": "devtools"
+        }
+    },
+    {
+        "model": "posts.posttag",
+        "pk": 17,
+        "fields": {
+            "name": "careers"
+        }
+    },
+    {
+        "model": "posts.posttag",
+        "pk": 18,
+        "fields": {
+            "name": "mongoDB"
+        }
+    },
+    {
+        "model": "posts.posttag",
+        "pk": 19,
+        "fields": {
+            "name": "heroku"
+        }
+    },
+    {
+        "model": "posts.posttag",
+        "pk": 20,
+        "fields": {
+            "name": "deployment"
+        }
+    },
+    {
+        "model": "posts.posttag",
+        "pk": 21,
+        "fields": {
+            "name": "environmentVariables"
+        }
+    },
+    {
+        "model": "posts.posttag",
+        "pk": 22,
+        "fields": {
+            "name": "github"
+        }
+    },
+    {
+        "model": "posts.posttag",
+        "pk": 23,
+        "fields": {
+            "name": "git"
+        }
+    },
+    {
+        "model": "posts.posttag",
+        "pk": 24,
+        "fields": {
+            "name": "gitBranches"
+        }
+    },
+    {
+        "model": "posts.posttag",
+        "pk": 25,
+        "fields": {
+            "name": "versionControl"
+        }
+    },
+    {
+        "model": "posts.posttag",
+        "pk": 26,
+        "fields": {
+            "name": "video"
+        }
+    },
+    {
+        "model": "posts.posttag",
+        "pk": 27,
+        "fields": {
+            "name": "responsiveDesign"
+        }
+    },
+    {
+        "model": "posts.posttag",
+        "pk": 28,
+        "fields": {
+            "name": "README"
+        }
+    },
+    {
+        "model": "posts.posttag",
+        "pk": 29,
+        "fields": {
+            "name": "documentation"
+        }
+    },
+    {
+        "model": "posts.posttag",
+        "pk": 30,
+        "fields": {
+            "name": "layout"
+        }
+    },
+    {
+        "model": "posts.posttag",
+        "pk": 31,
+        "fields": {
+            "name": "emmet"
+        }
+    },
+    {
+        "model": "posts.posttag",
+        "pk": 32,
+        "fields": {
+            "name": "markdown"
+        }
+    },
+    {
+        "model": "posts.posttag",
+        "pk": 33,
+        "fields": {
+            "name": "linter"
+        }
+    },
+    {
+        "model": "posts.posttag",
+        "pk": 34,
+        "fields": {
+            "name": "python"
+        }
+    },
+    {
+        "model": "posts.posttag",
+        "pk": 35,
+        "fields": {
+            "name": "additionalReading"
+        }
+    },
+    {
+        "model": "posts.posttag",
+        "pk": 36,
+        "fields": {
+            "name": "resources"
+        }
+    },
+    {
+        "model": "posts.postcategory",
+        "pk": 1,
+        "fields": {
+            "name": "HTML"
+        }
+    },
+    {
+        "model": "posts.postcategory",
+        "pk": 3,
+        "fields": {
+            "name": "CSS"
+        }
+    },
+    {
+        "model": "posts.postcategory",
+        "pk": 4,
+        "fields": {
+            "name": "JavaScript"
+        }
+    },
+    {
+        "model": "posts.postcategory",
+        "pk": 5,
+        "fields": {
+            "name": "Python"
+        }
+    },
+    {
+        "model": "posts.postcategory",
+        "pk": 6,
+        "fields": {
+            "name": "Django"
+        }
+    },
+    {
+        "model": "posts.postcategory",
+        "pk": 7,
+        "fields": {
+            "name": "Flask"
+        }
+    },
+    {
+        "model": "posts.postcategory",
+        "pk": 8,
+        "fields": {
+            "name": "Bootstrap"
+        }
+    },
+    {
+        "model": "posts.postcategory",
+        "pk": 9,
+        "fields": {
+            "name": "IDE"
+        }
+    },
+    {
+        "model": "posts.postcategory",
+        "pk": 10,
+        "fields": {
+            "name": "User Experience"
+        }
+    },
+    {
+        "model": "posts.postcategory",
+        "pk": 11,
+        "fields": {
+            "name": "Automation"
+        }
+    },
+    {
+        "model": "posts.postcategory",
+        "pk": 12,
+        "fields": {
+            "name": "Agile"
+        }
+    },
+    {
+        "model": "posts.postcategory",
+        "pk": 13,
+        "fields": {
+            "name": "jQuery"
+        }
+    },
+    {
+        "model": "posts.postcategory",
+        "pk": 14,
+        "fields": {
+            "name": "APIs"
+        }
+    },
+    {
+        "model": "posts.postcategory",
+        "pk": 15,
+        "fields": {
+            "name": "Jest"
+        }
+    },
+    {
+        "model": "posts.postcategory",
+        "pk": 16,
+        "fields": {
+            "name": "GitHub Pages"
+        }
+    },
+    {
+        "model": "posts.postcategory",
+        "pk": 17,
+        "fields": {
+            "name": "Heroku"
+        }
+    },
+    {
+        "model": "posts.postcategory",
+        "pk": 18,
+        "fields": {
+            "name": "MongoDB"
+        }
+    },
+    {
+        "model": "posts.postcategory",
+        "pk": 19,
+        "fields": {
+            "name": "Git & GitHub"
+        }
+    },
+    {
+        "model": "posts.postcategory",
+        "pk": 20,
+        "fields": {
+            "name": "Project 1"
+        }
+    },
+    {
+        "model": "posts.postcategory",
+        "pk": 21,
+        "fields": {
+            "name": "Project 2"
+        }
+    },
+    {
+        "model": "posts.postcategory",
+        "pk": 22,
+        "fields": {
+            "name": "Project 3"
+        }
+    },
+    {
+        "model": "posts.postcategory",
+        "pk": 23,
+        "fields": {
+            "name": "Project 4"
+        }
+    },
+    {
+        "model": "posts.postcategory",
+        "pk": 24,
+        "fields": {
+            "name": "SEO"
+        }
+    },
+    {
+        "model": "posts.postcategory",
+        "pk": 25,
+        "fields": {
+            "name": "Web Marketing"
+        }
+    },
+    {
+        "model": "posts.postcategory",
+        "pk": 26,
+        "fields": {
+            "name": "React"
+        }
+    },
+    {
+        "model": "posts.postcategory",
+        "pk": 27,
+        "fields": {
+            "name": "Project 5: E-ComApps"
+        }
+    },
+    {
+        "model": "posts.postcategory",
+        "pk": 28,
+        "fields": {
+            "name": "Troubleshooting"
+        }
+    },
+    {
+        "model": "posts.postcategory",
+        "pk": 29,
+        "fields": {
+            "name": "Careers"
+        }
+    },
+    {
+        "model": "posts.postcategory",
+        "pk": 30,
+        "fields": {
+            "name": "README.md"
+        }
+    },
+    {
+        "model": "posts.postcategory",
+        "pk": 31,
+        "fields": {
+            "name": "Resources"
+        }
+    },
+    {
+        "model": "posts.postflag",
+        "pk": 1,
+        "fields": {
+            "flagger": 1,
+            "reason": "Outdated content",
+            "message": null
+        }
+    },
+    {
+        "model": "posts.post",
+        "pk": 8,
+        "fields": {
+            "title": "Gitpod not letting you push to github?",
+            "summary": "Getting an error when you try to push to GitHub to GitPod?",
+            "slug": "gitpod-not-letting-you-push-to-github",
+            "body": "<p>Check this page on Gitpod:&nbsp;<a href=\"https://gitpod.io/access-control/\" rel=\"noopener noreferrer\" target=\"_blank\">https://gitpod.io/access-control/</a></p>\r\n\r\n<p>Ensure that the first four check boxes under GitHub are checked:</p>\r\n\r\n<p>If they are not, check them. Click Update, and try pushing again.</p>\r\n\r\n<p>&nbsp;</p>",
+            "author": 1,
+            "created_on": "2021-06-15T19:05:00.807Z",
+            "updated_on": "2021-06-15T19:14:00.078Z",
+            "status": "Published",
+            "mod_message": "",
+            "moderator": null,
+            "category": 9,
+            "image_1": "images/posts/image_15.png",
+            "image_2": "",
+            "image_3": "",
+            "image_4": "",
+            "flag": null,
+            "editors_note": null,
+            "slack_channel": 1,
+            "course": 3,
+            "youtube": null,
+            "tags": [
+                8,
+                6,
+                7
+            ],
+            "likes": [
+                9
+            ]
+        }
+    },
+    {
+        "model": "posts.post",
+        "pk": 9,
+        "fields": {
+            "title": "Multidimentional arrays Challenge hint",
+            "summary": "Deconstructing the multidimensional arrays challenge, piece by piece",
+            "slug": "multidimentional-arrays-challenge-hint",
+            "body": "<p>Something important to understand about multidimensional arrays, is that a single index in one array, can hold another array as a value.</p>\r\n\r\n<p>So for example in this code below:</p>\r\n\r\n<p><code>let myArray = [&#39;A&#39;, &#39;B&#39;, [1, 2, 3], &#39;C&#39;]</code></p>\r\n\r\n<p>The value at the 3rd index of myArray is another array with the value of <code>[1, 2, 3]</code></p>\r\n\r\n<p>To get the value of that whole smaller array out of <code>myArray</code>, you would use the 3rd index to get it. And as indexes start at 0, the 3rd value in <code>myArray</code> would be accessed using this:</p>\r\n\r\n<p><code>let myNewVar = myArray[2]</code></p>\r\n\r\n<p>Then <code>myNewVar</code> would hold the value of <code>[1, 2, 3]</code></p>\r\n\r\n<p>As the 3rd value in <code>myArray</code> is also an array, then in order to get one single number out of the second array, you need a second index. You do this by using another <code>[ ]</code> value directly after the first.</p>\r\n\r\n<p>If you wanted to get the number 2 out of this array:</p>\r\n\r\n<p><code>let myArray = [&#39;A&#39;, &#39;B&#39;, [1, 2, 3], &#39;C&#39;] </code></p>\r\n\r\n<p>Then you need two indexes one after the other, the first for the position of the array (at the 3rd index) and then the index of the number 2 within that array, like this:</p>\r\n\r\n<p><code>let myNumber = myArray<strong>[2][1]</strong></code></p>\r\n\r\n<p>Using this method, and adding more indexes to your original multidimensional array name, you can drill down into all of the arrays that are nested inside each other for this challenge.</p>\r\n\r\n<p>In the image below, <strong>I have changed up my array as an example, so I am not giving you the answer to the challenge</strong>, but it does make it easier for you to understand the logic. Each of these arrays are nested inside each other. So you need multiple indexes in order to access each array nested inside the previous one until you get to the single value you want in the last nested array.</p>\r\n\r\n<p>If I wanted <code>myVar</code> to be equal to 9, this is how I would access it:</p>",
+            "author": 1,
+            "created_on": "2021-06-15T19:27:43Z",
+            "updated_on": "2021-06-18T18:40:02.054Z",
+            "status": "Published",
+            "mod_message": "",
+            "moderator": 6,
+            "category": 4,
+            "image_1": "images/posts/image_16.png",
+            "image_2": "",
+            "image_3": "",
+            "image_4": "",
+            "flag": null,
+            "editors_note": "",
+            "slack_channel": 5,
+            "course": 3,
+            "youtube": null,
+            "tags": [
+                10,
+                4,
+                9
+            ],
+            "likes": [
+                8,
+                9
+            ]
+        }
+    },
+    {
+        "model": "posts.post",
+        "pk": 10,
+        "fields": {
+            "title": "How to ask for help in a way that will get you useful answers.",
+            "summary": "Asking for help with a dev problem is a skill all unto itself. Here are my top tips for asking good questions.",
+            "slug": "how-to-ask-for-help-in-a-way-that-will-get-you-useful-answers",
+            "body": "<p>Sometimes you have tried DevTools, Google, Stack Overflow, documentation and Rubber Ducking your code and still you don&#39;t have an answer to your problem and you need to ask for help.</p>\r\n\r\n<p>Believe it or not,&nbsp;<strong><em>asking for help with a development problem is a skill all unto itself</em></strong>. As code is so complex, a short question is rarely enough to get you a useful answer. I think of it like&nbsp;being on the phone with your doctor. If you just say &quot;I&#39;m sick, please help&quot; the doctor isn&#39;t going to have anything to go on to help you, because you didn&#39;t give them any detail about what was wrong. Likewise, asking for help with your code also requires relevant detail and explanation about what your problem is so that the community have the best chance of helping you solve it.</p>\r\n\r\n<p>Here are a few key points to include with your questions in slack:</p>\r\n\r\n<ul>\r\n\t<li><strong>What is/isn&#39;t happening?&nbsp;</strong>Say what you are trying to do, what the expected behaviour is, and say what the actual behaviour is. Say what context the problem occurs in. The more detail you can give here the better.</li>\r\n</ul>\r\n\r\n<ul>\r\n\t<li><strong>What have you already tried?</strong>&nbsp;Be detailed about this. It will save you time because others won&#39;t then go suggesting things you already tried.</li>\r\n</ul>\r\n\r\n<ul>\r\n\t<li><strong>Share your code.&nbsp;</strong>This one is important. If sharing your GitHub repository link, make sure you recently pushed your code so it is up to date. And state which files or lines of code are relevant to your question.</li>\r\n</ul>\r\n\r\n<ul>\r\n\t<li>If pasting code into slack,&nbsp;<strong>please use a code block</strong>. Click the&nbsp;<code>&lt;/&gt;</code>&nbsp;icon in the message window to do this. Code blocks are much easier to read and help speed up the debugging process.</li>\r\n</ul>\r\n\r\n<ul>\r\n\t<li><strong>If your page is deployed, share a link to it&nbsp;</strong>so others can see the problem for themselves, or inspect it with DevTools. If you are using GitPod you can also share the link you use to preview your project and it should be accessible to others while the workspace is active.</li>\r\n</ul>\r\n\r\n<ul>\r\n\t<li><strong>If you got an error, please paste it in with your question</strong>.</li>\r\n</ul>\r\n\r\n<ul>\r\n\t<li><strong>Screenshots of your workspace (or your live page if you can&#39;t share the link to it) can be helpful</strong>, they often include details that you didn&#39;t realise were important that other students can spot easily.</li>\r\n</ul>\r\n\r\n<ul>\r\n\t<li><strong>Make sure you ask your question in the right channel</strong>. Don&#39;t ask a complex question for your milestone in an Essentials channel, please ask it in the channel for the milestone or portfolio project&nbsp;you are on. You will get help faster this way.</li>\r\n</ul>\r\n\r\n<p>For more tips on writing a good question, see this excellent repo John Lynch<a href=\"https://github.com/teraspora/slack-questions-ci\" rel=\"noopener noreferrer\" target=\"_blank\">https://github.com/teraspora/slack-questions-ci</a>&nbsp;</p>",
+            "author": 1,
+            "created_on": "2021-06-15T19:39:31Z",
+            "updated_on": "2021-06-15T19:39:47Z",
+            "status": "Published",
+            "mod_message": "",
+            "moderator": 6,
+            "category": 28,
+            "image_1": "",
+            "image_2": "",
+            "image_3": "",
+            "image_4": "",
+            "flag": null,
+            "editors_note": "",
+            "slack_channel": 13,
+            "course": 3,
+            "youtube": null,
+            "tags": [
+                15,
+                12,
+                13,
+                14,
+                11
+            ],
+            "likes": [
+                6,
+                7,
+                9
+            ]
+        }
+    },
+    {
+        "model": "posts.post",
+        "pk": 11,
+        "fields": {
+            "title": "Rubber Duck Debugging",
+            "summary": "This debugging technique might make you feel like you've gone quackers, but it really does work!",
+            "slug": "rubber-duck-debugging",
+            "body": "<p>I don&#39;t know about you, but I have often worked out the solution to a problem with a project while trying to explain it to someone else. Just the process of laying out the problem clearly to someone who doesn&#39;t know my code often unlocks things I hadn&#39;t considered before.</p>\r\n\r\n<p>This is something many developers experience, and someone coined the term &quot;Rubber Ducking&quot; as a method of debugging their code by explaining it to a rubber duck that was sitting on their desk.</p>\r\n\r\n<p>Though you may feel like you have gone&nbsp;<em>quackers</em>, it is really a worthwhile thing to try when your code isn&#39;t making sense and you don&#39;t know why.</p>\r\n\r\n<p>If you find talking to an inanimate object too difficult, then I also find it helpful to write an email to a coding buddy, or writing a detailed question on Slack laying out my problem often results in an answer coming to me... or at least a good question to Google.&nbsp;</p>",
+            "author": 1,
+            "created_on": "2021-06-15T19:43:40Z",
+            "updated_on": null,
+            "status": "Published",
+            "mod_message": "",
+            "moderator": 6,
+            "category": 28,
+            "image_1": "images/posts/image_17.png",
+            "image_2": "",
+            "image_3": "",
+            "image_4": "",
+            "flag": null,
+            "editors_note": "",
+            "slack_channel": 13,
+            "course": 3,
+            "youtube": null,
+            "tags": [
+                15,
+                12,
+                13,
+                14,
+                11
+            ],
+            "likes": [
+                6,
+                7,
+                8,
+                9
+            ]
+        }
+    },
+    {
+        "model": "posts.post",
+        "pk": 12,
+        "fields": {
+            "title": "How to Google effectively",
+            "summary": "You'll never be expected to remember everything about code, so learning how to google is an essential skill!",
+            "slug": "how-to-google-effectively",
+            "body": "<p>Even senior developers Google every day. You will never be expected to remember everything about coding, there is just way too much for any human to be able to hold in their heads. Plus as tech is constantly changing, you will never ever know everything.</p>\r\n\r\n<p>It is not &quot;cheating&quot; to Google&nbsp;<strong><em>In fact, being able to Google effectively is a skill every employer will expect you to have.</em></strong></p>\r\n\r\n<p>Here are some tips to help you get useful answers from Google:</p>\r\n\r\n<ul>\r\n\t<li><strong>Start with a simple short question like you are talking to a human</strong>. Someone else has almost certainly asked this question online before, so phrasing your question like a human is more likely to pull up a link to the same question - and the answers that came with it.</li>\r\n</ul>\r\n\r\n<ul>\r\n\t<li><strong>Remember to include relevant keywords in your question.</strong>&nbsp;Things like the language, library or framework you are using like&nbsp;<em>CSS, JavaScript, Python</em>. Relevant versions like&nbsp;<em>Bootstrap 4, FontAwesome 5, Django 3&nbsp;</em>etc.</li>\r\n</ul>\r\n\r\n<ul>\r\n\t<li><strong>Did you get an error message</strong>? Great! Error messages don&#39;t generally change, so&nbsp;<em>including the error in your search will often pull up useful results.</em>&nbsp;If the error message on its own doesn&#39;t bring up enough useful posts, remember to add other relevant keywords to your question (see the previous tip), and check the error message carefully, if there is a reference to something specific to your project in it - like a file name or variable name - remove it from the error message and try searching again.</li>\r\n</ul>\r\n\r\n<ul>\r\n\t<li><strong>Filter for Stack Overflow posts only</strong>, If you are still getting a lot of results that aren&#39;t right Stack Overflow almost always has answers. It is the most popular forum for all questions related to development and a tool developers use constantly, so learning it is an essential skill in the eyes of employers.</li>\r\n</ul>\r\n\r\n<ul>\r\n\t<li><strong>Be open to digging deeper.</strong>&nbsp;The first results you get may not give you the answer even after following all the tips above, often you will need to google further terms or keywords that come up as you read through the results you get from each search.</li>\r\n</ul>\r\n\r\n<ul>\r\n\t<li><strong>Remember that Slack has search functionality too</strong>. Maybe your question is to do with a specific challenge or lesson on our course. You can use the search bar in the top right corner as your own personal course related Google.</li>\r\n</ul>",
+            "author": 1,
+            "created_on": "2021-06-16T10:41:05Z",
+            "updated_on": "2021-06-16T10:47:27Z",
+            "status": "Published",
+            "mod_message": "",
+            "moderator": null,
+            "category": 28,
+            "image_1": "",
+            "image_2": "",
+            "image_3": "",
+            "image_4": "",
+            "flag": null,
+            "editors_note": "",
+            "slack_channel": 13,
+            "course": 3,
+            "youtube": null,
+            "tags": [
+                15,
+                12,
+                13,
+                14,
+                11
+            ],
+            "likes": []
+        }
+    },
+    {
+        "model": "posts.post",
+        "pk": 17,
+        "fields": {
+            "title": "How to use DevTools to debug your code.",
+            "summary": "A skill you will be expected to have as an employed developer is the ability to use DevTools to debug your frontend code.",
+            "slug": "how-to-use-devtools-to-debug-your-code",
+            "body": "<p>DevTools has a huge range of sections to it, which may seem overwhelming to start with. It is way more than just being able to see how your site looks on different devices.</p>\r\n\r\n<ul>\r\n\t<li>You can inspect your HTML and CSS with it easily. Selecting an HTML element and then looking at the CSS section to see what CSS is being applied, where it is coming from and what might be causing conflicts that are messing with your layout.</li>\r\n\t<li>You can see if links in your HTML are not working as they should.</li>\r\n\t<li>You can see if/which your CSS or JavaScript files are being loaded.</li>\r\n\t<li>You can use the DevTools JavaScript debugger to step through your JavaScript code and look at how the program is running and what it is doing that you don&#39;t expect.</li>\r\n\t<li>You can look at session data and cookie storage (useful for final milestones)</li>\r\n\t<li>And so much more...</li>\r\n</ul>\r\n\r\n<p>Putting in the time to experiment and practise using this tool is 100% worth it, as it will save you so much time and an employer will expect you to know how to use it.Here are a couple of useful videos to demonstrate how to use DevTools to get you started with using the tool yourself:</p>\r\n\r\n<ul>\r\n\t<li>DevTools and CSS:&nbsp;<a href=\"https://www.youtube.com/watch?v=Z3HGJsNLQ1E\" rel=\"noopener noreferrer\" target=\"_blank\">https://www.youtube.com/watch?v=Z3HGJsNLQ1E</a></li>\r\n\t<li>Debugging JavaScript with DevTools:&nbsp;<a href=\"https://www.youtube.com/watch?v=AX7uybwukkk\" rel=\"noopener noreferrer\" target=\"_blank\">https://www.youtube.com/watch?v=AX7uybwukkk</a></li>\r\n</ul>",
+            "author": 1,
+            "created_on": "2021-06-16T15:11:11.877Z",
+            "updated_on": null,
+            "status": "Published",
+            "mod_message": null,
+            "moderator": null,
+            "category": 28,
+            "image_1": "",
+            "image_2": "",
+            "image_3": "",
+            "image_4": "",
+            "flag": null,
+            "editors_note": null,
+            "slack_channel": 13,
+            "course": 3,
+            "youtube": null,
+            "tags": [
+                15,
+                12,
+                16,
+                13,
+                14,
+                11
+            ],
+            "likes": []
+        }
+    },
+    {
+        "model": "posts.post",
+        "pk": 21,
+        "fields": {
+            "title": "What does it take to be a developer that employers want to hire?",
+            "summary": "Employers want to see more than just knowledge of programming languages.",
+            "slug": "what-does-it-take-to-be-a-developer-that-employers-want-to-hire",
+            "body": "<h2>What does it take to be a developer that employers want to hire?</h2>\r\n\r\n<p>You&#39;ll have some answers to this already, as you signed up for the course you already know you need to know HTML, CSS, JavaScript etc to be a developer.</p>\r\n\r\n<p>But there are some other skills you are learning here that you might not yet be consciously aware of yet.&nbsp;</p>\r\n\r\n<p><strong><em>I mean the ones you learn when something isn&#39;t working on your project</em></strong>.</p>\r\n\r\n<p>Things like:</p>\r\n\r\n<ul>\r\n\t<li><a href=\"https://ci-student-library.herokuapp.com/posts/post/17/how-to-use-devtools-to-debug-your-code/\" target=\"_blank\">How to use DevTools to debug your code</a></li>\r\n\t<li><a href=\"https://ci-student-library.herokuapp.com/posts/post/12/how-to-google-effectively/\" target=\"_blank\">How to google your bug effectively</a></li>\r\n\t<li><a href=\"https://ci-student-library.herokuapp.com/posts/post/11/rubber-duck-debugging/\" target=\"_blank\">How to rubberduck your code</a></li>\r\n\t<li><a href=\"https://ci-student-library.herokuapp.com/posts/post/10/how-to-ask-for-help-in-a-way-that-will-get-you-useful-answers/\">How to ask for help in a way that can get you useful answers</a></li>\r\n\t<li>How to read and understand Stack Overflow posts.</li>\r\n\t<li>How to keep a positive attitude to a difficult problem.</li>\r\n\t<li>(Bonus skill) How to guide other developers to learn these skills too.</li>\r\n</ul>\r\n\r\n<p>The next time something isn&#39;t working with your project, instead of seeing it as an inconvenient problem that has to be fixed as soon as possible, look at it as an opportunity to practice these skills. Because they are<strong>&nbsp;equally as important to an employer</strong>&nbsp;as your knowledge of the languages and frameworks we teach on this course, they are skills they will be looking for in your interviews, and will be ones you use for your entire career as a developer.</p>",
+            "author": 1,
+            "created_on": "2021-06-17T11:02:55Z",
+            "updated_on": null,
+            "status": "Published",
+            "mod_message": "",
+            "moderator": null,
+            "category": 29,
+            "image_1": "",
+            "image_2": "",
+            "image_3": "",
+            "image_4": "",
+            "flag": null,
+            "editors_note": "",
+            "slack_channel": 13,
+            "course": 3,
+            "youtube": null,
+            "tags": [
+                15,
+                17,
+                12,
+                13,
+                14,
+                11
+            ],
+            "likes": []
+        }
+    },
+    {
+        "model": "posts.post",
+        "pk": 22,
+        "fields": {
+            "title": "Test post for 4P course",
+            "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed mauris eget ipsum vulputate sagittis. Aliquam laoreet",
+            "slug": "test-post-for-4p-course",
+            "body": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed mauris eget ipsum vulputate sagittis. Aliquam laoreet eros eu libero lacinia, sed ornare purus semper. Integer a tincidunt ligula. Cras eu placerat eros, vel ornare ante. Nunc a hendrerit augue, at porta nisl. Duis vitae faucibus nulla. Morbi fermentum eleifend elit, at feugiat nibh feugiat id. Vivamus at pulvinar felis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aenean tempus suscipit gravida.</p>\r\n\r\n<p>In congue, massa vel pulvinar pretium, dolor dolor luctus ligula, quis consequat metus metus condimentum elit. In eros velit, suscipit sit amet volutpat laoreet, rhoncus ac justo. Praesent lacinia massa vel orci aliquet pellentesque. Duis semper tincidunt risus vitae vulputate. Etiam rutrum malesuada augue in posuere. Vivamus et lectus neque. Donec euismod nibh massa, ac posuere ipsum fringilla eu. Mauris blandit lacus sem, vitae laoreet augue ultrices ac. Cras suscipit fermentum velit, in aliquam ante placerat nec. Cras molestie tortor at ultricies pretium. Maecenas non nulla ullamcorper, ultrices ipsum in, porta libero. Nam lobortis vehicula ligula, nec vulputate ante congue vitae. In eu sem commodo, dapibus quam nec, malesuada diam.</p>\r\n\r\n<p>Suspendisse mattis metus et gravida efficitur. Fusce luctus ex et metus venenatis, viverra scelerisque urna luctus. Maecenas vel libero porttitor, ultrices massa ac, ornare nisl. Cras bibendum rutrum nunc elementum auctor. Duis congue metus ut nisl rutrum, volutpat lacinia nulla dignissim. Duis lacinia ultrices enim a porta. Praesent placerat enim sit amet odio maximus, sit amet finibus erat suscipit. Suspendisse sollicitudin convallis libero, ut facilisis lorem tempus ac.</p>\r\n\r\n<p>Suspendisse congue neque blandit nisi efficitur, at euismod purus hendrerit. Curabitur lobortis rutrum lectus. Donec sollicitudin, metus sit amet maximus sollicitudin, justo eros euismod tortor, eget cursus ante neque eget enim. Suspendisse consectetur, nulla eu malesuada ultrices, augue eros posuere eros, vel pulvinar nisl arcu ac neque. Vestibulum porta blandit eros, eu dictum erat interdum at. In hac habitasse platea dictumst. Praesent non gravida purus, a pharetra orci. Aenean at urna lacinia, cursus ex pellentesque, condimentum lectus.</p>",
+            "author": 7,
+            "created_on": "2021-06-17T11:04:38Z",
+            "updated_on": null,
+            "status": "Published",
+            "mod_message": "",
+            "moderator": null,
+            "category": 4,
+            "image_1": "",
+            "image_2": "",
+            "image_3": "",
+            "image_4": "",
+            "flag": null,
+            "editors_note": "",
+            "slack_channel": 5,
+            "course": 1,
+            "youtube": null,
+            "tags": [],
+            "likes": []
+        }
+    },
+    {
+        "model": "posts.post",
+        "pk": 23,
+        "fields": {
+            "title": "Test post for 5P course",
+            "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed mauris eget ipsum vulputate sagittis. Aliquam laoreet",
+            "slug": "test-post-for-5p-course",
+            "body": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed mauris eget ipsum vulputate sagittis. Aliquam laoreet eros eu libero lacinia, sed ornare purus semper. Integer a tincidunt ligula. Cras eu placerat eros, vel ornare ante. Nunc a hendrerit augue, at porta nisl. Duis vitae faucibus nulla. Morbi fermentum eleifend elit, at feugiat nibh feugiat id. Vivamus at pulvinar felis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aenean tempus suscipit gravida.</p>\r\n\r\n<p>In congue, massa vel pulvinar pretium, dolor dolor luctus ligula, quis consequat metus metus condimentum elit. In eros velit, suscipit sit amet volutpat laoreet, rhoncus ac justo. Praesent lacinia massa vel orci aliquet pellentesque. Duis semper tincidunt risus vitae vulputate. Etiam rutrum malesuada augue in posuere. Vivamus et lectus neque. Donec euismod nibh massa, ac posuere ipsum fringilla eu. Mauris blandit lacus sem, vitae laoreet augue ultrices ac. Cras suscipit fermentum velit, in aliquam ante placerat nec. Cras molestie tortor at ultricies pretium. Maecenas non nulla ullamcorper, ultrices ipsum in, porta libero. Nam lobortis vehicula ligula, nec vulputate ante congue vitae. In eu sem commodo, dapibus quam nec, malesuada diam.</p>\r\n\r\n<p>Suspendisse mattis metus et gravida efficitur. Fusce luctus ex et metus venenatis, viverra scelerisque urna luctus. Maecenas vel libero porttitor, ultrices massa ac, ornare nisl. Cras bibendum rutrum nunc elementum auctor. Duis congue metus ut nisl rutrum, volutpat lacinia nulla dignissim. Duis lacinia ultrices enim a porta. Praesent placerat enim sit amet odio maximus, sit amet finibus erat suscipit. Suspendisse sollicitudin convallis libero, ut facilisis lorem tempus ac.</p>\r\n\r\n<p>Suspendisse congue neque blandit nisi efficitur, at euismod purus hendrerit. Curabitur lobortis rutrum lectus. Donec sollicitudin, metus sit amet maximus sollicitudin, justo eros euismod tortor, eget cursus ante neque eget enim. Suspendisse consectetur, nulla eu malesuada ultrices, augue eros posuere eros, vel pulvinar nisl arcu ac neque. Vestibulum porta blandit eros, eu dictum erat interdum at. In hac habitasse platea dictumst. Praesent non gravida purus, a pharetra orci. Aenean at urna lacinia, cursus ex pellentesque, condimentum lectus.</p>",
+            "author": 7,
+            "created_on": "2021-06-17T11:05:27Z",
+            "updated_on": null,
+            "status": "Published",
+            "mod_message": "",
+            "moderator": null,
+            "category": 18,
+            "image_1": "images/posts/annie-easley.png",
+            "image_2": "images/posts/ada-lovelace.png",
+            "image_3": "images/posts/html-essentials-24-datalist-3.png",
+            "image_4": "",
+            "flag": null,
+            "editors_note": "editors note",
+            "slack_channel": 12,
+            "course": 2,
+            "youtube": null,
+            "tags": [],
+            "likes": []
+        }
+    },
+    {
+        "model": "posts.post",
+        "pk": 24,
+        "fields": {
+            "title": "Test post from user who is not staff",
+            "summary": "Summary text here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed mauris eget ipsum vulputate sagittis. Aliquam",
+            "slug": "test-post-from-user-who-is-not-staff",
+            "body": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed mauris eget ipsum vulputate sagittis. Aliquam laoreet eros eu libero lacinia, sed ornare purus semper. Integer a tincidunt ligula. Cras eu placerat eros, vel ornare ante. Nunc a hendrerit augue, at porta nisl. Duis vitae faucibus nulla. Morbi fermentum eleifend elit, at feugiat nibh feugiat id. Vivamus at pulvinar felis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aenean tempus suscipit gravida.</p>\r\n\r\n<p>In congue, massa vel pulvinar pretium, dolor dolor luctus ligula, quis consequat metus metus condimentum elit. In eros velit, suscipit sit amet volutpat laoreet, rhoncus ac justo. Praesent lacinia massa vel orci aliquet pellentesque. Duis semper tincidunt risus vitae vulputate. Etiam rutrum malesuada augue in posuere. Vivamus et lectus neque. Donec euismod nibh massa, ac posuere ipsum fringilla eu. Mauris blandit lacus sem, vitae laoreet augue ultrices ac. Cras suscipit fermentum velit, in aliquam ante placerat nec. Cras molestie tortor at ultricies pretium. Maecenas non nulla ullamcorper, ultrices ipsum in, porta libero. Nam lobortis vehicula ligula, nec vulputate ante congue vitae. In eu sem commodo, dapibus quam nec, malesuada diam.</p>\r\n\r\n<p>Suspendisse mattis metus et gravida efficitur. Fusce luctus ex et metus venenatis, viverra scelerisque urna luctus. Maecenas vel libero porttitor, ultrices massa ac, ornare nisl. Cras bibendum rutrum nunc elementum auctor. Duis congue metus ut nisl rutrum, volutpat lacinia nulla dignissim. Duis lacinia ultrices enim a porta. Praesent placerat enim sit amet odio maximus, sit amet finibus erat suscipit. Suspendisse sollicitudin convallis libero, ut facilisis lorem tempus ac.</p>\r\n\r\n<p>Suspendisse congue neque blandit nisi efficitur, at euismod purus hendrerit. Curabitur lobortis rutrum lectus. Donec sollicitudin, metus sit amet maximus sollicitudin, justo eros euismod tortor, eget cursus ante neque eget enim. Suspendisse consectetur, nulla eu malesuada ultrices, augue eros posuere eros, vel pulvinar nisl arcu ac neque. Vestibulum porta blandit eros, eu dictum erat interdum at. In hac habitasse platea dictumst. Praesent non gravida purus, a pharetra orci. Aenean at urna lacinia, cursus ex pellentesque, condimentum lectus.</p>",
+            "author": 8,
+            "created_on": "2021-06-20T16:03:56.475Z",
+            "updated_on": "2021-06-20T15:59:20.417Z",
+            "status": "Published",
+            "mod_message": "",
+            "moderator": 1,
+            "category": 20,
+            "image_1": "",
+            "image_2": "",
+            "image_3": "",
+            "image_4": "",
+            "flag": null,
+            "editors_note": null,
+            "slack_channel": 4,
+            "course": 2,
+            "youtube": null,
+            "tags": [
+                6,
+                7,
+                5
+            ],
+            "likes": [
+                1
+            ]
+        }
+    },
+    {
+        "model": "posts.post",
+        "pk": 25,
+        "fields": {
+            "title": "Another test post from defaultuser",
+            "summary": "Summary text here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed mauris eget ipsum",
+            "slug": "another-test-post-from-defaultuser",
+            "body": "<p>Summary text here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed mauris eget ipsum vulputate sagittis. AliquamSummary text here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed mauris eget ipsum vulputate sagittis. AliquamSummary text here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed mauris eget ipsum vulputate sagittis. AliquamSummary text here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed mauris eget ipsum vulputate sagittis. Aliquam</p>\r\n\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed mauris eget ipsum vulputate sagittis. AliquamSummary text here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed mauris eget ipsum vulputate sagittis. Aliquam</p>",
+            "author": 8,
+            "created_on": "2021-06-20T16:04:26.616Z",
+            "updated_on": "2021-06-20T15:59:57.041Z",
+            "status": "Published",
+            "mod_message": "",
+            "moderator": 1,
+            "category": 7,
+            "image_1": "",
+            "image_2": "",
+            "image_3": "",
+            "image_4": "",
+            "flag": null,
+            "editors_note": "",
+            "slack_channel": 7,
+            "course": 3,
+            "youtube": null,
+            "tags": [
+                1,
+                22,
+                13,
+                14,
+                11
+            ],
+            "likes": []
+        }
+    },
+    {
+        "model": "posts.post",
+        "pk": 26,
+        "fields": {
+            "title": "Debugging MongoDB connection issues",
+            "summary": "Getting a project connected to your database is tricky. So here is a compiled list of things to check to debug your connection issue.",
+            "slug": "debugging-mongodb-connection-issues",
+            "body": "<p>Getting a project connected to your database is one of the things that comes up most frequently in the tutor tab, and often in Slack too. So here is a compiled list of things to check to debug your connection issue.</p>\r\n\r\n<p>The value of your MONGO_URI, often called the &quot;connection string&quot;, is what you get from MongoDB when you log into mongodb and use the &quot;connect&quot; menu. Make sure you select &quot;python&quot; as the driver and &quot;3.6 or later&quot; for version.</p>\r\n\r\n<p>The connection string looks something like this:</p>\r\n\r\n<pre>\r\nmongodb+srv://username:password@clustername-qtxun.mongodb.net/databasename?retryWrites=true&amp;w=majority</pre>\r\n\r\n<ul>\r\n\t<li>Make sure the&nbsp;<code>username</code>&nbsp;and&nbsp;<code>password</code>&nbsp;you use in the connection string are the ones for your&nbsp;<em>database</em>,&nbsp;<strong>not</strong>&nbsp;the ones you use to log into the MongoDB website.</li>\r\n</ul>\r\n\r\n<p>To see your database username, and reset your database password if you have forgotten it, log into MongoDB and click on &quot;Database Access&quot; in the left side menu.</p>\r\n\r\n<ul>\r\n\t<li>Don&#39;t put&nbsp;<code>&lt;&gt;</code>&nbsp;around your password, MongoDB puts this&nbsp;<code>&lt;password&gt;</code>&nbsp;in the connection string they provide you with, but you do not want the &lt;&gt; it in there for your functioning one.</li>\r\n</ul>\r\n\r\n<ul>\r\n\t<li>Make sure you have whitelisted all IP address for your database. To set this, log into MongoDB, click on &quot;Network Access&quot; in the left side menu, click &quot;add ip address&quot; and enter the address&nbsp;<code>0.0.0.0/0</code></li>\r\n</ul>\r\n\r\n<ul>\r\n\t<li>Make sure you are using the correct database name in your connection string. MongoDB sometimes puts&nbsp;<code>test</code>&nbsp;in the connection string they provide you with where your database name needs to go. Also, remember that your database name is case sensitive, so log into MongoDB to check you have the exact right format in your connection string.</li>\r\n</ul>\r\n\r\n<ul>\r\n\t<li>Make sure in your run.py or app.py file that you are calling the right collection name (also case sensitive) when you make a request to the database.</li>\r\n</ul>\r\n\r\n<ul>\r\n\t<li>If using an environment variable (recommended) to store your MONGO_URI, make sure that this has been set up correctly and the value is being passed to the .py file you are trying to use it for. A simple print() statement can help to check this. More on setting environment variables here:&nbsp;<a href=\"https://code-institute-room.slack.com/archives/CP07TN38Q/p1576743956008500\" rel=\"noopener noreferrer\" target=\"_blank\">https://code-institute-room.slack.com/archives/CP07TN38Q/p1576743956008500</a></li>\r\n</ul>\r\n\r\n<ul>\r\n\t<li>If the connection issue is with your deployed site on Heroku only, make sure you have set your Heroku environment variables. More on how to do that here:&nbsp;<a href=\"https://code-institute-room.slack.com/archives/C7JQY2RHC/p1578043832202700\" rel=\"noopener noreferrer\" target=\"_blank\">https://code-institute-room.slack.com/archives/C7JQY2RHC/p1578043832202700</a></li>\r\n</ul>",
+            "author": 1,
+            "created_on": "2021-06-17T11:14:20.681Z",
+            "updated_on": null,
+            "status": "Published",
+            "mod_message": null,
+            "moderator": null,
+            "category": 18,
+            "image_1": "",
+            "image_2": "",
+            "image_3": "",
+            "image_4": "",
+            "flag": null,
+            "editors_note": null,
+            "slack_channel": 7,
+            "course": 3,
+            "youtube": null,
+            "tags": [
+                12,
+                18,
+                11
+            ],
+            "likes": []
+        }
+    },
+    {
+        "model": "posts.post",
+        "pk": 27,
+        "fields": {
+            "title": "Setting config / environment variables on Heroku",
+            "summary": "How to make sure heroku has access to your environment variables.",
+            "slug": "setting-config-environment-variables-on-heroku",
+            "body": "<p>When working on your project, your code has two separate environments. Your local one, within your IDE, and the deployed environment on Heroku.If you have followed good practice, you have set up your environment variables for your project in a file that is not sent to git.</p>\r\n\r\n<p>As Heroku uses your repository code to build the deployed site, it won&#39;t have access to those environment variables in your local file, and it will throw errors at you. So when deploying, it is important to give Heroku its own copy of your environment variables. To do this:</p>\r\n\r\n<ul>\r\n\t<li>Log into Heroku</li>\r\n\t<li>Open the app dashboard for your Heroku app</li>\r\n\t<li>Click on&nbsp;<em>Settings</em></li>\r\n\t<li>Click on&nbsp;<em>Reveal Config Vars</em></li>\r\n</ul>\r\n\r\n<p>Make sure you have set:<br />\r\nIP as the key with a value of 0.0.0.0<br />\r\nPORT as the key with a value of 8080</p>\r\n\r\n<p>You can add any other environment variables the project needs in the same way. So for example, if you have set your local environment variable of SECRET_KEY = &quot;whatever&quot; then add them to the Heroku config vars too. with SECRET_KEY as the key with a value of&nbsp;<code>whatever</code>&nbsp;(without the &quot;&quot; around it)</p>\r\n\r\n<p>More on how to set environment variables here:&nbsp;<a href=\"https://code-institute-room.slack.com/archives/CP07TN38Q/p1576743956008500\" rel=\"noopener noreferrer\" target=\"_blank\">https://code-institute-room.slack.com/archives/CP07TN38Q/p1576743956008500</a></p>",
+            "author": 1,
+            "created_on": "2021-06-17T11:18:58.246Z",
+            "updated_on": null,
+            "status": "Published",
+            "mod_message": null,
+            "moderator": null,
+            "category": 17,
+            "image_1": "images/posts/image_18.png",
+            "image_2": "",
+            "image_3": "",
+            "image_4": "",
+            "flag": null,
+            "editors_note": null,
+            "slack_channel": 7,
+            "course": 3,
+            "youtube": null,
+            "tags": [
+                20,
+                21,
+                19,
+                18,
+                5
+            ],
+            "likes": []
+        }
+    },
+    {
+        "model": "posts.post",
+        "pk": 28,
+        "fields": {
+            "title": "Git Branches",
+            "summary": "A post about git branches, what they are and why they are so useful!",
+            "slug": "git-branches",
+            "body": "<p>You might have heard of git branches, but perhaps you aren&#39;t sure what they are, what they do or why they are even used?</p>\r\n\r\n<p>By default, your git commits are saved to the&nbsp;<code>master</code>&nbsp;branch. Github recently changed its default branch name to main.&nbsp;So you may find your branch is called this instead. The rest of this post assumes your default branch name is&nbsp;<code>master</code>&nbsp;. But you can replace it with <code>main</code>&nbsp;if needed.</p>\r\n\r\n<p><strong>When working solo on a project</strong>, using branches is a great way to try things out.</p>\r\n\r\n<p>Let&#39;s say you have a half-finished project on your&nbsp;<code>master</code>&nbsp;branch and one of your features isn&#39;t working and you want to try a different approach. You can take a copy of your project into a new branch called&nbsp;<code>feature/featurename</code>&nbsp;fiddle around with the feature to try and get it working. But the original version of your site stays untouched in your master branch and you can return to it if you want to.</p>\r\n\r\n<p>You can call your branches whatever you want, most projects have a&nbsp;<code>develop</code>&nbsp;branch where the majority of coding is done. If working on a feature or bugfix, it is best practice is to prefix the branch name with the type of branch before the name, so&nbsp;<code>feature/featurename</code>&nbsp;or&nbsp;<code>bugfix/bugname</code>&nbsp;for example.</p>\r\n\r\n<p>If you get your feature working, you can then merge your&nbsp;<code>feature/featurename</code>&nbsp;branch into&nbsp;<code>master</code>&nbsp;branch, so that it is live on the deployed site. Or if it didn&#39;t work you can disregard that branch and just go back to master and continue onward easily.</p>\r\n\r\n<p><strong>When you come to work in a team on a project</strong>, branches become an easy way for team members to work on their section of the project without negatively affecting any of the code the rest of the team is working on. A team member will work on their own branch, and when they push their code to the GitHub repository for the whole project they do so as that branch. Then they make a pull request to have their branch merged with the master branch. Another team member will check the changes thoroughly before allowing the new code to go live.</p>\r\n\r\n<ul>\r\n\t<li>To create a new git branch,&nbsp;<em>first, make sure you have committed all changes in your current branch&nbsp;</em>using the usual git add git commit sequence.</li>\r\n</ul>\r\n\r\n<ul>\r\n\t<li>Then, to create the new branch, in the terminal:</li>\r\n</ul>\r\n\r\n<pre>\r\ngit checkout -b mybranchname</pre>\r\n\r\n<p>This command will also move you into that branch. The code in the new branch will be identical to the old branch until you make changes.</p>\r\n\r\n<ul>\r\n\t<li>To save changes you made in your new branch, use the same git add git commit sequence as you normally do. You can also git push your branch to GitHub.</li>\r\n</ul>\r\n\r\n<ul>\r\n\t<li>To switch from one branch to another (again, make sure you git add and commit before switching, it will save you headaches)</li>\r\n</ul>\r\n\r\n<pre>\r\ngit checkout mybranchname</pre>\r\n\r\n<ul>\r\n\t<li>To see which branches you have and which one you are on</li>\r\n</ul>\r\n\r\n<pre>\r\ngit branch</pre>\r\n\r\n<p>The output in the terminal will put a * next to the branch you are on.</p>\r\n\r\n<h2>To merge one branch with another.</h2>\r\n\r\n<p>For this example, the branch with our new code that we want to merge is called&nbsp;<code>feature/carousel</code>&nbsp;and we are merging it&nbsp;<strong>into&nbsp;</strong><code>master</code></p>\r\n\r\n<ol>\r\n\t<li>Make sure all your code on the&nbsp;<code>feature/carousel</code>&nbsp;branch has been committed</li>\r\n\t<li><code>git checkout master</code>&nbsp;will take you back to the master branch and the code as it was before</li>\r\n\t<li><code>git merge feature/carousel</code>&nbsp;will merge the code from your develop branch into the master branch</li>\r\n\t<li><code>git add .</code></li>\r\n\t<li><code>git commit -m &quot;merge feature/carousel branch into master&quot;</code></li>\r\n\t<li><code>git push</code>&nbsp;to synch up all changes with GitHub</li>\r\n</ol>\r\n\r\n<p>If you committed all changes on master before creating your new branch, you should not hit any merge conflicts. However, if you do hit a conflict:</p>\r\n\r\n<ol>\r\n\t<li><code>git status</code>&nbsp;to get a list of the files that have conflicts in them</li>\r\n\t<li>Then check those files and look for places marked with&nbsp;<code>####</code>&nbsp;or&nbsp;<code>&lt;&lt;&lt;&lt;</code>. These are the areas that differ between your two branches and git doesn&#39;t know which bits you want to keep and which to get rid of. Open these files and correct these areas until the code is how you need it to be.</li>\r\n\t<li>Save all the files you changed and then git add and commit them.</li>\r\n</ol>\r\n\r\n<p>For more info on using git branches, these resources are excellent:<br />\r\n<a href=\"https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow\" rel=\"noopener noreferrer\" target=\"_blank\">https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow</a><br />\r\n<a href=\"https://nvie.com/posts/a-successful-git-branching-model/\" rel=\"noopener noreferrer\" target=\"_blank\">https://nvie.com/posts/a-successful-git-branching-model/</a></p>",
+            "author": 1,
+            "created_on": "2021-06-17T11:28:24.362Z",
+            "updated_on": "2021-06-19T08:57:55.962Z",
+            "status": "Published",
+            "mod_message": "",
+            "moderator": null,
+            "category": 19,
+            "image_1": "",
+            "image_2": "",
+            "image_3": "",
+            "image_4": "",
+            "flag": null,
+            "editors_note": null,
+            "slack_channel": 11,
+            "course": 3,
+            "youtube": null,
+            "tags": [
+                23,
+                24,
+                22,
+                25
+            ],
+            "likes": [
+                15
+            ]
+        }
+    },
+    {
+        "model": "posts.post",
+        "pk": 29,
+        "fields": {
+            "title": "How to use the Bootstrap 4 Grid Video, with demo website.",
+            "summary": "Understand and utilize the Bootstrap 4 grid to supercharge your website layout with a demonstration of how to use it for responsive design.",
+            "slug": "how-to-use-the-bootstrap-4-grid-video-with-demo-website",
+            "body": "<p>Watch this video to learn how to utilise the Bootstrap 4 grid to supercharge your website layout! Including a clear demonstration of how the different classes can be used to control how your content is laid out on different screen sizes.</p>\r\n\r\n<p>My Demo website can be found here: <a href=\"https://ajgreaves.github.io/bootstrap-grid-demo/\" target=\"_blank\">https://ajgreaves.github.io/bootstrap-grid-demo/</a>&nbsp;&nbsp;</p>\r\n\r\n<p>Bootstrap documentation including how to get set up to use the bootstrap library:&nbsp;<a href=\"https://getbootstrap.com/docs/4.3/getting-started/introduction/\" target=\"_blank\">https://getbootstrap.com/docs/4.3/getting-started/introduction/</a></p>",
+            "author": 1,
+            "created_on": "2021-06-19T06:21:08.688Z",
+            "updated_on": "2021-06-19T08:55:09.361Z",
+            "status": "Published",
+            "mod_message": "",
+            "moderator": null,
+            "category": 8,
+            "image_1": "",
+            "image_2": "",
+            "image_3": "",
+            "image_4": "",
+            "flag": null,
+            "editors_note": "Editors note here",
+            "slack_channel": 10,
+            "course": 3,
+            "youtube": "https://www.youtube.com/watch?v=zDpCejbl1sU",
+            "tags": [
+                1,
+                27,
+                26
+            ],
+            "likes": [
+                1
+            ]
+        }
+    },
+    {
+        "model": "posts.post",
+        "pk": 30,
+        "fields": {
+            "title": "Webinar video: How to write your README",
+            "summary": "A webinar about how to approach writing your README.",
+            "slug": "how-to-write-your-readme-webinar-video",
+            "body": "<p>The recording from my webinar on how to write your README documentation for your milestone projects.</p>\r\n\r\n<h2>IMPORTANT</h2>\r\n\r\n<p>This webinar was run for the students on the old <strong>4 Project course</strong>, where the requirements for README documentation are considerably more than for the first 3 projects of the new 5 Project course.</p>\r\n\r\n<p>If you are on the 5 Project course, you are not expected to go so in-depth with your documentation for your first 3 projects on the 5P course. Only when you get to your <strong>last two projects</strong> does it get this intensive.</p>\r\n\r\n<p>If you are working on any of the first 3 projects for the 5P course, the content of this video should still be useful for you, but please use the sample readme links provided in the LMS for you to gauge the detail in which you need to go into for your project documentation.</p>",
+            "author": 1,
+            "created_on": "2021-06-19T09:12:36.340Z",
+            "updated_on": "2021-06-19T09:16:20.619Z",
+            "status": "Published",
+            "mod_message": "",
+            "moderator": null,
+            "category": 30,
+            "image_1": "",
+            "image_2": "",
+            "image_3": "",
+            "image_4": "",
+            "flag": null,
+            "editors_note": null,
+            "slack_channel": 13,
+            "course": 1,
+            "youtube": "https://www.youtube.com/watch?v=7BteidgLAyM",
+            "tags": [
+                15,
+                29,
+                5,
+                28,
+                14
+            ],
+            "likes": []
+        }
+    },
+    {
+        "model": "posts.post",
+        "pk": 36,
+        "fields": {
+            "title": "Testing another post",
+            "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus commodo non quam eu ultrices. Donec ac nunc a ante tempor rutrum vel sed di",
+            "slug": "testing-another-post",
+            "body": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus commodo non quam eu ultrices. Donec ac nunc a ante tempor rutrum vel sed diam. Quisque auctor consectetur pretium. Nullam dui dui, ornare eget rutrum a, ultricies accumsan magna. Praesent faucibus nulla condimentum eros congue, et aliquet sapien varius. Fusce porttitor egestas odio a sagittis. Aenean eu arcu quam. Quisque eu leo commodo nibh gravida tempus ut ut sem. Phasellus suscipit iaculis metus.</p>\r\n\r\n<p>Sed cursus fermentum nisi eget cursus. Nam et semper leo. Donec gravida justo ac tellus ullamcorper, sit amet semper enim sagittis. Nulla tincidunt eros et elit pulvinar, vitae tincidunt ligula mollis. In maximus sollicitudin nulla, a pretium justo semper ut. Nam vel viverra leo, vitae pulvinar metus. Curabitur dictum erat at nibh varius hendrerit in quis nisl.</p>\r\n\r\n<p>Proin quis tellus et nunc vulputate fringilla. Vestibulum nunc velit, tristique ac aliquet sit amet, ultricies non odio. Fusce vitae maximus ipsum. Nullam pellentesque tincidunt odio, at feugiat nulla eleifend sed. Duis euismod orci a blandit luctus. Nullam placerat pulvinar imperdiet. Curabitur eu tellus euismod, convallis orci quis, dictum sapien. Donec vel libero sed velit elementum tempor vitae scelerisque urna. Nam sit amet convallis enim. Fusce at ligula commodo, porttitor est vitae, ornare urna. Suspendisse sed arcu ut enim fermentum ornare quis in lacus. Pellentesque in odio ac quam faucibus ullamcorper. Duis nec lobortis est. Pellentesque bibendum felis et tellus rhoncus finibus. Vestibulum tincidunt ultricies orci, a tempus orci ullamcorper ut.</p>\r\n\r\n<p>Quisque vel felis mattis, malesuada magna sed, lobortis tortor. Suspendisse hendrerit tincidunt lorem ut suscipit. Donec id turpis quis lectus ornare dignissim quis nec sem. Phasellus mi sem, lacinia vehicula lectus sed, consequat tempor velit. Ut enim mi, rhoncus at nunc ac, interdum sagittis velit. In at placerat est, ac aliquet urna. Morbi ac diam vitae odio suscipit pellentesque. Maecenas hendrerit mi quam, eu euismod nibh tristique vel.</p>\r\n\r\n<p>Donec vel orci fringilla felis consequat facilisis eget vitae metus. Aenean malesuada tortor vitae dui dictum molestie. Etiam eget suscipit velit. Curabitur semper consequat tellus, non imperdiet risus scelerisque sed. Nunc porttitor hendrerit nisi, a porttitor libero scelerisque at. Duis vulputate eu lacus id facilisis. Fusce quis neque ac justo rutrum mattis. Curabitur maximus varius neque sodales placerat. Phasellus sit amet nisl purus.</p>",
+            "author": 8,
+            "created_on": "2021-06-20T15:28:41.409Z",
+            "updated_on": "2021-06-20T15:59:41.266Z",
+            "status": "Submitted",
+            "mod_message": "",
+            "moderator": 1,
+            "category": 13,
+            "image_1": "images/posts/image_18.png",
+            "image_2": "images/posts/image_17.png",
+            "image_3": "images/posts/image_16.png",
+            "image_4": "images/posts/image_15.png",
+            "flag": null,
+            "editors_note": null,
+            "slack_channel": 1,
+            "course": 1,
+            "youtube": null,
+            "tags": [
+                24,
+                6,
+                7,
+                19,
+                13
+            ],
+            "likes": []
+        }
+    },
+    {
+        "model": "posts.post",
+        "pk": 37,
+        "fields": {
+            "title": "Debugging Layout Issues",
+            "summary": "Sometimes when you view your page in the browser the elements don't display as you expect, here's a trick to figuring out what's going on.",
+            "slug": "debugging-layout-issues",
+            "body": "<p>Sometimes when you come to view your page in the browser the elements don&#39;t display as you expect, things are not lining up the way you expect them to, elements are inside each other or overlapping when they shouldn&#39;t be etc.</p>\r\n\r\n<p>There can be multiple reasons for this, so here are a few things to check and resources to use as you debug the problem.</p>\r\n\r\n<ul>\r\n\t<li><strong>Your HTML code may be invalid in some places</strong>. Running it through the HTML validator can often pull up problems that when fixed will help sort out your layout issues:&nbsp;<a href=\"https://validator.w3.org/\" rel=\"noopener noreferrer\" target=\"_blank\">https://validator.w3.org/</a></li>\r\n</ul>\r\n\r\n<ul>\r\n\t<li><strong>Make sure your HTML elements are nested properly,</strong>&nbsp;meaning they are opening and closing as they should. If you open an element and nest another inside it, make sure the nested element is closed before the element it is inside is closed or your layout will get messy!</li>\r\n</ul>\r\n\r\n<p>For example here the div is opened inside the section but closed after the section is closed.<br />\r\nThis will cause layout issues</p>\r\n\r\n<pre>\r\n&lt;section id=&quot;my-section&quot;&gt;\r\n    &lt;div class=&quot;nested-element&quot;&gt;\r\n        Content\r\n&lt;/section&gt;\r\n&lt;/div&gt;</pre>\r\n\r\n<p>Here the &lt;div&gt; is nested correctly inside the &lt;section&gt;</p>\r\n\r\n<pre>\r\n&lt;section id=&quot;my-section&quot;&gt;\r\n    &lt;div class=&quot;nested-element&quot;&gt;\r\n        Content\r\n    &lt;/div&gt;\r\n&lt;/section&gt;</pre>\r\n\r\n<p>To be sure your elements are being opened and closed in the right places, you can auto-format your code so corresponding opening and closing elements are directly above and below each other. To do this click anywhere in your HTML file then for&nbsp;GitPod click: ALT-SHIFT-F</p>\r\n\r\n<h3>If you are using Bootstrap:</h3>\r\n\r\n<ul>\r\n\t<li><strong>You may be using the Bootstrap Grid incorrectly</strong>. If you do not nest your container, row and column classes as Bootstrap requires, your grid will often not display as you want it to. I created a youtube video to demonstrate how to use it and get the most out of this great tool:&nbsp;<a href=\"https://www.youtube.com/watch?v=zDpCejbl1sU\" rel=\"noopener noreferrer\" target=\"_blank\">https://www.youtube.com/watch?v=zDpCejbl1sU</a></li>\r\n\t<li><strong>You may have written some CSS of your own that is overriding the default Bootstrap grid classes</strong>. Often it is a&nbsp;<code>position</code>&nbsp;property that has been added but it can be other things too.</li>\r\n</ul>\r\n\r\n<p>To check if this is the case, temporarily break the link to your CSS file in the &lt;head&gt; of your HTML file and then reload the page. Then check to see if your layout issue has gone.</p>\r\n\r\n<p>If it has, you know it is your own CSS that is overriding a bootstrap class. So add back in your own CSS link and then go to dev tools and inspect the elements to see what CSS you wrote might be the root of the problem.</p>",
+            "author": 7,
+            "created_on": "2021-06-28T10:29:54.349Z",
+            "updated_on": null,
+            "status": "Published",
+            "mod_message": null,
+            "moderator": null,
+            "category": 28,
+            "image_1": "",
+            "image_2": "",
+            "image_3": "",
+            "image_4": "",
+            "flag": null,
+            "editors_note": null,
+            "slack_channel": 13,
+            "course": 3,
+            "youtube": null,
+            "tags": [
+                1,
+                12,
+                2,
+                30,
+                13,
+                14,
+                11
+            ],
+            "likes": []
+        }
+    },
+    {
+        "model": "posts.post",
+        "pk": 38,
+        "fields": {
+            "title": "Emmet Cheetsheet",
+            "summary": "Emmet is a plugin for text editors that greatly improves your workflow.",
+            "slug": "emmet-cheetsheet",
+            "body": "<p>No matter which IDE you are using, it almost certainly comes with Emmet. Emmet is a plugin for text editors that can greatly improve your workflow.</p>\r\n\r\n<p>For example, it means that instead of having to write all of this out:</p>\r\n\r\n<pre>\r\n&lt;div class=&quot;col-12 col-md-9&quot;&gt;&lt;/div&gt;\r\n&lt;div class=&quot;col-12 col-md-9&quot;&gt;&lt;/div&gt;\r\n&lt;div class=&quot;col-12 col-md-9&quot;&gt;&lt;/div&gt;</pre>\r\n\r\n<p>You can simply write&nbsp;<code>.col-12.col-md-9*3</code>&nbsp;and then hit the tab key, and Emmet will build the HTML for you! So it is really worth learning the different emmet shortcuts, as it will save you so much time in the long run. The full list of Emmet shortcuts can be found here:&nbsp;<a href=\"https://docs.emmet.io/cheat-sheet/\" rel=\"noopener noreferrer\" target=\"_blank\">https://docs.emmet.io/cheat-sheet/</a></p>",
+            "author": 7,
+            "created_on": "2021-06-28T10:32:13.902Z",
+            "updated_on": null,
+            "status": "Published",
+            "mod_message": null,
+            "moderator": null,
+            "category": 9,
+            "image_1": "",
+            "image_2": "",
+            "image_3": "",
+            "image_4": "",
+            "flag": null,
+            "editors_note": null,
+            "slack_channel": 1,
+            "course": 3,
+            "youtube": null,
+            "tags": [
+                31,
+                6,
+                14
+            ],
+            "likes": []
+        }
+    },
+    {
+        "model": "posts.post",
+        "pk": 39,
+        "fields": {
+            "title": "How to use Markdown for your README",
+            "summary": "One of the requirements for all milestones is that your README.md file be written in Markdown. This post shows examples of how to use it.",
+            "slug": "how-to-use-markdown-for-your-readme",
+            "body": "<p>One of the requirements for all milestones is that your README.md file be written in Markdown. Markdown&nbsp;is a&nbsp;lightweight markup language&nbsp;with plain text formatting syntax, a shorthand for HTML.Here are a few examples of markdown for your readme.</p>\r\n\r\n<p>Headers:</p>\r\n\r\n<pre>\r\n# My H1 size heading\r\n## H2 size heading\r\n### H3 size heading</pre>\r\n\r\n<p>Lists:</p>\r\n\r\n<pre>\r\n1. First ordered list item\r\n2. Another item\r\n&sdot;&sdot;* Unordered sub-list. \r\n3. And another item.\r\n&sdot;&sdot;1. Ordered sub-list</pre>\r\n\r\n<p>Links:</p>\r\n\r\n<pre>\r\n[I&#39;m an inline-style link](https://www.google.com)\r\n[I&#39;m an inline-style link with title](https://www.google.com &quot;Google&#39;s Homepage&quot;)\r\n[I&#39;m a relative reference to a repository file](../blob/master/LICENSE)</pre>\r\n\r\n<p>Images:</p>\r\n\r\n<pre>\r\n![alt text](https://path.com/to/img.png)\r\n![alt text](https://path.com/to/img.png &quot;Image title here (optional)&quot;)</pre>\r\n\r\n<p>For lots more examples on how to write in markdown for your readme, including formatted code snippets, tables, quotes and embedded videos checkout this <a href=\"https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet\" target=\"_blank\">Markdown Cheatsheet</a></p>\r\n\r\n<p>And this is pretty cool for getting collapsible elements into your readme:&nbsp;<a href=\"https://gist.github.com/joyrexus/16041f2426450e73f5df9391f7f7ae5f\" rel=\"noopener noreferrer\" target=\"_blank\">https://gist.github.com/joyrexus/16041f2426450e73f5df9391f7f7ae5f</a>&nbsp;</p>",
+            "author": 9,
+            "created_on": "2021-06-28T10:35:40.276Z",
+            "updated_on": "2021-06-28T10:36:25.627Z",
+            "status": "Submitted",
+            "mod_message": "",
+            "moderator": null,
+            "category": 30,
+            "image_1": "",
+            "image_2": "",
+            "image_3": "",
+            "image_4": "",
+            "flag": null,
+            "editors_note": null,
+            "slack_channel": 13,
+            "course": 3,
+            "youtube": null,
+            "tags": [
+                29,
+                32,
+                28,
+                14
+            ],
+            "likes": []
+        }
+    },
+    {
+        "model": "posts.post",
+        "pk": 40,
+        "fields": {
+            "title": "Updating or disabling Gitpod python linter for Flask or Django",
+            "summary": "How to update or disable the Gitpod python linter for Flask or Django",
+            "slug": "updating-or-disabling-gitpod-python-linter-for-flask-or-django",
+            "body": "<p>Linting is the process of running a program that will analyse code for potential errors. However, the standard linter on Gitpod is not very compatible with Flask or Django and will throw errors for valid code. To update your linter for Flask. In the terminal, type:</p>\r\n\r\n<pre>\r\npip3 install pylint-flask</pre>\r\n\r\n<p>To update your linter for Django. In the terminal type:</p>\r\n\r\n<pre>\r\npip3 install pylint-django</pre>\r\n\r\n<p>If you wish to disable linting entirely:</p>\r\n\r\n<ul>\r\n\t<li>Press&nbsp;Ctrl+Shift+P</li>\r\n\t<li>Type&nbsp;<em>lint&nbsp;</em>into the search box</li>\r\n\t<li>Click the result for&nbsp;<em>Python: Select Linter</em></li>\r\n\t<li>Finally, click&nbsp;<em>Disable Linter</em></li>\r\n</ul>",
+            "author": 9,
+            "created_on": "2021-06-28T10:38:29.309Z",
+            "updated_on": null,
+            "status": "Submitted",
+            "mod_message": null,
+            "moderator": null,
+            "category": 9,
+            "image_1": "",
+            "image_2": "",
+            "image_3": "",
+            "image_4": "",
+            "flag": null,
+            "editors_note": null,
+            "slack_channel": 1,
+            "course": 3,
+            "youtube": null,
+            "tags": [
+                6,
+                33,
+                34
+            ],
+            "likes": []
+        }
+    },
+    {
+        "model": "posts.post",
+        "pk": 41,
+        "fields": {
+            "title": "Useful sites and resources for additional reading",
+            "summary": "A list of useful resources which will help you improve your coding ability.",
+            "slug": "useful-sites-and-resources-for-additional-reading",
+            "body": "<ul>\r\n\t<li>While our course does not have any recommended reading materials, we can provide a number of useful resources which will help you improve your coding ability. For HTML, CSS, JavaScript, MySQL, Python, and jQuery, w3schools is invaluable:&nbsp;<a href=\"https://www.w3schools.com/\" rel=\"noopener noreferrer\" target=\"_blank\">https://www.w3schools.com/</a></li>\r\n</ul>\r\n\r\n<ul>\r\n\t<li>Bootstrap provide extensive code samples and examples showing how to use all of their components:&nbsp;<a href=\"https://getbootstrap.com/docs/4.3/components/alerts/\" rel=\"noopener noreferrer\" target=\"_blank\">https://getbootstrap.com/docs/4.3/components/alerts/</a>&nbsp;Furthermore, the links in the sidebar contain information and code which will help you create custom layouts and styles.</li>\r\n</ul>\r\n\r\n<ul>\r\n\t<li>StackOverflow is a developer Q&amp;A site where you can ask programming related questions and browse thousands of already-existing answers:&nbsp;<a href=\"https://stackoverflow.com/questions/\" rel=\"noopener noreferrer\" target=\"_blank\">https://stackoverflow.com/questions/</a></li>\r\n</ul>\r\n\r\n<ul>\r\n\t<li>Coding standards are style guides for writing code. Picking a standard and following it will make your code tidier and easier to read. Many standards exist and are readily available online. For example, Google&rsquo;s standards are available here:&nbsp;<a href=\"http://google.github.io/styleguide/\" rel=\"noopener noreferrer\" target=\"_blank\">http://google.github.io/styleguide/</a></li>\r\n</ul>\r\n\r\n<p>Programming languages generally come with extensive official documentation. This generally consists of a breakdown of each data type, a list of available functions, and descriptions of what these functions do and what arguments they take. This documentation is generally not useful for beginners, as it does not include tutorials, and the code examples contained within can be quite advanced or difficult to follow. As you hone your programming skills, this documentation will become more and more valuable:</p>\r\n\r\n<ul>\r\n\t<li>HTML:&nbsp;<a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Reference\" rel=\"noopener noreferrer\" target=\"_blank\">https://developer.mozilla.org/en-US/docs/Web/HTML/Reference</a></li>\r\n\t<li>CSS:&nbsp;<a href=\"https://developer.mozilla.org/en-US/docs/Web/CSS/Reference\" rel=\"noopener noreferrer\" target=\"_blank\">https://developer.mozilla.org/en-US/docs/Web/CSS/Reference</a></li>\r\n\t<li>JavaScript:&nbsp;<a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference\" rel=\"noopener noreferrer\" target=\"_blank\">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference</a></li>\r\n\t<li>Python3:&nbsp;<a href=\"https://docs.python.org/3/\" rel=\"noopener noreferrer\" target=\"_blank\">https://docs.python.org/3/</a></li>\r\n\t<li>Flask:&nbsp;<a href=\"http://flask.palletsprojects.com/en/1.1.x/\" rel=\"noopener noreferrer\" target=\"_blank\">http://flask.palletsprojects.com/en/1.1.x/</a></li>\r\n\t<li>Django:&nbsp;<a href=\"https://docs.djangoproject.com/en/3.2/\" target=\"_blank\">https://docs.djangoproject.com/en/3.2/</a></li>\r\n\t<li>MongoDB:&nbsp;<a href=\"https://docs.mongodb.com/\" rel=\"noopener noreferrer\" target=\"_blank\">https://docs.mongodb.com/</a></li>\r\n\t<li>Git:&nbsp;<a href=\"https://git-scm.com/doc\" rel=\"noopener noreferrer\" target=\"_blank\">https://git-scm.com/doc</a></li>\r\n</ul>",
+            "author": 1,
+            "created_on": "2021-06-28T10:41:54.065Z",
+            "updated_on": "2021-06-28T10:44:32.901Z",
+            "status": "Published",
+            "mod_message": "",
+            "moderator": null,
+            "category": 28,
+            "image_1": "",
+            "image_2": "",
+            "image_3": "",
+            "image_4": "",
+            "flag": null,
+            "editors_note": null,
+            "slack_channel": 13,
+            "course": 3,
+            "youtube": null,
+            "tags": [
+                35,
+                12,
+                13,
+                5,
+                36,
+                14,
+                11
+            ],
+            "likes": []
+        }
+    },
+    {
+        "model": "posts.post",
+        "pk": 42,
+        "fields": {
+            "title": "Free media sites for your project images, sounds, animations etc",
+            "summary": "A list of great sites you can use to get free high quality media for your projects.",
+            "slug": "free-media-sites-for-your-project-images-sounds-animations-etc",
+            "body": "<p>Here is a list of great sites you can use to get free high-quality media for your projects.</p>\r\n\r\n<p>Photographs:</p>\r\n\r\n<ul>\r\n\t<li><a href=\"https://pxhere.com/\" rel=\"noopener noreferrer\" target=\"_blank\">https://pxhere.com/</a></li>\r\n\t<li><a href=\"https://www.pexels.com/\" rel=\"noopener noreferrer\" target=\"_blank\">https://www.pexels.com/</a></li>\r\n\t<li><a href=\"https://unsplash.com/\" rel=\"noopener noreferrer\" target=\"_blank\">https://unsplash.com/</a></li>\r\n\t<li><a href=\"https://pixabay.com/\" rel=\"noopener noreferrer\" target=\"_blank\">https://pixabay.com/</a></li>\r\n</ul>\r\n\r\n<p>Animations:</p>\r\n\r\n<ul>\r\n\t<li><a href=\"https://greensock.com/gsap/\" rel=\"noopener noreferrer\" target=\"_blank\">https://greensock.com/gsap/</a></li>\r\n\t<li><a href=\"https://animejs.com/\" rel=\"noopener noreferrer\" target=\"_blank\">https://animejs.com/</a></li>\r\n\t<li><a href=\"http://kristofferandreasen.github.io/wickedCSS/\" rel=\"noopener noreferrer\" target=\"_blank\">http://kristofferandreasen.github.io/wickedCSS/</a></li>\r\n\t<li><a href=\"https://daneden.github.io/animate.css/\" rel=\"noopener noreferrer\" target=\"_blank\">https://daneden.github.io/animate.css/</a></li>\r\n\t<li><a href=\"https://elrumordelaluz.github.io/csshake/\" rel=\"noopener noreferrer\" target=\"_blank\">https://elrumordelaluz.github.io/csshake/</a></li>\r\n</ul>\r\n\r\n<p>Audio:</p>\r\n\r\n<ul>\r\n\t<li><a href=\"https://www.audiomicro.com/free-sound-effects/\" rel=\"noopener noreferrer\" target=\"_blank\">https://www.audiomicro.com/free-sound-effects/</a></li>\r\n</ul>\r\n\r\n<p>Spinners / Loaders:</p>\r\n\r\n<ul>\r\n\t<li><a href=\"https://icons8.com/preloaders/\" rel=\"noopener noreferrer\" target=\"_blank\">https://icons8.com/preloaders/</a></li>\r\n</ul>\r\n\r\n<p>This is by no meets a definitive list, but it should get you started!</p>",
+            "author": 1,
+            "created_on": "2021-06-28T10:47:25.715Z",
+            "updated_on": null,
+            "status": "Published",
+            "mod_message": null,
+            "moderator": null,
+            "category": 14,
+            "image_1": "",
+            "image_2": "",
+            "image_3": "",
+            "image_4": "",
+            "flag": null,
+            "editors_note": null,
+            "slack_channel": 13,
+            "course": 3,
+            "youtube": null,
+            "tags": [
+                5,
+                36
+            ],
+            "likes": []
+        }
+    },
+    {
+        "model": "posts.post",
+        "pk": 43,
+        "fields": {
+            "title": "How do you write the Deployment section of your README.md",
+            "summary": "What does deployment mean? And how do you write it up in your readme.md?",
+            "slug": "how-do-you-write-the-deployment-section-of-your-readme-md",
+            "body": "<p>In your first milestone (and future ones) there are 5 whole points out of 100 awarded for your deployment write up. But a lot of new students don&#39;t really get what that means, and so their writeup misses out on points that are actually very easy to get.</p>\r\n\r\n<p>Deployment means what you did to make your website live and working for other people to look at.</p>\r\n\r\n<p>Deployment is <em>not </em>pushing from GitPod to GitHub, and it is not the preview that GitPod gives you to view your working code.</p>\r\n\r\n<p>For the first two milestones,&nbsp;<strong>Deployment is getting your site working on GitHub pages&nbsp;</strong>(It gets a lot more complex in the last two milestones!)So when you come to deploy your site to GitHub Pages, you need to take a few steps to do that in the GitHub settings. How to do that can be found here:&nbsp;<a href=\"https://help.github.com/en/articles/configuring-a-publishing-source-for-github-pages\" rel=\"noopener noreferrer\" target=\"_blank\">https://help.github.com/en/articles/configuring-a-publishing-source-for-github-pages</a></p>\r\n\r\n<p>You need to include these steps in your readme on how it was deployed.</p>\r\n\r\n<p>Basically explain to another developer who might work on your code, how you got the page up and running. (Later in the course the deployment section will get more complex, but if you want the best marks be pedantic and write it out in your readme this time too!)</p>\r\n\r\n<p>Also, the deployment includes writing up how to run your code locally. So explain how to pull your code from your Github repository (you don&#39;t need to give any passwords) so someone could clone your code to work on their own machine. Here is how to do that:&nbsp;<a href=\"https://help.github.com/en/articles/cloning-a-repository\" rel=\"noopener noreferrer\" target=\"_blank\">https://help.github.com/en/articles/cloning-a-repository</a>&nbsp;Include these steps in your readme.md too and that&#39;s the deployment section of your readme sorted.</p>",
+            "author": 1,
+            "created_on": "2021-06-28T10:51:50.451Z",
+            "updated_on": null,
+            "status": "Published",
+            "mod_message": null,
+            "moderator": null,
+            "category": 30,
+            "image_1": "",
+            "image_2": "",
+            "image_3": "",
+            "image_4": "",
+            "flag": null,
+            "editors_note": null,
+            "slack_channel": 13,
+            "course": 1,
+            "youtube": null,
+            "tags": [
+                15,
+                20,
+                28,
+                14
+            ],
+            "likes": []
+        }
+    },
+    {
+        "model": "posts.post",
+        "pk": 44,
+        "fields": {
+            "title": "All the bells and whistles",
+            "summary": "A post with all the features available used",
+            "slug": "all-the-bells-and-whistles",
+            "body": "<h1>Main heading</h1>\r\n\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere reiciendis omnis quis labore vero quasi temporibus, dolore maxime rem molestiae quisquam quos sequi ratione eius distinctio aperiam, culpa quibusdam. Veniam?</p>\r\n\r\n<h2>2nd level heading</h2>\r\n\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere reiciendis omnis quis labore vero quasi temporibus, dolore maxime rem molestiae quisquam quos sequi ratione eius distinctio aperiam, culpa quibusdam. Veniam? Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere reiciendis omnis quis labore vero quasi temporibus, dolore maxime rem molestiae quisquam quos sequi ratione eius distinctio aperiam, culpa quibusdam. Veniam?</p>\r\n\r\n<h3>3rd level heading</h3>\r\n\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere reiciendis omnis quis labore vero quasi temporibus, dolore maxime rem molestiae quisquam quos sequi ratione eius distinctio aperiam, culpa quibusdam. Veniam? Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere reiciendis omnis quis labore vero quasi temporibus, dolore maxime rem molestiae quisquam quos sequi ratione eius distinctio aperiam, culpa quibusdam. Veniam? Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere reiciendis omnis quis labore vero quasi temporibus, dolore maxime rem molestiae quisquam quos sequi ratione eius distinctio aperiam, culpa quibusdam. Veniam?</p>\r\n\r\n<p>Code block</p>\r\n\r\n<pre>\r\n&lt;h1&gt;Important!&lt;/h1&gt;\r\n&lt;h2&gt;Example heading&lt;/h2&gt;</pre>\r\n\r\n<p>We can also have <kbd>&lt;code&gt;</kbd> in lines of text&nbsp;</p>\r\n\r\n<p><strong>Bold</strong></p>\r\n\r\n<p><em>Italic</em></p>\r\n\r\n<p><u>Underlined</u></p>\r\n\r\n<p><s>Strikethrough</s></p>\r\n\r\n<p>Horizontal lines</p>\r\n\r\n<hr />\r\n<p>&nbsp;</p>\r\n\r\n<table align=\"center\" border=\"1\" cellpadding=\"1\" cellspacing=\"1\" style=\"width:500px\">\r\n\t<caption>Tables</caption>\r\n\t<thead>\r\n\t\t<tr>\r\n\t\t\t<th scope=\"col\">Name</th>\r\n\t\t\t<th scope=\"col\">Fav colour</th>\r\n\t\t</tr>\r\n\t</thead>\r\n\t<tbody>\r\n\t\t<tr>\r\n\t\t\t<td>John Robertson</td>\r\n\t\t\t<td>Red</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td>Jill Richards</td>\r\n\t\t\t<td>Orange</td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>\r\n\r\n<p><br />\r\n&nbsp;</p>\r\n\r\n<p><span style=\"color:#c0392b\">Text color</span></p>\r\n\r\n<p><span style=\"background-color:#c0392b; color:#ffffff\">Text background color</span></p>\r\n\r\n<p>We can even have emojis&nbsp;</p>\r\n\r\n<p><img alt=\"smiley\" src=\"https://ci-student-library.s3.amazonaws.com/static/ckeditor/ckeditor/plugins/smiley/images/regular_smile.png\" style=\"height:23px; width:23px\" title=\"smiley\" />&nbsp;<img alt=\"laugh\" src=\"https://ci-student-library.s3.amazonaws.com/static/ckeditor/ckeditor/plugins/smiley/images/teeth_smile.png\" style=\"height:23px; width:23px\" title=\"laugh\" />&nbsp;<img alt=\"heart\" src=\"https://ci-student-library.s3.amazonaws.com/static/ckeditor/ckeditor/plugins/smiley/images/heart.png\" style=\"height:23px; width:23px\" title=\"heart\" /></p>",
+            "author": 1,
+            "created_on": "2021-07-07T07:56:35.568Z",
+            "updated_on": "2021-07-07T08:02:42.880Z",
+            "status": "Published",
+            "mod_message": "",
+            "moderator": null,
+            "category": 29,
+            "image_1": "images/posts/Mobile_first_design.png",
+            "image_2": "images/posts/Mobile.png",
+            "image_3": "images/posts/Tablet.png",
+            "image_4": "images/posts/Desktop.png",
+            "flag": null,
+            "editors_note": null,
+            "slack_channel": 3,
+            "course": 3,
+            "youtube": "https://www.youtube.com/watch?v=3t1p86x6Vtg",
+            "tags": [
+                15,
+                1,
+                17,
+                3,
+                14
+            ],
+            "likes": []
+        }
+    },
+    {
+        "model": "posts.bookmark",
+        "pk": 2,
+        "fields": {
+            "post": 9,
+            "user": 9,
+            "created_on": "2021-06-16T07:35:00.661Z"
+        }
+    },
+    {
+        "model": "posts.bookmark",
+        "pk": 3,
+        "fields": {
+            "post": 24,
+            "user": 1,
+            "created_on": "2021-06-18T14:30:35.297Z"
+        }
+    },
+    {
+        "model": "posts.bookmark",
+        "pk": 4,
+        "fields": {
+            "post": 10,
+            "user": 1,
+            "created_on": "2021-06-18T14:30:46.589Z"
+        }
+    },
+    {
+        "model": "posts.bookmark",
+        "pk": 5,
+        "fields": {
+            "post": 29,
+            "user": 1,
+            "created_on": "2021-06-19T07:01:02.785Z"
+        }
+    },
+    {
+        "model": "posts.bookmark",
+        "pk": 6,
+        "fields": {
+            "post": 28,
+            "user": 15,
+            "created_on": "2021-07-02T15:31:29.006Z"
+        }
+    }
+]

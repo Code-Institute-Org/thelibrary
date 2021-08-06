@@ -1,0 +1,23 @@
+[
+    {
+        "model": "courses.course",
+        "pk": 1,
+        "fields": {
+            "name": "4P Course"
+        }
+    },
+    {
+        "model": "courses.course",
+        "pk": 2,
+        "fields": {
+            "name": "5P Course"
+        }
+    },
+    {
+        "model": "courses.course",
+        "pk": 3,
+        "fields": {
+            "name": "Both 4P & 5P"
+        }
+    }
+]
