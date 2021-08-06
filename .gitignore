@@ -2,5 +2,8 @@
 venv
 db.sqlite3
 __pycache__
+Pipfile
 env.py
 creds.csv
+dev_secrets.env
+data

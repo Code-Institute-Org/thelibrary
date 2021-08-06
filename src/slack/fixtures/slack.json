@@ -1,0 +1,114 @@
+[
+    {
+        "model": "slack.slackchannel",
+        "pk": 1,
+        "fields": {
+            "name": "#gitpod",
+            "slack_channel_id": "CP07TN38Q"
+        }
+    },
+    {
+        "model": "slack.slackchannel",
+        "pk": 2,
+        "fields": {
+            "name": "#cpl-essentials",
+            "slack_channel_id": "C01DGQ5VCSJ"
+        }
+    },
+    {
+        "model": "slack.slackchannel",
+        "pk": 3,
+        "fields": {
+            "name": "#css-essentials",
+            "slack_channel_id": "C01DHHYPVTQ"
+        }
+    },
+    {
+        "model": "slack.slackchannel",
+        "pk": 4,
+        "fields": {
+            "name": "#html-essentials",
+            "slack_channel_id": "C01DL784RPF"
+        }
+    },
+    {
+        "model": "slack.slackchannel",
+        "pk": 5,
+        "fields": {
+            "name": "#js-essentials",
+            "slack_channel_id": "C01EDCJBKNU"
+        }
+    },
+    {
+        "model": "slack.slackchannel",
+        "pk": 6,
+        "fields": {
+            "name": "#python-essentials",
+            "slack_channel_id": "C01DVU37QG4"
+        }
+    },
+    {
+        "model": "slack.slackchannel",
+        "pk": 7,
+        "fields": {
+            "name": "#data-centric-dev",
+            "slack_channel_id": "C7JQY2RHC"
+        }
+    },
+    {
+        "model": "slack.slackchannel",
+        "pk": 8,
+        "fields": {
+            "name": "#full-stack-frameworks",
+            "slack_channel_id": "C7HS3U3AP"
+        }
+    },
+    {
+        "model": "slack.slackchannel",
+        "pk": 9,
+        "fields": {
+            "name": "#interactive-frontend",
+            "slack_channel_id": "C7HD37Q1F"
+        }
+    },
+    {
+        "model": "slack.slackchannel",
+        "pk": 10,
+        "fields": {
+            "name": "#user-centric-frontend",
+            "slack_channel_id": "C7J2ZAVHB"
+        }
+    },
+    {
+        "model": "slack.slackchannel",
+        "pk": 11,
+        "fields": {
+            "name": "#git-version-control",
+            "slack_channel_id": "C7W83ABJ7"
+        }
+    },
+    {
+        "model": "slack.slackchannel",
+        "pk": 12,
+        "fields": {
+            "name": "#practical-python",
+            "slack_channel_id": "C7J3082VB"
+        }
+    },
+    {
+        "model": "slack.slackchannel",
+        "pk": 13,
+        "fields": {
+            "name": "#general",
+            "slack_channel_id": "C0L316Z96"
+        }
+    },
+    {
+        "model": "slack.slackchannel",
+        "pk": 14,
+        "fields": {
+            "name": "#careers",
+            "slack_channel_id": "C6HMEMFEW"
+        }
+    }
+]

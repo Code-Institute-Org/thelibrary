@@ -6,12 +6,11 @@ services:
     ports:
       - "8000:8000"
     environment:
-        - SECRET=&ft+Us&.MdEy#,g1pd#_9k:95*6<
-        - DATABASE_URL=postgres://thelibraryuser:thelibrarypsw@postgres:5432/thelibrarydb
-        - HOSTNAME=8000-aqua-barracuda-wf8w3t2r.ws-eu14.gitpod.io
+        - ENV_FILE=/thelibrary/dev_secrets.env
     entrypoint: ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
     volumes:
       - ./src/:/thelibrary/
+      - ./dev_secrets.env:/thelibrary/dev_secrets.env
     depends_on:
       - postgres
 
@@ -22,3 +21,6 @@ services:
       POSTGRES_PASSWORD: thelibrarypsw
       POSTGRES_USER: thelibraryuser
       POSTGRES_DB: thelibrarydb
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - ${PWD}/data/:/var/lib/postgresql/data/
