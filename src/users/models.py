@@ -18,6 +18,7 @@ class UserProfile(models.Model):
         null=True, blank=True, upload_to="images/profiles/")
     linkedin = models.URLField(null=True, blank=True)
     github = models.URLField(null=True, blank=True)
+    twitter = models.CharField(max_length=16, null=True, blank=True)
     is_admin = models.BooleanField(default=False)
     is_mod = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
