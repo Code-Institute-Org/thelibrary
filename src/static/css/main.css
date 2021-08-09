@@ -1325,6 +1325,7 @@ on the post_detail page.
     background-size: cover;
     border-radius: 50%;
     margin: 0 auto;
+    background-color: white;
 }
 
 #profile-pg .dotted-line {
