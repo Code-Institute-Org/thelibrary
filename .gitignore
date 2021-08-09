@@ -7,3 +7,4 @@ env.py
 creds.csv
 dev_secrets.env
 data
+.venv
