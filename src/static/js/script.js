@@ -45,11 +45,11 @@ function getDismissedDataWithExpiry() {
     if (!itemStr) {
         return null;
     }
-    const dismissedDataStr = JSON.parse(itemStr);
+    const dismissedData = JSON.parse(itemStr);
     const now = new Date();
 
     // compare expiry time with current time
-    if (now.getTime() > dismissedDataStr.expiry) {
+    if (now.getTime() > dismissedData.expiry) {
         // If the time is expired, delete data from storage
         localStorage.removeItem('dismissedData');
         return null;
