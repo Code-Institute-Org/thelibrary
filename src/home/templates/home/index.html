@@ -32,12 +32,12 @@
             
         </header>
         {% for post in recent_posts %}
-            {% if forloop.counter != recent_posts|length %}
+            {% if forloop.counter != 3 %}
             <div class="col-12 col-md-6 col-lg-4">
                 {% include 'components/post-card-full.html' %}
             </div>
             {% else %}
-            <!-- Hide last card on large screens for responsive design -->
+            <!-- Hide 4th card on large screens for responsive design -->
             <div class="col-12 col-md-6 col-lg-4 d-lg-none">
                 {% include 'components/post-card-full.html' %}
             </div>
@@ -54,7 +54,7 @@
             
         </header>
         {% for post in favourite_posts %}
-            <div class="col-12 col-md-6 col-lg-4 {% if forloop.counter == favourite_posts|length %}d-lg-none{% endif %}">
+            <div class="col-12 col-md-6 col-lg-4 {% if forloop.counter == 3 %}d-lg-none{% endif %}">
                 {% include 'components/post-card-full.html' %}
             </div>
         {% endfor %}
