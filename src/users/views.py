@@ -114,10 +114,10 @@ class UpdateProfileView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     associated with their UserProfile instance.
     """
     model = UserProfile
-    fields = ['bio', 'profile_pic', 'linkedin', 'github']
+    fields = ['bio', 'profile_pic', 'linkedin', 'github', 'twitter']
     template_name = 'update_profile.html'
     success_message = "Your profile has been successfully updated!"
 
     def get_success_url(self):
-        pk = self.request.user.pk
+        pk = self.request.user.userprofile.pk
         return reverse_lazy('update_profile', kwargs={'pk': pk})
