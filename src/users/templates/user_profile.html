@@ -62,6 +62,13 @@
                         target="_blank" rel="noopener">
                         <i class="fab fa-github-square"></i></a>
                 {% endif %}
+
+                {% if user.userprofile.twitter %}
+                    <a href="https://twitter.com/{{ user.userprofile.twitter }}" 
+                        aria-label="Visit {{ user.userprofile.user.twitter }}'s twitter feed (opens in a new tab)"
+                        target="_blank" rel="noopener">
+                        <i class="fab fa-twitter-square"></i></a>
+                {% endif %}
             </div>
             {% if user == request.user %}
             <div id="edit-profile">
@@ -84,10 +91,17 @@
                 </div>
             </div>
             {% for post in posts %}
-                <div class="col-12 col-md-6 col-lg-4 {% if forloop.counter == posts|length %}d-lg-none{% endif %}">
+                <div class="col-12 col-md-6 col-lg-4">
                     {% include 'components/post-card-semi.html' %}
                 </div>
             {% endfor %}
+            {% if posts_count > 12 %}
+            <div class="my-4 col-12 text-center">
+                <div class="text-center text-sm-right mt-3 mt-sm-0">
+                    <a href="{% url 'posts_by_author' user.pk %}" class="btn btn-orange">See more posts by {% if user.first_name %}{{ user.first_name }}{% else %}{{ user.username }}{% endif %}</a>
+                </div>
+            </div>
+            {% endif %}
         </div>
     {% endif %}
 </div>

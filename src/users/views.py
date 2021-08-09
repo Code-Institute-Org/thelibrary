@@ -13,15 +13,18 @@ from .models import UserProfile, User
 def user_profile_view(request, pk):
     """
     Render selected users profile,
-    including their 4 most recently published posts.
+    including their 12 most recently published posts.
     """
     user = get_object_or_404(User, pk=pk)
     posts = Post.objects.filter(
-        author=user.pk, status='Published').order_by('-created_on')[:4]
+        author=user.pk, status='Published').order_by('-created_on')[:12]
+    posts_count = Post.objects.filter(
+        author=user.pk, status='Published').order_by('-created_on').count()
 
     context = {
         'user': user,
         'posts': posts,
+        'posts_count': posts_count,
     }
 
     return render(request, 'user_profile.html', context)
