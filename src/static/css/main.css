@@ -1325,6 +1325,7 @@ on the post_detail page.
     background-size: cover;
     border-radius: 50%;
     margin: 0 auto;
+    background-color: white;
 }
 
 #profile-pg .dotted-line {
@@ -1492,6 +1493,14 @@ are still set to bootstrap 4)
     border: none;
     padding: 0;
     margin-top: 10px;
+}
+
+#author-settings-form #profile_pic-clear_id {
+    display: inline-block;
+    width: auto;
+    appearance: auto;
+    -webkit-appearance: auto;
+    -moz-appearance: auto;
 }
 
 /*

@@ -72,7 +72,7 @@
             </div>
             {% if user == request.user %}
             <div id="edit-profile">
-                <a href="{% url 'update_profile' user.pk %}">
+                <a href="{% url 'update_profile' request.user.userprofile.pk %}">
                     <i class="far fa-edit" title="Edit"></i>
                 </a>
             </div>

@@ -385,19 +385,20 @@
                         </div>
                     </div>
                 </footer>
+                {% if request.user.is_authenticated %}
                 <div class="dotted-line col-12 mt-5 mb-3"></div>
                 <div class="col-12">
-                    <h2 class="mt-3 thin-text">Got a question about this post?</h2>
+                    <h2 class="mt-3 thin-text">Got a question?</h2>
                     <div class="side-panel-content-wrapper">
-                        <p>Ask about it in the <strong>{{ post.slack_channel.name }}</strong> channel in slack.
+                        <p>Visit the <strong>{{ post.slack_channel.name }}</strong> channel in slack.
                             <br>
                             <small>Don't forget to link back to this post with your question.</small>
                         </p>
                         <a href="https://slack.com/app_redirect?channel={{ post.slack_channel.slack_channel_id }}" target="_blank" 
                         aria-label="Visit the {{ post.slack_channel.name }} channel in slack" class="btn btn-orange">Visit {{ post.slack_channel.name }}</a>
                     </div>
-                    
                 </div>
+                {% endif %}
                 <div class="dotted-line col-12 mt-5 mb-3"></div>
                 <div class="col-12">
                     {% if related_posts.count > 0 %}
@@ -423,9 +424,6 @@
                 {% endif %}
             </div>
         </div>
-        
-        <!---->
-
 
     </div>
 </article>
