@@ -14,3 +14,4 @@ def get_unique_filename(instance, filename):
     ext = filename.split('.')[-1]
     filename = f"{name}-{uuid.uuid4()}.{ext}"
     return os.path.join(f"images/", filename)
+    
