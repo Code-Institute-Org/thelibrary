@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     'slack',
     'courses',
     'manager',
+    'slack_login',
 ]
 
 MIDDLEWARE = [
