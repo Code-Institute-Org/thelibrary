@@ -8,6 +8,7 @@ from courses.models import Course
 from slack.models import SlackChannel
 from users.models import UserProfile
 
+from helpers import get_unique_filename
 
 class PostTag(models.Model):
     """
@@ -114,13 +115,13 @@ class Post(models.Model):
     likes = models.ManyToManyField(
         User, related_name='post_likes', blank=True)
     image_1 = models.ImageField(
-        null=True, blank=True, upload_to="images/posts/")
+        null=True, blank=True, upload_to=get_unique_filename)
     image_2 = models.ImageField(
-        null=True, blank=True, upload_to="images/posts/")
+        null=True, blank=True, upload_to=get_unique_filename)
     image_3 = models.ImageField(
-        null=True, blank=True, upload_to="images/posts/")
+        null=True, blank=True, upload_to=get_unique_filename)
     image_4 = models.ImageField(
-        null=True, blank=True, upload_to="images/posts/")
+        null=True, blank=True, upload_to=get_unique_filename)
     flag = models.ForeignKey(
         PostFlag,
         on_delete=models.SET_NULL,

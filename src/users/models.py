@@ -1,10 +1,11 @@
+import datetime
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-import datetime
-
+from helpers import get_unique_filename
 
 class UserProfile(models.Model):
     """
@@ -15,7 +16,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, unique=True, on_delete=models.CASCADE)
     bio = models.CharField(max_length=200, null=True, blank=True)
     profile_pic = models.ImageField(
-        null=True, blank=True, upload_to="images/profiles/")
+        null=True, blank=True, upload_to=get_unique_filename)
     linkedin = models.URLField(null=True, blank=True)
     github = models.URLField(null=True, blank=True)
     twitter = models.CharField(max_length=16, null=True, blank=True)
