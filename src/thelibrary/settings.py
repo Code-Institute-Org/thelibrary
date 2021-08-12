@@ -68,7 +68,6 @@ INSTALLED_APPS = [
     'slack',
     'courses',
     'manager',
-    'slack_login',
 ]
 
 MIDDLEWARE = [
@@ -121,12 +120,23 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
+ACCOUNT_EMAIL_VERIFICATION = None
+ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = False
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 lOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
 
+SLACK_ENABLED = os.environ.get("SLACK_ENABLED") == 'True'
+
+if SLACK_ENABLED:
+    SLACK_WORKSPACE = os.environ.get('SLACK_WORKSPACE')
+    SLACK_BOT_TOKEN = os.environ.get('SLACK_BOT_TOKEN')
+    INSTALLED_APPS += ['custom_slack_provider']
+    SOCIALACCOUNT_PROVIDERS = {
+        'custom_slack_provider': {
+            'SCOPE':['identity.basic', 'identity.email'],
+        }
+    }
 
 WSGI_APPLICATION = 'thelibrary.wsgi.application'
 
