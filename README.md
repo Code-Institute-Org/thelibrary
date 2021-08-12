@@ -568,6 +568,7 @@ Instructions on how to do these steps can be found in the [heroku devcenter docu
 - Loading spinner code from [W3Schools](https://www.w3schools.com/howto/howto_css_loader.asp) 
 - Django ranked text search for postgres tutorial from [testdriven.io](https://testdriven.io/blog/django-search/)
 - JavaScript code to set expiry on localStorage data from [www.sohamkamani.com](https://www.sohamkamani.com/blog/javascript-localstorage-with-ttl-expiry/#full-example)
+- Code to create unique file names from this [Stack Overflow Post](https://stackoverflow.com/questions/2673647/enforce-unique-upload-file-names-using-django/2677474#2677474)
 
 ### Images
 - Library background image by [mentatdgt on Pexels.com](https://www.pexels.com/photo/library-photo-1319854/)
