@@ -53,10 +53,10 @@ class CustomSlackSocialAdapter(DefaultSocialAccountAdapter):
         user_field(user, 'first_name', first_name or name_parts[0])
         user_field(user, 'last_name', last_name or name_parts[2])
         user_field(user, 'full_name', full_name)
-        user_field(user, 'slack_display_name', slack_display_name)
+        # user_field(user, 'slack_display_name', slack_display_name)
         user_field(user, 'username', username)
-        user_field(user, 'profile_image', profile_image)
-        user_field(user, 'about', about)
+        # user_field(user, 'profile_image', profile_image)
+        # user_field(user, 'about', about)
         return user
 
     def is_auto_signup_allowed(self, request, sociallogin):

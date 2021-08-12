@@ -1,7 +1,7 @@
 import logging
 import requests
 
-from accounts.models import CustomUser
+from django.contrib.auth.models import User
 from django.core.exceptions import PermissionDenied
 from requests import RequestException
 
@@ -53,7 +53,7 @@ class SlackOAuth2Adapter(OAuth2Adapter):
         resp = resp.json()
 
         if not resp.get('ok'):
-            raise OAuth2Error(f'UserInfo Exception: {user_info.get("error")}')
+            raise OAuth2Error(f'UserInfo Exception: {resp.get("error")}')
 
         userid = resp.get('user', {}).get('id')
         user_info = requests.get(

@@ -129,6 +129,7 @@ LOGIN_REDIRECT_URL = '/'
 SLACK_ENABLED = os.environ.get("SLACK_ENABLED") == 'True'
 
 if SLACK_ENABLED:
+    ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
     SLACK_WORKSPACE = os.environ.get('SLACK_WORKSPACE')
     SLACK_BOT_TOKEN = os.environ.get('SLACK_BOT_TOKEN')
     INSTALLED_APPS += ['custom_slack_provider']
