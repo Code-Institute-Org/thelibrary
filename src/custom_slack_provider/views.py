@@ -62,7 +62,6 @@ class SlackOAuth2Adapter(OAuth2Adapter):
             headers={'Authorization': f"Bearer {settings.SLACK_BOT_TOKEN}"}
         )
         user_info = user_info.json()
-        logger.error(user_info)
 
         if not user_info.get('ok'):
             raise OAuth2Error(f'UserInfo Exception: {user_info.get("error")}')

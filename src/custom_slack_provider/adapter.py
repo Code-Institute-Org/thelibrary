@@ -1,3 +1,5 @@
+import logging
+
 from django.conf import settings
 from allauth.account.adapter import DefaultAccountAdapter
 from allauth.socialaccount.adapter import DefaultSocialAccountAdapter
@@ -9,8 +11,6 @@ from allauth.utils import (
     serialize_instance,
     valid_email_or_none,
 )
-
-import logging
 
 logger = logging.getLogger(__name__)
 
@@ -53,10 +53,6 @@ class CustomSlackSocialAdapter(DefaultSocialAccountAdapter):
         user_field(user, 'first_name', first_name or name_parts[0])
         user_field(user, 'last_name', last_name or name_parts[2])
         user_field(user, 'full_name', full_name)
-        # user_field(user, 'slack_display_name', slack_display_name)
-        user_field(user, 'username', username)
-        # user_field(user, 'profile_image', profile_image)
-        # user_field(user, 'about', about)
         return user
 
     def is_auto_signup_allowed(self, request, sociallogin):
@@ -89,3 +85,17 @@ class CustomSlackSocialAdapter(DefaultSocialAccountAdapter):
                 auto_signup = False
 
         return auto_signup
+    
+    def save_user(self, request, sociallogin, form=None):
+        """
+        Saves a newly signed up social login. In case of auto-signup,
+        the signup form is not available.
+        """
+        u = sociallogin.user
+        u.set_unusable_password()
+        if form:
+            get_account_adapter().save_user(request, u, form)
+        else:
+            get_account_adapter().populate_username(request, u)
+        sociallogin.save(request)
+        return u

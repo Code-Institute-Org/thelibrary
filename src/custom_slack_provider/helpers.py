@@ -14,6 +14,8 @@ from allauth.socialaccount.adapter import get_adapter
 from allauth.socialaccount.models import SocialLogin
 from allauth.socialaccount.providers.base import AuthError, AuthProcess
 
+from users.models import UserProfile
+
 
 def _process_signup(request, sociallogin):
     auto_signup = get_adapter(request).is_auto_signup_allowed(
@@ -172,6 +174,15 @@ def _complete_social_login(request, sociallogin):
     else:
         # New social user
         ret = _process_signup(request, sociallogin)
+        extra_data = sociallogin.account.extra_data
+        slack_display_name = extra_data.get('user', {}).get('display_name')
+        title_default = 'This user has not written a bio yet.'
+        title = extra_data.get('user', {}).get('title', title_default)
+        profile = UserProfile(
+            user=sociallogin.user,
+            slack_display_name=slack_display_name,
+            bio=title[:199])
+        profile.save()
     return ret
 
 

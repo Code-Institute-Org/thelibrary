@@ -9,7 +9,7 @@ def categories(request):
 
 
 def notifications(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated and hasattr(request.user, 'userprofile'):
         num_posts_in_review = Post.objects.filter(
             author=request.user.userprofile.id,
             status="Review"
