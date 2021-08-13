@@ -48,7 +48,7 @@ class SlackOAuth2Adapter(OAuth2Adapter):
         # Verify the user first
         resp = requests.get(
             self.identity_url,
-            params={'token': token}
+            headers={'Authorization': f"Bearer {token}"}
         )
         resp = resp.json()
 
@@ -58,9 +58,11 @@ class SlackOAuth2Adapter(OAuth2Adapter):
         userid = resp.get('user', {}).get('id')
         user_info = requests.get(
             self.user_detail_url,
-            params={'token': settings.SLACK_BOT_TOKEN, 'user': userid}
+            params={'user': userid},
+            headers={'Authorization': f"Bearer {settings.SLACK_BOT_TOKEN}"}
         )
         user_info = user_info.json()
+        logger.error(user_info)
 
         if not user_info.get('ok'):
             raise OAuth2Error(f'UserInfo Exception: {user_info.get("error")}')
