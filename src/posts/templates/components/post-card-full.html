@@ -31,7 +31,7 @@
             {% if post.author.is_staff %}
             <span class="ci-username-logo"></span>
             {% endif %}
-            <a href="{% url 'user_profile' post.author.user.pk %}">{{ post.author.user.username }}</a>
+            <a href="{% url 'user_profile' post.author.user.pk %}">{{ post.author.slack_display_name }}</a>
         </p>
     </div>
     <div class="post-card-body">

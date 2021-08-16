@@ -35,7 +35,7 @@
                     {% for post in page_obj %}
                     <tr>
                         <th>{{ post.title }}</th>
-                        <td>{{ post.author.user.username }}</td>
+                        <td>{{ post.author.slack_display_name }}</td>
                         <td>{{ post.flag.flagger }}</td>
                         <td>{{ post.flag.reason }}</td>
                         <td><a href="{% url 'review_post' post.pk post.slug %}">Review</a></td>

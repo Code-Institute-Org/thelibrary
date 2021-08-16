@@ -17,10 +17,6 @@
             <form method="POST">
                 {% csrf_token %}
                 <div class="mb-3">
-                    <label for="id_username" class="form-label">Username</label>
-                    {{ form.username }}
-                </div>
-                <div class="mb-3">
                     <label for="id_first_name" class="form-label">First Name</label>
                     {{ form.first_name }}
                 </div>
@@ -37,7 +33,7 @@
                 <br>
                 <a href="{% url 'account_change_password' %}">Change your password</a>
                 <br>
-                <a href="{% url 'update_profile' request.user.pk %}">Manage your Profile</a>
+                <a href="{% url 'update_profile' request.user.userprofile.pk %}">Manage your Profile</a>
             </div>
         </div>
     </div>

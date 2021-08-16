@@ -38,7 +38,7 @@ class UserProfile(models.Model):
         else:
             status = ''
 
-        return f'{self.user.username}{status} | {self.date_joined}'
+        return f'{self.user.userprofile.slack_display_name}{status} | {self.date_joined}'
 
     def kudos_badge(self):
         """

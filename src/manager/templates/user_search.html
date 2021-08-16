@@ -62,7 +62,7 @@
                         {% for user in page_obj %}
                         <tr>
                             <!-- hide first, last name and date joined columns on small screens so table width is thinner -->
-                            <th>{{ user.username }}</th>
+                            <th>{{ user.userprofile.slack_display_name }}</th>
                             <td class="d-none d-md-table-cell">{{ user.first_name }}</td>
                             <td class="d-none d-md-table-cell">{{ user.last_name }}</td>
                             <td class="d-none d-lg-table-cell">{{ user.userprofile.date_joined }}</td>

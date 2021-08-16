@@ -1,6 +1,6 @@
 {% extends 'base.html' %}{% load static %}
 
-{% block extra_title %}{{ user.username }}'s profile page{% endblock %}
+{% block extra_title %}{{ user.userprofile.slack_display_name }}'s profile page{% endblock %}
 
 {% block content %}
 
@@ -12,7 +12,7 @@
                 {% if user.userprofile.profile_pic %}
                 <div class="profile-pic box-shadow-sharp"
                     style="background-image: url('{{ user.userprofile.profile_pic.url }}');"
-                    title="{{ user.username }}'s profile picture"></div>
+                    title="{{ user.userprofile.slack_display_name }}'s profile picture"></div>
                 {% else %}
                 <div class="profile-pic box-shadow-sharp"
                 style="background-image: url('https://ci-student-library.s3.amazonaws.com/media/images/profiles/default-profile-pic.png');"
@@ -40,7 +40,7 @@
                 {% if user.userprofile.is_staff %}
                 <span class="ci-username-logo-md" title="This user is a Code Institute staff member"></span>
                 {% endif %}
-                {{ user.username }}
+                {{ user.userprofile.slack_display_name }}
             </p>
             <p class="lead">Member since {{ user.userprofile.date_joined }}</p>
             
@@ -51,14 +51,14 @@
             <div class="author-social-icons">
                 {% if user.userprofile.linkedin %}
                     <a href="{{ user.userprofile.linkedin }}" 
-                        aria-label="Visit {{ user.userprofile.user.username }}'s linkedin profile (opens in a new tab)"
+                        aria-label="Visit {{ user.userprofile.slack_display_name }}'s linkedin profile (opens in a new tab)"
                         target="_blank" rel="noopener">
                         <i class="fab fa-linkedin"></i></a>
                 {% endif %}
 
                 {% if user.userprofile.linkedin %}
                     <a href="{{ user.userprofile.github }}" 
-                        aria-label="Visit {{ user.userprofile.user.username }}'s github profile (opens in a new tab)"
+                        aria-label="Visit {{ user.userprofile.slack_display_name }}'s github profile (opens in a new tab)"
                         target="_blank" rel="noopener">
                         <i class="fab fa-github-square"></i></a>
                 {% endif %}
@@ -84,7 +84,7 @@
         <div class="row">
             <div class="list-view-header box-shadow-light-spread my-4 col-12 d-sm-flex justify-content-between">
                 <h2 class="m-0 home-listview-heading text-center text-sm-start">
-                    Posts by {% if user.first_name %}{{ user.first_name }}{% else %}{{ user.username }}{% endif %}
+                    Posts by {% if user.first_name %}{{ user.first_name }}{% else %}{{ user.userprofile.slack_display_name }}{% endif %}
                 </h2>
                 <div class="text-center text-sm-right mt-3 mt-sm-0">
                     <a href="{% url 'posts_by_author' user.pk %}" class="btn btn-orange">See all</a>
@@ -98,7 +98,7 @@
             {% if posts_count > 12 %}
             <div class="my-4 col-12 text-center">
                 <div class="text-center text-sm-right mt-3 mt-sm-0">
-                    <a href="{% url 'posts_by_author' user.pk %}" class="btn btn-orange">See more posts by {% if user.first_name %}{{ user.first_name }}{% else %}{{ user.username }}{% endif %}</a>
+                    <a href="{% url 'posts_by_author' user.pk %}" class="btn btn-orange">See more posts by {% if user.first_name %}{{ user.first_name }}{% else %}{{ user.userprofile.slack_display_name }}{% endif %}</a>
                 </div>
             </div>
             {% endif %}
