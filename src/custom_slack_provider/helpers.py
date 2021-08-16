@@ -173,6 +173,9 @@ def _complete_social_login(request, sociallogin):
             sociallogin=sociallogin)
     else:
         # New social user
+        # Get the slack display name from the recieved data from Slack
+        # Creates an instance of UserProfile with the slack display name
+        # and title from slack for the users bio.
         ret = _process_signup(request, sociallogin)
         extra_data = sociallogin.account.extra_data
         slack_display_name = extra_data.get('user', {}).get('display_name')
