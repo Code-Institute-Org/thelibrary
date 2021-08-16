@@ -100,7 +100,7 @@ class UserSettingsView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     """
     model = User
     template_name = 'user_settings.html'
-    fields = ['username', 'first_name', 'last_name']
+    fields = ['first_name', 'last_name']
     success_message = "Update successful!"
 
     def get_success_url(self):
@@ -114,7 +114,7 @@ class UpdateProfileView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     associated with their UserProfile instance.
     """
     model = UserProfile
-    fields = ['bio', 'profile_pic', 'linkedin', 'github', 'twitter']
+    fields = ['slack_display_name', 'bio', 'profile_pic', 'linkedin', 'github', 'twitter']
     template_name = 'update_profile.html'
     success_message = "Your profile has been successfully updated!"
 

@@ -9,7 +9,9 @@ def categories(request):
 
 
 def notifications(request):
-    if request.user.is_authenticated:
+    # hasattr is needed becasue this is loaded before 
+    # the UserProfile is created and without it it breaks the signup flow.
+    if request.user.is_authenticated and hasattr(request.user, 'userprofile'):
         num_posts_in_review = Post.objects.filter(
             author=request.user.userprofile.id,
             status="Review"

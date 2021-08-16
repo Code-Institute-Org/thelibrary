@@ -50,7 +50,7 @@
                     <tr>
                         <th><a href="{% url 'post_detail' post.pk post.slug %}">{{ post.title }}</a></th>
                         <td>{{ post.summary }}</td>
-                        <td><a href="{% url 'user_profile' post.author.user.pk %}">{{ post.author.user.username }}</a></td>
+                        <td><a href="{% url 'user_profile' post.author.user.pk %}">{{ post.author.slack_display_name }}</a></td>
                         <td>
                             <a href="{% url 'filtered_posts' %}?category={{post.category.pk}}&sort_method=-created_on">
                                 {{ post.category }}

@@ -57,13 +57,13 @@ def profile_search(request):
                 first_name = names[0]
                 last_name = names[1]
                 users = User.objects.filter(
-                    Q(username__icontains=q)
+                    Q(userprofile__slack_display_name__icontains=q)
                     | Q(first_name__icontains=first_name)
                     | Q(last_name__icontains=last_name),
                 )
             else:
                 users = User.objects.filter(
-                    Q(username__icontains=q)
+                    Q(userprofile__slack_display_name__icontains=q)
                     | Q(first_name__icontains=q)
                     | Q(last_name__icontains=q),
                 )

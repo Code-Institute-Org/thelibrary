@@ -218,7 +218,7 @@
                                     {% if request.user.userprofile.is_staff %}
                                     <div class="ci-username-logo"></div>
                                     {% endif %}
-                                    {{ request.user.username }}
+                                    {{ request.user.userprofile.slack_display_name }}
                                     <br>
                                     {% if request.user.first_name %}{{ request.user.first_name }}{% endif %}
                                     {% if request.user.last_name %}{{ request.user.last_name }}{% endif %}

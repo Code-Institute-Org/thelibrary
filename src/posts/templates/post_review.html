@@ -43,7 +43,7 @@
     {% if post.flag and request.user.userprofile.is_admin %}
     <div id="flag-info" class="post-detail-note mb-4">
         <h2>This post has been flagged</h2>
-        <p>Flagged by {{ post.flag.flagger.username }}</p>
+        <p>Flagged by {{ post.flag.flagger.userprofile.slack_display_name }}</p>
         <p>Reason: {{ post.flag.reason }}</p>
         <p>Flag message: {{ post.flag.message }}</p>
     </div>
@@ -70,7 +70,7 @@
                         <span class="ci-username-logo"></span>
                         {% endif %}
                         <a rel="author" href="{% url 'user_profile' post.author.pk %}">
-                            {{ post.author.user.username }}
+                            {{ post.author.slack_display_name }}
                         </a>
                     </address>
                     <!-- 
@@ -235,7 +235,7 @@
                     {% if post.flag %}
                     <div id="flag-info" class="post-detail-note mb-4">
                         <h2>This post has been flagged</h2>
-                        <p>Flagged by {{ post.flag.flagger.username }}</p>
+                        <p>Flagged by {{ post.flag.flagger.userprofile.slack_display_name }}</p>
                         <p>Reason: {{ post.flag.reason }}</p>
                         <p>Flag message: {{ post.flag.message }}</p>
                     </div>

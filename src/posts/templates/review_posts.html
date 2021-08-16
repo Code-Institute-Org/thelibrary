@@ -35,7 +35,7 @@
                         <td class="text-center">{% if post.updated_on %}{{ post.updated_on|date }}{% else %}{{ post.created_on|date }}{% endif %}</td>
                         
                         <td class="text-center">
-                            <a href="{% url 'user_profile' post.author.user.pk  %}">{{ post.author.user.username }}</a>
+                            <a href="{% url 'user_profile' post.author.user.pk  %}">{{ post.author.slack_display_name }}</a>
                         </td>
                         <td class="text-center">{{ post.category }}</td>
                     </tr>

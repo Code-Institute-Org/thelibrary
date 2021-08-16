@@ -17,7 +17,11 @@
             <form method="POST" enctype="multipart/form-data" class="row">
                 {% csrf_token %}
                 {{ form.media }}
-                <div class="mb-3 col-12">
+                <div class="mb-3 col-12 col-md-4">
+                    <label for="id_slack_display_name" class="form-label">Username</label>
+                    {{ form.slack_display_name }}
+                </div>
+                <div class="mb-3 col-12 col-md-8">
                     <label for="id_bio" class="form-label">Bio</label>
                     {{ form.bio }}
                 </div>

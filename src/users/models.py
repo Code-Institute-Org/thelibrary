@@ -24,6 +24,7 @@ class UserProfile(models.Model):
     is_mod = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     date_joined = models.DateField(default=datetime.date.today)
+    slack_display_name = models.CharField(max_length=255, null=True)
 
     def __str__(self):
         """
@@ -37,7 +38,7 @@ class UserProfile(models.Model):
         else:
             status = ''
 
-        return f'{self.user.username}{status} | {self.date_joined}'
+        return f'{self.user.userprofile.slack_display_name}{status} | {self.date_joined}'
 
     def kudos_badge(self):
         """
@@ -67,15 +68,16 @@ class UserProfile(models.Model):
         else:
             return self.user.username
 
+# May need the below code if doing signup without slack
 
-@receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    """ Creates UserProfile on new instance of User """
-    if created:
-        UserProfile.objects.create(user=instance)
+# @receiver(post_save, sender=User)
+# def create_user_profile(sender, instance, created, **kwargs):
+#     """ Creates UserProfile on new instance of User """
+#     if created:
+#         UserProfile.objects.create(user=instance)
 
 
-@receiver(post_save, sender=User)
-def save_user_profile(sender, instance, **kwargs):
-    """ Saves instance of UserProfile """
-    instance.userprofile.save()
+# @receiver(post_save, sender=User)
+# def save_user_profile(sender, instance, **kwargs):
+#     """ Saves instance of UserProfile """
+#     instance.userprofile.save()
