@@ -17,9 +17,9 @@ def user_profile_view(request, pk):
     """
     user = get_object_or_404(User, pk=pk)
     posts = Post.objects.filter(
-        author=user.pk, status='Published').order_by('-created_on')[:12]
+        author=user.userprofile.pk, status='Published').order_by('-created_on')[:12]
     posts_count = Post.objects.filter(
-        author=user.pk, status='Published').order_by('-created_on').count()
+        author=user.userprofile.pk, status='Published').order_by('-created_on').count()
 
     context = {
         'user': user,
