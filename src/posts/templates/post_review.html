@@ -69,7 +69,7 @@
                         {% if post.author.is_staff %}
                         <span class="ci-username-logo"></span>
                         {% endif %}
-                        <a rel="author" href="{% url 'user_profile' post.author.pk %}">
+                        <a rel="author" href="{% url 'user_profile' post.author.user.pk %}">
                             {{ post.author.slack_display_name }}
                         </a>
                     </address>
